@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://cqf1xuoccxt6k"]
+
+[ext_resource type="Script" uid="uid://dnptb60s411dv" path="res://Scripts/MechControllers/jump_control.gd" id="1_8s1xf"]
+[ext_resource type="Texture2D" uid="uid://b1wt3rxhih26o" path="res://Images/Objects/Control1/Screen2.png" id="2_6hbil"]
+[ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_bdllg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
+size = Vector2(26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hibaj"]
+atlas = ExtResource("2_6hbil")
+region = Rect2(0, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdsj5"]
+atlas = ExtResource("2_6hbil")
+region = Rect2(32, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee4r6"]
+atlas = ExtResource("2_6hbil")
+region = Rect2(64, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt3je"]
+atlas = ExtResource("2_6hbil")
+region = Rect2(96, 0, 32, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3pmx8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hibaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdsj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee4r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt3je")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u50mg"]
+line_spacing = 0.0
+font = ExtResource("3_bdllg")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="JumpControl" type="Node2D"]
+script = ExtResource("1_8s1xf")
+metadata/labeltext = "Jump"
+
+[node name="Area" type="Area2D" parent="."]
+monitorable = false
+
+[node name="Hitbox" type="CollisionShape2D" parent="Area"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_d1ilt")
+debug_color = Color(3.85046e-06, 0.60451144, 0.25219792, 0.44705883)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 11)
+sprite_frames = SubResource("SpriteFrames_3pmx8")
+autoplay = "default"
+
+[node name="InteractionLabel" type="Label" parent="."]
+visible = false
+offset_left = -43.0
+offset_top = -23.0
+offset_right = 42.0
+text = "Go Right"
+label_settings = SubResource("LabelSettings_u50mg")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
