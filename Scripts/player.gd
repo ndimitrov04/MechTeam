@@ -6,11 +6,15 @@ extends CharacterBody2D
 
 @onready var mech = $"../Mech"
 
+@onready var minigames = $"../GUI/Control/Minigames"
+
+
 const SPEED = 150.0
 const AIMSPEED = 750
 const JUMP_VELOCITY = -400.0
 
 var zoom : Vector2 = Vector2(2,2)
+var last_zoom : Vector2 = zoom
 var aim_mode : bool = false
 var minigame_mode : bool = false
 
@@ -51,3 +55,15 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+func start_minigame(mname : String, controlled_weapon):
+	print("Player: " + controlled_weapon.name)
+	minigame_mode = true
+	minigames.start_minigame(mname, controlled_weapon)
+	last_zoom = zoom
+	zoom = Vector2(1,1)
+	
+func end_minigame():
+	minigame_mode = false
+	minigames.end_minigame()
+	zoom = last_zoom

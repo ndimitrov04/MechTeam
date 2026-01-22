@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjr583a7k7vyh"]
+
+[ext_resource type="Script" uid="uid://b63kjdjo5d5da" path="res://Scripts/Minigames/QuickTimeArrow.gd" id="1_0klnx"]
+
+[node name="QuickTimeArrow" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0klnx")
+
+[node name="FlowContainer" type="FlowContainer" parent="."]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 392.0
+offset_right = 567.0
+offset_bottom = 425.0
+alignment = 1

@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://7pvmbpigkpq1"]
+
+[ext_resource type="Texture2D" uid="uid://ys2p1s6abkep" path="res://Images/Projectiles/SpaceStation_Projectiles_Sheet.png" id="1_12ur6"]
+[ext_resource type="Script" uid="uid://dnj15b84lvxlb" path="res://Scripts/Projectiles/bullet.gd" id="1_3323x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12ur6"]
+size = Vector2(9, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3323x"]
+atlas = ExtResource("1_12ur6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1vox"]
+atlas = ExtResource("1_12ur6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te8f1"]
+atlas = ExtResource("1_12ur6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1pg7u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3323x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1vox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te8f1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("1_3323x")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_12ur6")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1pg7u")
+autoplay = "default"
+frame_progress = 0.43615592

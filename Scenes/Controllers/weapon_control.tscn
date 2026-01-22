@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://byb23wa6gburr"]
 
-[ext_resource type="Script" uid="uid://cckanj2rvkg11" path="res://Scenes/Controllers/weapon_control.gd" id="1_stdkj"]
+[ext_resource type="Script" uid="uid://cckanj2rvkg11" path="res://Scripts/MechControllers/weapon_control.gd" id="1_stdkj"]
 [ext_resource type="Texture2D" uid="uid://c5hox687k5mqb" path="res://Images/Objects/Control2/PC.png" id="2_oupyg"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_uj4p1"]
 

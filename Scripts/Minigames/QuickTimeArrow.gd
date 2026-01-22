@@ -1,11 +1,33 @@
 extends Control
 
+@onready var minigames = $".."
+
 @onready var flow_container = $FlowContainer
 
 var directions = []	# up, down, left, right
 var direction_index = 0
 
 func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _unhandled_input(event):
+	var current_direction = null
+	if event.is_action_pressed("up"):
+		current_direction = 0
+		victory_check(current_direction)
+	if event.is_action_pressed("down"):
+		current_direction = 1
+		victory_check(current_direction)
+	if event.is_action_pressed("left"):
+		current_direction = 2
+		victory_check(current_direction)
+	if event.is_action_pressed("right"):
+		current_direction = 3
+		victory_check(current_direction)
+	
+
+func start():
 	# Spawn 3 directions in a row
 	# Spawn 3 labels in a row
 	for i in range(2, randi_range(4,6)):
@@ -25,30 +47,17 @@ func _ready():
 				directions.append(3)
 		flow_container.add_child(label)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _unhandled_input(event):
-	var current_direction = null
-	if event.is_action_pressed("up"):
-		current_direction = 0
-		victory_check(current_direction)
-	if event.is_action_pressed("down"):
-		current_direction = 1
-		victory_check(current_direction)
-	if event.is_action_pressed("left"):
-		current_direction = 2
-		victory_check(current_direction)
-	if event.is_action_pressed("right"):
-		current_direction = 3
-		victory_check(current_direction)
-	
 func victory_check(direction):
 	if direction == directions[direction_index]:
 		print("Correct!")
 		if direction_index + 1 >= directions.size():
 			print("You Win!")
+			minigames.win()
+			minigames.player.end_minigame()
 			queue_free()
 		else:
 			direction_index += 1
 	else:
 		print("You Lose!")
+		minigames.player.end_minigame()
 		queue_free()
