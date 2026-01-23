@@ -13,6 +13,8 @@ const SPEED = 150.0
 const AIMSPEED = 750
 const JUMP_VELOCITY = -400.0
 
+var last_platform_velocity : Vector2 = Vector2.ZERO
+
 var zoom : Vector2 = Vector2(2,2)
 var last_zoom : Vector2 = zoom
 var aim_mode : bool = false
@@ -22,10 +24,14 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	else:
+		last_platform_velocity = Vector2.ZERO
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		last_platform_velocity = get_platform_velocity()
+		velocity = last_platform_velocity
+		velocity.y += JUMP_VELOCITY
 
 	# Handle camera zoom
 	if Input.is_action_just_pressed("zoom_in") and is_on_floor():
@@ -52,7 +58,7 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 	else:
 		sprite.play("default")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, last_platform_velocity.x, SPEED)
 
 	move_and_slide()
 

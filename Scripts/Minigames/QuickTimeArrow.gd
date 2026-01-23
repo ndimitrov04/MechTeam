@@ -1,11 +1,18 @@
 extends Control
 
+const DOWN = preload("uid://dcrp6tppbsvl4")
+const LEFT = preload("uid://ct452l4vvyn2i")
+const RIGHT = preload("uid://cenobjevlni5")
+const UP = preload("uid://bs2fqwxm2rdeq")
+
 @onready var minigames = $".."
 
 @onready var flow_container = $FlowContainer
 
 var directions = []	# up, down, left, right
 var direction_index = 0
+
+#note: finish this minigame
 
 func _ready():
 	pass
@@ -31,21 +38,21 @@ func start():
 	# Spawn 3 directions in a row
 	# Spawn 3 labels in a row
 	for i in range(2, randi_range(4,6)):
-		var label = Label.new()
+		var arrow_texture = TextureRect.new()
 		match randi_range(0,3):
 			0:
-				label.text = "Up"
+				arrow_texture.texture = UP
 				directions.append(0)
 			1:
-				label.text = "Down"
+				arrow_texture.texture = DOWN
 				directions.append(1)
 			2:
-				label.text = "Left"
+				arrow_texture.texture = LEFT
 				directions.append(2)
 			3:
-				label.text = "Right"
+				arrow_texture.texture = RIGHT
 				directions.append(3)
-		flow_container.add_child(label)
+		flow_container.add_child(arrow_texture)
 
 func victory_check(direction):
 	if direction == directions[direction_index]:

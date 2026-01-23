@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://byb23wa6gburr"]
+[gd_scene load_steps=8 format=3 uid="uid://byb23wa6gburr"]
 
 [ext_resource type="Script" uid="uid://cckanj2rvkg11" path="res://Scripts/MechControllers/weapon_control.gd" id="1_stdkj"]
 [ext_resource type="Texture2D" uid="uid://c5hox687k5mqb" path="res://Images/Objects/Control2/PC.png" id="2_oupyg"]
+[ext_resource type="Texture2D" uid="uid://b0nqwpuaqsv3s" path="res://Images/Circle.png" id="2_uj4p1"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_uj4p1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
@@ -38,7 +39,7 @@ shape = SubResource("RectangleShape2D_d1ilt")
 debug_color = Color(3.85046e-06, 0.60451144, 0.25219792, 0.44705883)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.21960784, 0.3372549, 1)
+self_modulate = Color(1.4237727, 0.34155205, 0.3163841, 1)
 position = Vector2(1, 11)
 sprite_frames = SubResource("SpriteFrames_3pmx8")
 autoplay = "default"
@@ -53,3 +54,18 @@ label_settings = SubResource("LabelSettings_u50mg")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Cooldown" type="Node2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="CooldownBar" type="TextureProgressBar" parent="Cooldown"]
+offset_left = -8.0
+offset_top = -12.0
+offset_right = 8.0
+offset_bottom = 4.0
+fill_mode = 5
+texture_progress = ExtResource("2_uj4p1")
+tint_progress = Color(1, 0.3529412, 0, 1)
+
+[node name="Timer" type="Timer" parent="Cooldown"]
+one_shot = true

@@ -2,10 +2,11 @@ extends Node2D
 
 @onready var crosshair = $"../../../Crosshair"
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var aim_speed : float
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	get_parent().look_at(crosshair.global_position)
+func _ready():
+	aim_speed = get_parent().get_meta("aim_speed")
+
+func _process(delta):
+	var target_angle = global_position.angle_to_point(crosshair.global_position)
+	get_parent().global_rotation = lerp_angle(global_rotation, target_angle, aim_speed * delta)
