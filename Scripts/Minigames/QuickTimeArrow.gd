@@ -5,6 +5,8 @@ const LEFT = preload("uid://ct452l4vvyn2i")
 const RIGHT = preload("uid://cenobjevlni5")
 const UP = preload("uid://bs2fqwxm2rdeq")
 
+@onready var timed_game = $TimedGame
+
 @onready var minigames = $".."
 
 @onready var flow_container = $FlowContainer
@@ -12,10 +14,10 @@ const UP = preload("uid://bs2fqwxm2rdeq")
 var directions = []	# up, down, left, right
 var direction_index = 0
 
-#note: finish this minigame
-
 func _ready():
 	pass
+
+# Note: Add victory/loss screen
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _unhandled_input(event):
@@ -35,9 +37,12 @@ func _unhandled_input(event):
 	
 
 func start():
+	var input_count = randi_range(4,6)
+	
+	timed_game.start(float(input_count)/3)
 	# Spawn 3 directions in a row
 	# Spawn 3 labels in a row
-	for i in range(2, randi_range(4,6)):
+	for i in range(2, input_count):
 		var arrow_texture = TextureRect.new()
 		match randi_range(0,3):
 			0:
@@ -53,9 +58,11 @@ func start():
 				arrow_texture.texture = RIGHT
 				directions.append(3)
 		flow_container.add_child(arrow_texture)
+	flow_container.get_child(0).self_modulate = Color(0, 255, 0)
 
 func victory_check(direction):
 	if direction == directions[direction_index]:
+		flow_container.get_child(0).free() # Dangerous.
 		print("Correct!")
 		if direction_index + 1 >= directions.size():
 			print("You Win!")
@@ -64,7 +71,11 @@ func victory_check(direction):
 			queue_free()
 		else:
 			direction_index += 1
+			flow_container.get_child(0).self_modulate = Color(0, 255, 0)
 	else:
-		print("You Lose!")
-		minigames.player.end_minigame()
-		queue_free()
+		lose()
+
+func lose():
+	print("You Lose!")
+	minigames.player.end_minigame()
+	queue_free()

@@ -1,9 +1,8 @@
-extends Node2D
+extends Area2D
 
 @onready var mech = $"../.."
 
-@onready var area = $Area
-@onready var hitbox = $Area/Hitbox
+@onready var hitbox = $Hitbox
 @onready var sprite = $Sprite
 @onready var interaction_label = $InteractionLabel
 
@@ -11,8 +10,8 @@ var player_in_range : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	area.body_entered.connect(_on_body_entered)
-	area.body_exited.connect(_on_body_exited)
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 	interaction_label.text = get_meta("labeltext")
 
 func _unhandled_input(event):

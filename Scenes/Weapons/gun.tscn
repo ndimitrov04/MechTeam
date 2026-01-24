@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://tgc6pvjmf1xi"]
+
+[ext_resource type="Script" uid="uid://cp3kgexvunvtf" path="res://Scripts/Weapons/gun.gd" id="1_ut0fn"]
+[ext_resource type="Texture2D" uid="uid://l0br0i4oadx" path="res://Images/MechGuns/turret_01_mk1.png" id="2_n1r3s"]
+[ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="3_ut0fn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
+bounce = 0.1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n1r3s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hptm8"]
+radius = 5.0
+height = 56.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1ilt"]
+radius = 18.0
+height = 42.0
+
+[node name="Gun" type="RigidBody2D"]
+z_index = 10
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_hptm8")
+freeze = true
+script = ExtResource("1_ut0fn")
+metadata/aim_speed = 2.0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_d1ilt")
+autoplay = "default"
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(5, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_hptm8")
+
+[node name="Hitbox2" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_d1ilt")
+
+[node name="DirectAim" parent="." instance=ExtResource("3_ut0fn")]
+
+[node name="ShootPoint" type="Node2D" parent="."]
+position = Vector2(40, 0)

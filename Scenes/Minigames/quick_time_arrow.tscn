@@ -1,47 +1,112 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjr583a7k7vyh"]
+[gd_scene load_steps=6 format=3 uid="uid://cjr583a7k7vyh"]
 
 [ext_resource type="Script" uid="uid://b63kjdjo5d5da" path="res://Scripts/Minigames/QuickTimeArrow.gd" id="1_0klnx"]
+[ext_resource type="Script" uid="uid://c7sgakyi0x2xv" path="res://Scripts/Behaviors/timed_game.gd" id="2_6td2n"]
 
-[sub_resource type="Gradient" id="Gradient_0klnx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0klnx"]
+bg_color = Color(3.080368e-06, 0.6599141, 0.8453397, 0.16862746)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2509804, 0.36078432, 0.39215687, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6td2n"]
-gradient = SubResource("Gradient_0klnx")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6td2n"]
+bg_color = Color(0.2509804, 0.39215687, 0.23137255, 0.38039216)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2509804, 0.36078432, 0.23137255, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xscru"]
+bg_color = Color(0.2509804, 1, 0.23137255, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2509804, 0.36078432, 0.23137255, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="QuickTimeArrow" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 script = ExtResource("1_0klnx")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 4.05
-anchor_top = 13.000001
-anchor_right = 4.05
-anchor_bottom = 13.000001
-offset_top = -13.000061
-offset_right = 200.0
-offset_bottom = 8.249939
-scale = Vector2(4, 4)
-texture = SubResource("GradientTexture1D_6td2n")
-expand_mode = 1
-stretch_mode = 1
+anchor_left = 0.5
+anchor_top = 0.85200006
+anchor_right = 0.5
+anchor_bottom = 0.85200006
+offset_left = -402.0
+offset_top = -41.09601
+offset_right = 400.0
+offset_bottom = 44.90399
+theme_override_styles/panel = SubResource("StyleBoxFlat_0klnx")
 
 [node name="FlowContainer" type="FlowContainer" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 14.067
-anchor_top = 13.987
-anchor_right = 14.067
-anchor_bottom = 13.987
+anchor_left = 0.5
+anchor_top = 0.855
+anchor_right = 0.5
+anchor_bottom = 0.855
 offset_left = -400.0
-offset_top = -40.0
+offset_top = -32.04004
 offset_right = -200.0
-offset_bottom = -20.0
+offset_bottom = -32.04004
 grow_horizontal = 2
-grow_vertical = 2
 scale = Vector2(4, 4)
 alignment = 1
+
+[node name="TimedGame" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.95000005
+anchor_right = 0.5
+anchor_bottom = 0.95000005
+offset_left = -403.0
+offset_top = -16.600037
+offset_right = 400.0
+offset_bottom = 16.399963
+script = ExtResource("2_6td2n")
+
+[node name="Timer" type="Timer" parent="TimedGame"]
+
+[node name="Timebar" type="ProgressBar" parent="TimedGame"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.859
+anchor_right = 0.5
+anchor_bottom = 0.859
+offset_left = -400.5
+offset_top = -27.347
+offset_right = 401.5
+offset_bottom = 5.653
+theme_override_styles/background = SubResource("StyleBoxFlat_6td2n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xscru")
+show_percentage = false

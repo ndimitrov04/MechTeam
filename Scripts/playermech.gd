@@ -6,8 +6,13 @@ extends CharacterBody2D
 const SPEED = 50.0
 const JUMP_VELOCITY = -600.0
 
+var mech_edit : bool = false
+var current_terminal
+
 var direction : int = 0
 var jump : bool = false
+
+var energy : int = 100
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -33,3 +38,12 @@ func _physics_process(delta):
 			spr.stop()
 
 	move_and_slide()
+	
+func _unhandled_input(event):
+	if event.is_action_pressed("debug_mech_edit"):
+		if not mech_edit:
+			mech_edit = true
+			print("ENTERED DEBUG MECH EDIT MODE")
+		else:
+			mech_edit = false
+			print("EXITED DEBUG MECH EDIT MODE")

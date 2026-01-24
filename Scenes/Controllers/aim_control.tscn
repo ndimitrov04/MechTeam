@@ -1,8 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjychxdy31gx5"]
+[gd_scene load_steps=26 format=3 uid="uid://bjychxdy31gx5"]
 
 [ext_resource type="Script" uid="uid://cmydp1w8cg212" path="res://Scripts/MechControllers/aim_control.gd" id="1_7jspn"]
-[ext_resource type="Texture2D" uid="uid://c5hox687k5mqb" path="res://Images/Objects/Control2/PC.png" id="2_xua7h"]
+[ext_resource type="Texture2D" uid="uid://bs7a05rx72oy7" path="res://Images/Objects/Control2/tile000.png" id="2_dq4jl"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_7jwr1"]
+[ext_resource type="Texture2D" uid="uid://xrsyyw0tp5cp" path="res://Images/Objects/Control2/tile001.png" id="3_wy0ay"]
+[ext_resource type="Texture2D" uid="uid://cd580hieod1vw" path="res://Images/Objects/Control2/tile002.png" id="4_4r6d5"]
+[ext_resource type="Texture2D" uid="uid://dvu68djrr6jeh" path="res://Images/Objects/Control2/tile003.png" id="5_xq2bj"]
+[ext_resource type="Texture2D" uid="uid://duhu0wi5720h6" path="res://Images/Objects/Control2/tile004.png" id="6_e5axb"]
+[ext_resource type="Texture2D" uid="uid://0oxe84ffe8ej" path="res://Images/Objects/Control2/tile005.png" id="7_h037f"]
+[ext_resource type="Texture2D" uid="uid://tii8spfxr3w3" path="res://Images/Objects/Control2/tile006.png" id="8_ern2o"]
+[ext_resource type="Texture2D" uid="uid://dovafjbj8bc6" path="res://Images/Objects/Control2/tile007.png" id="9_f7afk"]
+[ext_resource type="Texture2D" uid="uid://b55rara8avxes" path="res://Images/Objects/Control2/tile008.png" id="10_tj1df"]
+[ext_resource type="Texture2D" uid="uid://ux5kae1qbxvt" path="res://Images/Objects/Control2/tile009.png" id="11_a0i01"]
+[ext_resource type="Texture2D" uid="uid://crsh7tvctff0q" path="res://Images/Objects/Control2/tile010.png" id="12_ib6sk"]
+[ext_resource type="Texture2D" uid="uid://cslyki46tmlk8" path="res://Images/Objects/Control2/tile011.png" id="13_w61qu"]
+[ext_resource type="Texture2D" uid="uid://crmhw2r65aseo" path="res://Images/Objects/Control2/tile012.png" id="14_52m4d"]
+[ext_resource type="Texture2D" uid="uid://bletf8chaprrb" path="res://Images/Objects/Control2/tile013.png" id="15_4n6nx"]
+[ext_resource type="Texture2D" uid="uid://myjpudx5i327" path="res://Images/Objects/Control2/tile014.png" id="16_bbxps"]
+[ext_resource type="Texture2D" uid="uid://bg11wboor0iyl" path="res://Images/Objects/Control2/tile015.png" id="17_b2qkr"]
+[ext_resource type="Texture2D" uid="uid://cwtl83dk0oelp" path="res://Images/Objects/Control2/tile016.png" id="18_pegmq"]
+[ext_resource type="Texture2D" uid="uid://w4t3gcaak7ka" path="res://Images/Objects/Control2/tile017.png" id="19_qmbwq"]
+[ext_resource type="Texture2D" uid="uid://u74a7m55t87w" path="res://Images/Objects/Control2/tile018.png" id="20_vwbhq"]
+[ext_resource type="Texture2D" uid="uid://bib4gre6gyyiu" path="res://Images/Objects/Control2/tile019.png" id="21_4irx3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
 size = Vector2(34, 25)
@@ -11,11 +30,68 @@ size = Vector2(34, 25)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xua7h")
+"texture": ExtResource("2_dq4jl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wy0ay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4r6d5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xq2bj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_e5axb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h037f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ern2o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_f7afk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_tj1df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_a0i01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ib6sk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_w61qu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_52m4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4n6nx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_bbxps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_b2qkr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_pegmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_qmbwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_vwbhq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_4irx3")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u50mg"]
@@ -25,20 +101,17 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
-[node name="AimControl" type="Node2D"]
+[node name="AimControl" type="Area2D"]
 script = ExtResource("1_7jspn")
 metadata/labeltext = "Aim"
 
-[node name="Area" type="Area2D" parent="."]
-monitorable = false
-
-[node name="Hitbox" type="CollisionShape2D" parent="Area"]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_d1ilt")
 debug_color = Color(3.85046e-06, 0.60451144, 0.25219792, 0.44705883)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 11)
+position = Vector2(1, 8)
 sprite_frames = SubResource("SpriteFrames_3pmx8")
 autoplay = "default"
 

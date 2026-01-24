@@ -1,11 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkk6dac4fqg53"]
+[gd_scene load_steps=13 format=3 uid="uid://dkk6dac4fqg53"]
 
 [ext_resource type="Script" uid="uid://dy8gvg3wwqymn" path="res://Scripts/MechControllers/mov_control_x_axis.gd" id="1_3c7ac"]
+[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="2_edgd4"]
 [ext_resource type="Texture2D" uid="uid://b1wt3rxhih26o" path="res://Images/Objects/Control1/Screen2.png" id="2_f77a1"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_edgd4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
 size = Vector2(26, 34)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dncu7"]
+shader = ExtResource("2_edgd4")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hibaj"]
 atlas = ExtResource("2_f77a1")
@@ -50,20 +57,18 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
-[node name="MovControlXAxis" type="Node2D"]
+[node name="MovControlXAxis" type="Area2D"]
 script = ExtResource("1_3c7ac")
 metadata/direction = 1
 metadata/labeltext = "Go Right"
 
-[node name="Area" type="Area2D" parent="."]
-monitorable = false
-
-[node name="Hitbox" type="CollisionShape2D" parent="Area"]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_d1ilt")
 debug_color = Color(3.85046e-06, 0.60451144, 0.25219792, 0.44705883)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_dncu7")
 position = Vector2(1, 11)
 sprite_frames = SubResource("SpriteFrames_3pmx8")
 autoplay = "default"

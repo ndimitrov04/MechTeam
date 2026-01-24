@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @onready var main = $"../../.."
+@onready var mech = $"../.."
 
 @onready var shoot_point = $ShootPoint
 
@@ -18,6 +19,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
+
+func _input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.pressed and mech.mech_edit:
+		if event.button_index == MOUSE_BUTTON_LEFT and mech.current_terminal != null:
+			print("Terminal " + mech.current_terminal.name + " has been connected to " + self.name)
+			mech.current_terminal.arm(self)
+			print("Deactivating terminal connection mode.")
+			mech.current_terminal = null
 
 func shoot():
 	for i in range(0, repeat_rate):
