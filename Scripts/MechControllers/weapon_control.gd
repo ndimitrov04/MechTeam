@@ -56,9 +56,10 @@ func _input_event(_viewport, event, _shape_idx):
 			print("Terminal set as active for connection")
 			mech.current_terminal = self
 
+const OFFSET : Vector2 = Vector2(0, -15)
 func arm(weapon):
 	controlled_weapon = weapon
-	connector.add_point(weapon.global_position - self.global_position)
+	connector.add_point(weapon.global_position - self.global_position + OFFSET)
 	connection_marker.hide()
 	connection_marker.set_process(false)
 

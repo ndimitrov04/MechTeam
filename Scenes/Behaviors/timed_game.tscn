@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvty4b4e30seu"]
+
+[ext_resource type="Script" uid="uid://c7sgakyi0x2xv" path="res://Scripts/Behaviors/timed_game.gd" id="1_qk2wc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6td2n"]
+bg_color = Color(0.2509804, 0.39215687, 0.23137255, 0.38039216)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2509804, 0.36078432, 0.23137255, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xscru"]
+bg_color = Color(0.2509804, 1, 0.23137255, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2509804, 0.36078432, 0.23137255, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="TimedGame" type="Control"]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.95000005
+anchor_right = 0.5
+anchor_bottom = 0.95000005
+offset_left = -403.0
+offset_top = -16.600037
+offset_right = 400.0
+offset_bottom = 16.399963
+script = ExtResource("1_qk2wc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Timebar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.859
+anchor_right = 0.5
+anchor_bottom = 0.859
+offset_left = -400.5
+offset_top = -27.347
+offset_right = 401.5
+offset_bottom = 5.653
+theme_override_styles/background = SubResource("StyleBoxFlat_6td2n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xscru")
+show_percentage = false

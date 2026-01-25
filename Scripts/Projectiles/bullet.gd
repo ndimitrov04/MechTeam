@@ -1,11 +1,25 @@
-extends Area2D
+extends RigidBody2D
 
-const SPEED = 200
+const SPEED : int = 200
+
+var collision : KinematicCollision2D = null
+var knockback_force : int = 300
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	body_entered.connect(_on_body_entered)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	position += transform.x * SPEED * delta
+func _physics_process(delta):
+	var move_vector = transform.x * SPEED * delta
+	collision = move_and_collide(move_vector)
+	
+	if collision:
+		_on_body_entered(collision.get_collider())
+
+func _on_body_entered(body):
+	if body.name == "Frame":
+		body.take_damage(collision, knockback_force)
+		
+	# Explode
+	queue_free()

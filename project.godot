@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="MechTeam"
-config/version="0.04"
+config/version="0.05"
 run/main_scene="uid://blikvq4vyfjfn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=2
 
 [file_customization]
 

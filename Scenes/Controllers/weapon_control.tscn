@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://byb23wa6gburr"]
+[gd_scene load_steps=30 format=3 uid="uid://byb23wa6gburr"]
 
 [ext_resource type="Script" uid="uid://cckanj2rvkg11" path="res://Scripts/MechControllers/weapon_control.gd" id="1_stdkj"]
 [ext_resource type="Script" uid="uid://b72pqigdk00tn" path="res://Scenes/Behaviors/connection_marker.gd" id="2_o0av6"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://csqyry070vlce" path="res://Images/Objects/Control3/tile017.png" id="20_3uage"]
 [ext_resource type="Texture2D" uid="uid://m4k0silgsotl" path="res://Images/Objects/Control3/tile018.png" id="21_rn3jp"]
 [ext_resource type="Texture2D" uid="uid://blqs0u4y21bxp" path="res://Images/Objects/Control3/tile019.png" id="22_bosqf"]
+[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="24_mb35e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
 size = Vector2(34, 25)
@@ -103,6 +104,12 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mb35e"]
+shader = ExtResource("24_mb35e")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
 [node name="WeaponControl" type="Area2D"]
 script = ExtResource("1_stdkj")
 metadata/labeltext = "Shoot"
@@ -155,6 +162,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(0, -24)
 
 [node name="CooldownBar" type="TextureProgressBar" parent="Cooldown"]
+material = SubResource("ShaderMaterial_mb35e")
 offset_left = -8.0
 offset_top = -12.0
 offset_right = 8.0

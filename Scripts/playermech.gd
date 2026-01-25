@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var crosshair = $Crosshair
 @onready var movement_sprites = $MovementSprites
 
+@onready var background = $Background
+@onready var frame = $Frame
+
 const SPEED = 50.0
 const JUMP_VELOCITY = -600.0
 
