@@ -1,0 +1,57 @@
+[gd_scene load_steps=12 format=3 uid="uid://buh5u6wul5uno"]
+
+[ext_resource type="Texture2D" uid="uid://cgw4t8b4qapcp" path="res://Images/Explosions/1/explosion-f1.png" id="1_necdh"]
+[ext_resource type="Texture2D" uid="uid://ba4ajxnds887w" path="res://Images/Explosions/1/explosion-f2.png" id="2_853ip"]
+[ext_resource type="Texture2D" uid="uid://b3suvd32ygvgv" path="res://Images/Explosions/1/explosion-f3.png" id="3_y0m4v"]
+[ext_resource type="Texture2D" uid="uid://chcrm0fqliimp" path="res://Images/Explosions/1/explosion-f4.png" id="4_gkaga"]
+[ext_resource type="Texture2D" uid="uid://bjybefwpqtheq" path="res://Images/Explosions/1/explosion-f5.png" id="5_tyst4"]
+[ext_resource type="Texture2D" uid="uid://dscmpufmxxgsa" path="res://Images/Explosions/1/explosion-f6.png" id="6_wlbxl"]
+[ext_resource type="Texture2D" uid="uid://dkeg8g5f074hw" path="res://Images/Explosions/1/explosion-f7.png" id="7_tefqo"]
+[ext_resource type="Texture2D" uid="uid://djqjs2wrs7usm" path="res://Images/Explosions/1/explosion-f8.png" id="8_7oodl"]
+[ext_resource type="Texture2D" uid="uid://cjhdbomspqcyt" path="res://Images/Explosions/2/frame7.png" id="9_necdh"]
+[ext_resource type="PackedScene" uid="uid://vlhrywjv8hr6" path="res://Scenes/Misc/explosion_particles.tscn" id="10_necdh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7q11n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_necdh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_853ip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y0m4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gkaga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tyst4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wlbxl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tefqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7oodl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_necdh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Explosion1" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_7q11n")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+
+[node name="ExplosionParticles" parent="." instance=ExtResource("10_necdh")]
+lifetime = 3.0
+local_coords = true

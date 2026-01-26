@@ -2,6 +2,8 @@ extends RigidBody2D
 
 const SPEED : int = 200
 
+var damage_value : int = 1
+
 var collision : KinematicCollision2D = null
 var knockback_force : int = 300
 
@@ -19,7 +21,7 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if body.name == "Frame":
-		body.take_damage(collision, knockback_force)
+		body.take_damage(damage_value, collision, knockback_force)
 		
 	# Explode
 	queue_free()

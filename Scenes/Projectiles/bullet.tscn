@@ -36,7 +36,8 @@ animations = [{
 }]
 
 [node name="Bullet" type="RigidBody2D"]
-z_index = 2
+z_index = 20
+z_as_relative = false
 collision_layer = 12
 collision_mask = 12
 gravity_scale = 0.0

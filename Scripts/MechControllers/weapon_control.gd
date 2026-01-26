@@ -13,8 +13,9 @@ extends Area2D
 @onready var timer = $Cooldown/Timer
 
 var controlled_weapon
-var cooldown_time : float = 20
+var cooldown_time : float
 var on_cooldown : bool = false
+var energy_cost : int 
 
 var player_in_range : bool = false
 var player = null
@@ -36,7 +37,11 @@ func _process(_delta):
 func _unhandled_input(event):
 	if player_in_range and not on_cooldown and controlled_weapon != null:
 		if event.is_action_pressed("interact"):
+			if mech.energy < energy_cost:
+				print("INSUFFICIENT ENERGY")
+				return
 			if not player.minigame_mode:
+				mech.energy -= energy_cost
 				player.start_minigame("quicktime_arrow", controlled_weapon)
 				start_cooldown()
 			else:
@@ -59,6 +64,8 @@ func _input_event(_viewport, event, _shape_idx):
 const OFFSET : Vector2 = Vector2(0, -15)
 func arm(weapon):
 	controlled_weapon = weapon
+	cooldown_time = weapon.cooldown_time
+	energy_cost = weapon.energy_cost
 	connector.add_point(weapon.global_position - self.global_position + OFFSET)
 	connection_marker.hide()
 	connection_marker.set_process(false)

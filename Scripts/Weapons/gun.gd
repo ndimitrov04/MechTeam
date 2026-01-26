@@ -10,6 +10,9 @@ var bullet = preload("res://Scenes/Projectiles/bullet.tscn")
 var repeat_rate : int = 10	# Number of bullets fired per volley
 var recoil : float = 0.15	# Recoil rotation of gun module per shot in radians
 
+var energy_cost : int = 30
+var cooldown_time : float = 20
+
 #unfreeze gun physics on destruction
 
 # Called when the node enters the scene tree for the first time.

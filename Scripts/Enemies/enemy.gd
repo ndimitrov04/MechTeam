@@ -9,6 +9,8 @@ extends CharacterBody2D
 const SPEED = 25.0
 const JUMP_VELOCITY = -400.0
 
+var hp : int = 100
+var energy : int = 100
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -34,3 +36,24 @@ func _physics_process(delta):
 			spr.stop()
 
 	move_and_slide()
+
+func take_damage(damage_value : int):
+	hp -= damage_value
+	# Godot 4.5 still has no fallthrough switches :/
+	if hp <= 75:
+		background.break_random_tile()
+	if hp <= 50:
+		background.break_random_tile()
+	if hp <= 25:
+		background.break_random_tile()
+	if hp <= 0:
+		die()
+
+func die():
+	background.break_all_tiles()
+	frame.collision_enabled = false
+	frame.break_all_tiles()
+	set_collision_layer_value(3, 0)
+	await get_tree().create_timer(4).timeout
+	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
+	queue_free()
