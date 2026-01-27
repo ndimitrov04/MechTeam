@@ -53,5 +53,3 @@ frame = 7
 frame_progress = 1.0
 
 [node name="ExplosionParticles" parent="." instance=ExtResource("10_necdh")]
-lifetime = 3.0
-local_coords = true

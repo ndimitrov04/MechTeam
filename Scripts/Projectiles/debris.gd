@@ -8,11 +8,13 @@ const EXPLOSION_2 = preload("uid://otoyfe2et2x1")
 @onready var tilemap = $Tilemap
 @onready var timer = $Timer
 
+@onready var explosion
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	body_entered.connect(_on_body_entered)
 	timer.timeout.connect(_on_timeout)
-	var explosion = explosions.pick_random().instantiate()
+	explosion = explosions.pick_random().instantiate()
 	add_sibling(explosion)
 	await get_tree().process_frame
 	explosion.global_position = self.global_position

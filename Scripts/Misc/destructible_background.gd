@@ -29,8 +29,6 @@ func break_random_tile():
 	main.add_child(debris_instance)
 	debris_instance.global_position = to_global(map_to_local(chosen_cell))
 	debris_instance.set_sprite(chosen_tile_atlas)
-	# Explosion? :D
-	# boom boom.
 
 func break_all_tiles():
 	while get_used_cells().size() > 0:
