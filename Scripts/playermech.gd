@@ -11,6 +11,8 @@ extends CharacterBody2D
 const SPEED = 50.0
 const JUMP_VELOCITY = -600.0
 
+@onready var in_editor : bool = false
+
 var mech_edit : bool = false
 var current_terminal
 
@@ -24,10 +26,16 @@ var energy : int = max_energy
 var regen_rate : int = 1
 
 func _ready():
+	if get_parent().name == "Editor":
+		in_editor = true
 	energy_regen.timeout.connect(_regenerate_energy)
 	#generate_frame_collision(0)
 
 func _physics_process(delta):
+	# Do not process physics while in editor
+	if in_editor:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

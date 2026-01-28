@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="MechTeam"
-config/version="0.07"
+config/version="0.08"
 run/main_scene="uid://blikvq4vyfjfn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MechData="*res://Scripts/Globals/mech_data.gd"
 
 [display]
 
@@ -24,8 +28,10 @@ window/size/mode=2
 
 folder_colors={
 "res://Audio/": "red",
+"res://CustomResources/": "purple",
 "res://Images/": "yellow",
 "res://Scripts/": "gray",
+"res://Scripts/Globals/": "purple",
 "res://Shaders/": "pink"
 }
 
