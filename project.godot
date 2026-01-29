@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MechTeam"
-config/version="0.08"
+config/version="0.081"
 run/main_scene="uid://blikvq4vyfjfn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
@@ -22,7 +22,10 @@ MechData="*res://Scripts/Globals/mech_data.gd"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/mode=2
+window/stretch/mode="canvas_items"
 
 [file_customization]
 
@@ -32,7 +35,8 @@ folder_colors={
 "res://Images/": "yellow",
 "res://Scripts/": "gray",
 "res://Scripts/Globals/": "purple",
-"res://Shaders/": "pink"
+"res://Shaders/": "pink",
+"res://addons/": "pink"
 }
 
 [input]
@@ -84,6 +88,11 @@ jump={
 debug_mech_edit={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":true,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":69,"location":0,"echo":false,"script":null)
+]
+}
+debug_mech_load={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":true,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":76,"key_label":0,"unicode":76,"location":0,"echo":false,"script":null)
 ]
 }
 

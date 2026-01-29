@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://vfehl0ro1tdt" path="res://Images/Characters/Cyborg/Cyborg_run.png" id="6_344ge"]
 [ext_resource type="Texture2D" uid="uid://8grjm55o3rrh" path="res://Images/Backgrounds/ParallaxCity1/6.png" id="6_cbgmd"]
 [ext_resource type="Texture2D" uid="uid://deinkajit0i5w" path="res://Images/Tilesets/Buildings.png" id="7_pdsj5"]
-[ext_resource type="PackedScene" uid="uid://bg0x4kcl3emfw" path="res://Scenes/mech.tscn" id="8_b3802"]
+[ext_resource type="PackedScene" uid="uid://dimm11yjnr7ef" path="res://Scenes/mech_pb.tscn" id="8_b3802"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="8_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://cujqusmchfqck" path="res://Images/Placeholders/oll.png" id="11_gt3je"]
 [ext_resource type="Script" uid="uid://b6bs5bi7wy45h" path="res://Scripts/minigames.gd" id="14_wsu2k"]
@@ -606,32 +606,32 @@ physics_layer_0/collision_mask = 255
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_hibaj")
 sources/2 = SubResource("TileSetAtlasSource_pdsj5")
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_bo1nx"]
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_jwpg7"]
 length = 45.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3pmx8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2e45"]
 atlas = ExtResource("11_gt3je")
 region = Rect2(11, 60, 64, 37)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u50mg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_536cc"]
 atlas = ExtResource("11_gt3je")
 region = Rect2(75, 60, 64, 37)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cbgmd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqgau"]
 atlas = ExtResource("11_gt3je")
 region = Rect2(139, 60, 64, 37)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1w6v2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8cuat"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3pmx8")
+"texture": SubResource("AtlasTexture_k2e45")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u50mg")
+"texture": SubResource("AtlasTexture_536cc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cbgmd")
+"texture": SubResource("AtlasTexture_aqgau")
 }],
 "loop": true,
 "name": &"default",
@@ -820,7 +820,7 @@ tile_map_data = PackedByteArray("AAAAACYAAgABAAAAAAAAACcAAgABAAEAAAAAACgAAgABAAI
 tile_set = SubResource("TileSet_jjvhh")
 
 [node name="Mech" parent="." instance=ExtResource("8_b3802")]
-position = Vector2(112, -32)
+metadata/prebuilt = true
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(1440, 280)
@@ -836,11 +836,11 @@ script = ExtResource("18_gt3je")
 
 [node name="WheelCollider1" type="CollisionShape2D" parent="Enemy"]
 position = Vector2(-80, 251)
-shape = SubResource("SeparationRayShape2D_bo1nx")
+shape = SubResource("SeparationRayShape2D_jwpg7")
 
 [node name="WheelCollider2" type="CollisionShape2D" parent="Enemy"]
 position = Vector2(368, 251)
-shape = SubResource("SeparationRayShape2D_bo1nx")
+shape = SubResource("SeparationRayShape2D_jwpg7")
 
 [node name="MovementSprites" type="Node2D" parent="Enemy"]
 
@@ -848,7 +848,7 @@ shape = SubResource("SeparationRayShape2D_bo1nx")
 self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
 position = Vector2(-80, 262)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_1w6v2")
+sprite_frames = SubResource("SpriteFrames_8cuat")
 autoplay = "default"
 frame_progress = 0.20177686
 
@@ -856,7 +856,7 @@ frame_progress = 0.20177686
 self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
 position = Vector2(368, 262)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_1w6v2")
+sprite_frames = SubResource("SpriteFrames_8cuat")
 autoplay = "default"
 frame_progress = 0.87680304
 

@@ -29,12 +29,19 @@ func _ready():
 	if get_parent().name == "Editor":
 		in_editor = true
 	energy_regen.timeout.connect(_regenerate_energy)
+	if not get_meta("prebuilt"):
+		load_mech()
 	#generate_frame_collision(0)
+
+func load_mech():
+	for x in range(0, MechData.blocks.size()):
+		for y in range(0, MechData.blocks[x].size()):
+			frame.set_cell(Vector2i(x,y), 0, MechData.blocks[x][y])
 
 func _physics_process(delta):
 	# Do not process physics while in editor
-	if in_editor:
-		return
+	#if in_editor:
+		#return
 	
 	# Add the gravity.
 	if not is_on_floor():

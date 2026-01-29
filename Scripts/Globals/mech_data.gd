@@ -1,7 +1,7 @@
 extends Node
 
 const EMPTY_CELL = Vector2i(-1,-1)
-@onready var grid_size : Vector2i = Vector2i(34, 17)
+@onready var grid_size : Vector2i = Vector2i(34*2, 17*2)
 
 @onready var blocks : Array
 @onready var walls : Array
