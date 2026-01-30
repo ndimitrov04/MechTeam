@@ -671,16 +671,28 @@ metadata/_tab_index = 0
 [node name="WallList" type="ItemList" parent="GUI/Control/TabContainer"]
 visible = false
 layout_mode = 2
+item_count = 3
+item_0/text = "Iron Wall"
+item_1/text = "Spring Wall"
+item_2/text = "Panel Wall"
 metadata/_tab_index = 1
 
 [node name="Weapons" type="ItemList" parent="GUI/Control/TabContainer"]
 visible = false
 layout_mode = 2
+item_count = 1
+item_0/text = "Machine Gun"
 metadata/_tab_index = 2
 
 [node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer"]
 visible = false
 layout_mode = 2
+item_count = 5
+item_0/text = "Aim"
+item_1/text = "Move Left"
+item_2/text = "Move Right"
+item_3/text = "Jump"
+item_4/text = "Shoot"
 metadata/_tab_index = 3
 
 [node name="Left" type="TextureButton" parent="GUI/Control"]
@@ -702,5 +714,7 @@ texture_normal = SubResource("PlaceholderTexture2D_dg8t7")
 ignore_texture_size = true
 
 [connection signal="item_clicked" from="GUI/Control/TabContainer/BlockList" to="GUI/Control" method="_on_block_list_item_clicked"]
+[connection signal="item_clicked" from="GUI/Control/TabContainer/WallList" to="GUI/Control" method="_on_wall_list_item_clicked"]
+[connection signal="item_clicked" from="GUI/Control/TabContainer/Weapons" to="GUI/Control" method="_on_weapons_item_clicked"]
 [connection signal="pressed" from="GUI/Control/Left" to="GUI/Control" method="_on_left_pressed"]
 [connection signal="pressed" from="GUI/Control/Right" to="GUI/Control" method="_on_right_pressed"]

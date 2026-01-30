@@ -96,15 +96,13 @@ shape = SubResource("SeparationRayShape2D_bo1nx")
 debug_color = Color(1, 1, 0, 1)
 
 [node name="Controllers" type="Node2D" parent="."]
-position = Vector2(336, 288)
 
 [node name="Weapons" type="Node2D" parent="."]
-position = Vector2(336, 288)
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="."]
 z_index = 20
 z_as_relative = false
-position = Vector2(1048, 296)
+position = Vector2(1048, 136)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_6iyac")
 autoplay = "default"

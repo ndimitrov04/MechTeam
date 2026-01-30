@@ -21,6 +21,8 @@ var player_in_range : bool = false
 var player = null
 var last_zoom : Vector2 = Vector2(1, 1)
 
+@onready var type : MechData.ObjectType = MechData.ObjectType.CONTROLLER
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.timeout.connect(_on_cooldown_timeout)

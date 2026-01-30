@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://byb23wa6gburr"]
 
 [ext_resource type="Script" uid="uid://cckanj2rvkg11" path="res://Scripts/MechControllers/weapon_control.gd" id="1_stdkj"]
-[ext_resource type="Script" uid="uid://b72pqigdk00tn" path="res://Scenes/Behaviors/connection_marker.gd" id="2_o0av6"]
+[ext_resource type="Script" uid="uid://b72pqigdk00tn" path="res://Scripts/Behaviors/connection_marker.gd" id="2_o0av6"]
 [ext_resource type="Texture2D" uid="uid://b0nqwpuaqsv3s" path="res://Images/Circle.png" id="2_uj4p1"]
 [ext_resource type="Texture2D" uid="uid://kk6q8rqjg2y3" path="res://Images/Objects/Control3/tile000.png" id="3_s4ik8"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_uj4p1"]

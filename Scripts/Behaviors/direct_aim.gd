@@ -4,6 +4,8 @@ extends Node2D
 
 var aim_speed : float
 
+
+
 func _ready():
 	aim_speed = get_parent().get_meta("aim_speed")
 

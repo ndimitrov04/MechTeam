@@ -13,6 +13,8 @@ var recoil : float = 0.15	# Recoil rotation of gun module per shot in radians
 var energy_cost : int = 30
 var cooldown_time : float = 20
 
+@onready var type : MechData.ObjectType = MechData.ObjectType.WEAPON
+
 #unfreeze gun physics on destruction
 
 # Called when the node enters the scene tree for the first time.

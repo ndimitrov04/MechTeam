@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
 @onready var crosshair = $Crosshair
-@onready var movement_sprites = $MovementSprites
 
 @onready var background = $Background
 @onready var frame = $Frame
+
+@onready var movement_sprites = $MovementSprites
+@onready var controllers = $Controllers
+@onready var weapons = $Weapons
 
 @onready var energy_regen = $EnergyRegen
 
@@ -37,6 +40,23 @@ func load_mech():
 	for x in range(0, MechData.blocks.size()):
 		for y in range(0, MechData.blocks[x].size()):
 			frame.set_cell(Vector2i(x,y), 0, MechData.blocks[x][y])
+			background.set_cell(Vector2i(x,y), 0, MechData.walls[x][y])
+	for i in range(0, MechData.object_scenes.size()):
+		var object_scene = MechData.object_scenes[i]
+		var object_type = MechData.object_types[i]
+		var object_coords = MechData.object_coordinates[i]
+		
+		var object_instance = object_scene.instantiate()
+		match object_type:
+			MechData.ObjectType.WEAPON:
+				weapons.add_child(object_instance)
+			MechData.ObjectType.CONTROLLER:
+				controllers.add_child(object_instance)
+			MechData.ObjectType.MOVEMENT:
+				pass
+			_:
+				pass
+		object_instance.position = object_coords
 
 func _physics_process(delta):
 	# Do not process physics while in editor
