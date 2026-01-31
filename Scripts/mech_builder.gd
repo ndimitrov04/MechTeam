@@ -9,17 +9,20 @@ const MECH = preload("uid://bg0x4kcl3emfw")
 @onready var blocks = $MechPrototype/Blocks
 @onready var walls = $MechPrototype/Walls
 
+@onready var in_editor : bool = false
+
 var global_mouse_pos : Vector2 = Vector2.ZERO
 const MAX_X : int = 34
 const MAX_Y : int = 17
 
 enum EditLayer {
-	BLOCKS, WALLS, OBJECTS
+	BLOCKS, WALLS, OBJECTS, MOVEMENT
 }
 
 # 0 = Blocks
 # 1 = Walls
 # 2 = Objects
+# 3 = Movement
 var edit_layer : EditLayer = EditLayer.BLOCKS
 
 # Top left atlas_coords
@@ -28,10 +31,16 @@ var chosen_block : Vector2i = Vector2i.ZERO
 # Object instance
 var chosen_object = null
 const OBJECT_OFFSET : Vector2i = Vector2i(16,16)
+# Metadata modifier of object
+var chosen_action : int = 0
+
+var chosen_movement_collider = null
+var chosen_movement_sprite = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if get_parent().name == "Editor":
+		in_editor = true
 
 func _input(event):
 	# Test mech loading
@@ -43,6 +52,10 @@ func _input(event):
 		print("Hiding building UI...")
 		grid.hide()
 		mech_prototype.hide()
+	
+	# Test mech loading
+	if Input.is_action_just_pressed("goto_main"):
+		get_tree().change_scene_to_file("res://Scenes/main.tscn")
 			
 	if event is InputEventMouseButton:
 		
@@ -90,8 +103,31 @@ func _input(event):
 					for child in object_instance.get_children():
 						child.set_process(false)
 					# Add to mech data global
-					MechData.set_object(chosen_object, object_instance.type, to_global(grid_pos*16-OBJECT_OFFSET))
-		
+					MechData.set_object(chosen_object, chosen_action, object_instance.type, to_global(grid_pos*16-OBJECT_OFFSET))
+				EditLayer.MOVEMENT:
+					# ADD COLLIDER
+					# Set object in editor
+					var object_instance = chosen_movement_collider.instantiate()
+					mech_prototype.add_child(object_instance)
+					object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
+					# Disable object processing
+					object_instance.set_process(false)
+					for child in object_instance.get_children():
+						child.set_process(false)
+					# Add to mech data global
+					MechData.set_object(chosen_movement_collider, chosen_action, MechData.ObjectType.COLLIDER, to_global(grid_pos*16-OBJECT_OFFSET))
+					# ADD SPRITE
+					# Set object in editor
+					object_instance = chosen_movement_sprite.instantiate()
+					mech_prototype.add_child(object_instance)
+					object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
+					# Disable object processing
+					object_instance.set_process(false)
+					for child in object_instance.get_children():
+						child.set_process(false)
+					# Add to mech data global
+					MechData.set_object(chosen_movement_sprite, chosen_action, MechData.ObjectType.SPRITE, to_global(grid_pos*16-OBJECT_OFFSET))
+
 		# Delete tile
 		if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 			global_mouse_pos = get_global_mouse_position()
@@ -123,6 +159,24 @@ func _input(event):
 					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.DOWN
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.ONE
 				EditLayer.OBJECTS:
+					# Delete mech data by position
+					MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
+					# Delete object from editor
+					for child in mech_prototype.get_children():
+						print(child.name + str(child.position))
+						if child.position == Vector2(grid_pos*16+OBJECT_OFFSET):
+							print("Deleting " + child.name)
+							child.queue_free()
+				EditLayer.MOVEMENT:
+					# Repeat twice
+					# Delete mech data by position
+					MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
+					# Delete object from editor
+					for child in mech_prototype.get_children():
+						print(child.name + str(child.position))
+						if child.position == Vector2(grid_pos*16+OBJECT_OFFSET):
+							print("Deleting " + child.name)
+							child.queue_free()
 					# Delete mech data by position
 					MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
 					# Delete object from editor

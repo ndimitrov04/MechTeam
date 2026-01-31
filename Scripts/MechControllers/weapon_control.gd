@@ -50,18 +50,26 @@ func _unhandled_input(event):
 				player.end_minigame()
 
 func _input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed and mech.mech_edit:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			print("Activating terminal connection mode...")
-			if controlled_weapon != null:
-				print("Terminal disconnected from: " + controlled_weapon.name)
-				controlled_weapon = null
-			connector.clear_points()
-			connector.add_point(Vector2(0,0))
-			connection_marker.show()
-			connection_marker.set_process(true)
-			print("Terminal set as active for connection")
-			mech.current_terminal = self
+	if get_parent().get_parent().name == "Mech":
+		if event is InputEventMouseButton and event.pressed and mech.mech_edit:
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				print("Activating terminal connection mode...")
+				if controlled_weapon != null:
+					print("Terminal disconnected from: " + controlled_weapon.name)
+					controlled_weapon = null
+					
+				connector.clear_points()
+				connector.add_point(Vector2(0,0))
+				connection_marker.show()
+				connection_marker.set_process(true)
+				print("Terminal set as active for connection")
+				mech.current_terminal = self
+				# Save as default connection 
+				if mech.in_editor:
+					pass
+					# doesnt do what i want
+					#var object_copy = self.duplicate()
+					#MechData.control_pairs.append([object_copy])
 
 const OFFSET : Vector2 = Vector2(0, -15)
 func arm(weapon):

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cuhp74yuarb08"]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_bo1nx"]
+length = 35.0
+
+[node name="WheelCollider1" type="CollisionShape2D" unique_id=1824074158]
+shape = SubResource("SeparationRayShape2D_bo1nx")
+debug_color = Color(1, 1, 0, 1)

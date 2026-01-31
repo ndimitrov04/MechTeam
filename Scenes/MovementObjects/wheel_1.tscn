@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://uxt82jfkcjx8"]
+
+[ext_resource type="Texture2D" uid="uid://cujqusmchfqck" path="res://Images/Placeholders/oll.png" id="1_rn7y4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pmx8"]
+atlas = ExtResource("1_rn7y4")
+region = Rect2(11, 60, 64, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u50mg"]
+atlas = ExtResource("1_rn7y4")
+region = Rect2(75, 60, 64, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbgmd"]
+atlas = ExtResource("1_rn7y4")
+region = Rect2(139, 60, 64, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1w6v2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pmx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u50mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbgmd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="Wheel1" type="AnimatedSprite2D" unique_id=540767917]
+self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1w6v2")
+autoplay = "default"
+frame_progress = 0.20177686

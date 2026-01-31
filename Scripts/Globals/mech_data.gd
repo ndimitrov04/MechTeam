@@ -4,7 +4,7 @@ const EMPTY_CELL = Vector2i(-1,-1)
 @onready var grid_size : Vector2i = Vector2i(34*2, 17*2)
 
 enum ObjectType {
-	WEAPON, CONTROLLER, MOVEMENT
+	WEAPON, CONTROLLER, COLLIDER, SPRITE
 }
 
 # Tile Data
@@ -13,8 +13,12 @@ enum ObjectType {
 
 # Object data (Weapons, Controllers, Modlues, Movement)
 @onready var object_scenes = []
+@onready var object_actions = []
 @onready var object_types = []
 @onready var object_coordinates = []
+
+# Controller -> Controlled Module pairs
+@onready var control_pairs = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,8 +29,9 @@ func _ready():
 			blocks.back().append(EMPTY_CELL)
 			walls.back().append(EMPTY_CELL)
 
-func set_object(scene : PackedScene, type : ObjectType, coords : Vector2):
+func set_object(scene : PackedScene, action : int, type : ObjectType, coords : Vector2):
 	object_scenes.append(scene)
+	object_actions.append(action)
 	object_types.append(type)
 	object_coordinates.append(coords)
 
@@ -38,6 +43,7 @@ func delete_object(coords : Vector2):
 			break
 	if delete_index:
 		object_scenes.remove_at(delete_index)
+		object_actions.remove_at(delete_index)
 		object_types.remove_at(delete_index)
 		object_coordinates.remove_at(delete_index)
 

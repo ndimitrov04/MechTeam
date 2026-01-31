@@ -16,7 +16,7 @@ const JUMP_VELOCITY = -600.0
 
 @onready var in_editor : bool = false
 
-var mech_edit : bool = false
+@onready var mech_edit : bool = false
 var current_terminal
 
 var direction : int = 0
@@ -43,6 +43,7 @@ func load_mech():
 			background.set_cell(Vector2i(x,y), 0, MechData.walls[x][y])
 	for i in range(0, MechData.object_scenes.size()):
 		var object_scene = MechData.object_scenes[i]
+		var object_action = MechData.object_actions[i]
 		var object_type = MechData.object_types[i]
 		var object_coords = MechData.object_coordinates[i]
 		
@@ -52,8 +53,13 @@ func load_mech():
 				weapons.add_child(object_instance)
 			MechData.ObjectType.CONTROLLER:
 				controllers.add_child(object_instance)
-			MechData.ObjectType.MOVEMENT:
-				pass
+				if not object_instance.get_meta_list().is_empty():
+					object_instance.set_meta(object_instance.get_meta_list().front(), object_action)
+					print(object_instance.get_meta(object_instance.get_meta_list().front()))
+			MechData.ObjectType.COLLIDER:
+				add_child(object_instance)
+			MechData.ObjectType.SPRITE:
+				movement_sprites.add_child(object_instance)
 			_:
 				pass
 		object_instance.position = object_coords
@@ -62,6 +68,8 @@ func _physics_process(delta):
 	# Do not process physics while in editor
 	#if in_editor:
 		#return
+	
+	
 	
 	# Add the gravity.
 	if not is_on_floor():

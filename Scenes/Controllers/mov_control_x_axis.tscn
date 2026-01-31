@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkk6dac4fqg53"]
+[gd_scene format=3 uid="uid://dkk6dac4fqg53"]
 
 [ext_resource type="Script" uid="uid://dy8gvg3wwqymn" path="res://Scripts/MechControllers/mov_control_x_axis.gd" id="1_3c7ac"]
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="2_edgd4"]
@@ -57,27 +57,28 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
-[node name="MovControlXAxis" type="Area2D"]
+[node name="MovControlXAxis" type="Area2D" unique_id=1670764635]
 script = ExtResource("1_3c7ac")
 metadata/direction = 1
 metadata/labeltext = "Go Right"
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1793678991]
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_d1ilt")
 debug_color = Color(3.85046e-06, 0.60451144, 0.25219792, 0.44705883)
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=203657030]
 material = SubResource("ShaderMaterial_dncu7")
-position = Vector2(1, 11)
+position = Vector2(1, -5)
 sprite_frames = SubResource("SpriteFrames_3pmx8")
 autoplay = "default"
 
-[node name="InteractionLabel" type="Label" parent="."]
+[node name="InteractionLabel" type="Label" parent="." unique_id=67324950]
 visible = false
 offset_left = -43.0
-offset_top = -23.0
+offset_top = -47.0
 offset_right = 42.0
+offset_bottom = -24.0
 text = "Go Right"
 label_settings = SubResource("LabelSettings_u50mg")
 horizontal_alignment = 1

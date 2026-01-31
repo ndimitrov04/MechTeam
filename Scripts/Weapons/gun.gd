@@ -26,12 +26,19 @@ func _process(_delta):
 	pass
 
 func _input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed and mech.mech_edit:
-		if event.button_index == MOUSE_BUTTON_LEFT and mech.current_terminal != null:
-			print("Terminal " + mech.current_terminal.name + " has been connected to " + self.name)
-			mech.current_terminal.arm(self)
-			print("Deactivating terminal connection mode.")
-			mech.current_terminal = null
+	if get_parent().get_parent().name == "Mech":
+		if event is InputEventMouseButton and event.pressed and mech.mech_edit:
+			if event.button_index == MOUSE_BUTTON_LEFT and mech.current_terminal != null:
+				print("Terminal " + mech.current_terminal.name + " has been connected to " + self.name)
+				mech.current_terminal.arm(self)
+				print("Deactivating terminal connection mode.")
+				mech.current_terminal = null
+				# Save as default connection 
+				if mech.in_editor:
+					pass
+					# doesnt do what i want
+					#var object_copy = self.duplicate()
+					#MechData.control_pairs.back().append(object_copy)
 
 func shoot():
 	for i in range(0, repeat_rate):

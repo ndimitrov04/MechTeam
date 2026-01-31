@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bjychxdy31gx5"]
+[gd_scene format=3 uid="uid://bjychxdy31gx5"]
 
 [ext_resource type="Script" uid="uid://cmydp1w8cg212" path="res://Scripts/MechControllers/aim_control.gd" id="1_7jspn"]
 [ext_resource type="Texture2D" uid="uid://bs7a05rx72oy7" path="res://Images/Objects/Control2/tile000.png" id="2_dq4jl"]
@@ -101,25 +101,26 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
-[node name="AimControl" type="Area2D"]
+[node name="AimControl" type="Area2D" unique_id=1390806880]
 script = ExtResource("1_7jspn")
 metadata/labeltext = "Aim"
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11.5)
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=456047944]
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_d1ilt")
 debug_color = Color(3.85046e-06, 0.60451144, 0.25219792, 0.44705883)
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 8)
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1727576185]
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_3pmx8")
 autoplay = "default"
 
-[node name="InteractionLabel" type="Label" parent="."]
+[node name="InteractionLabel" type="Label" parent="." unique_id=1465216379]
 visible = false
 offset_left = -43.0
-offset_top = -23.0
+offset_top = -39.0
 offset_right = 42.0
+offset_bottom = -16.0
 text = "Go Right"
 label_settings = SubResource("LabelSettings_u50mg")
 horizontal_alignment = 1

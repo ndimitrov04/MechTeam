@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqf1xuoccxt6k"]
+[gd_scene format=3 uid="uid://cqf1xuoccxt6k"]
 
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="1_6hbil"]
 [ext_resource type="Script" uid="uid://dnptb60s411dv" path="res://Scripts/MechControllers/jump_control.gd" id="1_8s1xf"]
@@ -63,27 +63,28 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
-[node name="JumpControl" type="Area2D"]
+[node name="JumpControl" type="Area2D" unique_id=1126368876]
 material = SubResource("ShaderMaterial_bdllg")
 script = ExtResource("1_8s1xf")
 metadata/labeltext = "Jump"
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=78923597]
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_d1ilt")
 debug_color = Color(3.85046e-06, 0.60451144, 0.25219792, 0.44705883)
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1125999282]
 material = SubResource("ShaderMaterial_6hbil")
-position = Vector2(1, 11)
+position = Vector2(1, -5)
 sprite_frames = SubResource("SpriteFrames_3pmx8")
 autoplay = "default"
 
-[node name="InteractionLabel" type="Label" parent="."]
+[node name="InteractionLabel" type="Label" parent="." unique_id=311977985]
 visible = false
 offset_left = -43.0
-offset_top = -23.0
+offset_top = -47.0
 offset_right = 42.0
+offset_bottom = -24.0
 text = "Go Right"
 label_settings = SubResource("LabelSettings_u50mg")
 horizontal_alignment = 1

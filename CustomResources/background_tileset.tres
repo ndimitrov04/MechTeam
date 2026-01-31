@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bfp0oqwmvtvs2"]
+[gd_resource type="TileSet" format=3 uid="uid://bfp0oqwmvtvs2"]
 
 [ext_resource type="Texture2D" uid="uid://cefxb2wl6j8q8" path="res://Images/Tilesets/SpaceStation_Tileset.png" id="1_qwo26"]
 

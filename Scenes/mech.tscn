@@ -1,44 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bg0x4kcl3emfw"]
+[gd_scene format=3 uid="uid://bg0x4kcl3emfw"]
 
 [ext_resource type="Script" uid="uid://dq00ant1n6ukr" path="res://Scripts/playermech.gd" id="1_u2n0e"]
 [ext_resource type="TileSet" uid="uid://bfp0oqwmvtvs2" path="res://CustomResources/background_tileset.tres" id="2_u2n0e"]
 [ext_resource type="Script" uid="uid://by3pf8nx5c5s3" path="res://Scripts/Misc/destructible_background.gd" id="3_tp74p"]
 [ext_resource type="TileSet" uid="uid://beya8mv7awxpa" path="res://CustomResources/frame_tileset.tres" id="4_cfoyv"]
-[ext_resource type="Texture2D" uid="uid://cujqusmchfqck" path="res://Images/Placeholders/oll.png" id="5_5grai"]
 [ext_resource type="Script" uid="uid://65apk4w16d4j" path="res://Scripts/Misc/destructible_frame.gd" id="5_cfoyv"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="11_07nox"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3pmx8"]
-atlas = ExtResource("5_5grai")
-region = Rect2(11, 60, 64, 37)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u50mg"]
-atlas = ExtResource("5_5grai")
-region = Rect2(75, 60, 64, 37)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cbgmd"]
-atlas = ExtResource("5_5grai")
-region = Rect2(139, 60, 64, 37)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1w6v2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3pmx8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u50mg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cbgmd")
-}],
-"loop": true,
-"name": &"default",
-"speed": 9.0
-}]
-
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_bo1nx"]
-length = 45.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6iyac"]
 animations = [{
@@ -51,61 +18,35 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Mech" type="CharacterBody2D"]
+[node name="Mech" type="CharacterBody2D" unique_id=961734939]
 collision_layer = 33
 collision_mask = 33
 script = ExtResource("1_u2n0e")
 metadata/prebuilt = false
 
-[node name="Background" type="TileMapLayer" parent="."]
+[node name="Background" type="TileMapLayer" parent="." unique_id=796847977]
 z_index = -1
 tile_set = ExtResource("2_u2n0e")
 script = ExtResource("3_tp74p")
 
-[node name="Frame" type="TileMapLayer" parent="."]
+[node name="Frame" type="TileMapLayer" parent="." unique_id=1476641326]
 tile_set = ExtResource("4_cfoyv")
 use_kinematic_bodies = true
 script = ExtResource("5_cfoyv")
 
-[node name="MovementSprites" type="Node2D" parent="."]
+[node name="MovementSprites" type="Node2D" parent="." unique_id=2035739966]
 
-[node name="Wheel1" type="AnimatedSprite2D" parent="MovementSprites"]
-self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
-position = Vector2(256, 550)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_1w6v2")
-autoplay = "default"
-frame_progress = 0.20177686
+[node name="Controllers" type="Node2D" parent="." unique_id=2086536356]
 
-[node name="Wheel2" type="AnimatedSprite2D" parent="MovementSprites"]
-self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
-position = Vector2(704, 550)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_1w6v2")
-autoplay = "default"
-frame_progress = 0.87680304
+[node name="Weapons" type="Node2D" parent="." unique_id=1023028695]
 
-[node name="WheelCollider1" type="CollisionShape2D" parent="."]
-position = Vector2(256, 539)
-shape = SubResource("SeparationRayShape2D_bo1nx")
-debug_color = Color(1, 1, 0, 1)
-
-[node name="WheelCollider2" type="CollisionShape2D" parent="."]
-position = Vector2(704, 539)
-shape = SubResource("SeparationRayShape2D_bo1nx")
-debug_color = Color(1, 1, 0, 1)
-
-[node name="Controllers" type="Node2D" parent="."]
-
-[node name="Weapons" type="Node2D" parent="."]
-
-[node name="Crosshair" type="AnimatedSprite2D" parent="."]
+[node name="Crosshair" type="AnimatedSprite2D" parent="." unique_id=816728952]
 z_index = 20
 z_as_relative = false
-position = Vector2(1048, 136)
+position = Vector2(1080, 328)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_6iyac")
 autoplay = "default"
 
-[node name="EnergyRegen" type="Timer" parent="."]
+[node name="EnergyRegen" type="Timer" parent="." unique_id=76087556]
 autostart = true

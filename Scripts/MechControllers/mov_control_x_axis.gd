@@ -7,7 +7,6 @@ extends Area2D
 @onready var interaction_label = $InteractionLabel
 
 var player_in_range : bool = false
-var direction : int
 
 @onready var type : MechData.ObjectType = MechData.ObjectType.CONTROLLER
 
@@ -15,17 +14,23 @@ var direction : int
 func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	interaction_label.text = get_meta("labeltext")
-	direction = get_meta("direction")
 
 func _unhandled_input(event):
 	if player_in_range:
 		if event.is_action_pressed("interact"):
+			var direction = get_meta("direction")
 			mech.direction = direction
-			
 
 func _on_body_entered(body):
 	if body.name == "Player":
+		var direction = get_meta("direction")
+		match direction:
+			0:
+				interaction_label.text = "Brake"
+			-1:
+				interaction_label.text = "Go Left"
+			1:
+				interaction_label.text = "Go Right"
 		interaction_label.visible = true
 		player_in_range = true
 
