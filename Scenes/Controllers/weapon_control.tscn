@@ -150,9 +150,9 @@ frame_progress = 0.26021188
 [node name="InteractionLabel" type="Label" parent="." unique_id=111943964]
 visible = false
 offset_left = -43.0
-offset_top = -79.0
+offset_top = -32.0
 offset_right = 42.0
-offset_bottom = -56.0
+offset_bottom = -9.0
 text = "Go Right"
 label_settings = SubResource("LabelSettings_u50mg")
 horizontal_alignment = 1
@@ -160,14 +160,14 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Cooldown" type="Node2D" parent="." unique_id=675281519]
-position = Vector2(0, -32)
+position = Vector2(0, -26)
 
 [node name="CooldownBar" type="TextureProgressBar" parent="Cooldown" unique_id=165393995]
 material = SubResource("ShaderMaterial_mb35e")
 offset_left = -8.0
-offset_top = -12.0
+offset_top = -17.0
 offset_right = 8.0
-offset_bottom = 4.0
+offset_bottom = -1.0
 fill_mode = 5
 texture_progress = ExtResource("2_uj4p1")
 tint_progress = Color(1, 0.3529412, 0, 1)

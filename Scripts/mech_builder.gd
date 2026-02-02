@@ -11,6 +11,10 @@ const MECH = preload("uid://bg0x4kcl3emfw")
 
 @onready var in_editor : bool = false
 
+@onready var build_ui_enabled : bool = true
+
+@onready var player_spots = [Vector2i(24, 16), Vector2i(24, 18)]
+
 var global_mouse_pos : Vector2 = Vector2.ZERO
 const MAX_X : int = 34
 const MAX_Y : int = 17
@@ -41,24 +45,30 @@ var chosen_movement_sprite = null
 func _ready():
 	if get_parent().name == "Editor":
 		in_editor = true
-
+		
+var mech_instance
 func _input(event):
 	# Test mech loading
 	if Input.is_action_just_pressed("debug_mech_load"):
 		print("Loading mech...")
-		var mech_instance = MECH.instantiate()
+		mech_instance = MECH.instantiate()
 		self.add_child(mech_instance)
 		mech_instance.global_position = Vector2(0, 0)
-		print("Hiding building UI...")
+		print("Disabling building UI...")
 		grid.hide()
 		mech_prototype.hide()
+		build_ui_enabled = false
 	
 	# Test mech loading
 	if Input.is_action_just_pressed("goto_main"):
+		# Save controller:module pair connections
+		for controller in mech_instance.controllers.get_children():
+			# Match controller child #i to module child #i
+			MechData.control_pairs.append(controller.controlled_module_index)
+		#await get_tree().create_timer(10).timeout #debug timer
 		get_tree().change_scene_to_file("res://Scenes/main.tscn")
 			
-	if event is InputEventMouseButton:
-		
+	if event is InputEventMouseButton and build_ui_enabled:
 		# Set tile
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			global_mouse_pos = get_global_mouse_position()
@@ -70,6 +80,9 @@ func _input(event):
 				return
 			if grid_pos.y / 2 - 1 < 0 or grid_pos.y / 2 - 1 >= 17:
 				return
+			if grid_pos.x / 2 == 12:
+				if grid_pos.y / 2 == 8 or grid_pos.y / 2 == 9:
+					return
 			match edit_layer:
 				EditLayer.BLOCKS:
 					# Set 4 16x16 tiles to make one 32x32 tile
@@ -204,15 +217,32 @@ func expand_position(mouse_pos : Vector2i) -> Vector2i:
 	print("Grid Mouse position = " + str(Vector2i(chosen_x, chosen_y)))
 	return Vector2i(chosen_x, chosen_y)
 
-# Unfinished, broken
-func _load_mech():
-	# Load tiles
-	for y in range(0, MechData.grid_size.y, 4):
-		for x in range(0, MechData.grid_size.y, 4):
-			blocks.set_cell(Vector2i(x,y) + Vector2i.ZERO, 0, chosen_block + Vector2i.ZERO)
-			blocks.set_cell(Vector2i(x,y) + Vector2i.RIGHT, 0, chosen_block + Vector2i.RIGHT)
-			blocks.set_cell(Vector2i(x,y) + Vector2i.DOWN, 0, chosen_block + Vector2i.DOWN)
-			blocks.set_cell(Vector2i(x,y) + Vector2i.ONE, 0, chosen_block + Vector2i.ONE)
+func unload_mech():
+	print("Unloading mech...")
+	mech_instance.queue_free()
+	print("Enabling building UI...")
+	grid.show()
+	mech_prototype.show()
+	build_ui_enabled = true
+
+func load_mech():
+	print("Loading mech...")
+	mech_instance = MECH.instantiate()
+	self.add_child(mech_instance)
+	mech_instance.global_position = Vector2(0, 0)
+	print("Disabling building UI...")
+	grid.hide()
+	mech_prototype.hide()
+	build_ui_enabled = false
+	print("Enabling mech wiring mode...")
+	mech_instance.mech_edit = true
+
+func finish_mech():
+	# Save controller:module pair connections
+	for controller in mech_instance.controllers.get_children():
+		# Match controller child #i to module child #i
+		MechData.control_pairs.append(controller.controlled_module_index)
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

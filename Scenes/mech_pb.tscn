@@ -131,13 +131,13 @@ position = Vector2(231, 209)
 [node name="WeaponControl2" parent="Controllers" unique_id=1325059264 instance=ExtResource("10_6e7te")]
 position = Vector2(191, 17)
 
-[node name="Weapons" type="Node2D" parent="." unique_id=1737760244]
+[node name="Modules" type="Node2D" parent="." unique_id=1737760244]
 position = Vector2(336, 288)
 
-[node name="Gun" parent="Weapons" unique_id=1563081302 instance=ExtResource("11_nq4nr")]
+[node name="Gun" parent="Modules" unique_id=1563081302 instance=ExtResource("11_nq4nr")]
 position = Vector2(344, 16)
 
-[node name="Gun2" parent="Weapons" unique_id=1512168272 instance=ExtResource("11_nq4nr")]
+[node name="Gun2" parent="Modules" unique_id=1512168272 instance=ExtResource("11_nq4nr")]
 position = Vector2(456, 16)
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="." unique_id=1376035771]

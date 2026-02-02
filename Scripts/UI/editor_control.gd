@@ -7,6 +7,16 @@ extends Control
 @onready var left = $Left
 @onready var right = $Right
 
+@onready var next_stage = $NextStage
+@onready var previous_stage = $PreviousStage
+@onready var current_stage = $CurrentStage
+
+# Staging phase control
+# 0 = Mech Creation
+# 1 = Node Connection
+# 2 = Combat
+@onready var build_stage = 0
+
 # INSTANTIABLE OBJECTS
 # WEAPONS
 const MACHINEGUN1 = preload("uid://tgc6pvjmf1xi")
@@ -98,3 +108,32 @@ func _on_item_list_item_clicked(index, _at_position, _mouse_button_index):
 		0:
 			editor.chosen_movement_collider = WHEEL_COLLIDER_1
 			editor.chosen_movement_sprite = WHEEL_1
+
+func _on_next_stage_pressed():
+	match build_stage:
+		0:
+			tab_container.hide()
+			editor.load_mech()
+			previous_stage.text = "Building Stage"
+			previous_stage.show()
+			current_stage.text = "Wiring Stage"
+			next_stage.text = "Finish Mech"
+		1:
+			editor.finish_mech()
+		2:
+			pass
+	build_stage += 1
+
+func _on_previous_stage_pressed():
+	match build_stage:
+		0:
+			pass
+		1:
+			tab_container.show()
+			previous_stage.hide()
+			current_stage.text = "Building Stage"
+			next_stage.text = "Wiring Stage"
+			editor.unload_mech()
+		2:
+			pass
+	build_stage -= 1

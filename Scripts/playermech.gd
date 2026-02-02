@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 @onready var movement_sprites = $MovementSprites
 @onready var controllers = $Controllers
-@onready var weapons = $Weapons
+@onready var modules = $Modules
 
 @onready var energy_regen = $EnergyRegen
 
@@ -37,10 +37,12 @@ func _ready():
 	#generate_frame_collision(0)
 
 func load_mech():
+	# Load mech frame and background
 	for x in range(0, MechData.blocks.size()):
 		for y in range(0, MechData.blocks[x].size()):
 			frame.set_cell(Vector2i(x,y), 0, MechData.blocks[x][y])
 			background.set_cell(Vector2i(x,y), 0, MechData.walls[x][y])
+	# Load mech objects
 	for i in range(0, MechData.object_scenes.size()):
 		var object_scene = MechData.object_scenes[i]
 		var object_action = MechData.object_actions[i]
@@ -49,8 +51,8 @@ func load_mech():
 		
 		var object_instance = object_scene.instantiate()
 		match object_type:
-			MechData.ObjectType.WEAPON:
-				weapons.add_child(object_instance)
+			MechData.ObjectType.MODULE:
+				modules.add_child(object_instance)
 			MechData.ObjectType.CONTROLLER:
 				controllers.add_child(object_instance)
 				if not object_instance.get_meta_list().is_empty():
@@ -63,6 +65,13 @@ func load_mech():
 			_:
 				pass
 		object_instance.position = object_coords
+	# Load mech object connections
+	for i in range(0, MechData.control_pairs.size()):
+		# Check if controller should be connected to anything
+		if MechData.control_pairs[i] == null:
+			continue
+		# Connect controller to controlled module
+		controllers.get_child(i).arm(modules.get_child(MechData.control_pairs[i]))
 
 func _physics_process(delta):
 	# Do not process physics while in editor

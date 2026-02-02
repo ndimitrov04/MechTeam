@@ -4,20 +4,21 @@ const EMPTY_CELL = Vector2i(-1,-1)
 @onready var grid_size : Vector2i = Vector2i(34*2, 17*2)
 
 enum ObjectType {
-	WEAPON, CONTROLLER, COLLIDER, SPRITE
+	MODULE, CONTROLLER, COLLIDER, SPRITE
 }
 
 # Tile Data
 @onready var blocks : Array
 @onready var walls : Array
 
-# Object data (Weapons, Controllers, Modlues, Movement)
+# Object data (Modules, Controllers, Modlues, Movement)
 @onready var object_scenes = []
 @onready var object_actions = []
 @onready var object_types = []
 @onready var object_coordinates = []
 
 # Controller -> Controlled Module pairs
+# Object_scene #i controls contor_pair[i]
 @onready var control_pairs = []
 
 # Called when the node enters the scene tree for the first time.

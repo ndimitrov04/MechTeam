@@ -12,7 +12,8 @@ extends Area2D
 @onready var cooldown_bar = $Cooldown/CooldownBar
 @onready var timer = $Cooldown/Timer
 
-var controlled_weapon
+var controlled_module
+var controlled_module_index
 var cooldown_time : float
 var on_cooldown : bool = false
 var energy_cost : int 
@@ -37,14 +38,14 @@ func _process(_delta):
 	cooldown_bar.value = cooldown_bar.max_value - time_percentage_left
 
 func _unhandled_input(event):
-	if player_in_range and not on_cooldown and controlled_weapon != null:
+	if player_in_range and not on_cooldown and controlled_module != null:
 		if event.is_action_pressed("interact"):
 			if mech.energy < energy_cost:
 				print("INSUFFICIENT ENERGY")
 				return
 			if not player.minigame_mode:
 				mech.energy -= energy_cost
-				player.start_minigame("quicktime_arrow", controlled_weapon)
+				player.start_minigame("quicktime_arrow", controlled_module)
 				start_cooldown()
 			else:
 				player.end_minigame()
@@ -54,10 +55,10 @@ func _input_event(_viewport, event, _shape_idx):
 		if event is InputEventMouseButton and event.pressed and mech.mech_edit:
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				print("Activating terminal connection mode...")
-				if controlled_weapon != null:
-					print("Terminal disconnected from: " + controlled_weapon.name)
-					controlled_weapon = null
-					
+				if controlled_module != null:
+					print("Terminal disconnected from: " + controlled_module.name)
+					controlled_module = null
+					controlled_module_index = null
 				connector.clear_points()
 				connector.add_point(Vector2(0,0))
 				connection_marker.show()
@@ -72,11 +73,12 @@ func _input_event(_viewport, event, _shape_idx):
 					#MechData.control_pairs.append([object_copy])
 
 const OFFSET : Vector2 = Vector2(0, -15)
-func arm(weapon):
-	controlled_weapon = weapon
-	cooldown_time = weapon.cooldown_time
-	energy_cost = weapon.energy_cost
-	connector.add_point(weapon.global_position - self.global_position + OFFSET)
+func arm(module):
+	controlled_module = module
+	controlled_module_index = module.index
+	cooldown_time = module.cooldown_time
+	energy_cost = module.energy_cost
+	connector.add_point(module.global_position - self.global_position + OFFSET)
 	connection_marker.hide()
 	connection_marker.set_process(false)
 

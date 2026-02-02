@@ -13,13 +13,19 @@ var recoil : float = 0.15	# Recoil rotation of gun module per shot in radians
 var energy_cost : int = 30
 var cooldown_time : float = 20
 
-@onready var type : MechData.ObjectType = MechData.ObjectType.WEAPON
+@onready var type : MechData.ObjectType = MechData.ObjectType.MODULE
+
+# Used for saving and loading controller:weapon connection pairs
+var index
 
 #unfreeze gun physics on destruction
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	# What a very intuitive and nice way to check if an object is
+	# a mech.
+	if get_parent().get_parent().name == "Mech":
+		index = get_parent().get_child_count() - 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://tgc6pvjmf1xi"]
+[gd_scene format=3 uid="uid://tgc6pvjmf1xi"]
 
 [ext_resource type="Script" uid="uid://cp3kgexvunvtf" path="res://Scripts/Weapons/gun.gd" id="1_ut0fn"]
 [ext_resource type="Texture2D" uid="uid://l0br0i4oadx" path="res://Images/MechGuns/turret_01_mk1.png" id="2_n1r3s"]
@@ -26,7 +26,7 @@ height = 56.0
 radius = 18.0
 height = 42.0
 
-[node name="Gun" type="RigidBody2D"]
+[node name="Gun" type="RigidBody2D" unique_id=834209248]
 z_index = 10
 z_as_relative = false
 collision_layer = 2
@@ -37,22 +37,22 @@ freeze = true
 script = ExtResource("1_ut0fn")
 metadata/aim_speed = 2.0
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_d1ilt")
 autoplay = "default"
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1882493289]
 position = Vector2(5, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_hptm8")
 
-[node name="Hitbox2" type="CollisionShape2D" parent="."]
+[node name="Hitbox2" type="CollisionShape2D" parent="." unique_id=196601224]
 position = Vector2(-1, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_d1ilt")
 
-[node name="DirectAim" parent="." instance=ExtResource("3_ut0fn")]
+[node name="DirectAim" parent="." unique_id=1244187644 instance=ExtResource("3_ut0fn")]
 
-[node name="ShootPoint" type="Node2D" parent="."]
+[node name="ShootPoint" type="Node2D" parent="." unique_id=670362176]
 position = Vector2(40, 0)

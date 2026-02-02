@@ -6,6 +6,8 @@ extends Area2D
 @onready var sprite = $Sprite
 @onready var interaction_label = $InteractionLabel
 
+var controlled_module_index
+
 var player_in_range : bool = false
 
 @onready var type : MechData.ObjectType = MechData.ObjectType.CONTROLLER
