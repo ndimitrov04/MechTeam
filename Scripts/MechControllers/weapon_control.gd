@@ -65,12 +65,6 @@ func _input_event(_viewport, event, _shape_idx):
 				connection_marker.set_process(true)
 				print("Terminal set as active for connection")
 				mech.current_terminal = self
-				# Save as default connection 
-				if mech.in_editor:
-					pass
-					# doesnt do what i want
-					#var object_copy = self.duplicate()
-					#MechData.control_pairs.append([object_copy])
 
 const OFFSET : Vector2 = Vector2(0, -15)
 func arm(module):

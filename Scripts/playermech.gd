@@ -22,7 +22,7 @@ var current_terminal
 var direction : int = 0
 var jump : bool = false
 
-var max_hp : int = 100
+var max_hp : int = 100000
 var hp : int = max_hp
 var max_energy : int = 100
 var energy : int = max_energy
@@ -132,6 +132,8 @@ func take_damage(damage_value : int):
 		die()
 
 func die():
+	for module in modules.get_children():
+		module.destroy()
 	background.break_all_tiles()
 	frame.collision_enabled = false
 	frame.break_all_tiles()

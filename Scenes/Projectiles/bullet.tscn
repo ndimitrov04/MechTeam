@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7pvmbpigkpq1"]
+[gd_scene format=3 uid="uid://7pvmbpigkpq1"]
 
 [ext_resource type="Texture2D" uid="uid://ys2p1s6abkep" path="res://Images/Projectiles/SpaceStation_Projectiles_Sheet.png" id="1_12ur6"]
 [ext_resource type="Script" uid="uid://dnj15b84lvxlb" path="res://Scripts/Projectiles/bullet.gd" id="1_3323x"]
@@ -35,7 +35,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Bullet" type="RigidBody2D"]
+[node name="Bullet" type="RigidBody2D" unique_id=764556974]
 z_index = 20
 z_as_relative = false
 collision_layer = 12
@@ -46,11 +46,11 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_3323x")
 
-[node name="Hurtbox" type="CollisionShape2D" parent="."]
+[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1205890646]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_12ur6")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=574816881]
 sprite_frames = SubResource("SpriteFrames_1pg7u")
 autoplay = "default"
 frame_progress = 0.43615592

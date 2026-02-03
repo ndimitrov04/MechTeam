@@ -6,11 +6,21 @@ extends CharacterBody2D
 @onready var background = $Background
 @onready var frame = $Frame
 
+@onready var weapons = $Weapons
+
+# Mech controller AI
+@onready var action_decision = $ActionDecision
+
 const SPEED = 25.0
 const JUMP_VELOCITY = -400.0
 
 var hp : int = 100
 var energy : int = 100
+
+var direction = 1
+
+func _ready():
+	action_decision.timeout.connect(_on_action_decision_timeout)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -19,9 +29,8 @@ func _physics_process(delta):
 
 	# Handle jump.
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-	#	velocity.y = JUMP_VELOCITY
-
-	var direction = 0
+		#velocity.y = JUMP_VELOCITY
+		
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -50,6 +59,8 @@ func take_damage(damage_value : int):
 		die()
 
 func die():
+	for module in weapons.get_children():
+		module.destroy()
 	background.break_all_tiles()
 	frame.collision_enabled = false
 	frame.break_all_tiles()
@@ -57,3 +68,23 @@ func die():
 	await get_tree().create_timer(4).timeout
 	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
 	queue_free()
+
+func _on_action_decision_timeout():
+	var action = randi_range(0, 5)
+	const directions = [-1, 1]
+	var ai : bool = false
+	
+	if not ai:
+		direction = 0
+		return
+
+	# Move 2/6
+	if action < 2:
+		direction = directions.pick_random()
+	# Aim 1/6
+	elif action == 2:
+		direction = 0
+		crosshair.position += Vector2(randi_range(-35, 35), randi_range(-35, 35))
+	# Shoot 3/6
+	elif action > 2:
+		weapons.get_children().pick_random().shoot()

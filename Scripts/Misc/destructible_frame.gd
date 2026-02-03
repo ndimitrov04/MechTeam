@@ -6,7 +6,12 @@ const DEBRIS = preload("uid://rg2m11gs0xex")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	#for child in get_parent().get_children():
+		#if child.name == "Weapons":
+			#for module in child.get_children():
+				#connected_modules.append(module)
+			#break
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):

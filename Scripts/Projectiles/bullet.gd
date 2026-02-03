@@ -20,8 +20,13 @@ func _physics_process(delta):
 		_on_body_entered(collision.get_collider())
 
 func _on_body_entered(body):
+	print("Hit " + body.name)
+	print(body.name + ": ")
+	print("Parent: " + body.get_parent().name)
 	if body.name == "Frame":
 		body.take_damage(damage_value, collision, knockback_force)
-		
+	if body.get_parent().name == "Modules" or body.get_parent().name == "Weapons":
+		body.destroy()
+		print("Destroying" + body.name)
 	# Explode
 	queue_free()
