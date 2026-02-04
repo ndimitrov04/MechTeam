@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://6xm4gvdu3qsl"
+path="res://.godot/imported/02 lava city.ogg-6ecd996e5fbb92fea565982723b2451f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/02 lava city.ogg"
+dest_files=["res://.godot/imported/02 lava city.ogg-6ecd996e5fbb92fea565982723b2451f.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

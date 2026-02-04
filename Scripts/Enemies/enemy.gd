@@ -70,21 +70,21 @@ func die():
 	queue_free()
 
 func _on_action_decision_timeout():
-	var action = randi_range(0, 5)
+	var action = randi_range(1, 100)
 	const directions = [-1, 1]
-	var ai : bool = false
+	var ai : bool = true
 	
 	if not ai:
 		direction = 0
 		return
 
-	# Move 2/6
-	if action < 2:
+	# Move 65%
+	if action < 65:
 		direction = directions.pick_random()
-	# Aim 1/6
-	elif action == 2:
+	# Aim 15%
+	elif action >= 65 and action < 90:
 		direction = 0
 		crosshair.position += Vector2(randi_range(-35, 35), randi_range(-35, 35))
-	# Shoot 3/6
-	elif action > 2:
+	# Shoot 10%
+	elif action >= 90:
 		weapons.get_children().pick_random().shoot()

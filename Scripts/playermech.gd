@@ -22,7 +22,7 @@ var current_terminal
 var direction : int = 0
 var jump : bool = false
 
-var max_hp : int = 100000
+var max_hp : int = 200
 var hp : int = max_hp
 var max_energy : int = 100
 var energy : int = max_energy
@@ -122,11 +122,11 @@ func _regenerate_energy():
 func take_damage(damage_value : int):
 	hp -= damage_value
 	# Godot 4.5 still has no fallthrough switches :/
-	if hp <= 75:
+	if hp <= 150:
+		background.break_random_tile()
+	if hp <= 100:
 		background.break_random_tile()
 	if hp <= 50:
-		background.break_random_tile()
-	if hp <= 25:
 		background.break_random_tile()
 	if hp <= 0:
 		die()

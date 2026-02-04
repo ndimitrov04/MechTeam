@@ -88,7 +88,6 @@ func shoot():
 		self.rotate(randf_range(-recoil, recoil))
 
 func destroy():
-	#doesnt work
 	# Spawn debris
 	var debris_instance = DEBRIS.instantiate()
 	main.add_child(debris_instance)
@@ -99,8 +98,8 @@ func destroy():
 	set_collision_mask_value(2, 0)
 	set_collision_mask_value(4, 0)
 	
-	set_collision_layer_value(5, 1)
-	set_collision_mask_value(5, 1)
+	set_collision_layer_value(7, 1)
+	set_collision_mask_value(7, 1)
 	
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0
@@ -112,8 +111,8 @@ func destroy():
 
 #doesnt work
 func _on_body_entered(_body):
-	# Spawn debris
 	var debris_instance = DEBRIS.instantiate()
-	main.add_sibling(debris_instance)
+	main.call_deferred("add_child", debris_instance)
 	debris_instance.global_position = global_position
+	await get_tree().create_timer(1.0).timeout
 	queue_free()

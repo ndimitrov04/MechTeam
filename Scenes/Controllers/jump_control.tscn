@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dnptb60s411dv" path="res://Scripts/MechControllers/jump_control.gd" id="1_8s1xf"]
 [ext_resource type="Texture2D" uid="uid://b1wt3rxhih26o" path="res://Images/Objects/Control1/Screen2.png" id="2_6hbil"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_bdllg"]
+[ext_resource type="Texture2D" uid="uid://ds3cnl75d7mh6" path="res://Images/Tilesets/Industrial_Tileset.png" id="5_bdllg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bdllg"]
 shader = ExtResource("1_6hbil")
@@ -63,6 +64,9 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eryjw"]
+size = Vector2(27, 13)
+
 [node name="JumpControl" type="Area2D" unique_id=1126368876]
 material = SubResource("ShaderMaterial_bdllg")
 script = ExtResource("1_8s1xf")
@@ -90,3 +94,19 @@ label_settings = SubResource("LabelSettings_u50mg")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="IndestructablePlatform" type="StaticBody2D" parent="." unique_id=1449588584]
+z_index = -1
+collision_layer = 16384
+collision_mask = 16384
+
+[node name="Sprite" type="Sprite2D" parent="IndestructablePlatform" unique_id=563172537]
+position = Vector2(0.43750098, 21.999998)
+scale = Vector2(0.43750003, 0.4375)
+texture = ExtResource("5_bdllg")
+region_enabled = true
+region_rect = Rect2(49, 225, 62, 29)
+
+[node name="Hitbox" type="CollisionShape2D" parent="IndestructablePlatform" unique_id=1424825433]
+position = Vector2(0.5, 23)
+shape = SubResource("RectangleShape2D_eryjw")

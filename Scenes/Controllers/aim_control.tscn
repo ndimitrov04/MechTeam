@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://w4t3gcaak7ka" path="res://Images/Objects/Control2/tile017.png" id="19_qmbwq"]
 [ext_resource type="Texture2D" uid="uid://u74a7m55t87w" path="res://Images/Objects/Control2/tile018.png" id="20_vwbhq"]
 [ext_resource type="Texture2D" uid="uid://bib4gre6gyyiu" path="res://Images/Objects/Control2/tile019.png" id="21_4irx3"]
+[ext_resource type="Texture2D" uid="uid://ds3cnl75d7mh6" path="res://Images/Tilesets/Industrial_Tileset.png" id="23_wy0ay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
 size = Vector2(34, 25)
@@ -101,6 +102,9 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r6d5"]
+size = Vector2(28, 13)
+
 [node name="AimControl" type="Area2D" unique_id=1390806880]
 script = ExtResource("1_7jspn")
 metadata/labeltext = "Aim"
@@ -126,3 +130,19 @@ label_settings = SubResource("LabelSettings_u50mg")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="IndestructablePlatform" type="StaticBody2D" parent="." unique_id=105723555]
+z_index = -1
+collision_layer = 16384
+collision_mask = 16384
+
+[node name="Sprite" type="Sprite2D" parent="IndestructablePlatform" unique_id=643218236]
+position = Vector2(9.536743e-07, 21.999998)
+scale = Vector2(0.45161292, 0.4375)
+texture = ExtResource("23_wy0ay")
+region_enabled = true
+region_rect = Rect2(49, 225, 62, 29)
+
+[node name="Hitbox" type="CollisionShape2D" parent="IndestructablePlatform" unique_id=931910500]
+position = Vector2(0, 23)
+shape = SubResource("RectangleShape2D_4r6d5")

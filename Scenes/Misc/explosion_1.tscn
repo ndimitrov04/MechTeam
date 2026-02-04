@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://buh5u6wul5uno"]
+[gd_scene format=3 uid="uid://buh5u6wul5uno"]
 
 [ext_resource type="Texture2D" uid="uid://cgw4t8b4qapcp" path="res://Images/Explosions/1/explosion-f1.png" id="1_necdh"]
 [ext_resource type="Texture2D" uid="uid://ba4ajxnds887w" path="res://Images/Explosions/1/explosion-f2.png" id="2_853ip"]
@@ -46,10 +46,11 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Explosion1" type="AnimatedSprite2D"]
+[node name="Explosion1" type="AnimatedSprite2D" unique_id=299595297]
+z_index = 25
 sprite_frames = SubResource("SpriteFrames_7q11n")
 autoplay = "default"
 frame = 7
 frame_progress = 1.0
 
-[node name="ExplosionParticles" parent="." instance=ExtResource("10_necdh")]
+[node name="ExplosionParticles" parent="." unique_id=1722172825 instance=ExtResource("10_necdh")]

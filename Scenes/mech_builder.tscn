@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ct452l4vvyn2i" path="res://Images/Placeholders/left.png" id="7_w1m1m"]
 [ext_resource type="Texture2D" uid="uid://cenobjevlni5" path="res://Images/Placeholders/right.png" id="8_tgtas"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="9_tgtas"]
+[ext_resource type="AudioStream" uid="uid://cs8s38pem2m8w" path="res://Audio/Music/rbl.mp3" id="10_q3hfk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rirod"]
 texture = ExtResource("3_34mun")
@@ -810,6 +811,11 @@ theme_override_fonts/font = ExtResource("9_tgtas")
 text = "Wiring Stage"
 icon = ExtResource("8_tgtas")
 icon_alignment = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1629900139]
+stream = ExtResource("10_q3hfk")
+autoplay = true
+bus = &"Music"
 
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Blocks" to="GUI/Control" method="_on_block_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Walls" to="GUI/Control" method="_on_wall_list_item_clicked"]

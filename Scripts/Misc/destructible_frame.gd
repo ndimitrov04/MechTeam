@@ -20,8 +20,15 @@ func _physics_process(_delta):
 # Call this when taking damage.
 func take_damage(damage_value : int, collision : KinematicCollision2D, knockback_force : int):
 	# Convert collision position: Global -> Local -> Tilemap
+	if not collision:
+		return
+	print("Took hit")
 	var collision_pos_global = collision.get_position()
-	var collision_pos_local = to_local(collision_pos_global)
+	# Push the point slightly into the tile that was hit
+	# to ensure correct coordinate match-up with tile position
+	var collision_normal = collision.get_normal()
+	var biased_pos = collision_pos_global - collision_normal * 0.1
+	var collision_pos_local = to_local(biased_pos)
 	var collided_tile_pos = self.local_to_map(collision_pos_local)
 	# Remember tile atlas coords for debris spawning
 	var collided_tile_atlas = self.get_cell_atlas_coords(collided_tile_pos)

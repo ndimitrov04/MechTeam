@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://m4k0silgsotl" path="res://Images/Objects/Control3/tile018.png" id="21_rn3jp"]
 [ext_resource type="Texture2D" uid="uid://blqs0u4y21bxp" path="res://Images/Objects/Control3/tile019.png" id="22_bosqf"]
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="24_mb35e"]
+[ext_resource type="Texture2D" uid="uid://ds3cnl75d7mh6" path="res://Images/Tilesets/Industrial_Tileset.png" id="26_hr17i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
 size = Vector2(34, 25)
@@ -110,6 +111,9 @@ shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/pixels_to_check = 1
 shader_parameter/center_distance_cap = 1
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvrx3"]
+size = Vector2(27, 13)
+
 [node name="WeaponControl" type="Area2D" unique_id=1393767290]
 script = ExtResource("1_stdkj")
 metadata/labeltext = "Shoot"
@@ -175,3 +179,19 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="Cooldown" unique_id=118215250]
 one_shot = true
+
+[node name="IndestructablePlatform" type="StaticBody2D" parent="." unique_id=658744786]
+z_index = -1
+collision_layer = 16384
+collision_mask = 16384
+
+[node name="Sprite" type="Sprite2D" parent="IndestructablePlatform" unique_id=1825302329]
+position = Vector2(0.43750098, 21.999998)
+scale = Vector2(0.43750003, 0.4375)
+texture = ExtResource("26_hr17i")
+region_enabled = true
+region_rect = Rect2(49, 225, 62, 29)
+
+[node name="Hitbox" type="CollisionShape2D" parent="IndestructablePlatform" unique_id=670216625]
+position = Vector2(0.5, 23)
+shape = SubResource("RectangleShape2D_dvrx3")
