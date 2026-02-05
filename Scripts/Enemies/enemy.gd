@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var background = $Background
 @onready var frame = $Frame
 
-@onready var weapons = $Weapons
+@onready var modules = $Modules
 
 # Mech controller AI
 @onready var action_decision = $ActionDecision
@@ -59,7 +59,7 @@ func take_damage(damage_value : int):
 		die()
 
 func die():
-	for module in weapons.get_children():
+	for module in modules.get_children():
 		module.destroy()
 	background.break_all_tiles()
 	frame.collision_enabled = false
@@ -87,4 +87,4 @@ func _on_action_decision_timeout():
 		crosshair.position += Vector2(randi_range(-35, 35), randi_range(-35, 35))
 	# Shoot 10%
 	elif action >= 90:
-		weapons.get_children().pick_random().shoot()
+		modules.get_children().pick_random().engage()

@@ -2,7 +2,7 @@ extends Control
 
 @onready var player = $"../../../Player"
 
-var current_weapon = null
+var current_module = null
 
 var quicktime_arrow = preload("res://Scenes/Minigames/quick_time_arrow.tscn")
 
@@ -15,10 +15,10 @@ func spawn_minigame(game_object):
 	add_child(game_scene)
 	game_scene.start()
 
-func start_minigame(mname : String, controlled_weapon):
-	print("Minigames: " + controlled_weapon.name)
-	current_weapon = controlled_weapon
-	print("Current_weapon: " + current_weapon.name)
+func start_minigame(mname : String, controlled_module):
+	print("Minigames: " + controlled_module.name)
+	current_module = controlled_module
+	print("current_module: " + current_module.name)
 	match mname:
 		"quicktime_arrow":
 			spawn_minigame(quicktime_arrow)
@@ -26,10 +26,10 @@ func start_minigame(mname : String, controlled_weapon):
 			print("No such minigame exists.")
 
 func end_minigame():
-	current_weapon = null
+	current_module = null
 	get_child(0).queue_free()
 
 func win():
-	print(current_weapon.name + " goes PEWPEW!!!")
-	current_weapon.shoot()
+	print(current_module.name + " goes PEWPEW!!!")
+	current_module.engage()
 	pass

@@ -44,7 +44,7 @@ func _unhandled_input(event):
 				print("INSUFFICIENT ENERGY")
 				return
 			if not player.minigame_mode:
-				mech.energy -= energy_cost
+				mech.drain_energy(energy_cost)
 				player.start_minigame("quicktime_arrow", controlled_module)
 				start_cooldown()
 			else:

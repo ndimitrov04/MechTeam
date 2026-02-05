@@ -20,6 +20,7 @@ extends Control
 # INSTANTIABLE OBJECTS
 # WEAPONS
 const MACHINEGUN1 = preload("uid://tgc6pvjmf1xi")
+const BATTERY = preload("uid://l73g8614cmho")
 # CONTROLLERS
 const AIM_CONTROL = preload("uid://bjychxdy31gx5")
 const JUMP_CONTROL = preload("uid://cqf1xuoccxt6k")
@@ -79,6 +80,8 @@ func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 	match index:
 		0:
 			editor.chosen_object = MACHINEGUN1
+		1:
+			editor.chosen_object = BATTERY
 
 func _on_controllers_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 2
@@ -137,3 +140,7 @@ func _on_previous_stage_pressed():
 		2:
 			pass
 	build_stage -= 1
+
+func _on_prebuilt_pressed():
+	MechData.summon_debug_mech = true
+	_on_next_stage_pressed()

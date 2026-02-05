@@ -24,8 +24,8 @@ var jump : bool = false
 
 var max_hp : int = 200
 var hp : int = max_hp
-var max_energy : int = 100
-var energy : int = max_energy
+var max_energy : int
+var energy : int
 var regen_rate : int = 1
 
 func _ready():
@@ -103,6 +103,7 @@ func _physics_process(delta):
 			spr.stop()
 	
 	move_and_slide()
+	total_energy()
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("debug_mech_edit"):
@@ -113,11 +114,28 @@ func _unhandled_input(event):
 			mech_edit = false
 			print("EXITED DEBUG MECH EDIT MODE")
 
+func total_energy():
+	energy = 0
+	for child in modules.get_children():
+		if "current_energy" in child:
+			energy += child.current_energy
+
 func _regenerate_energy():
-	if energy + regen_rate < max_energy:
-		energy += regen_rate
-	else:
-		energy = max_energy
+	return # dont regen passively for now (debug!!!)
+	#if energy + regen_rate < max_energy:
+		#energy += regen_rate
+	#else:
+		#energy = max_energy
+
+func drain_energy(amount : int):
+	var leftover = null
+	for child in modules.get_children():
+		if "current_energy" in child:
+			leftover = child.drain(amount)
+		if leftover == null:
+			continue
+		if leftover <= 0:
+			break
 
 func take_damage(damage_value : int):
 	hp -= damage_value

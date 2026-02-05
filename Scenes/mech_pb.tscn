@@ -9,9 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://dkk6dac4fqg53" path="res://Scenes/Controllers/mov_control_x_axis.tscn" id="7_t10x3"]
 [ext_resource type="PackedScene" uid="uid://cqf1xuoccxt6k" path="res://Scenes/Controllers/jump_control.tscn" id="8_41s27"]
 [ext_resource type="PackedScene" uid="uid://bjychxdy31gx5" path="res://Scenes/Controllers/aim_control.tscn" id="9_1p5ey"]
-[ext_resource type="PackedScene" uid="uid://byb23wa6gburr" path="res://Scenes/Controllers/weapon_control.tscn" id="10_6e7te"]
-[ext_resource type="PackedScene" uid="uid://tgc6pvjmf1xi" path="res://Scenes/Weapons/gun.tscn" id="11_nq4nr"]
+[ext_resource type="PackedScene" uid="uid://byb23wa6gburr" path="res://Scenes/Controllers/module_control.tscn" id="10_6e7te"]
+[ext_resource type="PackedScene" uid="uid://tgc6pvjmf1xi" path="res://Scenes/Modules/Weapons/gun.tscn" id="11_nq4nr"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="12_1bt78"]
+[ext_resource type="PackedScene" uid="uid://l73g8614cmho" path="res://Scenes/Modules/Misc/battery.tscn" id="12_486fv"]
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_cbrgo"]
 length = 25.0
@@ -63,7 +64,7 @@ animations = [{
 collision_layer = 32
 collision_mask = 32
 script = ExtResource("1_cbrgo")
-metadata/prebuilt = false
+metadata/prebuilt = true
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=219682765]
 z_index = -1
@@ -118,7 +119,7 @@ metadata/direction = -1
 metadata/labeltext = "Go Left"
 
 [node name="MovControlXAxis3" parent="Controllers" unique_id=8991624 instance=ExtResource("7_t10x3")]
-position = Vector2(0, 16)
+position = Vector2(32, 16)
 metadata/direction = 0
 metadata/labeltext = "Stop"
 
@@ -129,10 +130,16 @@ position = Vector2(1, -64)
 position = Vector2(426, 80)
 
 [node name="WeaponControl" parent="Controllers" unique_id=552231000 instance=ExtResource("10_6e7te")]
-position = Vector2(231, 209)
+position = Vector2(255, 209)
 
 [node name="WeaponControl2" parent="Controllers" unique_id=1325059264 instance=ExtResource("10_6e7te")]
 position = Vector2(191, 17)
+
+[node name="WeaponControl3" parent="Controllers" unique_id=1393767290 instance=ExtResource("10_6e7te")]
+position = Vector2(-33, 17)
+
+[node name="WeaponControl4" parent="Controllers" unique_id=447285336 instance=ExtResource("10_6e7te")]
+position = Vector2(159, 209)
 
 [node name="Modules" type="Node2D" parent="." unique_id=1737760244]
 position = Vector2(336, 288)
@@ -142,6 +149,18 @@ position = Vector2(344, 16)
 
 [node name="Gun2" parent="Modules" unique_id=1512168272 instance=ExtResource("11_nq4nr")]
 position = Vector2(456, 16)
+
+[node name="Gun3" parent="Modules" unique_id=834209248 instance=ExtResource("11_nq4nr")]
+position = Vector2(128, -112)
+
+[node name="Gun4" parent="Modules" unique_id=696508028 instance=ExtResource("11_nq4nr")]
+position = Vector2(32, 176)
+
+[node name="Battery" parent="Modules" unique_id=320297135 instance=ExtResource("12_486fv")]
+position = Vector2(416, 208)
+
+[node name="Battery2" parent="Modules" unique_id=2001289834 instance=ExtResource("12_486fv")]
+position = Vector2(-64, 208)
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="." unique_id=1376035771]
 z_index = 20

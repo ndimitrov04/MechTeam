@@ -31,4 +31,5 @@ func _on_body_entered(body):
 	if body.get_parent().name == "Modules" or body.get_parent().name == "Weapons":
 		body.destroy()
 		print("Destroying" + body.name)
+	get_parent().player.screenshake(self.global_position, knockback_force)
 	queue_free()

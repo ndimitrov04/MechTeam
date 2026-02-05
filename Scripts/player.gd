@@ -62,10 +62,10 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func start_minigame(mname : String, controlled_weapon):
-	print("Player: " + controlled_weapon.name)
+func start_minigame(mname : String, controlled_module):
+	print("Player: " + controlled_module.name)
 	minigame_mode = true
-	minigames.start_minigame(mname, controlled_weapon)
+	minigames.start_minigame(mname, controlled_module)
 	last_zoom = zoom
 	zoom = Vector2(1,1)
 	
@@ -73,3 +73,10 @@ func end_minigame():
 	minigame_mode = false
 	minigames.end_minigame()
 	zoom = last_zoom
+
+func screenshake(shake_position : Vector2, amount : int):
+	var distance = self.global_position.distance_to(shake_position)
+	var shake_brutality : float = 0.005 # Magic number
+	var distance_attentuation : float = 64 # Magic number
+	var trauma_amount = (amount * shake_brutality) / (distance / distance_attentuation)
+	camera.add_trauma(trauma_amount)

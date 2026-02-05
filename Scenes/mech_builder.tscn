@@ -726,13 +726,14 @@ item_1/text = "Spring Wall"
 item_2/text = "Panel Wall"
 metadata/_tab_index = 1
 
-[node name="Weapons" type="ItemList" parent="GUI/Control/TabContainer" unique_id=848252397]
+[node name="Modules" type="ItemList" parent="GUI/Control/TabContainer" unique_id=848252397]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_tgtas")
 theme_override_font_sizes/font_size = 32
-item_count = 1
+item_count = 2
 item_0/text = "Machine Gun"
+item_1/text = "Battery"
 metadata/_tab_index = 2
 
 [node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer" unique_id=288800539]
@@ -746,7 +747,7 @@ item_1/text = "Move Left"
 item_2/text = "Move Right"
 item_3/text = "Brake"
 item_4/text = "Jump"
-item_5/text = "Shoot"
+item_5/text = "Engage"
 metadata/_tab_index = 3
 
 [node name="Movement" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1264730566]
@@ -812,6 +813,19 @@ text = "Wiring Stage"
 icon = ExtResource("8_tgtas")
 icon_alignment = 2
 
+[node name="Prebuilt" type="Button" parent="GUI/Control" unique_id=579514854]
+visible = false
+layout_mode = 0
+offset_left = 1624.0
+offset_top = 32.0
+offset_right = 1763.0
+offset_bottom = 72.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("9_tgtas")
+text = "Summon Prebuilt
+Mech"
+icon_alignment = 2
+
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1629900139]
 stream = ExtResource("10_q3hfk")
 autoplay = true
@@ -819,10 +833,11 @@ bus = &"Music"
 
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Blocks" to="GUI/Control" method="_on_block_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Walls" to="GUI/Control" method="_on_wall_list_item_clicked"]
-[connection signal="item_clicked" from="GUI/Control/TabContainer/Weapons" to="GUI/Control" method="_on_weapons_item_clicked"]
+[connection signal="item_clicked" from="GUI/Control/TabContainer/Modules" to="GUI/Control" method="_on_weapons_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Controllers" to="GUI/Control" method="_on_controllers_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Movement" to="GUI/Control" method="_on_item_list_item_clicked"]
 [connection signal="pressed" from="GUI/Control/Left" to="GUI/Control" method="_on_left_pressed"]
 [connection signal="pressed" from="GUI/Control/Right" to="GUI/Control" method="_on_right_pressed"]
 [connection signal="pressed" from="GUI/Control/PreviousStage" to="GUI/Control" method="_on_previous_stage_pressed"]
 [connection signal="pressed" from="GUI/Control/NextStage" to="GUI/Control" method="_on_next_stage_pressed"]
+[connection signal="pressed" from="GUI/Control/Prebuilt" to="GUI/Control" method="_on_prebuilt_pressed"]

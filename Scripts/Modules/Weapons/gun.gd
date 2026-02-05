@@ -32,6 +32,7 @@ var destroyed : bool = false
 func _ready():
 	#if has_meta("pinned_tile"):
 		#pinned_frame_tile = get_meta("pinned_tile")
+	self.body_entered.connect(_on_body_entered)
 	if get_parent().get_parent().name == "Mech":
 		index = get_parent().get_child_count() - 1
 		is_friendly = true
@@ -58,7 +59,7 @@ func _input_event(_viewport, event, _shape_idx):
 				print("Deactivating terminal connection mode.")
 				mech.current_terminal = null
 
-func shoot():
+func engage():
 	for i in range(0, repeat_rate):
 		await get_tree().create_timer(0.15).timeout
 		var bullet_instance = bullet.instantiate()
@@ -109,7 +110,6 @@ func destroy():
 	
 	freeze = false
 
-#doesnt work
 func _on_body_entered(_body):
 	var debris_instance = DEBRIS.instantiate()
 	main.call_deferred("add_child", debris_instance)

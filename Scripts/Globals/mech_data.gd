@@ -7,6 +7,8 @@ enum ObjectType {
 	MODULE, CONTROLLER, COLLIDER, SPRITE
 }
 
+@onready var summon_debug_mech = false
+
 # Tile Data
 @onready var blocks : Array
 @onready var walls : Array

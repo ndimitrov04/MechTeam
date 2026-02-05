@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://bqikqykbsljjl"]
 
 [ext_resource type="Script" uid="uid://bihlsm53n7ehm" path="res://Scripts/player.gd" id="1_6t5aa"]
+[ext_resource type="Script" uid="uid://clxksslxwdp2q" path="res://Scripts/camera.gd" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://bnpfidpohw54n" path="res://Images/Characters/Cyborg/Cyborg_idle.png" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://vfehl0ro1tdt" path="res://Images/Characters/Cyborg/Cyborg_run.png" id="3_fkybt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vgqql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynf5e"]
 size = Vector2(12, 29)
@@ -102,6 +105,8 @@ limit_top = -10000030
 limit_right = 10000019
 limit_bottom = 720
 position_smoothing_speed = 14.0
+script = ExtResource("2_fkybt")
+noise = SubResource("FastNoiseLite_vgqql")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1868873983]
 position = Vector2(0, 9.5)

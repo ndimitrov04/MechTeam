@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://l73g8614cmho"]
+
+[ext_resource type="Script" uid="uid://0atvq88lhixj" path="res://Scripts/Modules/Misc/battery.gd" id="1_mfo1m"]
+[ext_resource type="Texture2D" uid="uid://bhuegfsb3olkw" path="res://Images/Objects/Generator/tile000.png" id="2_qfse1"]
+[ext_resource type="Texture2D" uid="uid://bnqiyj1b755dm" path="res://Images/Objects/Generator/tile001.png" id="3_glmyp"]
+[ext_resource type="Texture2D" uid="uid://dyj62lyfcovhq" path="res://Images/Objects/Generator/tile002.png" id="4_g0kdv"]
+[ext_resource type="Texture2D" uid="uid://qpjjwlivl1a0" path="res://Images/Objects/Generator/tile003.png" id="5_o332s"]
+[ext_resource type="Texture2D" uid="uid://uimu1r8fmg1r" path="res://Images/Objects/Generator/tile004.png" id="6_jgpvc"]
+[ext_resource type="Texture2D" uid="uid://bbod55xeo6ili" path="res://Images/Objects/Generator/tile005.png" id="7_d0ogs"]
+[ext_resource type="Texture2D" uid="uid://dl1yrlgekpf5h" path="res://Images/Objects/Generator/tile006.png" id="8_61dgm"]
+[ext_resource type="Texture2D" uid="uid://dmsu8q7f7qcbh" path="res://Images/Objects/Generator/tile007.png" id="9_h6sed"]
+[ext_resource type="Texture2D" uid="uid://brav8dn0fwvyl" path="res://Images/Objects/Generator/tile008.png" id="10_r810v"]
+[ext_resource type="Texture2D" uid="uid://ee78pdkopln0" path="res://Images/Objects/Generator/tile009.png" id="11_b4w5i"]
+[ext_resource type="Texture2D" uid="uid://yoniwxs4ol8h" path="res://Images/Objects/Generator/tile010.png" id="12_1ng4u"]
+[ext_resource type="Texture2D" uid="uid://b5b5x1tmhjjsv" path="res://Images/Objects/Generator/tile011.png" id="13_73jem"]
+[ext_resource type="Texture2D" uid="uid://bh67ula7h34di" path="res://Images/Objects/Generator/tile012.png" id="14_xpf4q"]
+[ext_resource type="Texture2D" uid="uid://dru617a53pb0o" path="res://Images/Objects/Generator/tile013.png" id="15_uscvl"]
+[ext_resource type="Texture2D" uid="uid://m4bm1nisplqg" path="res://Images/Objects/Generator/tile014.png" id="16_w0k6c"]
+[ext_resource type="Texture2D" uid="uid://cicudwcpgasti" path="res://Images/Objects/Generator/tile015.png" id="17_pjtxc"]
+[ext_resource type="Texture2D" uid="uid://qkpyf480lxn" path="res://Images/Objects/Generator/tile016.png" id="18_8062y"]
+[ext_resource type="Texture2D" uid="uid://dyt0o42f7o4f6" path="res://Images/Objects/Generator/tile017.png" id="19_4folw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
+friction = 0.9
+bounce = 0.44
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qfse1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_glmyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g0kdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o332s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jgpvc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_d0ogs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_61dgm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_h6sed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_r810v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_b4w5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_1ng4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_73jem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_xpf4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_uscvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_w0k6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pjtxc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_8062y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_4folw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5l7g"]
+size = Vector2(22, 64)
+
+[sub_resource type="Gradient" id="Gradient_qfse1"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_glmyp"]
+gradient = SubResource("Gradient_qfse1")
+width = 4
+
+[node name="Battery" type="RigidBody2D" unique_id=834209248]
+z_index = 10
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_hptm8")
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_mfo1m")
+metadata/aim_speed = 2.0
+metadata/pinned_tile = Vector2i(0, 0)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_d1ilt")
+autoplay = "default"
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1882493289]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_m5l7g")
+
+[node name="EnergyRegen" type="Timer" parent="." unique_id=1953592999]
+wait_time = 3.0
+autostart = true
+
+[node name="Charge" type="TextureProgressBar" parent="." unique_id=2046173361]
+offset_left = -24.0
+offset_top = -48.0
+offset_right = -20.0
+offset_bottom = 16.0
+value = 100.0
+fill_mode = 3
+texture_progress = SubResource("GradientTexture2D_glmyp")

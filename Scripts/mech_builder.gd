@@ -1,6 +1,7 @@
 extends Node2D
 
 const MECH = preload("uid://bg0x4kcl3emfw")
+const MECH_PB = preload("uid://dimm11yjnr7ef")
 
 @onready var grid = $Grid
 @onready var mech_prototype = $MechPrototype
@@ -227,7 +228,10 @@ func unload_mech():
 
 func load_mech():
 	print("Loading mech...")
-	mech_instance = MECH.instantiate()
+	if MechData.summon_debug_mech:
+		mech_instance = MECH_PB.instantiate()
+	else:
+		mech_instance = MECH.instantiate()
 	self.add_child(mech_instance)
 	mech_instance.global_position = Vector2(0, 0)
 	print("Disabling building UI...")
@@ -239,9 +243,11 @@ func load_mech():
 
 func finish_mech():
 	# Save controller:module pair connections
-	for controller in mech_instance.controllers.get_children():
-		# Match controller child #i to module child #i
-		MechData.control_pairs.append(controller.controlled_module_index)
+	if mech_instance:
+		if mech_instance.controllers.get_child_count() != 0:
+			for controller in mech_instance.controllers.get_children():
+				# Match controller child #i to module child #i
+				MechData.control_pairs.append(controller.controlled_module_index)
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
