@@ -168,10 +168,10 @@ func _input(event):
 					walls.set_cell(grid_pos + Vector2i.DOWN, 0, chosen_block + Vector2i.DOWN)
 					walls.set_cell(grid_pos + Vector2i.ONE, 0, chosen_block + Vector2i.ONE)
 					# Add to mech data global
-					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = chosen_block
-					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = chosen_block + Vector2i.RIGHT
-					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.DOWN
-					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.ONE
+					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = MechData.EMPTY_CELL
+					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = MechData.EMPTY_CELL
+					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
+					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
 				EditLayer.OBJECTS:
 					# Delete mech data by position
 					MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
@@ -200,7 +200,6 @@ func _input(event):
 							print("Deleting " + child.name)
 							child.queue_free()
 
-
 # Note -> Tilemap is 16x16, Scale = 2
 # Keep in mind that each click will make 4 tiles
 # So you need every 4th tile in both horizontal and vertical
@@ -217,6 +216,46 @@ func expand_position(mouse_pos : Vector2i) -> Vector2i:
 	@warning_ignore_restore("integer_division")
 	print("Grid Mouse position = " + str(Vector2i(chosen_x, chosen_y)))
 	return Vector2i(chosen_x, chosen_y)
+
+func load_prototype():
+	for i in range(0, MechData.blocks.size()):
+		for j in range(0, MechData.blocks[i].size()):
+			blocks.set_cell(Vector2i(i+2, j+2), 0 , MechData.blocks[i][j])
+			walls.set_cell(Vector2i(i+2, j+2), 0 , MechData.walls[i][j])
+	for i in range(0, MechData.object_scenes.size()):
+		# Set object in editor
+		var object_instance = MechData.object_scenes[i].instantiate()
+		mech_prototype.add_child(object_instance)
+		object_instance.position = MechData.object_coordinates[i] + Vector2(OBJECT_OFFSET*2)
+		# Disable object processing
+		object_instance.set_process(false)
+		for child in object_instance.get_children():
+			child.set_process(false)
+
+func clear_prototype():
+	for i in range(0, MechData.blocks.size()):
+		for j in range(0, MechData.blocks[i].size()):
+			blocks.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
+			walls.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
+	MechData.reset_tiles()
+	
+	for i in range(2, mech_prototype.get_child_count()):
+		mech_prototype.get_child(i).queue_free()
+	MechData.object_scenes.clear()
+	MechData.object_actions.clear()
+	MechData.object_types.clear()
+	MechData.object_coordinates.clear()
+	
+	MechData.control_pairs.clear()
+
+func new_mech():
+	MechData.new_mech()
+	for i in range(0, MechData.blocks.size()):
+		for j in range(0, MechData.blocks[i].size()):
+			blocks.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
+			walls.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
+	for i in range(2, mech_prototype.get_child_count()):
+		mech_prototype.get_child(i).queue_free()
 
 func unload_mech():
 	print("Unloading mech...")

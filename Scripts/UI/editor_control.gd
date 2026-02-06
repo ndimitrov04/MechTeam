@@ -11,11 +11,17 @@ extends Control
 @onready var previous_stage = $PreviousStage
 @onready var current_stage = $CurrentStage
 
+	
+@onready var next_mech = $NextMech
+@onready var previous_mech = $PreviousMech
+
 # Staging phase control
 # 0 = Mech Creation
 # 1 = Node Connection
 # 2 = Combat
 @onready var build_stage = 0
+
+@onready var mech_index = -1
 
 # INSTANTIABLE OBJECTS
 # WEAPONS
@@ -36,7 +42,18 @@ const WHEEL_1 = preload("uid://uxt82jfkcjx8")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if MechData.mechs.size() > 0:
+		next_mech.disabled = false
+	await get_tree().process_frame
+	if MechData.mechs.size() == 0:
+		mech_index = 0
+		editor.new_mech()
+		editor.clear_prototype()
+	else:
+		mech_index = 0
+		MechData.load_mech(mech_index)
+		editor.load_prototype()
+	update_mech_scroll()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -141,6 +158,45 @@ func _on_previous_stage_pressed():
 			pass
 	build_stage -= 1
 
-func _on_prebuilt_pressed():
-	MechData.summon_debug_mech = true
-	_on_next_stage_pressed()
+func _on_save_mech_pressed():
+	print("Saving mech to mechs array...")
+	MechData.save_mech(mech_index)
+	if mech_index + 1 >= MechData.mechs.size():
+		next_mech.disabled = true
+	else:
+		next_mech.disabled = false
+	if mech_index <= 0:
+		previous_mech.disabled = true
+	else:
+		previous_mech.disabled = false
+
+func _on_next_mech_pressed():
+	mech_index += 1
+	update_mech_scroll()
+	MechData.load_mech(mech_index)
+	editor.load_prototype()
+
+func _on_previous_mech_pressed():
+	mech_index -= 1
+	update_mech_scroll()
+	MechData.load_mech(mech_index)
+	editor.load_prototype()
+
+func _on_clear_field_pressed():
+	editor.clear_prototype()
+
+func _on_new_mech_pressed():
+	mech_index += 1
+	update_mech_scroll()
+	editor.new_mech()
+	editor.clear_prototype()
+	
+func update_mech_scroll():
+	if mech_index + 1 >= MechData.mechs.size():
+		next_mech.disabled = true
+	else:
+		next_mech.disabled = false
+	if mech_index <= 0:
+		previous_mech.disabled = true
+	else:
+		previous_mech.disabled = false

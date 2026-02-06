@@ -9,6 +9,9 @@ enum ObjectType {
 
 @onready var summon_debug_mech = false
 
+# Array of mechs
+@onready var mechs : Array[MechObject]
+
 # Tile Data
 @onready var blocks : Array
 @onready var walls : Array
@@ -23,14 +26,21 @@ enum ObjectType {
 # Object_scene #i controls contor_pair[i]
 @onready var control_pairs = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func reset_tiles():
+	blocks.clear()
+	walls.clear()
 	for x in range(0, grid_size.x):
 		blocks.append([])
 		walls.append([])
 		for y in range(0, grid_size.y):
 			blocks.back().append(EMPTY_CELL)
 			walls.back().append(EMPTY_CELL)
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	reset_tiles()
+	# Load all saved mechs to mechs array
+	load_from_file()
 
 func set_object(scene : PackedScene, action : int, type : ObjectType, coords : Vector2):
 	object_scenes.append(scene)
@@ -50,6 +60,61 @@ func delete_object(coords : Vector2):
 		object_types.remove_at(delete_index)
 		object_coordinates.remove_at(delete_index)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func new_mech():
+	# Create empty editor state
+	reset_tiles()
+	object_scenes.clear()
+	object_actions.clear()
+	object_types.clear()
+	object_coordinates.clear()
+	control_pairs.clear()
+	
+	# Create empty mech
+	var mech := MechObject.new()
+	mech.blocks = blocks.duplicate(true)
+	mech.walls = walls.duplicate(true)
+	mech.object_scenes = object_scenes.duplicate()
+	mech.object_actions = object_actions.duplicate()
+	mech.object_types = object_types.duplicate()
+	mech.object_coordinates = object_coordinates.duplicate()
+	mech.control_pairs = control_pairs.duplicate()
+	mechs.append(mech)
+	save_to_file()
+
+
+func save_mech(active_mech_index):
+	if active_mech_index < 0:
+		return
+
+	var mech := mechs[active_mech_index]
+	mech.blocks = blocks.duplicate(true)
+	mech.walls = walls.duplicate(true)
+	mech.object_scenes = object_scenes.duplicate()
+	mech.object_actions = object_actions.duplicate()
+	mech.object_types = object_types.duplicate()
+	mech.object_coordinates = object_coordinates.duplicate()
+	mech.control_pairs = control_pairs.duplicate()
+
+	save_to_file()
+
+func load_mech(index: int):
+	reset_tiles()
+
+	blocks = mechs[index].blocks.duplicate(true)
+	walls = mechs[index].walls.duplicate(true)
+	object_scenes = mechs[index].object_scenes.duplicate()
+	object_actions = mechs[index].object_actions.duplicate()
+	object_types = mechs[index].object_types.duplicate()
+	object_coordinates = mechs[index].object_coordinates.duplicate()
+	control_pairs = mechs[index].control_pairs.duplicate()
+
+
+func save_to_file():
+	var container := MechsContainer.new()
+	container.mechs = mechs
+	ResourceSaver.save(container, "user://mechteam_save.tres")
+
+func load_from_file():
+	var container := ResourceLoader.load("user://mechteam_save.tres") as MechsContainer
+	if container:
+		mechs = container.mechs
