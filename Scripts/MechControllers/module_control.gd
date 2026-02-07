@@ -75,6 +75,14 @@ func arm(module):
 	connector.add_point(module.global_position - self.global_position + OFFSET)
 	connection_marker.hide()
 	connection_marker.set_process(false)
+	module.controller = self
+
+func disarm():
+	print("Module " + controlled_module.name + " has been destroyed!")
+	controlled_module = null
+	controlled_module_index = null
+	connector.clear_points()
+	connector.add_point(Vector2(0,0))
 
 func _on_body_entered(body):
 	if body.name == "Player":

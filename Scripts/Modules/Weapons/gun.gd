@@ -18,6 +18,8 @@ var cooldown_time : float = 20
 @onready var is_friendly : bool = false
 @onready var type : MechData.ObjectType = MechData.ObjectType.MODULE
 
+@onready var controller
+
 # Used for saving and loading controller:weapon connection pairs
 var index
 
@@ -87,6 +89,8 @@ func engage():
 		bullet_instance.global_position = shoot_point.global_position
 		# Apply recoil per shot
 		self.rotate(randf_range(-recoil, recoil))
+		if get_parent().get_parent().name == "Mech":
+			main.static_ui.set_status("Firing Machinegun!")
 
 func destroy():
 	# Spawn debris
@@ -107,6 +111,9 @@ func destroy():
 	destroyed = true
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0
+	
+	if controller:
+		controller.disarm()
 	
 	freeze = false
 

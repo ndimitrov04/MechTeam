@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjr583a7k7vyh"]
+[gd_scene format=3 uid="uid://cjr583a7k7vyh"]
 
 [ext_resource type="Script" uid="uid://b63kjdjo5d5da" path="res://Scripts/Minigames/QuickTimeArrow.gd" id="1_0klnx"]
 [ext_resource type="PackedScene" uid="uid://dvty4b4e30seu" path="res://Scenes/Behaviors/timed_game.tscn" id="2_6td2n"]
@@ -16,7 +16,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="QuickTimeArrow" type="Control"]
+[node name="QuickTimeArrow" type="Control" unique_id=56497058]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +27,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 script = ExtResource("1_0klnx")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1478693185]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -40,7 +40,7 @@ offset_right = 400.0
 offset_bottom = 44.90399
 theme_override_styles/panel = SubResource("StyleBoxFlat_0klnx")
 
-[node name="FlowContainer" type="FlowContainer" parent="."]
+[node name="FlowContainer" type="FlowContainer" parent="." unique_id=1979970367]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -56,5 +56,5 @@ grow_horizontal = 2
 scale = Vector2(4, 4)
 alignment = 1
 
-[node name="TimedGame" parent="." instance=ExtResource("2_6td2n")]
+[node name="TimedGame" parent="." unique_id=979340721 instance=ExtResource("2_6td2n")]
 layout_mode = 1

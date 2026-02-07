@@ -160,6 +160,7 @@ func _on_previous_stage_pressed():
 
 func _on_save_mech_pressed():
 	print("Saving mech to mechs array...")
+	editor.save_connections()
 	MechData.save_mech(mech_index)
 	if mech_index + 1 >= MechData.mechs.size():
 		next_mech.disabled = true

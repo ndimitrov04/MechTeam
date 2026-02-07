@@ -15,10 +15,14 @@
 [ext_resource type="PackedScene" uid="uid://tgc6pvjmf1xi" path="res://Scenes/Modules/Weapons/gun.tscn" id="14_b3802"]
 [ext_resource type="PackedScene" uid="uid://bqikqykbsljjl" path="res://Scenes/player.tscn" id="14_k12tt"]
 [ext_resource type="Script" uid="uid://b6bs5bi7wy45h" path="res://Scripts/minigames.gd" id="14_wsu2k"]
+[ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="18_3pmx8"]
 [ext_resource type="Script" uid="uid://blpdd1g7y67gh" path="res://Scripts/Enemies/enemy.gd" id="18_gt3je"]
 [ext_resource type="AudioStream" uid="uid://6xm4gvdu3qsl" path="res://Audio/Music/02 lava city.ogg" id="19_fevyy"]
 [ext_resource type="PackedScene" uid="uid://d24cenbiacnj3" path="res://Scenes/Misc/destructible_frame.tscn" id="19_gt3je"]
+[ext_resource type="Script" uid="uid://1i7x3yrfunn2" path="res://Scripts/aim_viewport.gd" id="19_pdsj5"]
+[ext_resource type="Script" uid="uid://drkagrg0iq1mc" path="res://Scripts/mech_viewport.gd" id="20_ee4r6"]
 [ext_resource type="PackedScene" uid="uid://bxxxinj6ti4h2" path="res://Scenes/Misc/destructible_background.tscn" id="20_u50mg"]
+[ext_resource type="Texture2D" uid="uid://cmiucrejdoxwi" path="res://Images/Objects/Decor/monitor.png" id="21_3pmx8"]
 [ext_resource type="Script" uid="uid://bjgkfyj322xtr" path="res://Scripts/UI/static_ui.gd" id="25_cbgmd"]
 
 [sub_resource type="Gradient" id="Gradient_fevyy"]
@@ -878,6 +882,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("18_3pmx8")
 metadata/_edit_use_anchors_ = true
 
 [node name="StaticUI" type="Control" parent="GUI/Control" unique_id=1764068031]
@@ -886,23 +891,167 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("25_cbgmd")
 
-[node name="HPLabel" type="Label" parent="GUI/Control/StaticUI" unique_id=744807587]
+[node name="StatusPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=221317803]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 168.0
+offset_bottom = 248.0
+
+[node name="HPLabel" type="Label" parent="GUI/Control/StaticUI/StatusPanel" unique_id=744807587]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 77.0
+offset_bottom = 39.0
 text = "Health: "
 
-[node name="ENLabel" type="Label" parent="GUI/Control/StaticUI" unique_id=311035761]
+[node name="ENLabel" type="Label" parent="GUI/Control/StaticUI/StatusPanel" unique_id=311035761]
 layout_mode = 0
-offset_top = 32.0
-offset_right = 40.0
-offset_bottom = 55.0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 78.0
+offset_bottom = 71.0
 text = "Energy: "
+
+[node name="Status" type="Label" parent="GUI/Control/StaticUI/StatusPanel" unique_id=1264682844]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 104.0
+offset_right = 152.0
+offset_bottom = 200.0
+text = "Status
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="StatusTimeout" type="Timer" parent="GUI/Control/StaticUI/StatusPanel/Status" unique_id=411243384]
+wait_time = 4.0
+one_shot = true
+
+[node name="CameraPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=841424957]
+layout_mode = 0
+offset_top = 464.0
+offset_right = 584.0
+offset_bottom = 1080.0
+
+[node name="InstructionPanel" type="Panel" parent="GUI/Control/StaticUI/CameraPanel" unique_id=1808829936]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 208.0
+
+[node name="ShowHidePanel" type="Label" parent="GUI/Control/StaticUI/CameraPanel/InstructionPanel" unique_id=606410687]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 278.0
+offset_bottom = 31.0
+text = "Z to Show/Hide"
+
+[node name="AimCamera" type="SubViewportContainer" parent="GUI/Control/StaticUI/CameraPanel" unique_id=1094126902]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.21408452
+anchor_top = 12.8
+anchor_right = 13.014085
+anchor_bottom = 19.2
+offset_left = -97.6
+offset_top = -7836.8003
+offset_right = -7060.8003
+offset_bottom = -11523.2
+script = ExtResource("19_pdsj5")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="GUI/Control/StaticUI/CameraPanel/AimCamera" unique_id=1697769282]
+self_modulate = Color(0.79070413, 0.79070413, 1.1094456, 1)
+position = Vector2(264, 119.99997)
+scale = Vector2(3.2558136, 3.2727277)
+texture = ExtResource("21_3pmx8")
+
+[node name="SubViewport" type="SubViewport" parent="GUI/Control/StaticUI/CameraPanel/AimCamera" unique_id=1077131828]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+sdf_oversize = 0
+sdf_scale = 0
+oversampling = false
+size = Vector2i(512, 256)
+render_target_update_mode = 4
+
+[node name="CrosshairCamera" type="Camera2D" parent="GUI/Control/StaticUI/CameraPanel/AimCamera/SubViewport" unique_id=856674896]
+top_level = true
+position = Vector2(888, 336)
+scale = Vector2(3, 3)
+zoom = Vector2(0.75, 0.75)
+
+[node name="AimCameraLabel" type="Label" parent="GUI/Control/StaticUI/CameraPanel" unique_id=1353640094]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 33.0
+offset_right = 147.0
+offset_bottom = 56.0
+theme_override_constants/outline_size = 6
+text = "AIM"
+
+[node name="MechCamera" type="SubViewportContainer" parent="GUI/Control/StaticUI/CameraPanel" unique_id=531257777]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22093384
+anchor_top = 20.4
+anchor_right = 13.020935
+anchor_bottom = 26.799997
+offset_left = -97.6
+offset_top = -12214.399
+offset_right = -7060.8003
+offset_bottom = -15900.799
+script = ExtResource("20_ee4r6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="GUI/Control/StaticUI/CameraPanel/MechCamera" unique_id=1324657048]
+self_modulate = Color(0.79070413, 0.79070413, 1.1094456, 1)
+position = Vector2(260.00003, 120)
+scale = Vector2(3.2558136, 3.2727277)
+texture = ExtResource("21_3pmx8")
+
+[node name="SubViewport" type="SubViewport" parent="GUI/Control/StaticUI/CameraPanel/MechCamera" unique_id=1903746125]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+sdf_oversize = 0
+sdf_scale = 0
+oversampling = false
+size = Vector2i(512, 256)
+render_target_update_mode = 4
+
+[node name="MechCamera" type="Camera2D" parent="GUI/Control/StaticUI/CameraPanel/MechCamera/SubViewport" unique_id=1352872027]
+top_level = true
+position = Vector2(872, 344)
+scale = Vector2(3, 3)
+zoom = Vector2(0.35, 0.35)
+limit_bottom = 640
+
+[node name="MechCameraLabel" type="Label" parent="GUI/Control/StaticUI/CameraPanel" unique_id=1454234373]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 337.0
+offset_right = 147.0
+offset_bottom = 360.0
+theme_override_constants/outline_size = 6
+text = "MECH"
+
+[node name="MinigameResult" type="Label" parent="GUI/Control/StaticUI" unique_id=2078794140]
+visible = false
+layout_mode = 0
+offset_left = 712.0
+offset_top = 776.0
+offset_right = 1348.0
+offset_bottom = 864.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "MINIGAME SUCCESS!"
 
 [node name="Minigames" type="Control" parent="GUI/Control" unique_id=446542502]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchor_left = 0.025
+anchor_right = 1.0250002
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2

@@ -1,6 +1,7 @@
 extends Control
 
 @onready var player = $"../../../Player"
+@onready var main = $"../../.."
 
 var current_module = null
 
@@ -32,4 +33,7 @@ func end_minigame():
 func win():
 	print(current_module.name + " goes PEWPEW!!!")
 	current_module.engage()
-	pass
+	main.static_ui.display_minigame_result(true)
+
+func lose():
+	main.static_ui.display_minigame_result(false)

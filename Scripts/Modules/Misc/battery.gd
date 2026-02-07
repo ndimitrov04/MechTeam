@@ -18,6 +18,8 @@ var cooldown_time : float = 10
 @onready var is_friendly : bool = false
 @onready var type : MechData.ObjectType = MechData.ObjectType.MODULE
 
+@onready var controller
+
 # Used for saving and loading controller:weapon connection pairs
 var index
 
@@ -66,6 +68,8 @@ func engage():
 	if current_energy > max_energy:
 		current_energy = max_energy
 	charge.value = current_energy
+	if get_parent().get_parent().name == "Mech":
+		main.static_ui.set_status("Engaging battery overdrive!\n+50 Energy")
 
 func drain(amount : int) -> int:
 	current_energy -= amount
@@ -95,6 +99,9 @@ func destroy():
 	destroyed = true
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0
+	
+	if controller:
+		controller.disarm()
 	
 	freeze = false
 

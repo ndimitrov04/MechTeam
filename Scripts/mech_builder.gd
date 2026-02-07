@@ -280,7 +280,17 @@ func load_mech():
 	print("Enabling mech wiring mode...")
 	mech_instance.mech_edit = true
 
+func save_connections():
+	MechData.control_pairs.clear()
+	# Save controller:module pair connections
+	if mech_instance:
+		if mech_instance.controllers.get_child_count() != 0:
+			for controller in mech_instance.controllers.get_children():
+				# Match controller child #i to module child #i
+				MechData.control_pairs.append(controller.controlled_module_index)
+
 func finish_mech():
+	MechData.control_pairs.clear()
 	# Save controller:module pair connections
 	if mech_instance:
 		if mech_instance.controllers.get_child_count() != 0:

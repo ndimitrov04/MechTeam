@@ -77,5 +77,6 @@ func victory_check(direction):
 
 func lose():
 	print("You Lose!")
+	minigames.lose()
 	minigames.player.end_minigame()
 	queue_free()
