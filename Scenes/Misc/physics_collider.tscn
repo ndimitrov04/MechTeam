@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d27duv3avvgoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_robex"]
+size = Vector2(16, 16)
+
+[node name="PhysicsCollider" type="CollisionShape2D" unique_id=687618737]
+shape = SubResource("RectangleShape2D_robex")
+debug_color = Color(0.7967626, 0.42406884, 0, 0.41960785)

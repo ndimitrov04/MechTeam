@@ -70,21 +70,30 @@ func engage():
 		if is_friendly:
 			bullet_instance.set_collision_layer_value(1, 0)
 			bullet_instance.set_collision_layer_value(2, 0)
+			bullet_instance.set_collision_layer_value(9, 0)
 			bullet_instance.set_collision_layer_value(3, 1)
 			bullet_instance.set_collision_layer_value(4, 1)
+			bullet_instance.set_collision_layer_value(10, 1)
 			bullet_instance.set_collision_mask_value(1, 0)
 			bullet_instance.set_collision_mask_value(2, 0)
+			bullet_instance.set_collision_mask_value(9, 0)
 			bullet_instance.set_collision_mask_value(3, 1)
 			bullet_instance.set_collision_mask_value(4, 1)
+			bullet_instance.set_collision_mask_value(10, 1)
+			
 		else:
 			bullet_instance.set_collision_layer_value(1, 1)
 			bullet_instance.set_collision_layer_value(2, 1)
+			bullet_instance.set_collision_layer_value(9, 1)
 			bullet_instance.set_collision_layer_value(3, 0)
 			bullet_instance.set_collision_layer_value(4, 0)
+			bullet_instance.set_collision_layer_value(10, 0)
 			bullet_instance.set_collision_mask_value(1, 1)
 			bullet_instance.set_collision_mask_value(2, 1)
+			bullet_instance.set_collision_mask_value(9, 1)
 			bullet_instance.set_collision_mask_value(3, 0)
 			bullet_instance.set_collision_mask_value(4, 0)
+			bullet_instance.set_collision_mask_value(10, 0)
 		bullet_instance.global_rotation = self.global_rotation
 		bullet_instance.global_position = shoot_point.global_position
 		# Apply recoil per shot

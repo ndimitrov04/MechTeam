@@ -1,9 +1,11 @@
-extends CharacterBody2D
+extends RigidBody2D
+
+const WHEEL_HITBOX_1 = preload("uid://gabbdsxamcdv")
 
 @onready var crosshair = $Crosshair
 
 @onready var background = $Background
-@onready var frame = $Frame
+@onready var frame : TileMapLayer = $Frame
 
 @onready var movement_sprites = $MovementSprites
 @onready var controllers = $Controllers
@@ -12,7 +14,7 @@ extends CharacterBody2D
 @onready var energy_regen = $EnergyRegen
 
 const SPEED = 50.0
-const JUMP_VELOCITY = -600.0
+const JUMP_linear_velocity = -600.0
 
 @onready var in_editor : bool = false
 
@@ -34,7 +36,6 @@ func _ready():
 	energy_regen.timeout.connect(_regenerate_energy)
 	if not get_meta("prebuilt"):
 		load_mech()
-	#generate_frame_collision(0)
 
 func load_mech():
 	# Load mech frame and background
@@ -43,6 +44,7 @@ func load_mech():
 			frame.set_cell(Vector2i(x,y), 0, MechData.blocks[x][y])
 			background.set_cell(Vector2i(x,y), 0, MechData.walls[x][y])
 	# Load mech objects
+	var hitbox_instance
 	for i in range(0, MechData.object_scenes.size()):
 		var object_scene = MechData.object_scenes[i]
 		var object_action = MechData.object_actions[i]
@@ -60,8 +62,18 @@ func load_mech():
 					print(object_instance.get_meta(object_instance.get_meta_list().front()))
 			MechData.ObjectType.COLLIDER:
 				add_child(object_instance)
+				# Add and setup hitbox for collider
+				hitbox_instance = WHEEL_HITBOX_1.instantiate()
+				add_child(hitbox_instance)
+				hitbox_instance.position = object_coords + Vector2(0, 16)
+				hitbox_instance.wheel_collider = object_instance
+				hitbox_instance.set_collision_layer_value(9, 1)
+				hitbox_instance.set_collision_mask_value(9, 1)
+				hitbox_instance.set_collision_layer_value(10, 0)
+				hitbox_instance.set_collision_mask_value(10, 0)
 			MechData.ObjectType.SPRITE:
 				movement_sprites.add_child(object_instance)
+				hitbox_instance.wheel_sprite = object_instance
 			_:
 				pass
 		object_instance.position = object_coords
@@ -78,23 +90,21 @@ func _physics_process(delta):
 	#if in_editor:
 		#return
 	
-	
-	
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		linear_velocity += get_gravity() * delta
 
 	# Handle jump.
 	if jump and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		linear_velocity.y = JUMP_linear_velocity
 		jump = false
 
 	if direction:
-		velocity.x = direction * SPEED
+		linear_velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		linear_velocity.x = move_toward(linear_velocity.x, 0, SPEED)
 
-	if abs(velocity.x) > 0:
+	if abs(linear_velocity.x) > 0:
 		for spr in movement_sprites.get_children():
 			if not spr.is_playing():
 				spr.play("default")
@@ -102,7 +112,6 @@ func _physics_process(delta):
 		for spr in movement_sprites.get_children():
 			spr.stop()
 	
-	move_and_slide()
 	total_energy()
 	
 func _unhandled_input(event):
@@ -160,24 +169,5 @@ func die():
 	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
 	queue_free()
 
-#func is_on_floor():
-	#return true
-
-# func generate_frame_collision(layer : int):
-	#var cells = frame.get_used_cells()
-	#
-	#for cell in cells:
-		#var quadrant_size = frame.physics_quadrant_size
-		#
-		#var data: TileData = frame.get_cell_tile_data(cell) 
-		#var points: PackedVector2Array = data.get_collision_polygon_points(0, layer) 
-		#var collision_shape = CollisionPolygon2D.new()  
-		#collision_shape.polygon = points 
-		## Magic numbers, DO NOT TOUCH
-		#var new_pos : Vector2i = Vector2i(
-			#quadrant_size / 2, 
-			#(quadrant_size / 2) - 1) + (cell * Vector2i(quadrant_size, quadrant_size)
-		#)
-		#
-		#collision_shape.position = new_pos
-		#add_child(collision_shape)
+func is_on_floor():
+	return true

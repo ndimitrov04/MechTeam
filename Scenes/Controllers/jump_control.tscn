@@ -108,6 +108,6 @@ region_enabled = true
 region_rect = Rect2(49, 225, 62, 29)
 
 [node name="Hitbox" type="CollisionShape2D" parent="IndestructablePlatform" unique_id=1424825433]
-position = Vector2(0.5, 22)
+position = Vector2(0.5, 23)
 shape = SubResource("RectangleShape2D_eryjw")
 one_way_collision = true

@@ -4,6 +4,12 @@ extends TileMapLayer
 
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
+# Used as collider for rigidbody
+const PHYSICS_COLLIDER = preload("uid://d27duv3avvgoi")
+# Used by regenerate_frame_collision
+# Determines where hitbox child clearing will start
+var collision_child_index_start
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#for child in get_parent().get_children():
@@ -11,9 +17,12 @@ func _ready():
 			#for module in child.get_children():
 				#connected_modules.append(module)
 			#break
-	pass
+	await get_tree().create_timer(0.2).timeout
+	collision_child_index_start = get_parent().get_child_count()
+	await get_tree().create_timer(0.2).timeout
+	regenerate_frame_collision() # Extremely expensive :(
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every self. 'delta' is the elapsed time since the previous self.
 func _physics_process(_delta):
 	pass
 
@@ -22,7 +31,7 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	# Convert collision position: Global -> Local -> Tilemap
 	if not collision:
 		return
-	print("Took hit")
+	#print("Took hit")
 	var collision_pos_global = collision.get_position()
 	# Push the point slightly into the tile that was hit
 	# to ensure correct coordinate match-up with tile position
@@ -46,6 +55,8 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	debris_instance.apply_impulse(Vector2.UP * knockback_force * 2)
 	# HP gameplay logic
 	get_parent().take_damage(damage_value)
+	# Regenerate physics body's hitboxes
+	regenerate_frame_collision()
 
 # Helper function for death handling.
 # To be used only by break_all_tiles()
@@ -72,3 +83,18 @@ func break_all_tiles():
 	while get_used_cells().size() > 0:
 		await get_tree().process_frame
 		_break_random_tile()
+
+## Generates static hitboxes based on tile data.
+## For use as a physics body's hitbox children. 
+## Extremely expensive :(
+func regenerate_frame_collision():
+	# Clear physics collision shapes
+	for i in range(collision_child_index_start, get_parent().get_child_count()):
+		get_parent().get_child(i).queue_free()
+	
+	# Generate physics collision shapes
+	var cells = self.get_used_cells()
+	for cell_coord in cells:
+		var collider_instance = PHYSICS_COLLIDER.instantiate()
+		get_parent().add_child(collider_instance)
+		collider_instance.position = self.map_to_local(cell_coord)

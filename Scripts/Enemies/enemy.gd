@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 @onready var crosshair = $Crosshair
 @onready var movement_sprites = $MovementSprites
@@ -11,8 +11,8 @@ extends CharacterBody2D
 # Mech controller AI
 @onready var action_decision = $ActionDecision
 
-const SPEED = 25.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 45.0
+const JUMP_linear_velocity = -400.0
 
 var hp : int = 100
 var energy : int = 100
@@ -25,26 +25,24 @@ func _ready():
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		linear_velocity += get_gravity() * delta
 
 	# Handle jump.
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
+		#linear_velocity.y = JUMP_linear_velocity
 		
 	if direction:
-		velocity.x = direction * SPEED
+		linear_velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		linear_velocity.x = move_toward(linear_velocity.x, 0, SPEED)
 
-	if abs(velocity.x) > 0:
+	if abs(linear_velocity.x) > 0:
 		for spr in movement_sprites.get_children():
 			if not spr.is_playing():
 				spr.play("default")
 	else:
 		for spr in movement_sprites.get_children():
 			spr.stop()
-
-	move_and_slide()
 
 func take_damage(damage_value : int):
 	hp -= damage_value
@@ -88,3 +86,6 @@ func _on_action_decision_timeout():
 	# Shoot 10%
 	elif action >= 90:
 		modules.get_children().pick_random().engage()
+
+func is_on_floor():
+	return true
