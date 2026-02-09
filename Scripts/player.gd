@@ -67,7 +67,7 @@ func start_minigame(mname : String, controlled_module):
 	minigame_mode = true
 	minigames.start_minigame(mname, controlled_module)
 	last_zoom = zoom
-	zoom = Vector2(1,1)
+	zoom = Vector2(1, 1)
 	
 func end_minigame():
 	minigame_mode = false

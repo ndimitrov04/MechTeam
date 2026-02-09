@@ -912,6 +912,25 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("25_cbgmd")
 
+[node name="Instruction" type="Label" parent="GUI/Control/StaticUI" unique_id=2110115710]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104
+anchor_right = 0.104
+offset_left = 11.84
+offset_top = 264.0
+offset_right = 227.84
+offset_bottom = 344.0
+theme_override_font_sizes/font_size = 16
+text = "Move with WASD
+Jump with SPACE
+Interact with F
+
+SHIFT+E to enter connection mode.
+
+PG-UP/PG-DOWN to Zoom IN/OUT"
+autowrap_mode = 3
+
 [node name="StatusPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=221317803]
 layout_mode = 0
 offset_right = 168.0

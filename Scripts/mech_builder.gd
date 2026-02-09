@@ -17,6 +17,7 @@ const MECH_PB = preload("uid://dimm11yjnr7ef")
 @onready var player_spots = [Vector2i(24, 16), Vector2i(24, 18)]
 
 var global_mouse_pos : Vector2 = Vector2.ZERO
+var first_click : bool = true
 const MAX_X : int = 34
 const MAX_Y : int = 17
 
@@ -32,6 +33,8 @@ var edit_layer : EditLayer = EditLayer.BLOCKS
 
 # Top left atlas_coords
 var chosen_block : Vector2i = Vector2i.ZERO
+# Atlas coords of visual structure block placed behind chosen frame block
+var structure_wall : Vector2i = Vector2i(10,3)
 
 # Object instance
 var chosen_object = null
@@ -46,7 +49,28 @@ var chosen_movement_sprite = null
 func _ready():
 	if get_parent().name == "Editor":
 		in_editor = true
-		
+
+func is_connected_to_frame(grid_coords : Vector2i) -> bool:
+	for cell_coords in blocks.get_surrounding_cells(grid_coords):
+		if blocks.get_cell_atlas_coords(cell_coords) != MechData.EMPTY_CELL:
+			return true
+		if blocks.get_cell_atlas_coords(cell_coords + Vector2i.RIGHT) != MechData.EMPTY_CELL:
+			return true
+		if blocks.get_cell_atlas_coords(cell_coords + Vector2i.DOWN) != MechData.EMPTY_CELL:
+			return true
+		if blocks.get_cell_atlas_coords(cell_coords + Vector2i.ONE) != MechData.EMPTY_CELL:
+			return true
+	for cell_coords in walls.get_surrounding_cells(grid_coords):
+		if walls.get_cell_atlas_coords(cell_coords) != MechData.EMPTY_CELL:
+			return true
+		if walls.get_cell_atlas_coords(cell_coords + Vector2i.RIGHT) != MechData.EMPTY_CELL:
+			return true
+		if walls.get_cell_atlas_coords(cell_coords + Vector2i.DOWN) != MechData.EMPTY_CELL:
+			return true
+		if walls.get_cell_atlas_coords(cell_coords + Vector2i.ONE) != MechData.EMPTY_CELL:
+			return true
+	return false
+
 var mech_instance
 func _input(event):
 	# Test mech loading
@@ -77,15 +101,27 @@ func _input(event):
 			# Mouse pos relative to grid node
 			var mouse_pos = mouse_to_tilemap()
 			var grid_pos = expand_position(mouse_pos)
+			# Check if click is in bounds
 			if grid_pos.x / 2 - 1 < 0 or grid_pos.x / 2 - 1 >= 34:
 				return
 			if grid_pos.y / 2 - 1 < 0 or grid_pos.y / 2 - 1 >= 17:
 				return
+			# Check if click is on top of spawn area
 			if grid_pos.x / 2 == 12:
 				if grid_pos.y / 2 == 8 or grid_pos.y / 2 == 9:
 					return
+			# Check if block would be connected to another block or wall
+			var tile_connected : bool = true
+			if not first_click:
+				tile_connected = is_connected_to_frame(grid_pos)
+			first_click = false
+			if not tile_connected:
+				print("Cannot place that there. Tile is not connected to mech!")
+				return
+			# Place block on given layer
 			match edit_layer:
 				EditLayer.BLOCKS:
+					# Add a frame tile
 					# Set 4 16x16 tiles to make one 32x32 tile
 					blocks.set_cell(grid_pos + Vector2i.ZERO, 0 , chosen_block + Vector2i.ZERO)
 					blocks.set_cell(grid_pos + Vector2i.RIGHT, 0, chosen_block + Vector2i.RIGHT)
@@ -96,9 +132,20 @@ func _input(event):
 					MechData.blocks[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = chosen_block + Vector2i.RIGHT
 					MechData.blocks[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.DOWN
 					MechData.blocks[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.ONE
+					# Add a background wall tile behind the frame tile for a visual strucutre effect
+					# Set 4 16x16 tiles to make one 32x32 tile
+					walls.set_cell(grid_pos + Vector2i.ZERO, 0 , structure_wall)
+					walls.set_cell(grid_pos + Vector2i.RIGHT, 0, structure_wall)
+					walls.set_cell(grid_pos + Vector2i.DOWN, 0, structure_wall)
+					walls.set_cell(grid_pos + Vector2i.ONE, 0, structure_wall)
+					# Add to mech data global
+					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = structure_wall
+					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = structure_wall
+					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = structure_wall
+					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = structure_wall
 				EditLayer.WALLS:
 					# Set 4 16x16 tiles to make one 32x32 tile
-					walls.set_cell(grid_pos + Vector2i.ZERO, 0 , chosen_block + Vector2i.ZERO)
+					walls.set_cell(grid_pos + Vector2i.ZERO, 0, chosen_block + Vector2i.ZERO)
 					walls.set_cell(grid_pos + Vector2i.RIGHT, 0, chosen_block + Vector2i.RIGHT)
 					walls.set_cell(grid_pos + Vector2i.DOWN, 0, chosen_block + Vector2i.DOWN)
 					walls.set_cell(grid_pos + Vector2i.ONE, 0, chosen_block + Vector2i.ONE)
@@ -151,6 +198,7 @@ func _input(event):
 			var grid_pos = expand_position(mouse_pos)
 			match edit_layer:
 				EditLayer.BLOCKS:
+					# Remove frame tile
 					# Delete 4 tiles
 					blocks.set_cell(grid_pos + Vector2i.ZERO, 0)
 					blocks.set_cell(grid_pos + Vector2i.RIGHT, 0)
@@ -161,12 +209,23 @@ func _input(event):
 					MechData.blocks[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = MechData.EMPTY_CELL
 					MechData.blocks[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
 					MechData.blocks[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
+					# Remove structure wall tile
+					# Set 4 16x16 tiles to make one 32x32 tile
+					walls.set_cell(grid_pos + Vector2i.ZERO, 0)
+					walls.set_cell(grid_pos + Vector2i.RIGHT, 0)
+					walls.set_cell(grid_pos + Vector2i.DOWN, 0)
+					walls.set_cell(grid_pos + Vector2i.ONE, 0)
+					# Add to mech data global
+					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = MechData.EMPTY_CELL
+					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = MechData.EMPTY_CELL
+					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
+					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
 				EditLayer.WALLS:
 					# Set 4 16x16 tiles to make one 32x32 tile
-					walls.set_cell(grid_pos + Vector2i.ZERO, 0 , chosen_block + Vector2i.ZERO)
-					walls.set_cell(grid_pos + Vector2i.RIGHT, 0, chosen_block + Vector2i.RIGHT)
-					walls.set_cell(grid_pos + Vector2i.DOWN, 0, chosen_block + Vector2i.DOWN)
-					walls.set_cell(grid_pos + Vector2i.ONE, 0, chosen_block + Vector2i.ONE)
+					walls.set_cell(grid_pos + Vector2i.ZERO, 0)
+					walls.set_cell(grid_pos + Vector2i.RIGHT, 0)
+					walls.set_cell(grid_pos + Vector2i.DOWN, 0)
+					walls.set_cell(grid_pos + Vector2i.ONE, 0)
 					# Add to mech data global
 					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = MechData.EMPTY_CELL
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = MechData.EMPTY_CELL
@@ -218,6 +277,14 @@ func expand_position(mouse_pos : Vector2i) -> Vector2i:
 	return Vector2i(chosen_x, chosen_y)
 
 func load_prototype():
+	# Clear workspace
+	for i in range(0, MechData.blocks.size()):
+		for j in range(0, MechData.blocks[i].size()):
+			blocks.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
+			walls.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
+	for i in range(2, mech_prototype.get_child_count()):
+		mech_prototype.get_child(i).queue_free()
+	# Load workspace data
 	for i in range(0, MechData.blocks.size()):
 		for j in range(0, MechData.blocks[i].size()):
 			blocks.set_cell(Vector2i(i+2, j+2), 0 , MechData.blocks[i][j])
@@ -247,6 +314,7 @@ func clear_prototype():
 	MechData.object_coordinates.clear()
 	
 	MechData.control_pairs.clear()
+	first_click = true
 
 func new_mech():
 	MechData.new_mech()
@@ -256,6 +324,7 @@ func new_mech():
 			walls.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
 	for i in range(2, mech_prototype.get_child_count()):
 		mech_prototype.get_child(i).queue_free()
+	first_click = true
 
 func unload_mech():
 	print("Unloading mech...")

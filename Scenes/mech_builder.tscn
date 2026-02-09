@@ -695,6 +695,27 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("6_us428")
 
+[node name="Instruction" type="Label" parent="GUI/Control" unique_id=1839141614]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104
+anchor_right = 0.104
+offset_left = 0.31999207
+offset_top = 24.0
+offset_right = 600.32
+offset_bottom = 255.0
+theme_override_fonts/font = ExtResource("9_tgtas")
+theme_override_font_sizes/font_size = 32
+text = "Building Stage
+Select an object from the menu with left click.
+You can scroll between object menus by clicking on the left and right buttons near the object menu.
+
+Hover over objects in the menu for more information.
+
+Place objects with left click. Remove them with right click.
+You can only place objects next to blocks or walls."
+autowrap_mode = 3
+
 [node name="TabContainer" type="TabContainer" parent="GUI/Control" unique_id=1519843520]
 layout_mode = 0
 offset_top = 95.0

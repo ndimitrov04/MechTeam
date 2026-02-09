@@ -11,15 +11,46 @@ extends Control
 @onready var previous_stage = $PreviousStage
 @onready var current_stage = $CurrentStage
 
-	
 @onready var next_mech = $NextMech
 @onready var previous_mech = $PreviousMech
+@onready var save_mech = $SaveMech
+@onready var new_mech = $NewMech
+@onready var clear_field = $ClearField
+
+@onready var blocks = $TabContainer/Blocks
+@onready var walls = $TabContainer/Walls
+@onready var modules = $TabContainer/Modules
+@onready var controllers = $TabContainer/Controllers
+@onready var movement = $TabContainer/Movement
+
+@onready var instruction = $Instruction
 
 # Staging phase control
 # 0 = Mech Creation
 # 1 = Node Connection
 # 2 = Combat
 @onready var build_stage = 0
+@onready var build_instructions = [
+	"Building Stage\n
+	Select an object from the menu with left click.
+	You can scroll between object menus by clicking on the left and right buttons near the object menu.
+
+	Hover over objects in the menu for more information.
+
+	Place objects with left click. Remove them with right click.
+	You can only place objects next to blocks or walls.",
+
+	"Connection Stage\n
+	Select an ENGAGE controller (red) by left clicking it.
+	Then, select a MODULE (gun or battery) by left clicking it.
+	A connection will be drawn between the two objects.
+	
+	In the action stage, you will be able to trigger the connected module
+	by pressing the interaction key while near the controller.",
+	
+	"COMBAT!"
+]
+
 
 @onready var mech_index = -1
 
@@ -38,8 +69,6 @@ const WHEEL_COLLIDER_1 = preload("uid://cuhp74yuarb08")
 # Sprites
 const WHEEL_1 = preload("uid://uxt82jfkcjx8")
 
-# *ADD MOVEMENT OBJECTS HERE*!!
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if MechData.mechs.size() > 0:
@@ -54,6 +83,33 @@ func _ready():
 		MechData.load_mech(mech_index)
 		editor.load_prototype()
 	update_mech_scroll()
+	update_instruction(build_stage)
+	
+	# Item tooltips
+	# Blocks
+	blocks.set_item_tooltip(0, "Basic destructible block.")
+	blocks.set_item_tooltip(1, "Destructible platform that you can jump through.")
+	# Walls
+	walls.set_item_tooltip(0, "Basic decorative wall.")
+	walls.set_item_tooltip(1, "Basic decorative wall.")
+	walls.set_item_tooltip(2, "Basic decorative wall.")
+	# Modules
+	modules.set_item_tooltip(0, "Machine Gun. Shoots 10 bullets per volley. Needs 30 energy to shoot.
+	Must be connected to an ENGAGE control terminal to shoot.
+	Mech must have an AIM control terminal onboard for this weapon to be aimed.")
+	modules.set_item_tooltip(1, "Battery. Holds energy. Recharges passively (1 energy/sec).
+	It can be manually recharged rapidly (50 energy) if connected to an ENGAGE control temrinal.")
+	# Controllers
+	controllers.set_item_tooltip(0, "Aim control. This controller lets the player aim a mech's weapons.")
+	controllers.set_item_tooltip(1, "This controller moves a mech to the left.")
+	controllers.set_item_tooltip(2, "This controller moves a mech to the right.")
+	controllers.set_item_tooltip(3, "This controller stops a mech from moving.")
+	controllers.set_item_tooltip(4, "This controller makes a mech jump.")
+	controllers.set_item_tooltip(5, "This controller must be connected to a MODULE to work.
+	When used, it makes the module it is connected to work.")
+	# Movement
+	movement.set_item_tooltip(0, "Basic tracks. Can be controlled by movement controllers.
+	Can move to the left and right. Can jump. Can brake.")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -138,11 +194,16 @@ func _on_next_stage_pressed():
 			previous_stage.show()
 			current_stage.text = "Wiring Stage"
 			next_stage.text = "Finish Mech"
+			next_mech.disabled = true
+			previous_mech.disabled = true
+			clear_field.disabled = true
+			new_mech.disabled = true
 		1:
 			editor.finish_mech()
 		2:
 			pass
 	build_stage += 1
+	update_instruction(build_stage)
 
 func _on_previous_stage_pressed():
 	match build_stage:
@@ -154,9 +215,14 @@ func _on_previous_stage_pressed():
 			current_stage.text = "Building Stage"
 			next_stage.text = "Wiring Stage"
 			editor.unload_mech()
+			next_mech.disabled = false
+			previous_mech.disabled = false
+			clear_field.disabled = false
+			new_mech.disabled = false
 		2:
 			pass
 	build_stage -= 1
+	update_instruction(build_stage)
 
 func _on_save_mech_pressed():
 	print("Saving mech to mechs array...")
@@ -191,7 +257,7 @@ func _on_new_mech_pressed():
 	update_mech_scroll()
 	editor.new_mech()
 	editor.clear_prototype()
-	
+
 func update_mech_scroll():
 	if mech_index + 1 >= MechData.mechs.size():
 		next_mech.disabled = true
@@ -201,3 +267,6 @@ func update_mech_scroll():
 		previous_mech.disabled = true
 	else:
 		previous_mech.disabled = false
+
+func update_instruction(index : int):
+	instruction.text = build_instructions[index]
