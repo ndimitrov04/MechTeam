@@ -270,3 +270,4 @@ func update_mech_scroll():
 
 func update_instruction(index : int):
 	instruction.text = build_instructions[index]
+	

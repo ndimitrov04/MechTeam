@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cs8s38pem2m8w" path="res://Audio/Music/rbl.mp3" id="10_q3hfk"]
 [ext_resource type="Texture2D" uid="uid://bs2fqwxm2rdeq" path="res://Images/Placeholders/up.png" id="10_s1xxn"]
 [ext_resource type="Texture2D" uid="uid://dcrp6tppbsvl4" path="res://Images/Placeholders/down.png" id="11_c8yhn"]
+[ext_resource type="Script" uid="uid://clylw8kir5xy" path="res://Scripts/Misc/debug_mech_button.gd" id="12_c8yhn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rirod"]
 texture = ExtResource("3_34mun")
@@ -898,6 +899,31 @@ text = "Clear Field"
 icon = ExtResource("11_c8yhn")
 icon_alignment = 2
 
+[node name="DebugMech" type="Button" parent="GUI/Control" unique_id=955851215]
+layout_mode = 0
+offset_left = 1624.0
+offset_top = 632.0
+offset_right = 1764.0
+offset_bottom = 673.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("9_tgtas")
+text = "Load Example Mech"
+autowrap_mode = 3
+icon_alignment = 2
+script = ExtResource("12_c8yhn")
+
+[node name="Label" type="Label" parent="GUI/Control/DebugMech" unique_id=2106997605]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 48.0
+offset_right = 142.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("9_tgtas")
+text = "The example mech already
+has preset connections.
+Just press \"Finish Mech\"
+after selecting it."
+
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1629900139]
 stream = ExtResource("10_q3hfk")
 autoplay = true
@@ -917,3 +943,4 @@ bus = &"Music"
 [connection signal="pressed" from="GUI/Control/SaveMech" to="GUI/Control" method="_on_save_mech_pressed"]
 [connection signal="pressed" from="GUI/Control/NewMech" to="GUI/Control" method="_on_new_mech_pressed"]
 [connection signal="pressed" from="GUI/Control/ClearField" to="GUI/Control" method="_on_clear_field_pressed"]
+[connection signal="pressed" from="GUI/Control/DebugMech" to="GUI/Control/DebugMech" method="_on_pressed"]
