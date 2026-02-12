@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nbjb2up4h02s"
-path="res://.godot/imported/Cyborg_run_attack.png-1e43d0a4f6dc832dd0abbbd911e18b63.ctex"
+uid="uid://cypoydivyhs7q"
+path="res://.godot/imported/Walk.png-3f7272d0c6ddb13088224a5756774c9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Characters/Cyborg/Cyborg_run_attack.png"
-dest_files=["res://.godot/imported/Cyborg_run_attack.png-1e43d0a4f6dc832dd0abbbd911e18b63.ctex"]
+source_file="res://Images/Characters/Friendlies/NPC3/Walk.png"
+dest_files=["res://.godot/imported/Walk.png-3f7272d0c6ddb13088224a5756774c9f.ctex"]
 
 [params]
 

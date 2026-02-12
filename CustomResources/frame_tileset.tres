@@ -622,7 +622,7 @@ texture = ExtResource("1_y5l3b")
 1:20/0/physics_layer_0/polygon_0/one_way = true
 
 [resource]
-physics_layer_0/collision_layer = 33
-physics_layer_0/collision_mask = 33
+physics_layer_0/collision_layer = 6177
+physics_layer_0/collision_mask = 6177
 sources/0 = SubResource("TileSetAtlasSource_gt3je")
 pattern_0 = SubResource("TileMapPattern_y5l3b")

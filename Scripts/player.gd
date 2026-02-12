@@ -41,6 +41,10 @@ func _physics_process(delta):
 	zoom.x = clamp(zoom.x, 0.25, 4)
 	zoom.y = clamp(zoom.y, 0.25, 4)
 	camera.zoom = zoom
+	
+	# Debug NPC summoning
+	if Input.is_action_just_pressed("debug_summon_npc"):
+		mech.summon_friendly_npc(self.global_position)
 
 	if aim_mode:
 		var aim_x = Input.get_axis("left", "right")

@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 const WHEEL_HITBOX_1 = preload("uid://gabbdsxamcdv")
+const NPC = preload("uid://cmy4r8enqaty2")
 
 @onready var crosshair = $Crosshair
 
@@ -10,6 +11,7 @@ const WHEEL_HITBOX_1 = preload("uid://gabbdsxamcdv")
 @onready var movement_sprites = $MovementSprites
 @onready var controllers = $Controllers
 @onready var modules = $Modules
+@onready var npcs = $NPCs
 
 @onready var energy_regen = $EnergyRegen
 
@@ -171,3 +173,8 @@ func die():
 
 func is_on_floor():
 	return true
+
+func summon_friendly_npc(at_position : Vector2):
+	var npc_instance = NPC.instantiate()
+	npcs.add_child(npc_instance)
+	npc_instance.global_position = at_position

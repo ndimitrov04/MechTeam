@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di4f2ww0oq6u2"
-path="res://.godot/imported/Cyborg_death.png-7944b9f82dd952ff496f5b522686c8e5.ctex"
+uid="uid://l2t3iea1fkch"
+path="res://.godot/imported/Idle.png-e6e9de87701d76e2ff91a1ca525e787f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Characters/Cyborg/Cyborg_death.png"
-dest_files=["res://.godot/imported/Cyborg_death.png-7944b9f82dd952ff496f5b522686c8e5.ctex"]
+source_file="res://Images/Characters/Friendlies/NPC1/Idle.png"
+dest_files=["res://.godot/imported/Idle.png-e6e9de87701d76e2ff91a1ca525e787f.ctex"]
 
 [params]
 

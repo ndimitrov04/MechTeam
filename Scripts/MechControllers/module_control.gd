@@ -23,6 +23,7 @@ var player = null
 var last_zoom : Vector2 = Vector2(1, 1)
 
 @onready var type : MechData.ObjectType = MechData.ObjectType.CONTROLLER
+@onready var npc_controllable : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -106,3 +107,11 @@ func start_cooldown():
 	on_cooldown = true
 	cooldown_bar.show()
 	timer.start(cooldown_time)
+
+func npc_engage():
+	if mech.energy < energy_cost:
+		print("INSUFFICIENT ENERGY")
+		return
+	mech.drain_energy(energy_cost)
+	controlled_module.engage()
+	start_cooldown()

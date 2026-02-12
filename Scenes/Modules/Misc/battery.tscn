@@ -89,6 +89,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5l7g"]
 size = Vector2(22, 64)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0kdv"]
+
+[sub_resource type="Gradient" id="Gradient_glmyp"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g0kdv"]
+gradient = SubResource("Gradient_glmyp")
+width = 6
+height = 66
+
 [sub_resource type="Gradient" id="Gradient_qfse1"]
 colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
 
@@ -125,10 +135,13 @@ wait_time = 3.0
 autostart = true
 
 [node name="Charge" type="TextureProgressBar" parent="." unique_id=2046173361]
-offset_left = -24.0
-offset_top = -48.0
+material = SubResource("ShaderMaterial_g0kdv")
+offset_left = -26.0
+offset_top = -50.0
 offset_right = -20.0
 offset_bottom = 16.0
 value = 100.0
 fill_mode = 3
+texture_under = SubResource("GradientTexture2D_g0kdv")
 texture_progress = SubResource("GradientTexture2D_glmyp")
+texture_progress_offset = Vector2(1, 1)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byttfyasvk3tn"
-path="res://.godot/imported/Cyborg_punch.png-334fb9de76fdcbc738549c318f557f1b.ctex"
+uid="uid://bnpfidpohw54n"
+path="res://.godot/imported/Cyborg_idle.png-2e027f81e309ce642a5ad8390f55dea7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Characters/Cyborg/Cyborg_punch.png"
-dest_files=["res://.godot/imported/Cyborg_punch.png-334fb9de76fdcbc738549c318f557f1b.ctex"]
+source_file="res://Images/Characters/Player/Cyborg_idle.png"
+dest_files=["res://.godot/imported/Cyborg_idle.png-2e027f81e309ce642a5ad8390f55dea7.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw7jl2kfx3xvv"
-path="res://.godot/imported/Cyborg_attack2.png-1090d3c2353efc82c075a5f2c610bf21.ctex"
+uid="uid://3gypn5wrv74p"
+path="res://.godot/imported/Cyborg_hurt.png-8472a9c02cdf9ecae7493ce1f3908d94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Characters/Cyborg/Cyborg_attack2.png"
-dest_files=["res://.godot/imported/Cyborg_attack2.png-1090d3c2353efc82c075a5f2c610bf21.ctex"]
+source_file="res://Images/Characters/Player/Cyborg_hurt.png"
+dest_files=["res://.godot/imported/Cyborg_hurt.png-8472a9c02cdf9ecae7493ce1f3908d94.ctex"]
 
 [params]
 

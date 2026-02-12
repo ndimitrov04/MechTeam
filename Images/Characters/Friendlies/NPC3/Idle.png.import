@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg6g0omx8a050"
-path="res://.godot/imported/Cyborg_attack3.png-e55bfa26d584e7cf51c6f3df5737754b.ctex"
+uid="uid://dyy0hjur5e3ik"
+path="res://.godot/imported/Idle.png-8c23adebadace9118f14ca73f0ae2156.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Characters/Cyborg/Cyborg_attack3.png"
-dest_files=["res://.godot/imported/Cyborg_attack3.png-e55bfa26d584e7cf51c6f3df5737754b.ctex"]
+source_file="res://Images/Characters/Friendlies/NPC3/Idle.png"
+dest_files=["res://.godot/imported/Idle.png-8c23adebadace9118f14ca73f0ae2156.ctex"]
 
 [params]
 

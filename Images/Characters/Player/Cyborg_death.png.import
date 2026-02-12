@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bax5id537qvmg"
-path="res://.godot/imported/Cyborg_jump.png-1e86b48131f01302b59e3ad9d1379b63.ctex"
+uid="uid://di4f2ww0oq6u2"
+path="res://.godot/imported/Cyborg_death.png-f6ca1baca90fa626435c5f72e6b587b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Characters/Cyborg/Cyborg_jump.png"
-dest_files=["res://.godot/imported/Cyborg_jump.png-1e86b48131f01302b59e3ad9d1379b63.ctex"]
+source_file="res://Images/Characters/Player/Cyborg_death.png"
+dest_files=["res://.godot/imported/Cyborg_death.png-f6ca1baca90fa626435c5f72e6b587b3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnpfidpohw54n"
-path="res://.godot/imported/Cyborg_idle.png-ba29a2fe1226fee75782326de3915109.ctex"
+uid="uid://ffgnahqltnpx"
+path="res://.godot/imported/Walk.png-85c0fa9b86cf8040ab633c932bf0a627.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Characters/Cyborg/Cyborg_idle.png"
-dest_files=["res://.godot/imported/Cyborg_idle.png-ba29a2fe1226fee75782326de3915109.ctex"]
+source_file="res://Images/Characters/Friendlies/NPC2/Walk.png"
+dest_files=["res://.godot/imported/Walk.png-85c0fa9b86cf8040ab633c932bf0a627.ctex"]
 
 [params]
 

@@ -41,6 +41,8 @@ script = ExtResource("5_cfoyv")
 
 [node name="Modules" type="Node2D" parent="." unique_id=1023028695]
 
+[node name="NPCs" type="Node2D" parent="." unique_id=1283548531]
+
 [node name="Crosshair" type="AnimatedSprite2D" parent="." unique_id=816728952]
 z_index = 20
 z_as_relative = false
