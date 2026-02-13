@@ -15,6 +15,8 @@ const NPC = preload("uid://cmy4r8enqaty2")
 
 @onready var energy_regen = $EnergyRegen
 
+@onready var game_over = $"../GUI/Control/GameOver"
+
 const SPEED = 50.0
 const JUMP_linear_velocity = -600.0
 
@@ -38,6 +40,8 @@ func _ready():
 	energy_regen.timeout.connect(_regenerate_energy)
 	if not get_meta("prebuilt"):
 		load_mech()
+	max_hp = frame.get_used_cells().size() / 4
+	hp = max_hp
 
 func load_mech():
 	# Load mech frame and background
@@ -169,7 +173,8 @@ func die():
 	set_collision_layer_value(3, 0)
 	await get_tree().create_timer(4).timeout
 	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
-	queue_free()
+	# Game over sequence here
+	game_over.show()
 
 func is_on_floor():
 	return true

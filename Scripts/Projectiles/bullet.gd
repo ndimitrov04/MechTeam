@@ -23,13 +23,14 @@ func _on_body_entered(body):
 	#print("Hit " + body.name)
 	#print(body.name + ": ")
 	#print("Parent: " + body.get_parent().name)
-	if body.name == "Frame":
+	#if body.name == "Frame":
 		#print("Damage Value: " + str(damage_value))
 		#print("Collision:" + str(collision))
 		#print("Knockback Force:" + str(knockback_force))
-		body.take_damage(damage_value, collision, knockback_force)
 	if body.get_parent().name == "Modules" or body.get_parent().name == "Weapons":
 		body.destroy()
 		#print("Destroying" + body.name)
+	if body.has_method("take_damage"):
+		body.take_damage(damage_value, collision, knockback_force)
 	get_parent().player.screenshake(self.global_position, knockback_force)
 	queue_free()

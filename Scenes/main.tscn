@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://drkagrg0iq1mc" path="res://Scripts/mech_viewport.gd" id="20_ee4r6"]
 [ext_resource type="PackedScene" uid="uid://bxxxinj6ti4h2" path="res://Scenes/Misc/destructible_background.tscn" id="20_u50mg"]
 [ext_resource type="Texture2D" uid="uid://cmiucrejdoxwi" path="res://Images/Objects/Decor/monitor.png" id="21_3pmx8"]
+[ext_resource type="Script" uid="uid://d37dfj32lv50m" path="res://Scripts/game_over.gd" id="25_1w6v2"]
 [ext_resource type="Script" uid="uid://bjgkfyj322xtr" path="res://Scripts/UI/static_ui.gd" id="25_cbgmd"]
 
 [sub_resource type="Gradient" id="Gradient_fevyy"]
@@ -696,7 +697,7 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Parallax2" type="Parallax2D" parent="Background/Parallax" unique_id=1644951001]
-scroll_scale = Vector2(1.05, 1)
+scroll_scale = Vector2(1.05, 1.05)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -709,7 +710,7 @@ texture = ExtResource("2_ee4r6")
 stretch_mode = 1
 
 [node name="Parallax3" type="Parallax2D" parent="Background/Parallax" unique_id=370020356]
-scroll_scale = Vector2(1.07, 1)
+scroll_scale = Vector2(1.07, 1.06)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -722,7 +723,7 @@ texture = ExtResource("3_gt3je")
 stretch_mode = 1
 
 [node name="Parallax4" type="Parallax2D" parent="Background/Parallax" unique_id=1361088731]
-scroll_scale = Vector2(1.09, 1)
+scroll_scale = Vector2(1.09, 1.07)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -735,7 +736,7 @@ texture = ExtResource("4_3pmx8")
 stretch_mode = 1
 
 [node name="Parallax5" type="Parallax2D" parent="Background/Parallax" unique_id=731670726]
-scroll_scale = Vector2(1.13, 1)
+scroll_scale = Vector2(1.13, 1.08)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -748,7 +749,7 @@ texture = ExtResource("5_u50mg")
 stretch_mode = 1
 
 [node name="Parallax6" type="Parallax2D" parent="Background/Parallax" unique_id=587829378]
-scroll_scale = Vector2(1.2, 1)
+scroll_scale = Vector2(1.2, 1.09)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -872,6 +873,7 @@ z_index = 40
 position = Vector2(368, 272)
 collision_layer = 16421
 collision_mask = 16421
+floor_stop_on_slope = true
 
 [node name="Foreground" type="Node2D" parent="." unique_id=997797821]
 
@@ -936,7 +938,7 @@ autowrap_mode = 3
 
 [node name="StatusPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=221317803]
 layout_mode = 0
-offset_right = 168.0
+offset_right = 240.0
 offset_bottom = 248.0
 
 [node name="HPLabel" type="Label" parent="GUI/Control/StaticUI/StatusPanel" unique_id=744807587]
@@ -945,22 +947,23 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 77.0
 offset_bottom = 39.0
-text = "Health: "
+text = "Player Health: 
+Mech Health:"
 
 [node name="ENLabel" type="Label" parent="GUI/Control/StaticUI/StatusPanel" unique_id=311035761]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 48.0
-offset_right = 78.0
-offset_bottom = 71.0
+offset_top = 64.0
+offset_right = 112.0
+offset_bottom = 87.0
 text = "Energy: "
 
 [node name="Status" type="Label" parent="GUI/Control/StaticUI/StatusPanel" unique_id=1264682844]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 104.0
-offset_right = 152.0
-offset_bottom = 200.0
+offset_top = 128.0
+offset_right = 224.0
+offset_bottom = 224.0
 text = "Status
 "
 horizontal_alignment = 1
@@ -1102,6 +1105,65 @@ mouse_filter = 1
 script = ExtResource("14_wsu2k")
 metadata/_edit_use_anchors_ = true
 
+[node name="GameOver" type="Control" parent="GUI/Control" unique_id=826995214]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("25_1w6v2")
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Control/GameOver" unique_id=28775428]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27058825, 0.31764707, 0.47058824, 1)
+
+[node name="Retry" type="Button" parent="GUI/Control/GameOver" unique_id=1823613199]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.44200003
+anchor_top = 0.69600004
+anchor_right = 0.44200003
+anchor_bottom = 0.69600004
+offset_left = -72.640076
+offset_top = 0.3199463
+offset_right = 263.35992
+offset_bottom = 96.31995
+text = "Retry Fight"
+
+[node name="Menu" type="Button" parent="GUI/Control/GameOver" unique_id=943016623]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.44200003
+anchor_top = 0.69600004
+anchor_right = 0.44200003
+anchor_bottom = 0.69600004
+offset_left = -72.640076
+offset_top = 120.31995
+offset_right = 263.35992
+offset_bottom = 216.31995
+text = "Back to Mech Creator"
+
+[node name="GameOver" type="Label" parent="GUI/Control/GameOver" unique_id=1932205798]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 296.0
+offset_right = 1264.0
+offset_bottom = 406.0
+theme_override_font_sizes/font_size = 160
+text = "Game Over!"
+
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2025517324]
 stream = ExtResource("19_fevyy")
 autoplay = true
+
+[connection signal="visibility_changed" from="GUI/Control/GameOver" to="GUI/Control/GameOver" method="_on_visibility_changed"]
+[connection signal="pressed" from="GUI/Control/GameOver/Retry" to="GUI/Control/GameOver" method="_on_retry_pressed"]
+[connection signal="pressed" from="GUI/Control/GameOver/Menu" to="GUI/Control/GameOver" method="_on_menu_pressed"]
+[connection signal="visibility_changed" from="GUI/Control/GameOver/GameOver" to="GUI/Control/GameOver" method="_on_game_over_visibility_changed"]

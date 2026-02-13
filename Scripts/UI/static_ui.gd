@@ -1,6 +1,7 @@
 extends Control
 
 @onready var mech = $"../../../Mech"
+@onready var player = $"../../../Player"
 
 @onready var hp_label = $StatusPanel/HPLabel
 @onready var en_label = $StatusPanel/ENLabel
@@ -18,7 +19,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	hp_label.text = "Health: " + str(mech.hp)
+	hp_label.text = "Player Health: " + str(player.hp) + "\nMech Health: " + str(mech.hp)
 	en_label.text = "Energy: " + str(mech.energy)
 
 func _unhandled_input(event):

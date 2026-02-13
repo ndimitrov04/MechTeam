@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+@onready var main = $".."
+
 @onready var crosshair = $Crosshair
 @onready var movement_sprites = $MovementSprites
 
@@ -63,6 +65,7 @@ func die():
 	frame.collision_enabled = false
 	frame.break_all_tiles()
 	set_collision_layer_value(3, 0)
+	main.enemies_left -= 1
 	await get_tree().create_timer(4).timeout
 	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
 	queue_free()

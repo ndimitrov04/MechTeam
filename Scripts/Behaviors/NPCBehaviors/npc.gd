@@ -18,6 +18,9 @@ const NPC_SPRITES = [NPC_1, NPC_2, NPC_3]
 @onready var npc_engage = $NPCEngage
 @onready var npc_cooldown = $NPCCooldown
 
+var hp : int = 5
+var invincible : bool = false
+
 func _ready():
 	# Choose random NPC sprite
 	sprite.sprite_frames = NPC_SPRITES.pick_random()
@@ -26,21 +29,21 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+		
 	# Handle jump.
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		#velocity.y = JUMP_VELOCITY
 
-	if direction != 0:
-		velocity.x = direction * SPEED
+	if direction:
+		velocity.x = direction * SPEED - get_platform_velocity().x
 		if direction > 0:
 			sprite.flip_h = false
 		else:
 			sprite.flip_h = true
 		sprite.play("run")
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
 		sprite.play("default")
+		velocity.x = move_toward(velocity.x, -get_platform_velocity().x, SPEED)
 
 	move_and_slide()
 
@@ -48,3 +51,28 @@ func make_busy(time : float):
 	npc_walk.stop_moving(time)
 	npc_engage.temp_disable(time)
 	npc_cooldown.start(time)
+
+# Invincibility frame visual effect
+func inv_frame_vfx(duration : float):
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	# Flash sequence
+	for i in range(0, duration * 10):
+		tween.tween_property(sprite, "modulate:a", 0.0, 0.1)
+		tween.tween_property(sprite, "modulate:a", 1.0, 0.1)
+
+func take_damage(damage, _collision, _knockback_force):
+	const inv_time : float = 1
+	if not invincible:
+		hp -= damage
+	if hp <= 0:
+		die()
+		return
+	invincible = true
+	inv_frame_vfx(inv_time)
+	await get_tree().create_timer(inv_time).timeout
+	invincible = false
+
+func die():
+	queue_free()

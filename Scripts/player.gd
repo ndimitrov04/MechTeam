@@ -5,13 +5,14 @@ extends CharacterBody2D
 @onready var camera = $Camera
 
 @onready var mech = $"../Mech"
+@onready var game_over = $"../GUI/Control/GameOver"
 
 @onready var minigames = $"../GUI/Control/Minigames"
 
 
 const SPEED = 150.0
 const AIMSPEED = 750
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -420.0
 
 var last_platform_velocity : Vector2 = Vector2.ZERO
 
@@ -19,6 +20,9 @@ var zoom : Vector2 = Vector2(2,2)
 var last_zoom : Vector2 = zoom
 var aim_mode : bool = false
 var minigame_mode : bool = false
+
+var hp : int = 5
+var invincible : bool = false
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -84,3 +88,31 @@ func screenshake(shake_position : Vector2, amount : int):
 	var distance_attentuation : float = 64 # Magic number
 	var trauma_amount = (amount * shake_brutality) / (distance / distance_attentuation)
 	camera.add_trauma(trauma_amount)
+
+# Invincibility frame visual effect
+func inv_frame_vfx(duration : float):
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	# Flash sequence
+	for i in range(0, duration * 10):
+		tween.tween_property(sprite, "modulate:a", 0.0, 0.1)
+		tween.tween_property(sprite, "modulate:a", 1.0, 0.1)
+
+func take_damage(damage, _collision, _knockback_force):
+	const inv_time : float = 1
+	if not invincible:
+		hp -= damage
+	if hp <= 0:
+		die()
+		return
+	invincible = true
+	inv_frame_vfx(inv_time)
+	await get_tree().create_timer(inv_time).timeout
+	invincible = false
+
+
+func die():
+	
+	# Game over sequence here
+	game_over.show()

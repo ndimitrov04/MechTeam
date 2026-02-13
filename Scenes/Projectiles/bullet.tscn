@@ -43,7 +43,7 @@ collision_mask = 16396
 gravity_scale = 0.001
 continuous_cd = 1
 contact_monitor = true
-max_contacts_reported = 1
+max_contacts_reported = 3
 script = ExtResource("1_3323x")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1205890646]

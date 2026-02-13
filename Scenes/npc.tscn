@@ -7,8 +7,8 @@
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="5_qi7up"]
 [ext_resource type="Script" uid="uid://c5nteey1artcx" path="res://Scripts/Behaviors/NPCBehaviors/npc_cooldown.gd" id="6_2xkex"]
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_6atyd"]
-length = 12.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gudg"]
+size = Vector2(15, 22)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xkex"]
 shader = ExtResource("5_qi7up")
@@ -33,13 +33,13 @@ load_path = "res://.godot/imported/Circle.png-c6367644dfe9e873ba9cd21dc651e9f9.c
 
 [node name="NPC" type="CharacterBody2D" unique_id=2022641288]
 z_index = 30
-collision_layer = 2048
+collision_layer = 0
 collision_mask = 2048
 script = ExtResource("1_1ig1v")
 
 [node name="Walkbox" type="CollisionShape2D" parent="." unique_id=1172288629]
-position = Vector2(2, 12)
-shape = SubResource("SeparationRayShape2D_6atyd")
+position = Vector2(2.5, 13)
+shape = SubResource("RectangleShape2D_8gudg")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1697861877]
 material = SubResource("ShaderMaterial_2xkex")

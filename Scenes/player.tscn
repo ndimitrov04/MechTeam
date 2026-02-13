@@ -103,6 +103,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" unique_id=1706264332]
 collision_layer = 37
 collision_mask = 37
+floor_stop_on_slope = false
 script = ExtResource("1_6t5aa")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1077895958]
