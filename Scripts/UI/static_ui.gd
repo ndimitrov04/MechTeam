@@ -12,6 +12,7 @@ extends Control
 @onready var status_timeout = $StatusPanel/Status/StatusTimeout
 
 @onready var minigame_result = $MinigameResult
+@onready var advance = $Advance
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -69,3 +70,24 @@ func display_minigame_result(victory : bool):
 	tween.tween_property(minigame_result, "modulate:a", 1.0, 0.6)
 	# Fade out after 0.6 sec
 	tween.tween_property(minigame_result, "modulate:a", 0, 0.6)
+
+func display_advance_arrow():
+	advance.show()
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	# Flash sequence
+	tween.tween_property(advance, "modulate:a", 0.0, 0.1)
+	tween.tween_property(advance, "modulate:a", 1.0, 0.3)
+	tween.tween_property(advance, "modulate:a", 1.0, 0.1)
+	tween.tween_property(advance, "modulate:a", 0.0, 0.1)
+	tween.tween_property(advance, "modulate:a", 1.0, 0.3)
+	tween.tween_property(advance, "modulate:a", 1.0, 0.1)
+	tween.tween_property(advance, "modulate:a", 0.0, 0.1)
+	tween.tween_property(advance, "modulate:a", 1.0, 0.3)
+	tween.tween_property(advance, "modulate:a", 1.0, 0.1)
+	tween.tween_property(advance, "modulate:a", 0.0, 0.1)
+	tween.tween_property(advance, "modulate:a", 1.0, 0.3)
+	tween.tween_property(advance, "modulate:a", 1.0, 0.1)
+	# Fade out after 0.6 sec
+	tween.tween_property(advance, "modulate:a", 0, 0.1)

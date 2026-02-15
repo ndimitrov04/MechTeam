@@ -16,10 +16,12 @@ extends RigidBody2D
 const SPEED = 45.0
 const JUMP_linear_velocity = -400.0
 
-var hp : int = 100
+var hp : int = 40
 var energy : int = 100
 
-var direction = 1
+var direction : int = 1
+
+var asleep : bool = true
 
 func _ready():
 	action_decision.timeout.connect(_on_action_decision_timeout)
@@ -68,6 +70,7 @@ func die():
 	main.enemies_left -= 1
 	await get_tree().create_timer(4).timeout
 	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
+	main.advance()
 	queue_free()
 
 func _on_action_decision_timeout():
@@ -88,7 +91,8 @@ func _on_action_decision_timeout():
 		crosshair.position += Vector2(randi_range(-35, 35), randi_range(-35, 35))
 	# Shoot 10%
 	elif action >= 90:
-		modules.get_children().pick_random().engage()
+		if modules.get_child_count() > 0:
+			modules.get_children().pick_random().engage()
 
 func is_on_floor():
 	return true

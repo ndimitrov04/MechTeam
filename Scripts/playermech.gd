@@ -80,6 +80,8 @@ func load_mech():
 			MechData.ObjectType.SPRITE:
 				movement_sprites.add_child(object_instance)
 				hitbox_instance.wheel_sprite = object_instance
+			MechData.ObjectType.NPC:
+				npcs.add_child(object_instance)
 			_:
 				pass
 		object_instance.position = object_coords

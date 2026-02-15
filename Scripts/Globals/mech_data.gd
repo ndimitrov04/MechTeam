@@ -4,7 +4,7 @@ const EMPTY_CELL = Vector2i(-1,-1)
 @onready var grid_size : Vector2i = Vector2i(34*2, 17*2)
 
 enum ObjectType {
-	MODULE, CONTROLLER, COLLIDER, SPRITE
+	MODULE, CONTROLLER, COLLIDER, SPRITE, NPC
 }
 
 @onready var summon_debug_mech = false

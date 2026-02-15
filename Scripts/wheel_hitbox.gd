@@ -20,7 +20,8 @@ func _on_body_entered(body):
 	if "damage_value" in body:
 		# Spawn debris
 		var debris_instance = DEBRIS.instantiate()
-		main.add_child(debris_instance)
+		main.call_deferred("add_child", debris_instance)
+		#main.add_child(debris_instance)
 		debris_instance.global_position = global_position
 		wheel_collider.queue_free()
 		wheel_sprite.queue_free()

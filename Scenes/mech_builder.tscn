@@ -755,9 +755,10 @@ visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_tgtas")
 theme_override_font_sizes/font_size = 32
-item_count = 2
+item_count = 3
 item_0/text = "Machine Gun"
 item_1/text = "Battery"
+item_2/text = "NPC"
 metadata/_tab_index = 2
 
 [node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer" unique_id=288800539]

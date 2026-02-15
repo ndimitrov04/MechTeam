@@ -31,4 +31,5 @@ func _on_timeout():
 	queue_free()
 
 func set_sprite(atlas_coords : Vector2i):
-	tilemap.set_cell(Vector2i(0,0), 0, atlas_coords)
+	if tilemap:
+		tilemap.set_cell(Vector2i(0,0), 0, atlas_coords)

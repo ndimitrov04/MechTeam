@@ -68,6 +68,8 @@ const WEAPON_CONTROL = preload("uid://byb23wa6gburr")
 const WHEEL_COLLIDER_1 = preload("uid://cuhp74yuarb08")
 # Sprites
 const WHEEL_1 = preload("uid://uxt82jfkcjx8")
+# NPCs
+const NPC = preload("uid://cmy4r8enqaty2")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -99,6 +101,8 @@ func _ready():
 	Mech must have an AIM control terminal onboard for this weapon to be aimed.")
 	modules.set_item_tooltip(1, "Battery. Holds energy. Recharges passively (1 energy/sec).
 	It can be manually recharged rapidly (50 energy) if connected to an ENGAGE control temrinal.")
+	modules.set_item_tooltip(2, "Basic NPC. Engages ENGAGE terminals when walking by them.
+	Moves left and right. Has 1 second of engage cooldown.")
 	# Controllers
 	controllers.set_item_tooltip(0, "Aim control. This controller lets the player aim a mech's weapons.")
 	controllers.set_item_tooltip(1, "This controller moves a mech to the left.")
@@ -155,6 +159,8 @@ func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 			editor.chosen_object = MACHINEGUN1
 		1:
 			editor.chosen_object = BATTERY
+		2:
+			editor.chosen_object = NPC
 
 func _on_controllers_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 2

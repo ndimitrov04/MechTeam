@@ -18,10 +18,14 @@ const NPC_SPRITES = [NPC_1, NPC_2, NPC_3]
 @onready var npc_engage = $NPCEngage
 @onready var npc_cooldown = $NPCCooldown
 
+@onready var type : MechData.ObjectType = MechData.ObjectType.NPC
+
 var hp : int = 5
 var invincible : bool = false
 
 func _ready():
+	if get_parent().get_parent().get_parent().name == "Main":
+		process_mode = Node.PROCESS_MODE_INHERIT
 	# Choose random NPC sprite
 	sprite.sprite_frames = NPC_SPRITES.pick_random()
 

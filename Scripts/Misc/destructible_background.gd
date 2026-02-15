@@ -32,5 +32,6 @@ func break_random_tile():
 
 func break_all_tiles():
 	while get_used_cells().size() > 0:
-		await get_tree().process_frame
-		break_random_tile()
+		if get_tree():
+			await get_tree().process_frame
+			break_random_tile()
