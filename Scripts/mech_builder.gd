@@ -45,6 +45,10 @@ var chosen_action : int = 0
 var chosen_movement_collider = null
 var chosen_movement_sprite = null
 
+var npc_mode : bool = false
+var npc_capacity : int = 0
+var npc_count : int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if get_parent().name == "Editor":
@@ -155,8 +159,16 @@ func _input(event):
 					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.DOWN
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.ONE
 				EditLayer.OBJECTS:
+					if npc_mode:
+						if npc_count < npc_capacity:
+							npc_count += 1
+						else:
+							print("Insufficient crew capacity! Build more beds.")
+							return
 					# Set object in editor
 					var object_instance = chosen_object.instantiate()
+					if object_instance.has_meta("npc_capacity"):
+						npc_capacity += object_instance.get_meta("npc_capacity")
 					mech_prototype.add_child(object_instance)
 					object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
 					# Disable object processing
