@@ -3,8 +3,11 @@ extends Control
 @onready var editor = $"../.."
 
 @onready var tab_container = $TabContainer
-@onready var npc_list = $NPCShop/NPCList
 @onready var npc_shop = $NPCShop
+@onready var npc_list = $NPCShop/NPCList
+@onready var npc_label = $NPCShop/NPCLabel
+@onready var capacity_label = $NPCShop/CapacityLabel
+@onready var error = $Error
 
 @onready var left = $Left
 @onready var right = $Right
@@ -104,26 +107,43 @@ func _ready():
 	walls.set_item_tooltip(1, "Basic decorative wall.")
 	walls.set_item_tooltip(2, "Basic decorative wall.")
 	# Modules
-	modules.set_item_tooltip(0, "Machine Gun. Shoots 10 bullets per volley. Needs 30 energy to shoot.
-	Must be connected to an ENGAGE control terminal to shoot.
-	Mech must have an AIM control terminal onboard for this weapon to be aimed.")
-	modules.set_item_tooltip(1, "Battery. Holds energy. Recharges passively (1 energy/sec).
-	It can be manually recharged rapidly (50 energy) if connected to an ENGAGE control temrinal.")
-	modules.set_item_tooltip(2, "Supplies. Add 1 point to crew capacity. Required if you want crew operators.")
+	modules.set_item_tooltip(0, "Machine Gun. 
+	Shoots 10 bullets per volley. 
+	Needs 30 energy to shoot.
+	Must be connected to an 
+	ENGAGE control terminal to shoot.
+	Mech must have an AIM control 
+	terminal onboard for this weapon to be aimed.")
+	modules.set_item_tooltip(1, "Battery. Holds energy. 
+	Recharges passively (1 energy/sec).
+	It can be manually recharged rapidly (50 energy) 
+	if connected to an ENGAGE control temrinal.")
+	modules.set_item_tooltip(2, "Supplies. 
+	Add 1 point to crew capacity. 
+	Required if you want crew operators.")
 	# Controllers
-	controllers.set_item_tooltip(0, "Aim control. This controller lets the player aim a mech's weapons.")
+	controllers.set_item_tooltip(0, "Aim control. 
+	This controller lets the player aim a mech's weapons.")
 	controllers.set_item_tooltip(1, "This controller moves a mech to the left.")
 	controllers.set_item_tooltip(2, "This controller moves a mech to the right.")
 	controllers.set_item_tooltip(3, "This controller stops a mech from moving.")
 	controllers.set_item_tooltip(4, "This controller makes a mech jump.")
-	controllers.set_item_tooltip(5, "This controller must be connected to a MODULE to work.
-	When used, it makes the module it is connected to work.")
+	controllers.set_item_tooltip(5, "This controller must be 
+	connected to a MODULE to work.
+	When used, it makes the module 
+	it is connected to work.")
 	# Movement
-	movement.set_item_tooltip(0, "Basic tracks. Can be controlled by movement controllers.
-	Can move to the left and right. Can jump. Can brake.")
+	movement.set_item_tooltip(0, "Basic tracks. 
+	Can be controlled by movement controllers.
+	Can move to the left and right. 
+	Can jump. Can brake.")
 	# NPCs
-	npc_list.set_item_tooltip(0, "Basic operator. Will move left and right and interact with 
-	ENGAGE terminals it comes across. Has 1 second of engage cooldown.")
+	npc_list.set_item_tooltip(0, "Basic operator. 
+	Will move left and right 
+	and interact with ENGAGE 
+	terminals it comes across. 
+	Has 1 second of engage cooldown. 
+	Requires 1 supply module.")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -282,6 +302,7 @@ func _on_next_mech_pressed():
 	editor.load_prototype()
 
 func _on_previous_mech_pressed():
+	_on_save_mech_pressed()
 	mech_index -= 1
 	update_mech_scroll()
 	MechData.load_mech(mech_index)
@@ -291,6 +312,7 @@ func _on_clear_field_pressed():
 	editor.clear_prototype()
 
 func _on_new_mech_pressed():
+	_on_save_mech_pressed()
 	mech_index += 1
 	update_mech_scroll()
 	editor.new_mech()
@@ -314,3 +336,24 @@ func update_info_panel(icon_data, name_data, desc_data):
 	icon.texture = icon_data
 	name_label.text = "Name:\n" + name_data
 	desc_label.text = "Description:\n" + desc_data
+
+func attention(ui_object, duration : int, fade_out : bool = false):
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	ui_object.set_modulate(Color("red"))
+	# Flash sequence
+	for i in range(0, duration*2):
+		tween.tween_property(ui_object, "modulate:a", 0.0, 0.1)
+		tween.tween_property(ui_object, "modulate:a", 1.0, 0.3)
+		tween.tween_property(ui_object, "modulate:a", 1.0, 0.1)
+	if fade_out:
+		tween.tween_property(ui_object, "modulate:a", 1.0, 1.5)
+		tween.tween_property(ui_object, "modulate:a", 0.0, 0.1)
+	else:
+		ui_object.set_modulate(Color("white"))
+
+func show_error(text : String):
+	error.show()
+	error.text = text
+	attention(error, 1, true)

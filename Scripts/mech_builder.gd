@@ -5,6 +5,8 @@ const MECH_PB = preload("uid://dimm11yjnr7ef")
 
 @onready var grid = $Grid
 @onready var mech_prototype = $MechPrototype
+@onready var control = $GUI/Control
+@onready var capacity_label = $GUI/Control/NPCShop/CapacityLabel
 
 # These two overlap the grid, so grid_positions = blocks positions, etc.
 @onready var blocks = $MechPrototype/Blocks
@@ -17,7 +19,7 @@ const MECH_PB = preload("uid://dimm11yjnr7ef")
 @onready var player_spots = [Vector2i(24, 16), Vector2i(24, 18)]
 
 var global_mouse_pos : Vector2 = Vector2.ZERO
-var first_click : bool = true
+#var first_click : bool = true
 const MAX_X : int = 34
 const MAX_Y : int = 17
 
@@ -53,6 +55,7 @@ var npc_count : int = 0
 func _ready():
 	if get_parent().name == "Editor":
 		in_editor = true
+	update_capacity_ui()
 
 func is_connected_to_frame(grid_coords : Vector2i) -> bool:
 	for cell_coords in blocks.get_surrounding_cells(grid_coords):
@@ -116,11 +119,13 @@ func _input(event):
 					return
 			# Check if block would be connected to another block or wall
 			var tile_connected : bool = true
-			if not first_click:
-				tile_connected = is_connected_to_frame(grid_pos)
-			first_click = false
+			#if not first_click:
+				#tile_connected = is_connected_to_frame(grid_pos)
+			#first_click = false
 			if not tile_connected:
-				print("Cannot place that there. Tile is not connected to mech!")
+				const ERR : String = "Cannot place that there. Tile is not connected to mech!"
+				print(ERR)
+				control.show_error(ERR)
 				return
 			# Place block on given layer
 			match edit_layer:
@@ -162,13 +167,18 @@ func _input(event):
 					if npc_mode:
 						if npc_count < npc_capacity:
 							npc_count += 1
+							update_capacity_ui()
 						else:
-							print("Insufficient crew capacity! Build more beds.")
+							control.attention(control.capacity_label, 2)
+							const ERR : String = "Insufficient crew capacity! Build more supllies."
+							print(ERR)
+							control.show_error(ERR)
 							return
 					# Set object in editor
 					var object_instance = chosen_object.instantiate()
 					if object_instance.has_meta("npc_capacity"):
 						npc_capacity += object_instance.get_meta("npc_capacity")
+						update_capacity_ui()
 					mech_prototype.add_child(object_instance)
 					object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
 					# Disable object processing
@@ -244,12 +254,23 @@ func _input(event):
 					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
 				EditLayer.OBJECTS:
-					# Delete mech data by position
-					MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
 					# Delete object from editor
 					for child in mech_prototype.get_children():
 						print(child.name + str(child.position))
 						if child.position == Vector2(grid_pos*16+OBJECT_OFFSET):
+							if child.has_meta("npc_capacity"):
+								if npc_count >= npc_capacity:
+									control.show_error("Cannot remove supply required by crew. Remove crew members first.")
+									control.attention(control.capacity_label, 2)
+									return
+								else:
+									npc_capacity -= 1
+									update_capacity_ui()
+							if child.has_meta("friendly_npc"):
+								npc_count -= 1
+								update_capacity_ui()
+							# Delete mech data by position
+							MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
 							print("Deleting " + child.name)
 							child.queue_free()
 				EditLayer.MOVEMENT:
@@ -317,6 +338,7 @@ func clear_prototype():
 			blocks.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
 			walls.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
 	MechData.reset_tiles()
+	set_initial_cells()
 	
 	for i in range(2, mech_prototype.get_child_count()):
 		mech_prototype.get_child(i).queue_free()
@@ -326,7 +348,7 @@ func clear_prototype():
 	MechData.object_coordinates.clear()
 	
 	MechData.control_pairs.clear()
-	first_click = true
+	#first_click = true
 
 func new_mech():
 	MechData.new_mech()
@@ -336,7 +358,8 @@ func new_mech():
 			walls.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
 	for i in range(2, mech_prototype.get_child_count()):
 		mech_prototype.get_child(i).queue_free()
-	first_click = true
+	
+	#first_click = true
 
 func unload_mech():
 	print("Unloading mech...")
@@ -383,3 +406,27 @@ func finish_mech():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
+
+func update_capacity_ui():
+	capacity_label.text = "Capacity: " + str(npc_count) + "\\" + str(npc_capacity)
+
+func set_initial_cells():
+	const door_wall = Vector2i(9,0)
+	var grid_pos = Vector2i(24,16)
+	walls.set_cell(grid_pos + Vector2i.ZERO, 0, door_wall + Vector2i.ZERO)
+	walls.set_cell(grid_pos + Vector2i.RIGHT, 0, door_wall + Vector2i.RIGHT)
+	walls.set_cell(grid_pos + Vector2i.DOWN, 0, door_wall + Vector2i.DOWN)
+	walls.set_cell(grid_pos + Vector2i.ONE, 0, door_wall + Vector2i.ONE)
+	MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = door_wall
+	MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = door_wall + Vector2i.RIGHT
+	MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = door_wall + Vector2i.DOWN
+	MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = door_wall + Vector2i.ONE
+	var grid_pos2 = Vector2i(24,18)
+	walls.set_cell(grid_pos2 + Vector2i.ZERO, 0, door_wall + Vector2i.ZERO)
+	walls.set_cell(grid_pos2 + Vector2i.RIGHT, 0, door_wall + Vector2i.RIGHT)
+	walls.set_cell(grid_pos2 + Vector2i.DOWN, 0, door_wall + Vector2i.DOWN)
+	walls.set_cell(grid_pos2 + Vector2i.ONE, 0, door_wall + Vector2i.ONE)
+	MechData.walls[-2 + (grid_pos2.x + 0)][-2 + (grid_pos2.y + 0)] = door_wall
+	MechData.walls[-2 + (grid_pos2.x + 1)][-2 + (grid_pos2.y + 0)] = door_wall + Vector2i.RIGHT
+	MechData.walls[-2 + (grid_pos2.x + 0)][-2 + (grid_pos2.y + 1)] = door_wall + Vector2i.DOWN
+	MechData.walls[-2 + (grid_pos2.x + 1)][-2 + (grid_pos2.y + 1)] = door_wall + Vector2i.ONE
