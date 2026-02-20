@@ -44,6 +44,9 @@ const OBJECT_OFFSET : Vector2i = Vector2i(16,16)
 # Metadata modifier of object
 var chosen_action : int = 0
 
+# Chosen Object/Block cost
+var current_cost : int = 0
+
 var chosen_movement_collider = null
 var chosen_movement_sprite = null
 
@@ -56,6 +59,7 @@ func _ready():
 	if get_parent().name == "Editor":
 		in_editor = true
 	update_capacity_ui()
+	control.update_cash_panel()
 
 func is_connected_to_frame(grid_coords : Vector2i) -> bool:
 	for cell_coords in blocks.get_surrounding_cells(grid_coords):
@@ -127,6 +131,9 @@ func _input(event):
 				print(ERR)
 				control.show_error(ERR)
 				return
+			# Attempt to buy
+			if not buy(current_cost):
+				return
 			# Place block on given layer
 			match edit_layer:
 				EditLayer.BLOCKS:
@@ -173,6 +180,8 @@ func _input(event):
 							const ERR : String = "Insufficient crew capacity! Build more supllies."
 							print(ERR)
 							control.show_error(ERR)
+							# Refund
+							unbuy(current_cost)
 							return
 					# Set object in editor
 					var object_instance = chosen_object.instantiate()
@@ -220,6 +229,9 @@ func _input(event):
 			var grid_pos = expand_position(mouse_pos)
 			match edit_layer:
 				EditLayer.BLOCKS:
+					# Return cash
+					if blocks.get_cell_atlas_coords(grid_pos) != MechData.EMPTY_CELL:
+						unbuy(1)
 					# Remove frame tile
 					# Delete 4 tiles
 					blocks.set_cell(grid_pos + Vector2i.ZERO, 0)
@@ -269,6 +281,8 @@ func _input(event):
 							if child.has_meta("friendly_npc"):
 								npc_count -= 1
 								update_capacity_ui()
+							# Return cash
+							unbuy(child.get_meta("price"))
 							# Delete mech data by position
 							MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
 							print("Deleting " + child.name)
@@ -281,6 +295,9 @@ func _input(event):
 					for child in mech_prototype.get_children():
 						print(child.name + str(child.position))
 						if child.position == Vector2(grid_pos*16+OBJECT_OFFSET):
+							# Return cash
+							if child.has_meta("price"):
+								unbuy(child.get_meta("price"))
 							print("Deleting " + child.name)
 							child.queue_free()
 					# Delete mech data by position
@@ -430,3 +447,17 @@ func set_initial_cells():
 	MechData.walls[-2 + (grid_pos2.x + 1)][-2 + (grid_pos2.y + 0)] = door_wall + Vector2i.RIGHT
 	MechData.walls[-2 + (grid_pos2.x + 0)][-2 + (grid_pos2.y + 1)] = door_wall + Vector2i.DOWN
 	MechData.walls[-2 + (grid_pos2.x + 1)][-2 + (grid_pos2.y + 1)] = door_wall + Vector2i.ONE
+
+func buy(price : int) -> bool:
+	if PlayerData.money < price:
+		print("Not enough cash!")
+		control.show_error("Not enough cash!\nNeed " + str(price-PlayerData.money) + " more!")
+		control.attention(control.cash_label, 2)
+		return false
+	PlayerData.money -= price
+	control.update_cash_panel()
+	return true
+
+func unbuy(price : int):
+	PlayerData.money += price
+	control.update_cash_panel()

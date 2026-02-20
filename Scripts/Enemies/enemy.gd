@@ -18,6 +18,7 @@ const JUMP_linear_velocity = -400.0
 
 var hp : int = 40
 var energy : int = 100
+var reward : int = 25
 
 var direction : int = 1
 
@@ -68,6 +69,9 @@ func die():
 	frame.break_all_tiles()
 	set_collision_layer_value(3, 0)
 	main.enemies_left -= 1
+	print("Player has gained " + str(reward) + " coins!")
+	PlayerData.money += reward
+	main.rewards_collected += reward
 	await get_tree().create_timer(4).timeout
 	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
 	main.advance()

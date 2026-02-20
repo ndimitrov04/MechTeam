@@ -120,6 +120,7 @@ max_contacts_reported = 1
 script = ExtResource("1_mfo1m")
 metadata/aim_speed = 2.0
 metadata/pinned_tile = Vector2i(0, 0)
+metadata/price = 25
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
 position = Vector2(0, -16)

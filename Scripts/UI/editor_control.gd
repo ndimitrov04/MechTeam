@@ -8,6 +8,7 @@ extends Control
 @onready var npc_label = $NPCShop/NPCLabel
 @onready var capacity_label = $NPCShop/CapacityLabel
 @onready var error = $Error
+@onready var cash_label = $CashPanel/CashLabel
 
 @onready var left = $Left
 @onready var right = $Right
@@ -100,50 +101,52 @@ func _ready():
 	
 	# Item tooltips
 	# Blocks
-	blocks.set_item_tooltip(0, "Basic destructible block.")
-	blocks.set_item_tooltip(1, "Destructible platform that you can jump through.")
+	blocks.set_item_tooltip(0, "Cost: 1\nBasic destructible block.")
+	blocks.set_item_tooltip(1, "Cost: 1\nDestructible platform that you can jump through.")
 	# Walls
 	walls.set_item_tooltip(0, "Basic decorative wall.")
 	walls.set_item_tooltip(1, "Basic decorative wall.")
 	walls.set_item_tooltip(2, "Basic decorative wall.")
 	# Modules
-	modules.set_item_tooltip(0, "Machine Gun. 
+	modules.set_item_tooltip(0, "Cost: 10\nMachine Gun. 
 	Shoots 10 bullets per volley. 
 	Needs 30 energy to shoot.
 	Must be connected to an 
 	ENGAGE control terminal to shoot.
 	Mech must have an AIM control 
 	terminal onboard for this weapon to be aimed.")
-	modules.set_item_tooltip(1, "Battery. Holds energy. 
+	modules.set_item_tooltip(1, "Cost: 25\nBattery. Holds energy. 
 	Recharges passively (1 energy/sec).
 	It can be manually recharged rapidly (50 energy) 
 	if connected to an ENGAGE control temrinal.")
-	modules.set_item_tooltip(2, "Supplies. 
+	modules.set_item_tooltip(2, "Cost: 20\nSupplies. 
 	Add 1 point to crew capacity. 
 	Required if you want crew operators.")
 	# Controllers
-	controllers.set_item_tooltip(0, "Aim control. 
+	controllers.set_item_tooltip(0, "Cost: 10\nAim control. 
 	This controller lets the player aim a mech's weapons.")
-	controllers.set_item_tooltip(1, "This controller moves a mech to the left.")
-	controllers.set_item_tooltip(2, "This controller moves a mech to the right.")
-	controllers.set_item_tooltip(3, "This controller stops a mech from moving.")
-	controllers.set_item_tooltip(4, "This controller makes a mech jump.")
-	controllers.set_item_tooltip(5, "This controller must be 
+	controllers.set_item_tooltip(1, "Cost: 5\nThis controller moves a mech to the left.")
+	controllers.set_item_tooltip(2, "Cost: 5\nThis controller moves a mech to the right.")
+	controllers.set_item_tooltip(3, "Cost: 5\nThis controller stops a mech from moving.")
+	controllers.set_item_tooltip(4, "Cost: 15\nThis controller makes a mech jump.")
+	controllers.set_item_tooltip(5, "Cost: 15\nThis controller must be 
 	connected to a MODULE to work.
 	When used, it makes the module 
 	it is connected to work.")
 	# Movement
-	movement.set_item_tooltip(0, "Basic tracks. 
+	movement.set_item_tooltip(0, "Cost: 10\nBasic tracks. 
 	Can be controlled by movement controllers.
 	Can move to the left and right. 
 	Can jump. Can brake.")
 	# NPCs
-	npc_list.set_item_tooltip(0, "Basic operator. 
+	npc_list.set_item_tooltip(0, "Cost: 35\nWage: 5\nBasic operator. 
 	Will move left and right 
 	and interact with ENGAGE 
 	terminals it comes across. 
 	Has 1 second of engage cooldown. 
-	Requires 1 supply module.")
+	Requires 1 supply module.
+	Costs 5 coins per beaten stage.
+	Medical fees if incapacitaded: 10 coins.")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -170,8 +173,10 @@ func _on_block_list_item_clicked(index, _at_position, _mouse_button_index):
 	match index:
 		0:
 			editor.chosen_block = Vector2i(0,6)
+			editor.current_cost = 1
 		1:
 			editor.chosen_block = Vector2i(2,4)
+			editor.current_cost = 1
 
 func _on_wall_list_item_clicked(index, _at_position, _mouse_button_index):
 	print(index)
@@ -181,10 +186,13 @@ func _on_wall_list_item_clicked(index, _at_position, _mouse_button_index):
 	match index:
 		0:
 			editor.chosen_block = Vector2i(8,3)
+			editor.current_cost = 0
 		1:
 			editor.chosen_block = Vector2i(6,3)
+			editor.current_cost = 0
 		2:
 			editor.chosen_block = Vector2i(6,5)
+			editor.current_cost = 0
 
 func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 2
@@ -193,10 +201,13 @@ func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 	match index:
 		0:
 			editor.chosen_object = MACHINEGUN1
+			editor.current_cost = 10
 		1:
 			editor.chosen_object = BATTERY
+			editor.current_cost = 25
 		2:
 			editor.chosen_object = SUPPLIES
+			editor.current_cost = 20
 
 func _on_controllers_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 2
@@ -206,21 +217,27 @@ func _on_controllers_item_clicked(index, _at_position, _mouse_button_index):
 		0:
 			editor.chosen_object = AIM_CONTROL
 			editor.chosen_action = 0
+			editor.current_cost = 10
 		1:
 			editor.chosen_object = MOV_CONTROL_X_AXIS
 			editor.chosen_action = -1
+			editor.current_cost = 5
 		2:
 			editor.chosen_object = MOV_CONTROL_X_AXIS
 			editor.chosen_action = 1
+			editor.current_cost = 5
 		3:
 			editor.chosen_object = MOV_CONTROL_X_AXIS
 			editor.chosen_action = 0
+			editor.current_cost = 5
 		4:
 			editor.chosen_object = JUMP_CONTROL
 			editor.chosen_action = 0
+			editor.current_cost = 15
 		5:
 			editor.chosen_object = WEAPON_CONTROL
 			editor.chosen_action = 0
+			editor.current_cost = 15
 
 func _on_item_list_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 3
@@ -230,6 +247,7 @@ func _on_item_list_item_clicked(index, _at_position, _mouse_button_index):
 		0:
 			editor.chosen_movement_collider = WHEEL_COLLIDER_1
 			editor.chosen_movement_sprite = WHEEL_1
+			editor.current_cost = 10
 
 func _on_npc_list_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 2
@@ -238,6 +256,7 @@ func _on_npc_list_item_clicked(index, _at_position, _mouse_button_index):
 	match index:
 		0:
 			editor.chosen_object = NPC
+			editor.current_cost = 35
 
 
 func _on_next_stage_pressed():
@@ -250,7 +269,7 @@ func _on_next_stage_pressed():
 			previous_stage.text = "Building Stage"
 			previous_stage.show()
 			current_stage.text = "Wiring Stage"
-			next_stage.text = "Finish Mech"
+			next_stage.text = "Combat Stage #" + str(PlayerData.current_stage)
 			next_mech.disabled = true
 			previous_mech.disabled = true
 			clear_field.disabled = true
@@ -336,6 +355,9 @@ func update_info_panel(icon_data, name_data, desc_data):
 	icon.texture = icon_data
 	name_label.text = "Name:\n" + name_data
 	desc_label.text = "Description:\n" + desc_data
+
+func update_cash_panel():
+	cash_label.text = "Cash: " + str(PlayerData.money)
 
 func attention(ui_object, duration : int, fade_out : bool = false):
 	var tween = create_tween()

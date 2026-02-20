@@ -108,6 +108,7 @@ size = Vector2(28, 13)
 [node name="AimControl" type="Area2D" unique_id=1390806880]
 script = ExtResource("1_7jspn")
 metadata/labeltext = "Aim"
+metadata/price = 10
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=456047944]
 position = Vector2(0, 3.5)

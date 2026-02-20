@@ -34,6 +34,7 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_ifkm0")
 metadata/npc_capacity = 1
+metadata/price = 20
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
 sprite_frames = SubResource("SpriteFrames_is2g2")

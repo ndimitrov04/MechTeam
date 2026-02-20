@@ -117,6 +117,7 @@ size = Vector2(27, 13)
 [node name="ModuleControl" type="Area2D" unique_id=1393767290]
 script = ExtResource("1_a0hu3")
 metadata/labeltext = "Engage"
+metadata/price = 15
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=837698643]
 position = Vector2(0, 3.5)
@@ -196,3 +197,4 @@ region_rect = Rect2(49, 225, 62, 29)
 position = Vector2(0.5, 23)
 shape = SubResource("RectangleShape2D_dvrx3")
 one_way_collision = true
+metadata/price = 15

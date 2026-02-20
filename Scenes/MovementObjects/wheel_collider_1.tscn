@@ -6,3 +6,4 @@ length = 35.0
 [node name="WheelCollider1" type="CollisionShape2D" unique_id=1824074158]
 shape = SubResource("SeparationRayShape2D_bo1nx")
 debug_color = Color(1, 1, 0, 1)
+metadata/price = 10

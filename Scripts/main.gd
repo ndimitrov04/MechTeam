@@ -9,9 +9,11 @@ extends Node2D
 @onready var screen_border = $Foreground/Parallax1/ScreenBorder
 
 const SPAWN_OFFSET = 1000 # Next enemy offset in pixels
-@onready var enemies_left = 3
+@onready var enemies_left : int = float(PlayerData.current_stage) * 1.5
 @onready var triggered : bool = false
 
+@onready var npc_deaths : int = 0
+@onready var rewards_collected : int = 0
 
 const MECH_1 = preload("uid://b8wn41m8pycq8")
 
@@ -21,13 +23,11 @@ func _process(_delta):
 	if enemies_left <= 0 and not triggered:
 		music.stream = preload("uid://bfjye4qxke0i")
 		music.play()
+		end_stage()
 		triggered = true
 	
 	if enemies_left <= 0:
-		minigame_result.text = "YOU WIN!"
-		minigame_result.add_theme_color_override("font_color", Color("green"))
-		minigame_result.show()
-		minigame_result.modulate = Color("white")
+		minigame_result.modulate = Color(1,1,1,1)
 
 func advance():
 	if enemies_left > 0:
@@ -40,3 +40,27 @@ func spawn_random_enemy():
 	var enemy_instance = enemies.pick_random().instantiate()
 	mech.add_sibling(enemy_instance)
 	enemy_instance.global_position.x = screen_border.global_position.x - 250
+
+func end_stage():
+	await get_tree().create_timer(0.1).timeout
+	minigame_result.position.y -= 550
+	PlayerData.current_stage += 1
+	PlayerData.money -= (mech.max_hp - mech.hp) * 0.5
+	PlayerData.money -= npc_deaths * 10
+	minigame_result.text = (
+			"YOU WIN!\n\n\n" +
+			"Rewards collected: " + str(rewards_collected) +
+			"\n\nMech Status" +
+			"\nDamage taken: " + str(mech.max_hp - mech.hp) + 
+			"\n- Repair costs: " + str(int((mech.max_hp - mech.hp) * 0.5)) + 
+			"\n\nCrew Status" +
+			"\nCrew Wages: " + str(mech.npcs.get_child_count() * 5) +
+			"\nCrew Injured: " + str(npc_deaths) + 
+			"\n- Medical fees: " + str(npc_deaths * 10) +
+			"\n\nTotal cash: " + str(PlayerData.money) +
+			"\n\n\nGoing to next stage in 15 seconds..."
+		)
+	minigame_result.add_theme_color_override("font_color", Color("green"))
+	minigame_result.show()
+	await get_tree().create_timer(16).timeout
+	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")

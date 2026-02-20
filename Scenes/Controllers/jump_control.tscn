@@ -71,6 +71,7 @@ size = Vector2(27, 13)
 material = SubResource("ShaderMaterial_bdllg")
 script = ExtResource("1_8s1xf")
 metadata/labeltext = "Jump"
+metadata/price = 15
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=78923597]
 position = Vector2(0, -2)

@@ -79,4 +79,5 @@ func take_damage(damage, _collision, _knockback_force):
 	invincible = false
 
 func die():
+	get_parent().get_parent().get_parent().npc_deaths += 1 # Main
 	queue_free()
