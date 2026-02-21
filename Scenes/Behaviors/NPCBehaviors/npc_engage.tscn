@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://baicns6vv5igj"]
+
+[ext_resource type="Script" uid="uid://cnviq1alqbvln" path="res://Scripts/Behaviors/NPCBehaviors/npc_engage.gd" id="1_u8061"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xkex"]
+size = Vector2(24, 29)
+
+[node name="NPCEngage" type="Node2D" unique_id=911372698]
+script = ExtResource("1_u8061")
+
+[node name="EngageArea" type="Area2D" parent="." unique_id=1181122363]
+
+[node name="Hitbox" type="CollisionShape2D" parent="EngageArea" unique_id=668587916]
+position = Vector2(2, 9.5)
+shape = SubResource("RectangleShape2D_2xkex")
+debug_color = Color(0, 0.6392157, 0.38039216, 0.06666667)

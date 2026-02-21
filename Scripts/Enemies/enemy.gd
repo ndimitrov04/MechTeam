@@ -7,6 +7,7 @@ extends RigidBody2D
 
 @onready var background = $Background
 @onready var frame = $Frame
+@onready var npcs = $NPCs
 
 @onready var modules = $Modules
 

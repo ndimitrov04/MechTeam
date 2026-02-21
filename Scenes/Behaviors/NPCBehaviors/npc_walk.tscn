@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c1tsun6sshawv"]
+
+[ext_resource type="Script" uid="uid://d23j2fdh1ytj1" path="res://Scripts/Behaviors/NPCBehaviors/npc_walk.gd" id="1_gcvhr"]
+
+[node name="NPCWalk" type="Node2D" unique_id=1222509953]
+script = ExtResource("1_gcvhr")
+
+[node name="EdgeDetector" type="RayCast2D" parent="." unique_id=1120184694]
+position = Vector2(18, 16)
+target_position = Vector2(0, 12)
+collision_mask = 16399
+
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=179272913]
+position = Vector2(0, 10)
+target_position = Vector2(25, 0)
+collision_mask = 8192

@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 @onready var minigames = $"../GUI/Control/Minigames"
 
+@onready var friendly_unit : bool = true
 
 const SPEED = 150.0
 const AIMSPEED = 750

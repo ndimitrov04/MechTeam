@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cakc2c25okepc"]
+
+[ext_resource type="Script" uid="uid://c5nteey1artcx" path="res://Scripts/Behaviors/NPCBehaviors/npc_cooldown.gd" id="1_belml"]
+[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="2_jh8jf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8gudg"]
+shader = ExtResource("2_jh8jf")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qi7up"]
+load_path = "res://.godot/imported/Circle.png-c6367644dfe9e873ba9cd21dc651e9f9.ctex"
+
+[node name="NPCCooldown" type="Node2D" unique_id=331200671]
+script = ExtResource("1_belml")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="." unique_id=1711692983]
+material = SubResource("ShaderMaterial_8gudg")
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 15.0
+fill_mode = 5
+texture_progress = SubResource("CompressedTexture2D_qi7up")
+tint_progress = Color(0, 0.7199734, 0.28871077, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=1045278227]
+one_shot = true

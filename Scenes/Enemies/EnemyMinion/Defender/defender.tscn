@@ -1,0 +1,186 @@
+[gd_scene format=3 uid="uid://c2df7dij3p5ck"]
+
+[ext_resource type="Script" uid="uid://cdygc0ff6ltt6" path="res://Scripts/Enemies/defender.gd" id="1_bu6yp"]
+[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="2_rv24q"]
+[ext_resource type="Texture2D" uid="uid://bsvxcregusx5a" path="res://Images/Characters/Enemies/Enemy1/Attack.png" id="3_emy6p"]
+[ext_resource type="Texture2D" uid="uid://cnbgel3oj0o2w" path="res://Images/Characters/Enemies/Enemy1/Idle.png" id="4_2dm46"]
+[ext_resource type="Script" uid="uid://baiso3ce2d01v" path="res://Scripts/Behaviors/NPCBehaviors/npc_fight.gd" id="4_ervb5"]
+[ext_resource type="Texture2D" uid="uid://5ed7f5o6iab8" path="res://Images/Characters/Enemies/Enemy1/Walk.png" id="5_1c2ht"]
+[ext_resource type="PackedScene" uid="uid://c1tsun6sshawv" path="res://Scenes/Behaviors/NPCBehaviors/npc_walk.tscn" id="5_2dm46"]
+[ext_resource type="PackedScene" uid="uid://baicns6vv5igj" path="res://Scenes/Behaviors/NPCBehaviors/npc_engage.tscn" id="6_1c2ht"]
+[ext_resource type="PackedScene" uid="uid://cakc2c25okepc" path="res://Scenes/Behaviors/NPCBehaviors/npc_cooldown.tscn" id="7_k0esn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gudg"]
+size = Vector2(15, 22)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xkex"]
+shader = ExtResource("2_rv24q")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0esn"]
+atlas = ExtResource("3_emy6p")
+region = Rect2(0, 0, 46, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33out"]
+atlas = ExtResource("3_emy6p")
+region = Rect2(46, 0, 46, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2dva"]
+atlas = ExtResource("3_emy6p")
+region = Rect2(92, 0, 46, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tq7a"]
+atlas = ExtResource("4_2dm46")
+region = Rect2(1, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvodv"]
+atlas = ExtResource("4_2dm46")
+region = Rect2(49, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5bi2"]
+atlas = ExtResource("4_2dm46")
+region = Rect2(97, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt7sx"]
+atlas = ExtResource("4_2dm46")
+region = Rect2(145, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emy6p"]
+atlas = ExtResource("5_1c2ht")
+region = Rect2(2, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ervb5"]
+atlas = ExtResource("5_1c2ht")
+region = Rect2(50, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dm46"]
+atlas = ExtResource("5_1c2ht")
+region = Rect2(98, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1c2ht"]
+atlas = ExtResource("5_1c2ht")
+region = Rect2(145, 0, 26, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31icw"]
+atlas = ExtResource("5_1c2ht")
+region = Rect2(194, 0, 24, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egdbj"]
+atlas = ExtResource("5_1c2ht")
+region = Rect2(242, 0, 24, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bishy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0esn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33out")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2dva")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tq7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvodv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5bi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt7sx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emy6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ervb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dm46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1c2ht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31icw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egdbj")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6atyd"]
+size = Vector2(15, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33out"]
+size = Vector2(200, 37)
+
+[node name="Defender" type="CharacterBody2D" unique_id=2022641288]
+process_mode = 4
+z_index = 30
+collision_layer = 0
+collision_mask = 4096
+script = ExtResource("1_bu6yp")
+metadata/friendly_npc = true
+
+[node name="ShootPoint" type="Node2D" parent="." unique_id=781324217]
+position = Vector2(15, -5)
+
+[node name="Walkbox" type="CollisionShape2D" parent="." unique_id=1172288629]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_8gudg")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1697861877]
+material = SubResource("ShaderMaterial_2xkex")
+position = Vector2(-2, -9)
+sprite_frames = SubResource("SpriteFrames_bishy")
+autoplay = "default"
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1231064687]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox" unique_id=1674009463]
+position = Vector2(2.5, 12)
+shape = SubResource("RectangleShape2D_6atyd")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCFight" type="Node2D" parent="." unique_id=1407770630]
+script = ExtResource("4_ervb5")
+
+[node name="DetectionArea" type="Area2D" parent="NPCFight" unique_id=1159858953]
+collision_layer = 0
+collision_mask = 6159
+monitorable = false
+
+[node name="Hitbox" type="CollisionShape2D" parent="NPCFight/DetectionArea" unique_id=782933909]
+position = Vector2(100, 0)
+shape = SubResource("RectangleShape2D_33out")
+debug_color = Color(5.2943824e-06, 0.5894488, 0.7620854, 0.06666667)
+
+[node name="NPCWalk" parent="." unique_id=1222509953 instance=ExtResource("5_2dm46")]
+position = Vector2(-2, -9)
+
+[node name="NPCEngage" parent="." unique_id=911372698 instance=ExtResource("6_1c2ht")]
+position = Vector2(-2, -9)
+
+[node name="NPCCooldown" parent="." unique_id=331200671 instance=ExtResource("7_k0esn")]
+position = Vector2(-2, -43)

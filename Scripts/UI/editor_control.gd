@@ -108,14 +108,14 @@ func _ready():
 	walls.set_item_tooltip(1, "Basic decorative wall.")
 	walls.set_item_tooltip(2, "Basic decorative wall.")
 	# Modules
-	modules.set_item_tooltip(0, "Cost: 10\nMachine Gun. 
+	modules.set_item_tooltip(0, "Cost: 10
 	Shoots 10 bullets per volley. 
 	Needs 30 energy to shoot.
 	Must be connected to an 
 	ENGAGE control terminal to shoot.
 	Mech must have an AIM control 
 	terminal onboard for this weapon to be aimed.")
-	modules.set_item_tooltip(1, "Cost: 25\nBattery. Holds energy. 
+	modules.set_item_tooltip(1, "Cost: 25\nHolds energy. 
 	Recharges passively (1 energy/sec).
 	It can be manually recharged rapidly (50 energy) 
 	if connected to an ENGAGE control temrinal.")
@@ -123,7 +123,7 @@ func _ready():
 	Add 1 point to crew capacity. 
 	Required if you want crew operators.")
 	# Controllers
-	controllers.set_item_tooltip(0, "Cost: 10\nAim control. 
+	controllers.set_item_tooltip(0, "Cost: 10
 	This controller lets the player aim a mech's weapons.")
 	controllers.set_item_tooltip(1, "Cost: 5\nThis controller moves a mech to the left.")
 	controllers.set_item_tooltip(2, "Cost: 5\nThis controller moves a mech to the right.")
@@ -134,19 +134,17 @@ func _ready():
 	When used, it makes the module 
 	it is connected to work.")
 	# Movement
-	movement.set_item_tooltip(0, "Cost: 10\nBasic tracks. 
+	movement.set_item_tooltip(0, "Cost: 10
 	Can be controlled by movement controllers.
 	Can move to the left and right. 
 	Can jump. Can brake.")
 	# NPCs
-	npc_list.set_item_tooltip(0, "Cost: 35\nWage: 5\nBasic operator. 
+	npc_list.set_item_tooltip(0, "Cost: 35 Wage: 5 Supply: 1\n 
 	Will move left and right 
 	and interact with ENGAGE 
 	terminals it comes across. 
 	Has 1 second of engage cooldown. 
-	Requires 1 supply module.
-	Costs 5 coins per beaten stage.
-	Medical fees if incapacitaded: 10 coins.")
+	Medical fees if incapacitated: 10 coins.")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

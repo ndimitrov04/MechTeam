@@ -19,6 +19,7 @@ const NPC_SPRITES = [NPC_1, NPC_2, NPC_3]
 @onready var npc_cooldown = $NPCCooldown
 
 @onready var type : MechData.ObjectType = MechData.ObjectType.NPC
+@onready var friendly_unit : bool = true
 
 var hp : int = 5
 var invincible : bool = false
