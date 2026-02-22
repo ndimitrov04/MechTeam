@@ -28,7 +28,7 @@ const BULLET = preload("uid://7pvmbpigkpq1")
 
 @onready var shoot_point = $ShootPoint
 
-var hp : int = 5
+var hp : int = 2
 var invincible : bool = false
 
 func _ready():
@@ -83,7 +83,7 @@ func inv_frame_vfx(duration : float):
 		tween.tween_property(sprite, "modulate:a", 1.0, 0.1)
 
 func take_damage(damage, _collision, _knockback_force):
-	const inv_time : float = 1
+	const inv_time : float = 0.2
 	if not invincible:
 		hp -= damage
 	if hp <= 0:
@@ -95,7 +95,7 @@ func take_damage(damage, _collision, _knockback_force):
 	invincible = false
 
 func die():
-	#get_parent().get_parent().get_parent().npc_deaths += 1 # Main
+	get_parent().get_parent().update_decision_timer() # Notify mech of death
 	queue_free()
 
 func fight(stun_duration : float):

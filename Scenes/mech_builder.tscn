@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://cmnf55n8eag5q" path="res://Images/Icons/Editor/Modules/gun1.png" id="16_ojmi2"]
 [ext_resource type="Texture2D" uid="uid://cojolci0hnjby" path="res://Images/Icons/Editor/Modules/battery.png" id="17_dtcmd"]
 [ext_resource type="Texture2D" uid="uid://dqy1181vshntf" path="res://Images/Icons/Editor/Modules/suppl.png" id="18_rsqvi"]
+[ext_resource type="Texture2D" uid="uid://0nsu3doe2kyg" path="res://Images/MechGuns/turret_01_mk1s.png" id="19_dtcmd"]
 [ext_resource type="Texture2D" uid="uid://bcm3rra3jvqf6" path="res://Images/Icons/Editor/Controllers/control_aim.png" id="19_u3rqv"]
 [ext_resource type="Texture2D" uid="uid://cdge6hp277b6m" path="res://Images/Icons/Editor/Controllers/move.png" id="20_liku1"]
 [ext_resource type="Texture2D" uid="uid://ch67qiwcpxw25" path="res://Images/Icons/Editor/Controllers/engage.png" id="21_xxkf5"]
@@ -1894,7 +1895,7 @@ metadata/_tab_index = 1
 [node name="Modules" type="ItemList" parent="GUI/Control/TabContainer" unique_id=848252397]
 visible = false
 layout_mode = 2
-item_count = 3
+item_count = 4
 fixed_icon_size = Vector2i(32, 32)
 item_0/text = "M. Gun"
 item_0/icon = ExtResource("16_ojmi2")
@@ -1905,6 +1906,9 @@ item_1/selectable = false
 item_2/text = "Supplies"
 item_2/icon = ExtResource("18_rsqvi")
 item_2/selectable = false
+item_3/text = "Aux. Gun"
+item_3/icon = ExtResource("19_dtcmd")
+item_3/selectable = false
 metadata/_tab_index = 2
 
 [node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer" unique_id=288800539]

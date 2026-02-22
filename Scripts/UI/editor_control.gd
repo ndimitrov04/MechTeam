@@ -70,6 +70,7 @@ extends Control
 const MACHINEGUN1 = preload("uid://tgc6pvjmf1xi")
 const BATTERY = preload("uid://l73g8614cmho")
 const SUPPLIES = preload("uid://bqppfxqplbr13")
+const AUX_GUN = preload("uid://de21e0lmsfjcd")
 # CONTROLLERS
 const AIM_CONTROL = preload("uid://bjychxdy31gx5")
 const JUMP_CONTROL = preload("uid://cqf1xuoccxt6k")
@@ -122,6 +123,11 @@ func _ready():
 	modules.set_item_tooltip(2, "Cost: 20\nSupplies. 
 	Add 1 point to crew capacity. 
 	Required if you want crew operators.")
+	modules.set_item_tooltip(3, "Cost: 20
+	Shoots 5 bullets per volley. 
+	Needs 10 energy to shoot.
+	Controlled locally.
+	Cannot be aimed.")
 	# Controllers
 	controllers.set_item_tooltip(0, "Cost: 10
 	This controller lets the player aim a mech's weapons.")
@@ -205,6 +211,9 @@ func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 			editor.current_cost = 25
 		2:
 			editor.chosen_object = SUPPLIES
+			editor.current_cost = 20
+		3:
+			editor.chosen_object = AUX_GUN
 			editor.current_cost = 20
 
 func _on_controllers_item_clicked(index, _at_position, _mouse_button_index):

@@ -21,7 +21,7 @@ const NPC_SPRITES = [NPC_1, NPC_2, NPC_3]
 @onready var type : MechData.ObjectType = MechData.ObjectType.NPC
 @onready var friendly_unit : bool = true
 
-var hp : int = 5
+var hp : int = 4
 var invincible : bool = false
 
 func _ready():
@@ -68,7 +68,7 @@ func inv_frame_vfx(duration : float):
 		tween.tween_property(sprite, "modulate:a", 1.0, 0.1)
 
 func take_damage(damage, _collision, _knockback_force):
-	const inv_time : float = 1
+	const inv_time : float = 0.5
 	if not invincible:
 		hp -= damage
 	if hp <= 0:

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://d23lcjrnsoyau"]
+
+[ext_resource type="Script" uid="uid://chjc7gcvp3m63" path="res://Scripts/MechControllers/local_control/local_control.gd" id="1_r5bvg"]
+[ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="2_7ft3a"]
+[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="3_2epfl"]
+[ext_resource type="Texture2D" uid="uid://b0nqwpuaqsv3s" path="res://Images/Circle.png" id="4_0g1nd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
+size = Vector2(35, 27)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u50mg"]
+line_spacing = 0.0
+font = ExtResource("2_7ft3a")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mb35e"]
+shader = ExtResource("3_2epfl")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[node name="LocalControl" type="Area2D" unique_id=573389250]
+script = ExtResource("1_r5bvg")
+metadata/labeltext = "Shoot"
+metadata/price = 15
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1532487365]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_d1ilt")
+debug_color = Color(3.85046e-06, 0.60451144, 0.25219792, 0.44705883)
+
+[node name="InteractionLabel" type="Label" parent="." unique_id=1807647727]
+visible = false
+offset_left = -43.0
+offset_top = -32.0
+offset_right = 42.0
+offset_bottom = -9.0
+text = "Go Right"
+label_settings = SubResource("LabelSettings_u50mg")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Cooldown" type="Node2D" parent="." unique_id=2119483464]
+position = Vector2(0, -26)
+
+[node name="CooldownBar" type="TextureProgressBar" parent="Cooldown" unique_id=894081627]
+material = SubResource("ShaderMaterial_mb35e")
+offset_left = -8.0
+offset_top = -17.0
+offset_right = 8.0
+offset_bottom = -1.0
+fill_mode = 5
+texture_progress = ExtResource("4_0g1nd")
+tint_progress = Color(1, 0.3529412, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="Cooldown" unique_id=1973274652]
+one_shot = true

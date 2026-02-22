@@ -8,6 +8,7 @@ extends RigidBody2D
 @onready var background = $Background
 @onready var frame = $Frame
 @onready var npcs = $NPCs
+@onready var spawners = $Spawners
 
 @onready var modules = $Modules
 
@@ -27,6 +28,8 @@ var asleep : bool = true
 
 func _ready():
 	action_decision.timeout.connect(_on_action_decision_timeout)
+	await get_tree().create_timer(0.5).timeout
+	update_decision_timer()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -77,6 +80,11 @@ func die():
 	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
 	main.advance()
 	queue_free()
+
+func update_decision_timer():
+	var crew_capacity = spawners.get_child_count()
+	var crew_count = npcs.get_child_count()
+	action_decision.wait_time = clampf((crew_capacity / 4.0) - ((crew_count - 1) / 4.0), 0.4, 5.0)
 
 func _on_action_decision_timeout():
 	var action = randi_range(1, 100)

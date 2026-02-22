@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dkk6dac4fqg53" path="res://Scenes/Controllers/mov_control_x_axis.tscn" id="6_b7gtw"]
 [ext_resource type="PackedScene" uid="uid://tgc6pvjmf1xi" path="res://Scenes/Modules/Weapons/gun.tscn" id="7_mhfcp"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="8_rwft3"]
+[ext_resource type="Script" uid="uid://c65hpvf8mn4fl" path="res://Scripts/Behaviors/preset_enemy_spawning.gd" id="9_2d2mi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pi20n"]
 texture = ExtResource("4_2d2mi")
@@ -665,7 +666,6 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	# Convert collision position: Global -> Local -> Tilemap
 	if not collision:
 		return
-	#print(\"Took hit\")
 	var collision_pos_global = collision.get_position()
 	# Push the point slightly into the tile that was hit
 	# to ensure correct coordinate match-up with tile position
@@ -865,6 +865,25 @@ metadata/pinned_tile = Vector2i(11, -5)
 [node name="Gun4" parent="Modules" unique_id=31109065 instance=ExtResource("7_mhfcp")]
 position = Vector2(112, 240)
 metadata/pinned_tile = Vector2i(7, 15)
+
+[node name="Spawners" type="Node2D" parent="." unique_id=1122453186]
+script = ExtResource("9_2d2mi")
+metadata/spawn_chance = 0.75
+
+[node name="1" type="Node2D" parent="Spawners" unique_id=236867152]
+position = Vector2(160, 192)
+
+[node name="2" type="Node2D" parent="Spawners" unique_id=1982104889]
+position = Vector2(176, 32)
+
+[node name="3" type="Node2D" parent="Spawners" unique_id=1851355609]
+position = Vector2(736, 128)
+
+[node name="4" type="Node2D" parent="Spawners" unique_id=2010466751]
+position = Vector2(544, 128)
+
+[node name="5" type="Node2D" parent="Spawners" unique_id=1298860318]
+position = Vector2(192, -152)
 
 [node name="NPCs" type="Node2D" parent="." unique_id=1123477044]
 

@@ -15,7 +15,7 @@ const NPC = preload("uid://cmy4r8enqaty2")
 
 @onready var energy_regen = $EnergyRegen
 
-@onready var game_over = $"../GUI/Control/GameOver"
+@onready var game_over
 
 const SPEED = 50.0
 const JUMP_linear_velocity = -600.0
@@ -37,6 +37,8 @@ var regen_rate : int = 1
 func _ready():
 	if get_parent().name == "Editor":
 		in_editor = true
+	if not in_editor:
+		game_over = $"../GUI/Control/GameOver"
 	energy_regen.timeout.connect(_regenerate_energy)
 	if not get_meta("prebuilt"):
 		load_mech()
