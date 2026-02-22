@@ -687,6 +687,8 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	var impact_dir = collision.get_position() - global_position
 	debris_instance.apply_impulse(-impact_dir.normalized() * knockback_force)
 	debris_instance.apply_impulse(Vector2.UP * knockback_force * 2)
+	# Rotate it a bit to give it some visual flair
+	debris_instance.apply_torque(2500)
 	# HP gameplay logic
 	get_parent().take_damage(damage_value)
 	# Regenerate physics body's hitboxes
