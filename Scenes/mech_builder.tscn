@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://0nsu3doe2kyg" path="res://Images/MechGuns/turret_01_mk1s.png" id="19_dtcmd"]
 [ext_resource type="Texture2D" uid="uid://bcm3rra3jvqf6" path="res://Images/Icons/Editor/Controllers/control_aim.png" id="19_u3rqv"]
 [ext_resource type="Texture2D" uid="uid://cdge6hp277b6m" path="res://Images/Icons/Editor/Controllers/move.png" id="20_liku1"]
+[ext_resource type="Texture2D" uid="uid://dru24ur4egb66" path="res://Images/Objects/Shield/station.png" id="20_rsqvi"]
 [ext_resource type="Texture2D" uid="uid://ch67qiwcpxw25" path="res://Images/Icons/Editor/Controllers/engage.png" id="21_xxkf5"]
 [ext_resource type="Texture2D" uid="uid://byclhc8rvp825" path="res://Images/Icons/Editor/Movement/tracks.png" id="22_70h1r"]
 [ext_resource type="Texture2D" uid="uid://1nh8yejcja6e" path="res://Images/Icons/Editor/NPCs/npc.png" id="22_ct1h4"]
@@ -1853,6 +1854,22 @@ Place objects with left click. Remove them with right click.
 You can only place objects next to blocks or walls."
 autowrap_mode = 3
 
+[node name="VerNum" type="Label" parent="GUI/Control" unique_id=1514753181]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104
+anchor_right = 0.104
+offset_left = -191.68001
+offset_top = 944.0
+offset_right = 112.31999
+offset_bottom = 977.0
+theme_override_fonts/font = ExtResource("9_tgtas")
+theme_override_font_sizes/font_size = 16
+text = "MechTeam - Alpha Ver. 0.25
+
+All mechanics and assets are subject to change."
+autowrap_mode = 3
+
 [node name="TabContainer" type="TabContainer" parent="GUI/Control" unique_id=1519843520]
 layout_mode = 0
 offset_top = 104.0
@@ -1862,10 +1879,9 @@ theme_override_icons/increment = ExtResource("8_tgtas")
 theme_override_icons/increment_highlight = ExtResource("8_tgtas")
 theme_override_icons/decrement = ExtResource("7_w1m1m")
 theme_override_icons/decrement_highlight = ExtResource("7_w1m1m")
-current_tab = 1
+current_tab = 0
 
 [node name="Blocks" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1996411739]
-visible = false
 layout_mode = 2
 item_count = 2
 fixed_icon_size = Vector2i(32, 32)
@@ -1878,6 +1894,7 @@ item_1/selectable = false
 metadata/_tab_index = 0
 
 [node name="Walls" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1369784947]
+visible = false
 layout_mode = 2
 item_count = 3
 fixed_icon_size = Vector2i(32, 32)
@@ -1895,7 +1912,7 @@ metadata/_tab_index = 1
 [node name="Modules" type="ItemList" parent="GUI/Control/TabContainer" unique_id=848252397]
 visible = false
 layout_mode = 2
-item_count = 4
+item_count = 5
 fixed_icon_size = Vector2i(32, 32)
 item_0/text = "M. Gun"
 item_0/icon = ExtResource("16_ojmi2")
@@ -1909,6 +1926,9 @@ item_2/selectable = false
 item_3/text = "Aux. Gun"
 item_3/icon = ExtResource("19_dtcmd")
 item_3/selectable = false
+item_4/text = "Shield"
+item_4/icon = ExtResource("20_rsqvi")
+item_4/selectable = false
 metadata/_tab_index = 2
 
 [node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer" unique_id=288800539]

@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://b6bs5bi7wy45h" path="res://Scripts/minigames.gd" id="14_wsu2k"]
 [ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="18_3pmx8"]
 [ext_resource type="AudioStream" uid="uid://6xm4gvdu3qsl" path="res://Audio/Music/02 lava city.ogg" id="19_fevyy"]
+[ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="19_hibaj"]
 [ext_resource type="Script" uid="uid://1i7x3yrfunn2" path="res://Scripts/aim_viewport.gd" id="19_pdsj5"]
 [ext_resource type="Script" uid="uid://drkagrg0iq1mc" path="res://Scripts/mech_viewport.gd" id="20_ee4r6"]
 [ext_resource type="Texture2D" uid="uid://cmiucrejdoxwi" path="res://Images/Objects/Decor/monitor.png" id="21_3pmx8"]
@@ -1029,6 +1030,22 @@ offset_right = 1264.0
 offset_bottom = 406.0
 theme_override_font_sizes/font_size = 160
 text = "Game Over!"
+
+[node name="VerNum" type="Label" parent="GUI/Control" unique_id=1240883840]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104
+anchor_right = 0.104
+offset_left = 1400.32
+offset_top = 1024.0
+offset_right = 1704.32
+offset_bottom = 1057.0
+theme_override_fonts/font = ExtResource("19_hibaj")
+theme_override_font_sizes/font_size = 16
+text = "MechTeam - Alpha Ver. 0.25
+
+All mechanics and assets are subject to change."
+autowrap_mode = 3
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2025517324]
 stream = ExtResource("19_fevyy")

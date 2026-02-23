@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cqoj1222gihhh"]
+
+[ext_resource type="Script" uid="uid://dexnwn7to43n7" path="res://Scripts/Modules/Misc/shield.gd" id="1_6t61r"]
+[ext_resource type="Texture2D" uid="uid://dru24ur4egb66" path="res://Images/Objects/Shield/station.png" id="2_k2g40"]
+[ext_resource type="Script" uid="uid://c7bnebdm2vmqv" path="res://Scripts/Modules/Misc/shield_area.gd" id="3_vmqwx"]
+[ext_resource type="Texture2D" uid="uid://6ur15v07qmx7" path="res://Images/Objects/Shield/shield.png" id="4_o5f7a"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
+friction = 0.9
+bounce = 0.44
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k2g40")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5l7g"]
+size = Vector2(80, 96)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vmqwx"]
+
+[sub_resource type="Gradient" id="Gradient_glmyp"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o5f7a"]
+gradient = SubResource("Gradient_glmyp")
+width = 6
+height = 66
+
+[sub_resource type="Gradient" id="Gradient_qfse1"]
+offsets = PackedFloat32Array(0, 0.99761903, 1)
+colors = PackedColorArray(0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ws8us"]
+gradient = SubResource("Gradient_qfse1")
+width = 4
+fill_from = Vector2(1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6t61r"]
+radius = 256.0
+
+[node name="Shield" type="RigidBody2D" unique_id=834209248]
+z_index = 10
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_hptm8")
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_6t61r")
+metadata/price = 35
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_d1ilt")
+autoplay = "default"
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1882493289]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_m5l7g")
+
+[node name="EnergyDrain" type="Timer" parent="." unique_id=1953592999]
+wait_time = 3.0
+autostart = true
+
+[node name="Charge" type="TextureProgressBar" parent="." unique_id=2046173361]
+material = SubResource("ShaderMaterial_vmqwx")
+offset_left = -66.0
+offset_top = -50.0
+offset_right = -60.0
+offset_bottom = 16.0
+value = 100.0
+fill_mode = 3
+texture_under = SubResource("GradientTexture2D_o5f7a")
+texture_progress = SubResource("GradientTexture2D_ws8us")
+texture_progress_offset = Vector2(1, 1)
+
+[node name="ShieldArea" type="Area2D" parent="." unique_id=455181843]
+collision_layer = 3
+collision_mask = 3
+monitorable = false
+script = ExtResource("3_vmqwx")
+
+[node name="Shieldbox" type="CollisionShape2D" parent="ShieldArea" unique_id=250264207]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_6t61r")
+
+[node name="Shieldsprite" type="Sprite2D" parent="ShieldArea" unique_id=121536855]
+modulate = Color(1, 1, 1, 0.19215687)
+z_index = -1
+position = Vector2(0, -16)
+texture = ExtResource("4_o5f7a")

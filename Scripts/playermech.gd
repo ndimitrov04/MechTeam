@@ -146,7 +146,7 @@ func _regenerate_energy():
 	#else:
 		#energy = max_energy
 
-func drain_energy(amount : int):
+func drain_energy(amount : int) -> bool:
 	var leftover = null
 	for child in modules.get_children():
 		if "current_energy" in child:
@@ -155,6 +155,9 @@ func drain_energy(amount : int):
 			continue
 		if leftover <= 0:
 			break
+	if leftover <= 0:
+		return true
+	return false
 
 func take_damage(damage_value : int):
 	hp -= damage_value
