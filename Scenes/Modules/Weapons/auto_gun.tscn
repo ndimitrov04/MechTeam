@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bhwduvjbtg6l5"]
+
+[ext_resource type="Script" uid="uid://g2evhlrxorh6" path="res://Scripts/Modules/Weapons/aux_gun.gd" id="1_kaprd"]
+[ext_resource type="Texture2D" uid="uid://brybsloyvuqd3" path="res://Images/MechGuns/turret_01_mk1s_b.png" id="2_kaprd"]
+[ext_resource type="PackedScene" uid="uid://rmro1jasegqk" path="res://Scenes/Behaviors/auto_control.tscn" id="3_5r33s"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
+friction = 0.9
+bounce = 0.44
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_77e0b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kaprd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_mn7h6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8wj6m"]
+gradient = SubResource("Gradient_mn7h6")
+width = 4
+height = 25
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1ilt"]
+height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn7h6"]
+size = Vector2(23, 4)
+
+[node name="AutoGun" type="RigidBody2D" unique_id=834209248]
+z_index = 10
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_hptm8")
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_kaprd")
+metadata/aim_speed = 2.0
+metadata/pinned_tile = Vector2i(0, 0)
+metadata/price = 35
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_77e0b")
+autoplay = "default"
+frame_progress = 0.31040195
+
+[node name="Pole" type="Sprite2D" parent="." unique_id=616206252]
+top_level = true
+z_index = -1
+z_as_relative = false
+position = Vector2(0, 11.75)
+scale = Vector2(1, 0.9)
+texture = SubResource("GradientTexture2D_8wj6m")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=196601224]
+position = Vector2(1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_d1ilt")
+
+[node name="Hitbox2" type="CollisionShape2D" parent="." unique_id=1968152825]
+position = Vector2(-1.1920929e-07, 11.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_mn7h6")
+
+[node name="ShootPoint" type="Node2D" parent="." unique_id=670362176]
+position = Vector2(40, 0)
+
+[node name="AutoControl" parent="." unique_id=573389250 instance=ExtResource("3_5r33s")]

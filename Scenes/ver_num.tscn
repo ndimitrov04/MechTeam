@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://yjvcojipbr0l"]
+
+[ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="1_o14oj"]
+[ext_resource type="Script" uid="uid://b3uknp27w5hse" path="res://Scripts/ver_num.gd" id="2_fnmyb"]
+
+[node name="VerNum" type="Label" unique_id=1710955397]
+anchors_preset = -1
+anchor_left = 0.104
+anchor_right = 0.104
+offset_left = -191.68001
+offset_top = 944.0
+offset_right = 112.31999
+offset_bottom = 977.0
+theme_override_fonts/font = ExtResource("1_o14oj")
+theme_override_font_sizes/font_size = 16
+text = "MechTeam - Alpha Ver. 0.25
+
+All mechanics and assets are subject to change."
+autowrap_mode = 3
+script = ExtResource("2_fnmyb")

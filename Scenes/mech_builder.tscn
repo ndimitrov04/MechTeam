@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://sqeege6vntn4" path="res://Scripts/UI/editor_control.gd" id="6_us428"]
 [ext_resource type="Texture2D" uid="uid://ct452l4vvyn2i" path="res://Images/Placeholders/left.png" id="7_w1m1m"]
 [ext_resource type="Texture2D" uid="uid://cenobjevlni5" path="res://Images/Placeholders/right.png" id="8_tgtas"]
+[ext_resource type="PackedScene" uid="uid://yjvcojipbr0l" path="res://Scenes/ver_num.tscn" id="9_liku1"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="9_tgtas"]
 [ext_resource type="AudioStream" uid="uid://cs8s38pem2m8w" path="res://Audio/Music/rbl.mp3" id="10_q3hfk"]
 [ext_resource type="Texture2D" uid="uid://bs2fqwxm2rdeq" path="res://Images/Placeholders/up.png" id="10_s1xxn"]
@@ -27,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bcm3rra3jvqf6" path="res://Images/Icons/Editor/Controllers/control_aim.png" id="19_u3rqv"]
 [ext_resource type="Texture2D" uid="uid://cdge6hp277b6m" path="res://Images/Icons/Editor/Controllers/move.png" id="20_liku1"]
 [ext_resource type="Texture2D" uid="uid://dru24ur4egb66" path="res://Images/Objects/Shield/station.png" id="20_rsqvi"]
+[ext_resource type="Texture2D" uid="uid://brybsloyvuqd3" path="res://Images/MechGuns/turret_01_mk1s_b.png" id="21_u3rqv"]
 [ext_resource type="Texture2D" uid="uid://ch67qiwcpxw25" path="res://Images/Icons/Editor/Controllers/engage.png" id="21_xxkf5"]
 [ext_resource type="Texture2D" uid="uid://byclhc8rvp825" path="res://Images/Icons/Editor/Movement/tracks.png" id="22_70h1r"]
 [ext_resource type="Texture2D" uid="uid://1nh8yejcja6e" path="res://Images/Icons/Editor/NPCs/npc.png" id="22_ct1h4"]
@@ -1854,21 +1856,9 @@ Place objects with left click. Remove them with right click.
 You can only place objects next to blocks or walls."
 autowrap_mode = 3
 
-[node name="VerNum" type="Label" parent="GUI/Control" unique_id=1514753181]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.104
-anchor_right = 0.104
-offset_left = -191.68001
-offset_top = 944.0
-offset_right = 112.31999
-offset_bottom = 977.0
-theme_override_fonts/font = ExtResource("9_tgtas")
-theme_override_font_sizes/font_size = 16
-text = "MechTeam - Alpha Ver. 0.25
-
-All mechanics and assets are subject to change."
-autowrap_mode = 3
+[node name="VerNum" parent="GUI/Control" unique_id=1710955397 instance=ExtResource("9_liku1")]
+layout_mode = 0
+anchors_preset = 0
 
 [node name="TabContainer" type="TabContainer" parent="GUI/Control" unique_id=1519843520]
 layout_mode = 0
@@ -1912,7 +1902,7 @@ metadata/_tab_index = 1
 [node name="Modules" type="ItemList" parent="GUI/Control/TabContainer" unique_id=848252397]
 visible = false
 layout_mode = 2
-item_count = 5
+item_count = 6
 fixed_icon_size = Vector2i(32, 32)
 item_0/text = "M. Gun"
 item_0/icon = ExtResource("16_ojmi2")
@@ -1929,6 +1919,9 @@ item_3/selectable = false
 item_4/text = "Shield"
 item_4/icon = ExtResource("20_rsqvi")
 item_4/selectable = false
+item_5/text = "Auto Gun"
+item_5/icon = ExtResource("21_u3rqv")
+item_5/selectable = false
 metadata/_tab_index = 2
 
 [node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer" unique_id=288800539]

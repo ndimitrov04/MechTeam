@@ -72,6 +72,7 @@ const BATTERY = preload("uid://l73g8614cmho")
 const SUPPLIES = preload("uid://bqppfxqplbr13")
 const AUX_GUN = preload("uid://de21e0lmsfjcd")
 const SHIELD = preload("uid://cqoj1222gihhh")
+const AUTO_GUN = preload("uid://bhwduvjbtg6l5")
 # CONTROLLERS
 const AIM_CONTROL = preload("uid://bjychxdy31gx5")
 const JUMP_CONTROL = preload("uid://cqf1xuoccxt6k")
@@ -223,6 +224,9 @@ func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 			editor.current_cost = 20
 		4:
 			editor.chosen_object = SHIELD
+			editor.current_cost = 35
+		5:
+			editor.chosen_object = AUTO_GUN
 			editor.current_cost = 35
 
 func _on_controllers_item_clicked(index, _at_position, _mouse_button_index):

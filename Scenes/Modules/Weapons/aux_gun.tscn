@@ -46,7 +46,7 @@ max_contacts_reported = 1
 script = ExtResource("1_fspxv")
 metadata/aim_speed = 2.0
 metadata/pinned_tile = Vector2i(0, 0)
-metadata/price = 10
+metadata/price = 20
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
 rotation = 1.5707964
