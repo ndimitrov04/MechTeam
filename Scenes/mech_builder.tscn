@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://ch67qiwcpxw25" path="res://Images/Icons/Editor/Controllers/engage.png" id="21_xxkf5"]
 [ext_resource type="Texture2D" uid="uid://byclhc8rvp825" path="res://Images/Icons/Editor/Movement/tracks.png" id="22_70h1r"]
 [ext_resource type="Texture2D" uid="uid://1nh8yejcja6e" path="res://Images/Icons/Editor/NPCs/npc.png" id="22_ct1h4"]
+[ext_resource type="Texture2D" uid="uid://f0h626ncxs8t" path="res://Images/MechGuns/body_01a.png" id="23_xxkf5"]
 [ext_resource type="Texture2D" uid="uid://gw5qw3yjclk5" path="res://Images/Icons/Misc/Icon14_12.png" id="24_70h1r"]
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="24_ojmi2"]
 
@@ -1859,6 +1860,12 @@ autowrap_mode = 3
 [node name="VerNum" parent="GUI/Control" unique_id=1710955397 instance=ExtResource("9_liku1")]
 layout_mode = 0
 anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 304.0
+offset_bottom = 33.0
 
 [node name="TabContainer" type="TabContainer" parent="GUI/Control" unique_id=1519843520]
 layout_mode = 0
@@ -1902,7 +1909,7 @@ metadata/_tab_index = 1
 [node name="Modules" type="ItemList" parent="GUI/Control/TabContainer" unique_id=848252397]
 visible = false
 layout_mode = 2
-item_count = 6
+item_count = 7
 fixed_icon_size = Vector2i(32, 32)
 item_0/text = "M. Gun"
 item_0/icon = ExtResource("16_ojmi2")
@@ -1922,6 +1929,9 @@ item_4/selectable = false
 item_5/text = "Auto Gun"
 item_5/icon = ExtResource("21_u3rqv")
 item_5/selectable = false
+item_6/text = "Ram"
+item_6/icon = ExtResource("23_xxkf5")
+item_6/selectable = false
 metadata/_tab_index = 2
 
 [node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer" unique_id=288800539]

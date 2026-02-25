@@ -110,9 +110,9 @@ func _physics_process(delta):
 		jump = false
 
 	if direction:
-		linear_velocity.x = direction * SPEED
+		linear_velocity.x = move_toward(linear_velocity.x, direction * SPEED, 1) 
 	else:
-		linear_velocity.x = move_toward(linear_velocity.x, 0, SPEED)
+		linear_velocity.x = move_toward(linear_velocity.x, 0, 1)
 
 	if abs(linear_velocity.x) > 0:
 		for spr in movement_sprites.get_children():

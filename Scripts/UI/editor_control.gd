@@ -73,6 +73,7 @@ const SUPPLIES = preload("uid://bqppfxqplbr13")
 const AUX_GUN = preload("uid://de21e0lmsfjcd")
 const SHIELD = preload("uid://cqoj1222gihhh")
 const AUTO_GUN = preload("uid://bhwduvjbtg6l5")
+const RAM = preload("uid://d2uuifeftj3yo")
 # CONTROLLERS
 const AIM_CONTROL = preload("uid://bjychxdy31gx5")
 const JUMP_CONTROL = preload("uid://cqf1xuoccxt6k")
@@ -135,6 +136,18 @@ func _ready():
 	Regenerates 2 Shield HP/sec.
 	Summons a powerful force field.
 	Can deflect up to 100 damage.")
+	modules.set_item_tooltip(5, "Cost: 35
+	Automatic machine gun.
+	Shoots 5 bullets per volley. 
+	Needs 10 energy to shoot.
+	Controlled automatically.
+	Cannot be aimed.")
+	modules.set_item_tooltip(6, "Cost: 65
+	Melee weapon.
+	Ram into the enemy at high 
+	speed to deal damage.
+	Does not consume energy.
+	Cannot be aimed.")
 	# Controllers
 	controllers.set_item_tooltip(0, "Cost: 10
 	This controller lets the player aim a mech's weapons.")
@@ -228,6 +241,9 @@ func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 		5:
 			editor.chosen_object = AUTO_GUN
 			editor.current_cost = 35
+		6:
+			editor.chosen_object = RAM
+			editor.current_cost = 65
 
 func _on_controllers_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 2

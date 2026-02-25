@@ -608,6 +608,9 @@ physics_layer_0/collision_mask = 65535
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_hibaj")
 sources/2 = SubResource("TileSetAtlasSource_pdsj5")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pdsj5"]
+friction = 0.0
+
 [sub_resource type="Gradient" id="Gradient_k12tt"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.18243243, 0.3310811)
@@ -717,6 +720,7 @@ tile_map_data = PackedByteArray("AAAAACYAAgABAAAAAAAAACcAAgABAAEAAAAAACgAAgABAAI
 tile_set = SubResource("TileSet_jjvhh")
 
 [node name="Mech" parent="." unique_id=389051570 instance=ExtResource("9_hibaj")]
+physics_material_override = SubResource("PhysicsMaterial_pdsj5")
 
 [node name="EnemyMech1" parent="." unique_id=133330300 instance=ExtResource("10_fevyy")]
 position = Vector2(1176, 208)
