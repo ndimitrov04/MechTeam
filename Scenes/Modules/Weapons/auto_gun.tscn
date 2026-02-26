@@ -63,11 +63,13 @@ scale = Vector2(1, 0.9)
 texture = SubResource("GradientTexture2D_8wj6m")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=196601224]
+top_level = true
 position = Vector2(1, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_d1ilt")
 
 [node name="Hitbox2" type="CollisionShape2D" parent="." unique_id=1968152825]
+top_level = true
 position = Vector2(-1.1920929e-07, 11.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_mn7h6")
@@ -76,3 +78,4 @@ shape = SubResource("RectangleShape2D_mn7h6")
 position = Vector2(40, 0)
 
 [node name="AutoControl" parent="." unique_id=573389250 instance=ExtResource("3_5r33s")]
+top_level = true

@@ -105,7 +105,12 @@ func _on_action_decision_timeout():
 	# Shoot 10%
 	elif action >= 90:
 		if modules.get_child_count() > 0:
-			modules.get_children().pick_random().engage()
+			var module = null
+			while true:
+				module = modules.get_children().pick_random()
+				if not ("auto" in module):
+					break
+			module.engage()
 
 func is_on_floor():
 	return true

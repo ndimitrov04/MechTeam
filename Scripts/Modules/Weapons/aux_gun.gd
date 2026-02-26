@@ -17,6 +17,8 @@ var recoil : float = 0.15	# Recoil rotation of gun module per shot in radians
 var energy_cost : int = 10
 var cooldown_time : float = 10
 var aim_speed : float = 1.0
+var target_angle : float = 0
+var auto : bool = true
 
 @onready var is_friendly : bool = false
 @onready var type : MechData.ObjectType = MechData.ObjectType.MODULE
@@ -50,12 +52,14 @@ func _ready():
 		set_collision_mask_value(2, 0)
 		set_collision_layer_value(4, 1)
 		set_collision_mask_value(4, 1)
+	# Set default angle of turret head
+	if has_meta("default_angle"):
+		target_angle = get_meta("default_angle")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # "Aim"
 func _physics_process(delta):
 	pole.global_position = self.global_position + Vector2(0,11)
-	var target_angle = 0
 	global_rotation = lerp_angle(global_rotation, target_angle, aim_speed * delta)
 
 # Gun logic

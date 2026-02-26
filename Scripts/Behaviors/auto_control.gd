@@ -81,6 +81,7 @@ func _on_cooldown_timeout():
 	on_cooldown = false
 	cooldown_bar.hide()
 	controlled_module.engage()
+	timer.start(cooldown_time)
 
 func start_cooldown():
 	on_cooldown = true
