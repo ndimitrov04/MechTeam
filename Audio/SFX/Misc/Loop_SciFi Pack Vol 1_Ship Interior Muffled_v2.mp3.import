@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c2rux4dr3pu54"
+path="res://.godot/imported/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3-f4392fea8617bafca1f9f6517746040f.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3"
+dest_files=["res://.godot/imported/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3-f4392fea8617bafca1f9f6517746040f.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

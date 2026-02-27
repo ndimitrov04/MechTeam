@@ -5,7 +5,11 @@ extends RigidBody2D
 
 @onready var shoot_point = $ShootPoint
 
-@onready var pole = $Pole
+@onready var pole: Sprite2D = $Pole
+@onready var hitbox: CollisionShape2D = $Hitbox
+@onready var hitbox_2: CollisionShape2D = $Hitbox2
+@onready var auto_control: Area2D = $AutoControl
+
 
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
@@ -60,6 +64,9 @@ func _ready():
 # "Aim"
 func _physics_process(delta):
 	pole.global_position = self.global_position + Vector2(0,11)
+	auto_control.global_position = self.global_position
+	hitbox.global_position = self.global_position
+	hitbox_2.global_position = self.global_position
 	global_rotation = lerp_angle(global_rotation, target_angle, aim_speed * delta)
 
 # Gun logic

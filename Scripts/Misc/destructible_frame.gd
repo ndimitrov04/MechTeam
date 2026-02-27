@@ -3,12 +3,15 @@ extends TileMapLayer
 @onready var main = $"../.."
 
 const DEBRIS = preload("uid://rg2m11gs0xex")
+const DEBRIS_NOEXPL = preload("uid://cnockwlnou78d")
 
 # Used as collider for rigidbody
 const PHYSICS_COLLIDER = preload("uid://d27duv3avvgoi")
 # Used by regenerate_frame_collision
 # Determines where hitbox child clearing will start
 var collision_child_index_start
+
+var explosions : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -74,12 +77,17 @@ func _break_random_tile():
 	# Destroy collided tile at tilemap coords
 	self.set_cell(chosen_cell, -1)
 	# Spawn debris
-	var debris_instance = DEBRIS.instantiate()
+	var debris_instance
+	if explosions:
+		debris_instance = DEBRIS.instantiate()
+	else:
+		debris_instance = DEBRIS_NOEXPL.instantiate()
 	main.add_child(debris_instance)
 	debris_instance.global_position = to_global(map_to_local(chosen_cell))
 	debris_instance.set_sprite(chosen_tile_atlas)
 
 func break_all_tiles():
+	explosions = false
 	while get_used_cells().size() > 0:
 		await get_tree().process_frame
 		_break_random_tile()

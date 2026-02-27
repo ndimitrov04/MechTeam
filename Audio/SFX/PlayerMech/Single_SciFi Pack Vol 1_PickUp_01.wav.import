@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bu025hk8h50s2"
+path="res://.godot/imported/Single_SciFi Pack Vol 1_PickUp_01.wav-cec8618dd09c78f3d202b56defbfb44d.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/PlayerMech/Single_SciFi Pack Vol 1_PickUp_01.wav"
+dest_files=["res://.godot/imported/Single_SciFi Pack Vol 1_PickUp_01.wav-cec8618dd09c78f3d202b56defbfb44d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

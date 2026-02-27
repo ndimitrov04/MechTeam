@@ -19,6 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://cicudwcpgasti" path="res://Images/Objects/Generator/tile015.png" id="17_pjtxc"]
 [ext_resource type="Texture2D" uid="uid://qkpyf480lxn" path="res://Images/Objects/Generator/tile016.png" id="18_8062y"]
 [ext_resource type="Texture2D" uid="uid://dyt0o42f7o4f6" path="res://Images/Objects/Generator/tile017.png" id="19_4folw"]
+[ext_resource type="AudioStream" uid="uid://ctju2u7uhycnw" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Boost PowerDown_v1.wav" id="20_o332s"]
+[ext_resource type="AudioStream" uid="uid://c2yvv86sp1kpa" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Build Up_Short_var 1.wav" id="21_jgpvc"]
+[ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="22_d0ogs"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
 friction = 0.9
@@ -146,3 +149,23 @@ fill_mode = 3
 texture_under = SubResource("GradientTexture2D_g0kdv")
 texture_progress = SubResource("GradientTexture2D_glmyp")
 texture_progress_offset = Vector2(1, 1)
+
+[node name="SFX" type="Node2D" parent="." unique_id=1580841413]
+
+[node name="Drain" type="AudioStreamPlayer2D" parent="SFX" unique_id=1439534329]
+stream = ExtResource("20_o332s")
+max_distance = 200.0
+bus = &"SFX"
+
+[node name="Charge" type="AudioStreamPlayer2D" parent="SFX" unique_id=1702358490]
+stream = ExtResource("21_jgpvc")
+max_distance = 700.0
+bus = &"SFX"
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="SFX" unique_id=883132215]
+stream = ExtResource("22_d0ogs")
+volume_db = -15.0
+autoplay = true
+max_distance = 200.0
+bus = &"SFX"
+parameters/looping = true

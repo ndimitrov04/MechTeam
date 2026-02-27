@@ -6,6 +6,9 @@ extends Area2D
 @onready var sprite = $Sprite
 @onready var interaction_label = $InteractionLabel
 
+@onready var engage = $SFX/Engage
+@onready var disengage= $SFX/Disengage
+
 var controlled_module_index
 
 var player_in_range : bool = false
@@ -27,9 +30,11 @@ func _unhandled_input(event):
 				player.aim_mode = true
 				last_zoom = player.zoom
 				player.zoom = Vector2(1,1)
+				engage.play()
 			else:
 				player.aim_mode = false
 				player.zoom = last_zoom
+				disengage.play()
 
 func _on_body_entered(body):
 	if body.name == "Player":

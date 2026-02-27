@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dru24ur4egb66" path="res://Images/Objects/Shield/station.png" id="2_k2g40"]
 [ext_resource type="Script" uid="uid://c7bnebdm2vmqv" path="res://Scripts/Modules/Misc/shield_area.gd" id="3_vmqwx"]
 [ext_resource type="Texture2D" uid="uid://6ur15v07qmx7" path="res://Images/Objects/Shield/shield.png" id="4_o5f7a"]
+[ext_resource type="AudioStream" uid="uid://ctju2u7uhycnw" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Boost PowerDown_v1.wav" id="5_vlfaf"]
+[ext_resource type="AudioStream" uid="uid://b8gnpn43r6otu" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Heavy Plasma Shot_04.wav" id="6_hugvn"]
+[ext_resource type="AudioStream" uid="uid://c2yvv86sp1kpa" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Build Up_Short_var 1.wav" id="7_fkggt"]
+[ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="8_4lq3w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
 friction = 0.9
@@ -99,3 +103,28 @@ modulate = Color(1, 1, 1, 0.19215687)
 z_index = -1
 position = Vector2(0, -16)
 texture = ExtResource("4_o5f7a")
+
+[node name="SFX" type="Node2D" parent="." unique_id=1712269258]
+
+[node name="Drain" type="AudioStreamPlayer2D" parent="SFX" unique_id=1151026738]
+stream = ExtResource("5_vlfaf")
+max_distance = 200.0
+bus = &"SFX"
+
+[node name="Disable" type="AudioStreamPlayer2D" parent="SFX" unique_id=399727690]
+stream = ExtResource("6_hugvn")
+max_distance = 1000.0
+bus = &"SFX"
+
+[node name="Charge" type="AudioStreamPlayer2D" parent="SFX" unique_id=1908992198]
+stream = ExtResource("7_fkggt")
+max_distance = 700.0
+bus = &"SFX"
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="SFX" unique_id=1718851667]
+stream = ExtResource("8_4lq3w")
+volume_db = -15.0
+autoplay = true
+max_distance = 200.0
+bus = &"SFX"
+parameters/looping = true

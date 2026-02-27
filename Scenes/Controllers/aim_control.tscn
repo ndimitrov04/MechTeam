@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://u74a7m55t87w" path="res://Images/Objects/Control2/tile018.png" id="20_vwbhq"]
 [ext_resource type="Texture2D" uid="uid://bib4gre6gyyiu" path="res://Images/Objects/Control2/tile019.png" id="21_4irx3"]
 [ext_resource type="Texture2D" uid="uid://ds3cnl75d7mh6" path="res://Images/Tilesets/Industrial_Tileset.png" id="23_wy0ay"]
+[ext_resource type="AudioStream" uid="uid://diruuak81ohbd" path="res://Audio/SFX/Misc/terminal_03.ogg" id="24_xq2bj"]
+[ext_resource type="AudioStream" uid="uid://dayqkdehp1fm8" path="res://Audio/SFX/Misc/terminal_05.ogg" id="25_e5axb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
 size = Vector2(34, 25)
@@ -148,3 +150,13 @@ region_rect = Rect2(49, 225, 62, 29)
 position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_4r6d5")
 one_way_collision = true
+
+[node name="SFX" type="Node2D" parent="." unique_id=1492468253]
+
+[node name="Engage" type="AudioStreamPlayer2D" parent="SFX" unique_id=2034999256]
+stream = ExtResource("24_xq2bj")
+bus = &"SFX"
+
+[node name="Disengage" type="AudioStreamPlayer2D" parent="SFX" unique_id=286647559]
+stream = ExtResource("25_e5axb")
+bus = &"SFX"

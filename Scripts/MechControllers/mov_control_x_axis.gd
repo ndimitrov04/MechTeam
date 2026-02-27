@@ -6,6 +6,8 @@ extends Area2D
 @onready var sprite = $Sprite
 @onready var interaction_label = $InteractionLabel
 
+@onready var engage = $SFX/Engage
+
 var controlled_module_index
 
 var player_in_range : bool = false
@@ -22,6 +24,7 @@ func _unhandled_input(event):
 		if event.is_action_pressed("interact"):
 			var direction = get_meta("direction")
 			mech.direction = direction
+			engage.play()
 
 func _on_body_entered(body):
 	if body.name == "Player":

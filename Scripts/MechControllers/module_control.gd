@@ -12,6 +12,11 @@ extends Area2D
 @onready var cooldown_bar = $Cooldown/CooldownBar
 @onready var timer = $Cooldown/Timer
 
+@onready var sfx_connect: AudioStreamPlayer2D = $SFX/Connect
+@onready var sfx_disconnect: AudioStreamPlayer2D = $SFX/Disconnect
+@onready var engage: AudioStreamPlayer2D = $SFX/Engage
+@onready var disengage: AudioStreamPlayer2D = $SFX/Disengage
+
 var controlled_module
 var controlled_module_index
 var cooldown_time : float
@@ -47,8 +52,10 @@ func _unhandled_input(event):
 			if not player.minigame_mode:
 				mech.drain_energy(energy_cost)
 				player.start_minigame("quicktime_arrow", controlled_module)
+				engage.play()
 				start_cooldown()
 			else:
+				disengage.play()
 				player.end_minigame()
 
 func _input_event(_viewport, event, _shape_idx):
@@ -60,11 +67,13 @@ func _input_event(_viewport, event, _shape_idx):
 					print("Terminal disconnected from: " + controlled_module.name)
 					controlled_module = null
 					controlled_module_index = null
+					
 				connector.clear_points()
 				connector.add_point(Vector2(0,0))
 				connection_marker.show()
 				connection_marker.set_process(true)
 				print("Terminal set as active for connection")
+				sfx_disconnect.play()
 				mech.current_terminal = self
 
 const OFFSET : Vector2 = Vector2(0, -15)
@@ -77,6 +86,7 @@ func arm(module):
 	connection_marker.hide()
 	connection_marker.set_process(false)
 	module.controller = self
+	sfx_connect.play()
 
 func disarm():
 	print("Module " + controlled_module.name + " has been destroyed!")

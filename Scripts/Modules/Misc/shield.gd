@@ -21,6 +21,11 @@ var force_disabled : bool = true
 @onready var is_friendly : bool = false
 @onready var type : MechData.ObjectType = MechData.ObjectType.MODULE
 
+@onready var drain_sfx: AudioStreamPlayer2D = $SFX/Drain
+@onready var disable_sfx: AudioStreamPlayer2D = $SFX/Disable
+@onready var charge_sfx: AudioStreamPlayer2D = $SFX/Charge
+@onready var ambient: AudioStreamPlayer2D = $SFX/Ambient
+
 @onready var controller
 
 # Used for saving and loading controller:weapon connection pairs
@@ -74,6 +79,7 @@ func engage():
 	shield_area.show()
 	shield_hp += shield_boost_rate
 	charge.value = shield_hp
+	charge_sfx.play()
 	if get_parent().get_parent().name == "Mech":
 		main.static_ui.set_status("Engaging Force Shield!\n-50 Energy")
 
@@ -114,6 +120,9 @@ func _drain_energy():
 		if mech.drain_energy(energy_drain_rate):
 			shield_hp += shield_regen_rate
 			charge.value = shield_hp
+			drain_sfx.play()
+			if not ambient.playing:
+				ambient.play()
 			return
 		force_disable()
 
@@ -128,3 +137,5 @@ func force_disable():
 	charge.value = shield_hp
 	shield_area.monitoring = false
 	shield_area.hide()
+	disable_sfx.play()
+	ambient.stop()

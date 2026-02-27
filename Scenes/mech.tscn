@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://by3pf8nx5c5s3" path="res://Scripts/Misc/destructible_background.gd" id="3_tp74p"]
 [ext_resource type="TileSet" uid="uid://beya8mv7awxpa" path="res://CustomResources/frame_tileset.tres" id="4_cfoyv"]
 [ext_resource type="Script" uid="uid://65apk4w16d4j" path="res://Scripts/Misc/destructible_frame.gd" id="5_cfoyv"]
+[ext_resource type="AudioStream" uid="uid://c2rux4dr3pu54" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3" id="7_0xx7q"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="11_07nox"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6iyac"]
@@ -42,6 +43,50 @@ script = ExtResource("5_cfoyv")
 [node name="Modules" type="Node2D" parent="." unique_id=1023028695]
 
 [node name="NPCs" type="Node2D" parent="." unique_id=1283548531]
+
+[node name="Ambience" type="Node2D" parent="." unique_id=993467780]
+
+[node name="MechAmbience" type="AudioStreamPlayer2D" parent="Ambience" unique_id=1967501269]
+position = Vector2(184, 304)
+stream = ExtResource("7_0xx7q")
+volume_db = -5.0
+pitch_scale = 0.7
+autoplay = true
+max_distance = 350.0
+bus = &"SFX"
+parameters/looping = true
+
+[node name="MechAmbience2" type="AudioStreamPlayer2D" parent="Ambience" unique_id=1699996290]
+position = Vector2(512, 152)
+stream = ExtResource("7_0xx7q")
+volume_db = -5.0
+pitch_scale = 0.7
+autoplay = true
+max_distance = 350.0
+bus = &"SFX"
+parameters/looping = true
+
+[node name="MechAmbience3" type="AudioStreamPlayer2D" parent="Ambience" unique_id=585803572]
+position = Vector2(816, 304)
+stream = ExtResource("7_0xx7q")
+volume_db = -5.0
+pitch_scale = 0.7
+autoplay = true
+max_distance = 350.0
+bus = &"SFX"
+parameters/looping = true
+
+[node name="MechAmbience4" type="AudioStreamPlayer2D" parent="Ambience" unique_id=1950066814]
+position = Vector2(512, 536)
+stream = ExtResource("7_0xx7q")
+volume_db = -5.0
+pitch_scale = 0.7
+autoplay = true
+max_distance = 350.0
+bus = &"SFX"
+parameters/looping = true
+
+[node name="SFX" type="Node2D" parent="." unique_id=280501906]
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="." unique_id=816728952]
 z_index = 20

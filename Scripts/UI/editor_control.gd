@@ -10,6 +10,8 @@ extends Control
 @onready var error = $Error
 @onready var cash_label = $CashPanel/CashLabel
 
+@onready var sfx = $"../SFX"
+
 @onready var left = $Left
 @onready var right = $Right
 
@@ -183,11 +185,13 @@ func _on_left_pressed():
 	if tab_container.current_tab == 0:
 		return
 	tab_container.current_tab -= 1
+	sfx.click_select.play()
 
 func _on_right_pressed():
 	if tab_container.current_tab == 4:
 		return
 	tab_container.current_tab += 1
+	sfx.click_select.play()
 
 func _on_block_list_item_clicked(index, _at_position, _mouse_button_index):
 	print(index)
@@ -384,9 +388,11 @@ func update_mech_scroll():
 		previous_mech.disabled = false
 
 func update_instruction(index : int):
+	sfx.click_select.play()
 	instruction.text = build_instructions[index]
 
 func update_info_panel(icon_data, name_data, desc_data):
+	sfx.click_select.play()
 	info_panel.show()
 	icon.texture = icon_data
 	name_label.text = "Name:\n" + name_data
@@ -415,3 +421,4 @@ func show_error(text : String):
 	error.show()
 	error.text = text
 	attention(error, 1, true)
+	sfx.click_fail.play()

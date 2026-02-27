@@ -106,10 +106,15 @@ func _on_action_decision_timeout():
 	elif action >= 90:
 		if modules.get_child_count() > 0:
 			var module = null
-			while true:
+			# Find a random gun that can be crew controlled; Make 5 attempts
+			for i in range(0,5):
 				module = modules.get_children().pick_random()
 				if not ("auto" in module):
 					break
+			# If there aren't many guns on board, 50% chance to not shoot
+			if modules.get_child_count() <= 2:
+				if randf() < 0.5:
+					return
 			module.engage()
 
 func is_on_floor():

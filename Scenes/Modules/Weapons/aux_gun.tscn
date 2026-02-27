@@ -4,10 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://0nsu3doe2kyg" path="res://Images/MechGuns/turret_01_mk1s.png" id="2_mn7h6"]
 [ext_resource type="PackedScene" uid="uid://d23lcjrnsoyau" path="res://Scenes/Behaviors/local_control.tscn" id="3_mn7h6"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
-friction = 0.9
-bounce = 0.44
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
 animations = [{
 "frames": [{
@@ -38,7 +34,6 @@ z_as_relative = false
 collision_layer = 2
 collision_mask = 2
 input_pickable = true
-physics_material_override = SubResource("PhysicsMaterial_hptm8")
 can_sleep = false
 freeze = true
 contact_monitor = true

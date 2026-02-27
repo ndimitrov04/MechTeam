@@ -8,6 +8,8 @@ const MECH_PB = preload("uid://dimm11yjnr7ef")
 @onready var control = $GUI/Control
 @onready var capacity_label = $GUI/Control/NPCShop/CapacityLabel
 
+@onready var sfx = $GUI/SFX
+
 # These two overlap the grid, so grid_positions = blocks positions, etc.
 @onready var blocks = $MechPrototype/Blocks
 @onready var walls = $MechPrototype/Walls
@@ -19,7 +21,7 @@ const MECH_PB = preload("uid://dimm11yjnr7ef")
 @onready var player_spots = [Vector2i(24, 16), Vector2i(24, 18)]
 
 var global_mouse_pos : Vector2 = Vector2.ZERO
-#var first_click : bool = true
+var first_click : bool = true
 const MAX_X : int = 34
 const MAX_Y : int = 17
 
@@ -123,9 +125,9 @@ func _input(event):
 					return
 			# Check if block would be connected to another block or wall
 			var tile_connected : bool = true
-			#if not first_click:
-				#tile_connected = is_connected_to_frame(grid_pos)
-			#first_click = false
+			if not first_click:
+				tile_connected = is_connected_to_frame(grid_pos)
+			first_click = false
 			if not tile_connected:
 				const ERR : String = "Cannot place that there. Tile is not connected to mech!"
 				print(ERR)
@@ -159,6 +161,8 @@ func _input(event):
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = structure_wall
 					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = structure_wall
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = structure_wall
+					# Play sound
+					sfx.bulld_block.play()
 				EditLayer.WALLS:
 					# Set 4 16x16 tiles to make one 32x32 tile
 					walls.set_cell(grid_pos + Vector2i.ZERO, 0, chosen_block + Vector2i.ZERO)
@@ -170,11 +174,14 @@ func _input(event):
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = chosen_block + Vector2i.RIGHT
 					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.DOWN
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.ONE
+					# Play sound
+					sfx.bulld_block.play()
 				EditLayer.OBJECTS:
 					if npc_mode:
 						if npc_count < npc_capacity:
 							npc_count += 1
 							update_capacity_ui()
+							sfx.hire_operator.play()
 						else:
 							control.attention(control.capacity_label, 2)
 							const ERR : String = "Insufficient crew capacity! Build more supllies."
@@ -196,6 +203,8 @@ func _input(event):
 						child.set_process(false)
 					# Add to mech data global
 					MechData.set_object(chosen_object, chosen_action, object_instance.type, to_global(grid_pos*16-OBJECT_OFFSET))
+					# Play sound
+					sfx.build_entity.play()
 				EditLayer.MOVEMENT:
 					# ADD COLLIDER
 					# Set object in editor
@@ -219,7 +228,8 @@ func _input(event):
 						child.set_process(false)
 					# Add to mech data global
 					MechData.set_object(chosen_movement_sprite, chosen_action, MechData.ObjectType.SPRITE, to_global(grid_pos*16-OBJECT_OFFSET))
-
+					# Play sound
+					sfx.build_entity.play()
 		# Delete tile
 		if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 			global_mouse_pos = get_global_mouse_position()
@@ -231,6 +241,8 @@ func _input(event):
 				EditLayer.BLOCKS:
 					# Return cash
 					if blocks.get_cell_atlas_coords(grid_pos) != MechData.EMPTY_CELL:
+						# Play sound
+						sfx.break_block.play()
 						unbuy(1)
 					# Remove frame tile
 					# Delete 4 tiles
@@ -265,6 +277,8 @@ func _input(event):
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = MechData.EMPTY_CELL
 					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
+					# Play sound
+					sfx.break_block.play()
 				EditLayer.OBJECTS:
 					# Delete object from editor
 					for child in mech_prototype.get_children():
@@ -281,8 +295,11 @@ func _input(event):
 							if child.has_meta("friendly_npc"):
 								npc_count -= 1
 								update_capacity_ui()
+								sfx.fire_operator.play()
 							# Return cash
 							unbuy(child.get_meta("price"))
+							# Play sound
+							sfx.break_entity.play()
 							# Delete mech data by position
 							MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
 							print("Deleting " + child.name)
@@ -300,6 +317,8 @@ func _input(event):
 								unbuy(child.get_meta("price"))
 							print("Deleting " + child.name)
 							child.queue_free()
+							# Play sound
+							sfx.break_entity.play()
 					# Delete mech data by position
 					MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
 					# Delete object from editor
@@ -365,7 +384,7 @@ func clear_prototype():
 	MechData.object_coordinates.clear()
 	
 	MechData.control_pairs.clear()
-	#first_click = true
+	first_click = true
 
 func new_mech():
 	MechData.new_mech()
@@ -376,7 +395,7 @@ func new_mech():
 	for i in range(2, mech_prototype.get_child_count()):
 		mech_prototype.get_child(i).queue_free()
 	
-	#first_click = true
+	first_click = true
 
 func unload_mech():
 	print("Unloading mech...")

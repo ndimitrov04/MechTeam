@@ -4,8 +4,10 @@ extends RigidBody2D
 @onready var mech = $"../.."
 
 @onready var shoot_point = $ShootPoint
+@onready var shoot_sfx: AudioStreamPlayer2D = $SFX/Shoot
 
 const DEBRIS = preload("uid://rg2m11gs0xex")
+
 
 var bullet = preload("res://Scenes/Projectiles/bullet.tscn")
 
@@ -64,6 +66,7 @@ func _input_event(_viewport, event, _shape_idx):
 func engage():
 	for i in range(0, repeat_rate):
 		await get_tree().create_timer(0.15).timeout
+		shoot_sfx.play()
 		var bullet_instance = bullet.instantiate()
 		main.add_child(bullet_instance)
 		# Determine who the bullet will hurt

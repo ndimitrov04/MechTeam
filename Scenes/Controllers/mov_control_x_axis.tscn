@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b1wt3rxhih26o" path="res://Images/Objects/Control1/Screen2.png" id="2_f77a1"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_edgd4"]
 [ext_resource type="Texture2D" uid="uid://ds3cnl75d7mh6" path="res://Images/Tilesets/Industrial_Tileset.png" id="5_edgd4"]
+[ext_resource type="AudioStream" uid="uid://diruuak81ohbd" path="res://Audio/SFX/Misc/terminal_03.ogg" id="6_t8ijc"]
+[ext_resource type="AudioStream" uid="uid://dayqkdehp1fm8" path="res://Audio/SFX/Misc/terminal_05.ogg" id="7_yme5r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
 size = Vector2(26, 34)
@@ -106,3 +108,13 @@ region_rect = Rect2(49, 225, 62, 29)
 position = Vector2(0.5, 24)
 shape = SubResource("RectangleShape2D_dncu7")
 one_way_collision = true
+
+[node name="SFX" type="Node2D" parent="." unique_id=1400147386]
+
+[node name="Engage" type="AudioStreamPlayer2D" parent="SFX" unique_id=445727601]
+stream = ExtResource("6_t8ijc")
+bus = &"SFX"
+
+[node name="Disengage" type="AudioStreamPlayer2D" parent="SFX" unique_id=109989247]
+stream = ExtResource("7_yme5r")
+bus = &"SFX"

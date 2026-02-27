@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://8grjm55o3rrh" path="res://Images/Backgrounds/ParallaxCity1/6.png" id="6_cbgmd"]
 [ext_resource type="Texture2D" uid="uid://deinkajit0i5w" path="res://Images/Tilesets/Buildings.png" id="7_pdsj5"]
 [ext_resource type="PackedScene" uid="uid://bg0x4kcl3emfw" path="res://Scenes/mech.tscn" id="9_hibaj"]
-[ext_resource type="PackedScene" uid="uid://c6itfhereaxo0" path="res://Scenes/Enemies/EnemyMech/Mech2.tscn" id="10_hibaj"]
+[ext_resource type="PackedScene" uid="uid://b6st1n1r2654j" path="res://Scenes/Enemies/EnemyMech/Mech4.tscn" id="10_hibaj"]
 [ext_resource type="PackedScene" uid="uid://bqikqykbsljjl" path="res://Scenes/player.tscn" id="14_k12tt"]
 [ext_resource type="Script" uid="uid://b6bs5bi7wy45h" path="res://Scripts/minigames.gd" id="14_wsu2k"]
 [ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="18_3pmx8"]
@@ -722,8 +722,8 @@ tile_set = SubResource("TileSet_jjvhh")
 [node name="Mech" parent="." unique_id=389051570 instance=ExtResource("9_hibaj")]
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")
 
-[node name="EnemyMech2" parent="." unique_id=133330300 instance=ExtResource("10_hibaj")]
-position = Vector2(1250, 0)
+[node name="EnemyMech4" parent="." unique_id=133330300 instance=ExtResource("10_hibaj")]
+position = Vector2(1400, 0)
 
 [node name="Player" parent="." unique_id=1706264332 instance=ExtResource("14_k12tt")]
 z_index = 40
@@ -1045,6 +1045,7 @@ offset_bottom = 1073.0
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2025517324]
 stream = ExtResource("19_fevyy")
 autoplay = true
+bus = &"Music"
 
 [connection signal="visibility_changed" from="GUI/Control/GameOver" to="GUI/Control/GameOver" method="_on_visibility_changed"]
 [connection signal="pressed" from="GUI/Control/GameOver/Retry" to="GUI/Control/GameOver" method="_on_retry_pressed"]

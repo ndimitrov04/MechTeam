@@ -6,6 +6,10 @@ extends RigidBody2D
 @onready var charge = $Charge
 @onready var energy_regen = $EnergyRegen
 
+@onready var drain_sfx: AudioStreamPlayer2D = $SFX/Drain
+@onready var charge_sfx: AudioStreamPlayer2D = $SFX/Charge
+@onready var ambient: AudioStreamPlayer2D = $SFX/Ambient
+
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
 var energy_cost : int = 5
@@ -68,6 +72,7 @@ func engage():
 	if current_energy > max_energy:
 		current_energy = max_energy
 	charge.value = current_energy
+	charge_sfx.play()
 	if get_parent().get_parent().name == "Mech":
 		main.static_ui.set_status("Engaging battery overdrive!\n+50 Energy")
 
@@ -78,6 +83,7 @@ func drain(amount : int) -> int:
 		leftover = current_energy * -1
 		current_energy = 0
 	charge.value = current_energy
+	drain_sfx.play()
 	return leftover
 
 func destroy():

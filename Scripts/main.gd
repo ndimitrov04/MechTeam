@@ -17,8 +17,10 @@ const SPAWN_OFFSET = 1000 # Next enemy offset in pixels
 
 const MECH_1 = preload("uid://b8wn41m8pycq8")
 const MECH_2 = preload("uid://c6itfhereaxo0")
+const MECH_3 = preload("uid://j5p75yywprhn")
+const MECH_4 = preload("uid://b6st1n1r2654j")
 
-@onready var enemies = [MECH_1, MECH_2]
+@onready var enemies = [MECH_1, MECH_2, MECH_3, MECH_4]
 
 func _process(_delta):
 	if enemies_left <= 0 and not triggered:
