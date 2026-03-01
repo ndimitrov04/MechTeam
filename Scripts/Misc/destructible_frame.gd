@@ -53,8 +53,8 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	debris_instance.set_sprite(collided_tile_atlas)
 	# Give debris initial velocity based on projectile collision angle
 	# (make debris be "knocked back" by explosion)
-	var impact_dir = collision.get_position() - global_position
-	debris_instance.apply_impulse(-impact_dir.normalized() * knockback_force)
+	var impact_dir = biased_pos - collision.get_position()
+	debris_instance.apply_impulse(impact_dir.normalized() * knockback_force)
 	debris_instance.apply_impulse(Vector2.UP * knockback_force * 2)
 	# HP gameplay logic
 	get_parent().take_damage(damage_value)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://g2evhlrxorh6" path="res://Scripts/Modules/Weapons/aux_gun.gd" id="1_kaprd"]
 [ext_resource type="Texture2D" uid="uid://brybsloyvuqd3" path="res://Images/MechGuns/turret_01_mk1s_b.png" id="2_kaprd"]
 [ext_resource type="PackedScene" uid="uid://rmro1jasegqk" path="res://Scenes/Behaviors/auto_control.tscn" id="3_5r33s"]
+[ext_resource type="AudioStream" uid="uid://mjrlfhuxnkmp" path="res://Audio/SFX/Modules/bang_04.ogg" id="4_5r33s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
 friction = 0.9
@@ -78,5 +79,19 @@ shape = SubResource("RectangleShape2D_mn7h6")
 [node name="ShootPoint" type="Node2D" parent="." unique_id=670362176]
 position = Vector2(40, 0)
 
-[node name="AutoControl" parent="." unique_id=573389250 instance=ExtResource("3_5r33s")]
+[node name="Control" parent="." unique_id=573389250 instance=ExtResource("3_5r33s")]
 top_level = true
+
+[node name="SFX" type="Node2D" parent="." unique_id=2103153439]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="SFX" unique_id=282292751]
+stream = ExtResource("4_5r33s")
+volume_db = 3.0
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=1361238384]
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"

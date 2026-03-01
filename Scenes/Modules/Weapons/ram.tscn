@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3rby2bw03jnk" path="res://Scripts/Modules/Weapons/ram.gd" id="1_5k3v2"]
 [ext_resource type="Texture2D" uid="uid://f0h626ncxs8t" path="res://Images/MechGuns/body_01a.png" id="2_5k3v2"]
+[ext_resource type="AudioStream" uid="uid://ddh4gffmjvh2y" path="res://Audio/SFX/Misc/424911-impactshort78.wav" id="3_d5gtd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12ur6"]
 size = Vector2(185, 71)
@@ -42,3 +43,17 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_1pg7u")
 autoplay = "default"
 frame_progress = 0.43615592
+
+[node name="SFX" type="Node2D" parent="." unique_id=614738126]
+
+[node name="Ram" type="AudioStreamPlayer2D" parent="SFX" unique_id=75873250]
+stream = ExtResource("3_d5gtd")
+volume_db = 3.0
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=1264770419]
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"

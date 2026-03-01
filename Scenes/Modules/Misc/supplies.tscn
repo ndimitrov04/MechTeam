@@ -43,3 +43,10 @@ autoplay = "default"
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1882493289]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_m5l7g")
+
+[node name="SFX" type="Node2D" parent="." unique_id=668099678]
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=1750230825]
+autoplay = true
+max_distance = 200.0
+bus = &"SFX"

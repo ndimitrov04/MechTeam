@@ -28,7 +28,7 @@ func start_minigame(mname : String, controlled_module):
 
 func end_minigame():
 	current_module = null
-	get_child(0).queue_free()
+	#get_child(0).queue_free()
 
 func win():
 	print(current_module.name + " goes PEWPEW!!!")

@@ -11,16 +11,22 @@ const UP = preload("uid://bs2fqwxm2rdeq")
 
 @onready var flow_container = $FlowContainer
 
+@onready var lose_sfx: AudioStreamPlayer = $SFX/Lose
+@onready var win_sfx: AudioStreamPlayer = $SFX/Win
+@onready var input_sfx: AudioStreamPlayer = $SFX/Input
+
 var directions = []	# up, down, left, right
 var direction_index = 0
+
+var game_ended : bool = false
 
 func _ready():
 	pass
 
-# Note: Add victory/loss screen
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _unhandled_input(event):
+	if game_ended:
+		return
 	var current_direction = null
 	if event.is_action_pressed("up"):
 		current_direction = 0
@@ -66,10 +72,15 @@ func victory_check(direction):
 		print("Correct!")
 		if direction_index + 1 >= directions.size():
 			print("You Win!")
+			game_ended = true
+			self.hide()
+			win_sfx.play()
 			minigames.win()
 			minigames.player.end_minigame()
+			await get_tree().create_timer(0.2).timeout
 			queue_free()
 		else:
+			input_sfx.play()
 			direction_index += 1
 			flow_container.get_child(0).self_modulate = Color(0, 255, 0)
 	else:
@@ -77,6 +88,10 @@ func victory_check(direction):
 
 func lose():
 	print("You Lose!")
+	game_ended = true
+	self.hide()
+	lose_sfx.play()
 	minigames.lose()
 	minigames.player.end_minigame()
+	await get_tree().create_timer(0.5).timeout
 	queue_free()

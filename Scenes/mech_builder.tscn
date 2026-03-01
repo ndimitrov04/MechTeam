@@ -2159,7 +2159,6 @@ offset_right = 596.0
 offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
-tooltip_text = "Build more supply modules to increase the maximum crew capacity."
 mouse_filter = 1
 theme = ExtResource("14_uy4mh")
 theme_override_constants/shadow_offset_x = 1
@@ -2355,7 +2354,7 @@ offset_bottom = 730.016
 focus_mode = 2
 bbcode_enabled = true
 text = "[b]Graphics[/b]
-
+-----------------------------------------------------------------
 Free Cyberpunk Sprites by Craftpix via Craftpix.net
 
 Free Industrial Zone Tileset by Craftpix via Craftpix.net
@@ -2379,19 +2378,50 @@ Tank assets by zool707 via Itch.io - [url]https://zool707.itch.io/pixel-tank[/ur
 
 1-Bit Input prompts by Kenney via Kenney.nl - [url]https://kenney.nl/assets/1-bit-input-prompts-pixel-16[/url]
 
-
+=================================================================
 
 [b]Music[/b]
-
+-----------------------------------------------------------------
 RPG Battle Loop by iamoneabe via OpenGameArt.org - [url]https://opengameart.org/content/rpg-battle-loop[/url]
 
 Game-Game (Soundtrack) by Metaruka via OpenGameArt.org - [url]https://opengameart.org/content/game-game[/url]
 
 Game Over (The World Stood Still.mp3) by Insydnis via OpengameArt.org - [url]https://opengameart.org/content/game-over-4[/url]
 
+=================================================================
+
+[b]SFX[/b]
+-----------------------------------------------------------------
+GUI Sound Effeects by Lokif via Opengameart - [url]https://opengameart.org/content/gui-sound-effects[/url]
+
+Sci-Fi Sound Effects Library by Little Robot Sound Factory via Opengameart - [url]https://opengameart.org/content/sci-fi-sound-effects-library[/url]
+
+51 UI sound effects by Kenney via Opengameart - [url]https://opengameart.org/content/51-ui-sound-effects-buttons-switches-and-clicks[/url]
+
+Different steps on wood, stone, leaves, gravel and mud by TinyWorlds via Opengameart - [url]https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud[/url]
+
+Metal interactions by qubodup via Opengameart - [url]https://opengameart.org/content/metal-interactions[/url]
+
+JC Sounds - Sci-Fi Pack Vol 1 by JC Sounds via Opengameart - [url]https://opengameart.org/content/jc-sounds-sci-fi-pack-vol-1[/url]
+
+50 CC0 Sci-Fi SFX by rubberduck via Opengameart - [url]https://opengameart.org/content/50-cc0-sci-fi-sfx[/url]
+
+25 CC0 bang / firework SFX by rubberduck via Opengameart - [url]https://opengameart.org/content/25-cc0-bang-firework-sfx[/url]
+
+9 explosion sounds by Unnamed via Opengameart - [url]https://opengameart.org/content/9-explosion-sounds[/url]
+
+Punch by qubodup via Opengameart - [url]https://opengameart.org/content/punch[/url]
+
+Short impact by Soundsnap via Opengameart - [url]https://opengameart.org/content/short-impact[/url]
+
+RTS commands and reports by Scribe via Opengameart - [url]https://opengameart.org/content/rts-commands-and-reports[/url]
+
+SciFi RTS Status Vocals by Beast via Opengameart - [url]https://opengameart.org/content/scifi-rts-status-vocals[/url]
+
+=================================================================
 
 [b]Fonts[/b]
-
+-----------------------------------------------------------------
 ByteBounce Font by Hipfonts via 1001fonts.com - [url]https://www.1001fonts.com/bytebounce-font.html[/url]
 "
 vertical_alignment = 1

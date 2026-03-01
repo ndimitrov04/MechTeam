@@ -128,3 +128,10 @@ autoplay = true
 max_distance = 200.0
 bus = &"SFX"
 parameters/looping = true
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=1180672849]
+stream = ExtResource("8_4lq3w")
+autoplay = true
+max_distance = 200.0
+bus = &"SFX"
+parameters/looping = true

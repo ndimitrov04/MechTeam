@@ -8,8 +8,10 @@ extends RigidBody2D
 @onready var pole: Sprite2D = $Pole
 @onready var hitbox: CollisionShape2D = $Hitbox
 @onready var hitbox_2: CollisionShape2D = $Hitbox2
-@onready var auto_control: Area2D = $AutoControl
+@onready var self_control: Area2D = $Control
 
+@onready var shoot_sfx: AudioStreamPlayer2D = $SFX/Shoot
+@onready var drop_sfx: AudioStreamPlayer2D = $SFX/Drop
 
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
@@ -64,7 +66,7 @@ func _ready():
 # "Aim"
 func _physics_process(delta):
 	pole.global_position = self.global_position + Vector2(0,11)
-	auto_control.global_position = self.global_position
+	self_control.global_position = self.global_position
 	hitbox.global_position = self.global_position
 	hitbox_2.global_position = self.global_position
 	global_rotation = lerp_angle(global_rotation, target_angle, aim_speed * delta)
@@ -84,6 +86,8 @@ func engage():
 		await get_tree().create_timer(0.15).timeout
 		var bullet_instance = bullet.instantiate()
 		main.add_child(bullet_instance)
+		shoot_sfx.pitch_scale = randf_range(1, 1.4)
+		shoot_sfx.play()
 		# Determine who the bullet will hurt
 		if is_friendly:
 			bullet_instance.set_collision_layer_value(1, 0)
@@ -148,5 +152,18 @@ func _on_body_entered(_body):
 	var debris_instance = DEBRIS.instantiate()
 	main.call_deferred("add_child", debris_instance)
 	debris_instance.global_position = global_position
+	drop()
 	await get_tree().create_timer(1.0).timeout
 	queue_free()
+	
+func drop():
+	const QUBODUP_PUNCH_01 = preload("uid://708qbmb1elfe")
+	const QUBODUP_PUNCH_02 = preload("uid://3ym41o68s5hs")
+	const QUBODUP_PUNCH_03 = preload("uid://kx7214pkd02j")
+	const QUBODUP_PUNCH_04 = preload("uid://dmwuh6jgmxre1")
+	const QUBODUP_PUNCH_05 = preload("uid://b1u8fhv870l5e")
+	
+	const drop_effects = [QUBODUP_PUNCH_01,QUBODUP_PUNCH_02,QUBODUP_PUNCH_03,QUBODUP_PUNCH_04,QUBODUP_PUNCH_05]
+	
+	drop_sfx.stream = drop_effects.pick_random()
+	drop_sfx.play()

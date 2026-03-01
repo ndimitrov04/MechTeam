@@ -164,8 +164,11 @@ bus = &"SFX"
 
 [node name="Ambient" type="AudioStreamPlayer2D" parent="SFX" unique_id=883132215]
 stream = ExtResource("22_d0ogs")
-volume_db = -15.0
+volume_db = -27.0
 autoplay = true
 max_distance = 200.0
 bus = &"SFX"
 parameters/looping = true
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=1786066304]
+bus = &"SFX"

@@ -67,3 +67,8 @@ volume_db = 3.0
 max_distance = 1250.0
 max_polyphony = 10
 bus = &"SFX"
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=10055733]
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"

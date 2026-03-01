@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://g2evhlrxorh6" path="res://Scripts/Modules/Weapons/aux_gun.gd" id="1_fspxv"]
 [ext_resource type="Texture2D" uid="uid://0nsu3doe2kyg" path="res://Images/MechGuns/turret_01_mk1s.png" id="2_mn7h6"]
 [ext_resource type="PackedScene" uid="uid://d23lcjrnsoyau" path="res://Scenes/Behaviors/local_control.tscn" id="3_mn7h6"]
+[ext_resource type="AudioStream" uid="uid://mjrlfhuxnkmp" path="res://Audio/SFX/Modules/bang_04.ogg" id="4_8wj6m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
 animations = [{
@@ -70,4 +71,18 @@ shape = SubResource("RectangleShape2D_mn7h6")
 [node name="ShootPoint" type="Node2D" parent="." unique_id=670362176]
 position = Vector2(40, 0)
 
-[node name="LocalControl" parent="." unique_id=573389250 instance=ExtResource("3_mn7h6")]
+[node name="Control" parent="." unique_id=573389250 instance=ExtResource("3_mn7h6")]
+
+[node name="SFX" type="Node2D" parent="." unique_id=387330273]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="SFX" unique_id=874724062]
+stream = ExtResource("4_8wj6m")
+volume_db = 3.0
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=1465519459]
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"
