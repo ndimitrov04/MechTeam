@@ -105,7 +105,11 @@ func _input(event):
 			MechData.control_pairs.append(controller.controlled_module_index)
 		#await get_tree().create_timer(10).timeout #debug timer
 		get_tree().change_scene_to_file("res://Scenes/main.tscn")
-			
+	
+	if Input.is_action_just_pressed("debug_add_cash"):
+		PlayerData.money += 100
+		control.update_cash_panel()
+	
 	if event is InputEventMouseButton and build_ui_enabled:
 		# Set tile
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -346,37 +350,65 @@ func expand_position(mouse_pos : Vector2i) -> Vector2i:
 	return Vector2i(chosen_x, chosen_y)
 
 func load_prototype():
+	npc_count = 0
+	npc_capacity = 0
 	# Clear workspace
 	for i in range(0, MechData.blocks.size()):
 		for j in range(0, MechData.blocks[i].size()):
+			if blocks.get_cell_atlas_coords(Vector2i(i+2, j+2)) != MechData.EMPTY_CELL:
+				if i+2 % 2 == 0 and j+2 % 2 == 0:
+					unbuy(1)
 			blocks.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
 			walls.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
 	for i in range(2, mech_prototype.get_child_count()):
+		if mech_prototype.get_child(i).has_meta("price"):
+			unbuy(mech_prototype.get_child(i).get_meta("price"))
 		mech_prototype.get_child(i).queue_free()
 	# Load workspace data
 	for i in range(0, MechData.blocks.size()):
 		for j in range(0, MechData.blocks[i].size()):
+			if blocks.get_cell_atlas_coords(Vector2i(i+2, j+2)) != MechData.EMPTY_CELL:
+				if i+2 % 2 == 0 and j+2 % 2 == 0:
+					PlayerData.money -= 1
 			blocks.set_cell(Vector2i(i+2, j+2), 0 , MechData.blocks[i][j])
 			walls.set_cell(Vector2i(i+2, j+2), 0 , MechData.walls[i][j])
 	for i in range(0, MechData.object_scenes.size()):
 		# Set object in editor
 		var object_instance = MechData.object_scenes[i].instantiate()
 		mech_prototype.add_child(object_instance)
+		if object_instance.has_meta("price"):
+			PlayerData.money -= object_instance.get_meta("price")
+		if object_instance.has_meta("friendly_npc"):
+			npc_count += 1
+		if object_instance.has_meta("npc_capacity"):
+			npc_capacity += object_instance.get_meta("npc_capacity")
 		object_instance.position = MechData.object_coordinates[i] + Vector2(OBJECT_OFFSET*2)
 		# Disable object processing
 		object_instance.set_process(false)
 		for child in object_instance.get_children():
 			child.set_process(false)
+	
+	update_capacity_ui()
+	control.update_cash_panel()
 
 func clear_prototype():
+	npc_count = 0
+	npc_capacity = 0
+	
 	for i in range(0, MechData.blocks.size()):
 		for j in range(0, MechData.blocks[i].size()):
+			if blocks.get_cell_atlas_coords(Vector2i(i+2, j+2)) != MechData.EMPTY_CELL:
+				if i+2 % 2 == 0 and j+2 % 2 == 0:
+					unbuy(1)
 			blocks.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
 			walls.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
 	MechData.reset_tiles()
 	set_initial_cells()
+	control.update_cash_panel()
 	
 	for i in range(2, mech_prototype.get_child_count()):
+		if mech_prototype.get_child(i).has_meta("price"):
+			unbuy(mech_prototype.get_child(i).get_meta("price"))
 		mech_prototype.get_child(i).queue_free()
 	MechData.object_scenes.clear()
 	MechData.object_actions.clear()
@@ -385,17 +417,31 @@ func clear_prototype():
 	
 	MechData.control_pairs.clear()
 	first_click = true
+	
+	update_capacity_ui()
+	control.update_cash_panel()
 
 func new_mech():
+	npc_capacity = 0
+	npc_count = 0
+	
 	MechData.new_mech()
 	for i in range(0, MechData.blocks.size()):
 		for j in range(0, MechData.blocks[i].size()):
+			if blocks.get_cell_atlas_coords(Vector2i(i+2, j+2)) != MechData.EMPTY_CELL:
+				if i+2 % 2 == 0 and j+2 % 2 == 0:
+					unbuy(1)
 			blocks.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
 			walls.set_cell(Vector2i(i+2, j+2), 0 , Vector2i(-1,-1))
 	for i in range(2, mech_prototype.get_child_count()):
+		if mech_prototype.get_child(i).has_meta("price"):
+			unbuy(mech_prototype.get_child(i).get_meta("price"))
 		mech_prototype.get_child(i).queue_free()
 	
 	first_click = true
+	
+	update_capacity_ui()
+	control.update_cash_panel()
 
 func unload_mech():
 	print("Unloading mech...")

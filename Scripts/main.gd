@@ -22,6 +22,8 @@ const MECH_4 = preload("uid://b6st1n1r2654j")
 
 @onready var enemies = [MECH_1, MECH_2, MECH_3, MECH_4]
 
+var end_text : String = ""
+
 func _process(_delta):
 	if enemies_left <= 0 and not triggered:
 		music.stream = preload("uid://bfjye4qxke0i")
@@ -31,6 +33,9 @@ func _process(_delta):
 	
 	if enemies_left <= 0:
 		minigame_result.modulate = Color(1,1,1,1)
+		minigame_result.text = end_text
+		minigame_result.add_theme_color_override("font_color", Color("green"))
+		minigame_result.show()
 
 func advance():
 	if enemies_left > 0:
@@ -50,7 +55,7 @@ func end_stage():
 	PlayerData.current_stage += 1
 	PlayerData.money -= (mech.max_hp - mech.hp) * 0.5
 	PlayerData.money -= npc_deaths * 10
-	minigame_result.text = (
+	end_text =  (
 			"YOU WIN!\n\n\n" +
 			"Rewards collected: " + str(rewards_collected) +
 			"\n\nMech Status" +
@@ -63,6 +68,7 @@ func end_stage():
 			"\n\nTotal cash: " + str(PlayerData.money) +
 			"\n\n\nGoing to next stage in 15 seconds..."
 		)
+	minigame_result.text = end_text
 	minigame_result.add_theme_color_override("font_color", Color("green"))
 	minigame_result.show()
 	await get_tree().create_timer(16).timeout

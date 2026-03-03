@@ -24,6 +24,7 @@ extends Control
 @onready var save_mech = $SaveMech
 @onready var new_mech = $NewMech
 @onready var clear_field = $ClearField
+@onready var debug_mech = $DebugMech
 
 @onready var blocks = $TabContainer/Blocks
 @onready var walls = $TabContainer/Walls
@@ -314,11 +315,21 @@ func _on_next_stage_pressed():
 			previous_mech.disabled = true
 			clear_field.disabled = true
 			new_mech.disabled = true
+			debug_mech.disabled = true
+			next_mech.hide()
+			previous_mech.hide()
+			clear_field.hide()
+			new_mech.hide()
+			debug_mech.hide()
+			build_stage += 1
 		1:
-			editor.finish_mech()
+			if PlayerData.money >= 0:
+				editor.finish_mech()
+				build_stage += 1
+			else:
+				show_error("You can't start a stage while in debt!\nRemove mech parts until you have more than 0 cash!")
 		2:
 			pass
-	build_stage += 1
 	update_instruction(build_stage)
 
 func _on_previous_stage_pressed():
@@ -336,6 +347,12 @@ func _on_previous_stage_pressed():
 			previous_mech.disabled = false
 			clear_field.disabled = false
 			new_mech.disabled = false
+			debug_mech.disabled = false
+			next_mech.show()
+			previous_mech.show()
+			clear_field.show()
+			new_mech.show()
+			debug_mech.show()
 		2:
 			pass
 	build_stage -= 1

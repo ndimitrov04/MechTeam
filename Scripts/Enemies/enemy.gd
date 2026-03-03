@@ -18,7 +18,10 @@ extends RigidBody2D
 const SPEED = 45.0
 const JUMP_linear_velocity = -400.0
 
-var hp : int = 40
+@onready var level_multiplier : float = 0.5 + (PlayerData.current_stage * 0.25)
+@onready var base_hp = get_meta("hp")
+var max_hp : int = 999 # Placeholder value (must be positive; non-null); Real value is set in _ready()
+var hp : int = max_hp
 var energy : int = 100
 var reward : int = 25
 
@@ -28,6 +31,9 @@ var asleep : bool = true
 
 func _ready():
 	action_decision.timeout.connect(_on_action_decision_timeout)
+	await get_tree().create_timer(0.1).timeout
+	max_hp = base_hp * level_multiplier
+	hp = max_hp
 	await get_tree().create_timer(0.5).timeout
 	update_decision_timer()
 
