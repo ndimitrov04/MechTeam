@@ -66,12 +66,12 @@ script = ExtResource("4_8gudg")
 [node name="EdgeDetector" type="RayCast2D" parent="NPCWalk" unique_id=1641564601]
 position = Vector2(18, 16)
 target_position = Vector2(0, 10)
-collision_mask = 8192
+collision_mask = 8193
 
 [node name="WallDetector" type="RayCast2D" parent="NPCWalk" unique_id=483200029]
 position = Vector2(0, 10)
 target_position = Vector2(25, 0)
-collision_mask = 8192
+collision_mask = 8193
 
 [node name="NPCEngage" type="Node2D" parent="." unique_id=958080512]
 position = Vector2(-2, -9)

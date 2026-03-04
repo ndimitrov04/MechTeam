@@ -34,6 +34,8 @@ var invincible : bool = false
 func _ready():
 	if get_parent().get_parent().get_parent().name == "Main":
 		process_mode = Node.PROCESS_MODE_INHERIT
+	if get_parent().get_parent().get_parent().name == "Menu":
+		process_mode = Node.PROCESS_MODE_INHERIT
 	# Choose random NPC sprite
 	#sprite.sprite_frames = NPC_SPRITES.pick_random()
 

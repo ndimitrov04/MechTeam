@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://qkpyf480lxn" path="res://Images/Objects/Generator/tile016.png" id="26_f5my7"]
 [ext_resource type="Texture2D" uid="uid://dyt0o42f7o4f6" path="res://Images/Objects/Generator/tile017.png" id="27_f32pl"]
 [ext_resource type="Texture2D" uid="uid://0nsu3doe2kyg" path="res://Images/MechGuns/turret_01_mk1s.png" id="31_pb6iv"]
+[ext_resource type="FontFile" uid="uid://rw3jqyo4erwa" path="res://04b19.ttf" id="32_4kn8c"]
 [ext_resource type="Texture2D" uid="uid://b18xnjh636yyj" path="res://Images/Objects/Decor/decor_7.png" id="32_vd8jo"]
 [ext_resource type="Texture2D" uid="uid://ys2p1s6abkep" path="res://Images/Projectiles/SpaceStation_Projectiles_Sheet.png" id="33_ptrx7"]
 [ext_resource type="Texture2D" uid="uid://cmnf55n8eag5q" path="res://Images/Icons/Editor/Modules/gun1.png" id="34_nfl30"]
@@ -1197,7 +1198,6 @@ autoplay = "default"
 frame_progress = 0.5907758
 
 [node name="Pole" type="Sprite2D" parent="." unique_id=616206252]
-z_index = -1
 z_as_relative = false
 position = Vector2(338, 231.75)
 scale = Vector2(1, 0.9)
@@ -1228,3 +1228,19 @@ texture = ExtResource("34_nfl30")
 position = Vector2(400, 270)
 rotation = 1.5707964
 texture = ExtResource("34_nfl30")
+
+[node name="Label" type="Label" parent="." unique_id=1016793433]
+z_index = 200
+offset_left = 448.0
+offset_top = 406.0
+offset_right = 1632.0
+offset_bottom = 714.0
+theme_override_colors/font_color = Color(0.3372549, 0.41568628, 0.5372549, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.16862746)
+theme_override_colors/font_outline_color = Color(0.13333334, 0.16470589, 0.36078432, 1)
+theme_override_constants/shadow_offset_x = 45
+theme_override_constants/shadow_offset_y = 28
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("32_4kn8c")
+theme_override_font_sizes/font_size = 307
+text = "T E A M"

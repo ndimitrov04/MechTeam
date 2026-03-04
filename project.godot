@@ -15,10 +15,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="MechTeam"
-config/version="0.28"
-run/main_scene="uid://cql7dl567r76t"
+config/version="0.29"
+run/main_scene="uid://m4q4cm7li360"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/use_filter=false
+boot_splash/image="uid://pyw434vrto08"
+config/icon="uid://co38i5gyclav4"
+config/windows_native_icon="res://CustomResources/meta/mr.ico"
 
 [audio]
 

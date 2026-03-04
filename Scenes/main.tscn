@@ -21,17 +21,17 @@
 [ext_resource type="Script" uid="uid://d37dfj32lv50m" path="res://Scripts/game_over.gd" id="25_1w6v2"]
 [ext_resource type="Script" uid="uid://bjgkfyj322xtr" path="res://Scripts/UI/static_ui.gd" id="25_cbgmd"]
 
-[sub_resource type="Gradient" id="Gradient_fevyy"]
+[sub_resource type="Gradient" id="Gradient_hibaj"]
 offsets = PackedFloat32Array(0.47333333, 0.5)
 colors = PackedColorArray(0.8039216, 0.5647059, 0.7254902, 1, 0.99215686, 0.7254902, 0.6431373, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8gbba"]
-gradient = SubResource("Gradient_fevyy")
+gradient = SubResource("Gradient_hibaj")
 width = 512
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hibaj"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ee4r6"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdsj5"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gt3je"]
 texture = ExtResource("7_pdsj5")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -605,19 +605,19 @@ texture = ExtResource("7_pdsj5")
 [sub_resource type="TileSet" id="TileSet_jjvhh"]
 physics_layer_0/collision_layer = 65535
 physics_layer_0/collision_mask = 65535
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_hibaj")
-sources/2 = SubResource("TileSetAtlasSource_pdsj5")
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_ee4r6")
+sources/2 = SubResource("TileSetAtlasSource_gt3je")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pdsj5"]
 friction = 0.0
 
-[sub_resource type="Gradient" id="Gradient_k12tt"]
+[sub_resource type="Gradient" id="Gradient_3pmx8"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.18243243, 0.3310811)
 colors = PackedColorArray(0, 0, 0, 0, 0.8039216, 0.5647059, 0.7254902, 0.8745098, 0.5647059, 0.3019608, 0.42745098, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_h1bgf"]
-gradient = SubResource("Gradient_k12tt")
+gradient = SubResource("Gradient_3pmx8")
 width = 256
 fill_from = Vector2(0.012237762, 0)
 
@@ -723,7 +723,7 @@ tile_set = SubResource("TileSet_jjvhh")
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")
 
 [node name="EnemyMech4" parent="." unique_id=133330300 instance=ExtResource("10_hibaj")]
-position = Vector2(1400, 0)
+position = Vector2(1300, 0)
 
 [node name="Player" parent="." unique_id=1706264332 instance=ExtResource("14_k12tt")]
 z_index = 40
