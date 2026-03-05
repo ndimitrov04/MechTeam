@@ -101,6 +101,140 @@
 [ext_resource type="AudioStream" uid="uid://cpajjfgpfw7cf" path="res://Audio/Music/11 die vonstantine.ogg" id="98_fngy1"]
 [ext_resource type="PackedScene" uid="uid://yjvcojipbr0l" path="res://Scenes/ver_num.tscn" id="98_tf86c"]
 [ext_resource type="FontFile" uid="uid://rw3jqyo4erwa" path="res://04b19.ttf" id="98_y4wb4"]
+[ext_resource type="Texture2D" uid="uid://cie3f2gfhsgce" path="res://icon.svg" id="101_lnxmk"]
+
+[sub_resource type="Animation" id="Animation_lnxmk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overlay/StartupOverlay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu/MenuPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1368, 536)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(960, 540)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Menu/MenuPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera:shake_intensity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_si6xj"]
+resource_name = "intro"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overlay/StartupOverlay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1920, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu/MenuPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.3333333, 2.8333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2700, 536), Vector2(1368, 536)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.65, 1.7666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3000, 540), Vector2(960, 540)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Menu/MenuPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.85, 2.07),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera:shake_intensity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.85, 2.9),
+"transitions": PackedFloat32Array(1, 1.035265),
+"update": 0,
+"values": [0.0, 45.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3jot"]
+_data = {
+&"RESET": SubResource("Animation_lnxmk"),
+&"intro": SubResource("Animation_si6xj")
+}
 
 [sub_resource type="Gradient" id="Gradient_fevyy"]
 offsets = PackedFloat32Array(0.47333333, 0.5)
@@ -1329,12 +1463,17 @@ animations = [{
 
 [sub_resource type="Gradient" id="Gradient_k12tt"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.18243243, 0.3310811)
+offsets = PackedFloat32Array(0, 0.25636575, 0.8443287)
 colors = PackedColorArray(0, 0, 0, 0, 0.8039216, 0.5647059, 0.7254902, 0.8745098, 0.5647059, 0.3019608, 0.42745098, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_747ic"]
 gradient = SubResource("Gradient_k12tt")
-width = 256
+width = 1024
+fill_from = Vector2(0.012237762, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lnxmk"]
+gradient = SubResource("Gradient_k12tt")
+width = 1024
 fill_from = Vector2(0.012237762, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3rjx"]
@@ -2483,10 +2622,10 @@ script = ExtResource("2_wwsa2")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=90896087]
 offset = Vector2(960, 540)
-enabled = false
 script = ExtResource("3_exfoy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=437086496]
+libraries/ = SubResource("AnimationLibrary_i3jot")
 
 [node name="BackgroundImage" type="TextureRect" parent="." unique_id=927913387]
 visible = false
@@ -3894,29 +4033,90 @@ frame_progress = 0.09679919
 
 [node name="Foreground" type="Node2D" parent="." unique_id=1232949261]
 visible = false
+z_index = 90
 
 [node name="Parallax1" type="Parallax2D" parent="Foreground" unique_id=881016563]
+top_level = true
 
 [node name="ScreenBorder" type="TextureRect" parent="Foreground/Parallax1" unique_id=1382390073]
-offset_left = 1700.0
+z_index = 200
+offset_left = 1132.0
 offset_top = -4385.0
-offset_right = 6178.0
+offset_right = 5610.0
 offset_bottom = 1530.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_747ic")
 
 [node name="Parallax2" type="Parallax2D" parent="Foreground" unique_id=255542674]
+top_level = true
 
 [node name="TextureRect" type="TextureRect" parent="Foreground/Parallax2" unique_id=114233679]
-offset_left = -4279.0
+visible = false
+z_index = 200
+offset_left = -3799.0
 offset_top = -4385.0
-offset_right = 199.0
+offset_right = 679.0
 offset_bottom = 1530.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_747ic")
 flip_h = true
 
-[node name="MenuPanel" type="Panel" parent="." unique_id=151560859]
-z_index = 100
+[node name="Overlay" type="CanvasLayer" parent="." unique_id=711637823]
+
+[node name="StartupOverlay" type="Control" parent="Overlay" unique_id=646513388]
+z_index = 600
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -0.00048828125
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_158mb")
+metadata/_edit_use_anchors_ = true
+
+[node name="1" type="ColorRect" parent="Overlay/StartupOverlay" unique_id=389358252]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.59475005, 0.59475, 0.59475, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="ScreenBorder" type="TextureRect" parent="Overlay/StartupOverlay/1" unique_id=513543669]
+layout_mode = 0
+offset_left = -732.0
+offset_top = -4385.0
+offset_right = 1932.0
+offset_bottom = 1530.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_lnxmk")
+
+[node name="Label" type="Label" parent="Overlay/StartupOverlay/1" unique_id=803248976]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 512.0
+offset_right = 1224.0
+offset_bottom = 600.0
+theme_override_font_sizes/font_size = 128
+text = "Made with GODOT"
+
+[node name="TextureRect" type="TextureRect" parent="Overlay/StartupOverlay/1" unique_id=726707988]
+layout_mode = 0
+offset_left = 1251.0
+offset_top = 422.0
+offset_right = 1500.0
+offset_bottom = 671.0
+texture = ExtResource("101_lnxmk")
+
+[node name="Menu" type="CanvasLayer" parent="." unique_id=576383519]
+follow_viewport_enabled = true
+
+[node name="MenuPanel" type="Panel" parent="Menu" unique_id=151560859]
+visible = false
+z_index = 300
 anchors_preset = -1
 anchor_left = 0.712
 anchor_top = 0.5
@@ -3924,12 +4124,12 @@ anchor_right = 0.712
 anchor_bottom = 0.5
 offset_left = 0.95996094
 offset_top = -4.0
-offset_right = 448.95996
+offset_right = 448.96045
 offset_bottom = 484.0
 theme = ExtResource("1_158mb")
 theme_override_styles/panel = SubResource("StyleBoxFlat_q3rjx")
 
-[node name="Play" type="Button" parent="MenuPanel" unique_id=6941944]
+[node name="Play" type="Button" parent="Menu/MenuPanel" unique_id=6941944]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.125
@@ -3944,7 +4144,7 @@ theme = ExtResource("1_158mb")
 theme_override_font_sizes/font_size = 32
 text = "Play"
 
-[node name="Options" type="Button" parent="MenuPanel" unique_id=304387498]
+[node name="Options" type="Button" parent="Menu/MenuPanel" unique_id=304387498]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.125
@@ -3959,7 +4159,7 @@ theme = ExtResource("1_158mb")
 theme_override_font_sizes/font_size = 32
 text = "Options"
 
-[node name="Credits" type="Control" parent="MenuPanel" unique_id=2100209309]
+[node name="Credits" type="Control" parent="Menu/MenuPanel" unique_id=2100209309]
 anchors_preset = 0
 offset_left = -1552.0
 offset_top = -616.0
@@ -3968,7 +4168,7 @@ offset_bottom = -576.0
 theme = ExtResource("1_158mb")
 script = ExtResource("97_tf86c")
 
-[node name="CreditPanel" type="Panel" parent="MenuPanel/Credits" unique_id=865488589]
+[node name="CreditPanel" type="Panel" parent="Menu/MenuPanel/Credits" unique_id=865488589]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -3983,7 +4183,7 @@ offset_bottom = 1142.8
 theme = ExtResource("1_158mb")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ct1h4")
 
-[node name="Label" type="Label" parent="MenuPanel/Credits/CreditPanel" unique_id=624224128]
+[node name="Label" type="Label" parent="Menu/MenuPanel/Credits/CreditPanel" unique_id=624224128]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 10.0
@@ -3994,7 +4194,7 @@ text = "Credits"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MenuPanel/Credits/CreditPanel" unique_id=1266375183]
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/MenuPanel/Credits/CreditPanel" unique_id=1266375183]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.18200001
@@ -4081,7 +4281,7 @@ ByteBounce Font by Hipfonts via 1001fonts.com - [url]https://www.1001fonts.com/b
 vertical_alignment = 1
 selection_enabled = true
 
-[node name="ShowCredits" type="Button" parent="MenuPanel/Credits" unique_id=1703909957]
+[node name="ShowCredits" type="Button" parent="Menu/MenuPanel/Credits" unique_id=1703909957]
 layout_mode = 0
 offset_left = 1609.0
 offset_top = 871.0
@@ -4094,7 +4294,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tf86c")
 text = "Credits"
 icon_alignment = 2
 
-[node name="Quit" type="Button" parent="MenuPanel" unique_id=1947578702]
+[node name="Quit" type="Button" parent="Menu/MenuPanel" unique_id=1947578702]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.125
@@ -4109,16 +4309,18 @@ theme = ExtResource("1_158mb")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
-[node name="Logo" parent="." unique_id=1719326609 instance=ExtResource("4_wbdvm")]
-position = Vector2(648.00006, -64)
+[node name="Logo" parent="Menu/MenuPanel" unique_id=1719326609 instance=ExtResource("4_wbdvm")]
+z_index = 400
+position = Vector2(-719.99994, -600)
 scale = Vector2(0.75, 0.75)
 
-[node name="VerNum" parent="." unique_id=1710955397 instance=ExtResource("98_tf86c")]
+[node name="VerNum" parent="Menu/MenuPanel" unique_id=1710955397 instance=ExtResource("98_tf86c")]
+z_index = 500
 layout_mode = 1
-offset_left = 1410.32
-offset_top = 1044.0
-offset_right = 1714.32
-offset_bottom = 1077.0
+offset_left = 183.40794
+offset_top = 508.0
+offset_right = 487.40796
+offset_bottom = 547.0
 horizontal_alignment = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=843025085]
@@ -4126,8 +4328,8 @@ stream = ExtResource("98_fngy1")
 autoplay = true
 bus = &"Music"
 
-[connection signal="pressed" from="MenuPanel/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MenuPanel/Options" to="." method="_on_options_pressed"]
-[connection signal="meta_clicked" from="MenuPanel/Credits/CreditPanel/RichTextLabel" to="MenuPanel/Credits" method="_on_rich_text_label_meta_clicked"]
-[connection signal="pressed" from="MenuPanel/Credits/ShowCredits" to="MenuPanel/Credits" method="_on_show_credits_pressed"]
-[connection signal="pressed" from="MenuPanel/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Menu/MenuPanel/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/MenuPanel/Options" to="." method="_on_options_pressed"]
+[connection signal="meta_clicked" from="Menu/MenuPanel/Credits/CreditPanel/RichTextLabel" to="Menu/MenuPanel/Credits" method="_on_rich_text_label_meta_clicked"]
+[connection signal="pressed" from="Menu/MenuPanel/Credits/ShowCredits" to="Menu/MenuPanel/Credits" method="_on_show_credits_pressed"]
+[connection signal="pressed" from="Menu/MenuPanel/Quit" to="." method="_on_quit_pressed"]

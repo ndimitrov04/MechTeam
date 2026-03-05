@@ -132,6 +132,15 @@ func _unhandled_input(event):
 		else:
 			mech_edit = false
 			print("EXITED DEBUG MECH EDIT MODE")
+	if event.is_action_pressed("debug_connection_view"):
+		for child in controllers.get_children():
+			if not ("connector" in child):
+				continue
+			if child.connector.visible:
+				child.connector.hide()
+				continue
+			child.connector.show()
+		
 
 func total_energy():
 	energy = 0

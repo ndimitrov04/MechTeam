@@ -4,11 +4,12 @@ extends Camera2D
 @export var intensity: float = 5.0
 @export var frequency: float = 10.0
 @export var decay: float = 0.95
+# Shake may be triggered externally
+@export var shake_intensity: float = 0.0
 
 # Internal variables
 var noise: FastNoiseLite
 var time: float = 0.0
-var shake_intensity: float = 0.0
 
 func _ready():
 	noise = FastNoiseLite.new()
@@ -31,8 +32,6 @@ func _process(delta):
 	else:
 		# Reset position when shake is minimal
 		position = Vector2.ZERO
-	
-	shake(0.05)
 
 func shake(magnitude: float = 1.0):
 	shake_intensity = magnitude * intensity
