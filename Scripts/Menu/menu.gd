@@ -1,10 +1,5 @@
 extends Control
 
-@onready var menu_panel: Panel = $MenuPanel
-@onready var play: Button = $MenuPanel/Play
-@onready var options: Button = $MenuPanel/Options
-@onready var clear_data: Button = $"MenuPanel/Clear Data"
-@onready var quit: Button = $MenuPanel/Quit
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var player: CharacterBody2D = $Player
@@ -14,7 +9,7 @@ func _ready() -> void:
 	animation_player.play("intro")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

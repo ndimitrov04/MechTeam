@@ -31,6 +31,8 @@ func _physics_process(_delta):
 
 # Call this when taking damage.
 func take_damage(damage_value : int, collision : KinematicCollision2D, knockback_force : int):
+	# HP gameplay logic
+	get_parent().take_damage(damage_value)
 	# Convert collision position: Global -> Local -> Tilemap
 	if not collision:
 		return
@@ -56,8 +58,6 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	var impact_dir = biased_pos - collision.get_position()
 	debris_instance.apply_impulse(impact_dir.normalized() * knockback_force)
 	debris_instance.apply_impulse(Vector2.UP * knockback_force * 2)
-	# HP gameplay logic
-	get_parent().take_damage(damage_value)
 	# Regenerate physics body's hitboxes
 	regenerate_frame_collision()
 

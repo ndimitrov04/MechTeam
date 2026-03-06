@@ -82,7 +82,21 @@ func arm(module):
 	controlled_module_index = module.index
 	cooldown_time = module.cooldown_time
 	energy_cost = module.energy_cost
+	# Draw connector
 	connector.add_point(module.global_position - self.global_position + OFFSET)
+	## Draw connector outline
+	#for dx in [-1, 1]:
+		#for dy in [-1, 1]:
+			#var outline = Line2D.new()
+			#outline.default_color = Color.WHITE
+			#outline.width = connector.width + 2
+			## Create offset points
+			#var offset_points := PackedVector2Array()
+			#for p in connector.points:
+				#offset_points.append(p + Vector2(dx, dy))
+			#outline.points = offset_points
+			#add_child(outline)
+	# Hide active connection marker
 	connection_marker.hide()
 	connection_marker.set_process(false)
 	module.controller = self

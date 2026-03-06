@@ -10,13 +10,13 @@ extends RigidBody2D
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
 
-var bullet = preload("res://Scenes/Projectiles/bullet.tscn")
+var bullet
 
-var repeat_rate : int = 10	# Number of bullets fired per volley
-var recoil : float = 0.15	# Recoil rotation of gun module per shot in radians
+var repeat_rate : int	# Number of bullets fired per volley
+var recoil : float	# Recoil rotation of gun module per shot in radians
 
-var energy_cost : int = 30
-var cooldown_time : float = 20
+var energy_cost : int
+var cooldown_time : float
 
 @onready var is_friendly : bool = false
 @onready var type : MechData.ObjectType = MechData.ObjectType.MODULE
@@ -50,6 +50,16 @@ func _ready():
 		set_collision_mask_value(2, 0)
 		set_collision_layer_value(4, 1)
 		set_collision_mask_value(4, 1)
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	# Initiate object parameters
+	bullet = get_meta("bullet")
+	repeat_rate = get_meta("repeat_rate") # Number of bullets fired per volley
+	recoil = get_meta("recoil") 		# Recoil rotation of gun module per shot in radians
+	energy_cost = get_meta("energy_cost")
+	cooldown_time = get_meta("cooldown_time")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -102,14 +112,15 @@ func engage():
 		bullet_instance.global_rotation = self.global_rotation
 		bullet_instance.global_position = shoot_point.global_position
 		# Apply recoil per shot
-		self.rotate(randf_range(-recoil, recoil))
+		if recoil != 0:
+			self.rotate(randf_range(-recoil, recoil))
 		if get_parent().get_parent().name == "Mech":
 			main.static_ui.set_status("Firing Machinegun!")
 
 func destroy():
 	# Spawn debris
 	var debris_instance = DEBRIS.instantiate()
-	main.add_child(debris_instance)
+	main.call_deferred("add_child", debris_instance)
 	debris_instance.global_position = global_position
 	
 	set_collision_layer_value(2, 0)
@@ -129,7 +140,7 @@ func destroy():
 	if controller:
 		controller.disarm()
 	
-	freeze = false
+	call_deferred("set_freeze_enabled", false)
 
 func _on_body_entered(_body):
 	var debris_instance = DEBRIS.instantiate()

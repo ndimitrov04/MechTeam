@@ -1,0 +1,194 @@
+[gd_scene format=3 uid="uid://d4ffjne0734d6"]
+
+[ext_resource type="Script" uid="uid://cnp808yttu7dr" path="res://Scripts/Projectiles/laser_beam.gd" id="1_73065"]
+[ext_resource type="Texture2D" uid="uid://cuf0bfvvqoad3" path="res://Images/Projectiles/LaserShot.png" id="2_73065"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1vox"]
+atlas = ExtResource("2_73065")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te8f1"]
+atlas = ExtResource("2_73065")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pg7u"]
+atlas = ExtResource("2_73065")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tneo2"]
+atlas = ExtResource("2_73065")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b0kc"]
+atlas = ExtResource("2_73065")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtt3i"]
+atlas = ExtResource("2_73065")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7squ"]
+atlas = ExtResource("2_73065")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58r2h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1vox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te8f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pg7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tneo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b0kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtt3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7squ")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tneo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b0kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtt3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7squ")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pg7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te8f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1vox")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6nan"]
+size = Vector2(599, 4)
+
+[node name="LaserBeam" type="Area2D" unique_id=513088567]
+z_index = 20
+z_as_relative = false
+collision_layer = 16396
+collision_mask = 16396
+script = ExtResource("1_73065")
+
+[node name="Sprites" type="Node2D" parent="." unique_id=1544577251]
+
+[node name="Sprite13" type="AnimatedSprite2D" parent="Sprites" unique_id=1120504640]
+position = Vector2(544, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite14" type="AnimatedSprite2D" parent="Sprites" unique_id=64475649]
+position = Vector2(512, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite15" type="AnimatedSprite2D" parent="Sprites" unique_id=1631321145]
+position = Vector2(480, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite16" type="AnimatedSprite2D" parent="Sprites" unique_id=1588341447]
+position = Vector2(448, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite17" type="AnimatedSprite2D" parent="Sprites" unique_id=143891193]
+position = Vector2(416, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite18" type="AnimatedSprite2D" parent="Sprites" unique_id=2146730436]
+position = Vector2(384, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite7" type="AnimatedSprite2D" parent="Sprites" unique_id=165227973]
+position = Vector2(352, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite8" type="AnimatedSprite2D" parent="Sprites" unique_id=1150755030]
+position = Vector2(320, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite9" type="AnimatedSprite2D" parent="Sprites" unique_id=2123325705]
+position = Vector2(288, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite10" type="AnimatedSprite2D" parent="Sprites" unique_id=367894901]
+position = Vector2(256, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite11" type="AnimatedSprite2D" parent="Sprites" unique_id=2115730886]
+position = Vector2(224, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite12" type="AnimatedSprite2D" parent="Sprites" unique_id=1921024859]
+position = Vector2(192, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite6" type="AnimatedSprite2D" parent="Sprites" unique_id=1741643675]
+position = Vector2(160, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite5" type="AnimatedSprite2D" parent="Sprites" unique_id=2096449474]
+position = Vector2(128, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite4" type="AnimatedSprite2D" parent="Sprites" unique_id=2052492980]
+position = Vector2(96, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite3" type="AnimatedSprite2D" parent="Sprites" unique_id=1102991674]
+position = Vector2(64, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite2" type="AnimatedSprite2D" parent="Sprites" unique_id=1270767460]
+position = Vector2(32, 0)
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Sprites" unique_id=250508383]
+sprite_frames = SubResource("SpriteFrames_58r2h")
+autoplay = "default"
+
+[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1855153871]
+position = Vector2(269.5, 0)
+shape = SubResource("RectangleShape2D_q6nan")
+debug_color = Color(0.9897811, 0, 0.2918886, 0.41960785)

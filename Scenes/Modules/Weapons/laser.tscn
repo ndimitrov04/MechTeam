@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://boso7sg4n7kia"]
+
+[ext_resource type="Script" uid="uid://cp3kgexvunvtf" path="res://Scripts/Modules/Weapons/gun.gd" id="1_3lhc7"]
+[ext_resource type="Texture2D" uid="uid://btiolr45ujjdh" path="res://Images/MechGuns/turret_02_mk1.png" id="2_3lhc7"]
+[ext_resource type="PackedScene" uid="uid://d4ffjne0734d6" path="res://Scenes/Projectiles/laser_beam.tscn" id="2_nrr2k"]
+[ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="3_3gp7u"]
+[ext_resource type="AudioStream" uid="uid://bo3lvuoe5w7ln" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Shot_v2_04.wav" id="5_nrr2k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3lhc7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1ilt"]
+radius = 18.0
+height = 42.0
+
+[node name="Laser" type="RigidBody2D" unique_id=834209248]
+z_index = 10
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_3lhc7")
+metadata/aim_speed = 1.0
+metadata/pinned_tile = Vector2i(0, 0)
+metadata/price = 75
+metadata/bullet = ExtResource("2_nrr2k")
+metadata/repeat_rate = 1
+metadata/recoil = 0.0
+metadata/energy_cost = 75
+metadata/cooldown_time = 35.0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_d1ilt")
+autoplay = "default"
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=196601224]
+position = Vector2(-1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_d1ilt")
+
+[node name="DirectAim" parent="." unique_id=1244187644 instance=ExtResource("3_3gp7u")]
+
+[node name="ShootPoint" type="Node2D" parent="." unique_id=670362176]
+position = Vector2(27, 0)
+
+[node name="SFX" type="Node2D" parent="." unique_id=280823543]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="SFX" unique_id=1383703712]
+stream = ExtResource("5_nrr2k")
+volume_db = 3.0
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=10055733]
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"

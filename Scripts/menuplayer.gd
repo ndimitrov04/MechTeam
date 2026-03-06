@@ -1,4 +1,4 @@
 extends CharacterBody2D
 
-func screenshake(shake_position : Vector2, amount : int):
+func screenshake(_shake_position : Vector2, _amount : int):
 	pass
