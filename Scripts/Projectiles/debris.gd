@@ -42,7 +42,6 @@ func _physics_process(_delta):
 	pass
 
 func _on_body_entered(_body):
-	sfx.volume_db = -7
 	sfx.play()
 	if timer.is_stopped():
 		timer.start(1.5)

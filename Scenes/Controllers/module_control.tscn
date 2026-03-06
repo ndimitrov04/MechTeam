@@ -143,7 +143,6 @@ end_cap_mode = 2
 
 [node name="ConnectionMarker" type="Line2D" parent="." unique_id=882254811]
 process_mode = 1
-z_index = -1
 position = Vector2(0, 8)
 points = PackedVector2Array(0, 0, 0, 0)
 width = 5.0

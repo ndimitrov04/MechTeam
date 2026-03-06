@@ -1123,6 +1123,7 @@ icon = ExtResource("8_tgtas")
 icon_alignment = 2
 
 [node name="NextMech" type="Button" parent="GUI/Control" unique_id=579514854]
+visible = false
 layout_mode = 0
 offset_left = 1624.0
 offset_top = 32.0
@@ -1136,6 +1137,7 @@ icon = ExtResource("8_tgtas")
 icon_alignment = 2
 
 [node name="PreviousMech" type="Button" parent="GUI/Control" unique_id=728715760]
+visible = false
 layout_mode = 0
 offset_left = 1624.0
 offset_top = 128.0
@@ -1161,6 +1163,7 @@ icon = ExtResource("10_s1xxn")
 icon_alignment = 2
 
 [node name="NewMech" type="Button" parent="GUI/Control" unique_id=952456694]
+visible = false
 layout_mode = 0
 offset_left = 1624.0
 offset_top = 416.0

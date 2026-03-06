@@ -370,6 +370,7 @@ func load_prototype():
 			if blocks.get_cell_atlas_coords(Vector2i(i+2, j+2)) != MechData.EMPTY_CELL:
 				if i+2 % 2 == 0 and j+2 % 2 == 0:
 					PlayerData.money -= 1
+					PlayerData.mech_cost += 1
 			blocks.set_cell(Vector2i(i+2, j+2), 0 , MechData.blocks[i][j])
 			walls.set_cell(Vector2i(i+2, j+2), 0 , MechData.walls[i][j])
 	for i in range(0, MechData.object_scenes.size()):
@@ -378,6 +379,7 @@ func load_prototype():
 		mech_prototype.add_child(object_instance)
 		if object_instance.has_meta("price"):
 			PlayerData.money -= object_instance.get_meta("price")
+			PlayerData.mech_cost += object_instance.get_meta("price")
 		if object_instance.has_meta("friendly_npc"):
 			npc_count += 1
 		if object_instance.has_meta("npc_capacity"):
@@ -425,7 +427,6 @@ func new_mech():
 	npc_capacity = 0
 	npc_count = 0
 	
-	MechData.new_mech()
 	for i in range(0, MechData.blocks.size()):
 		for j in range(0, MechData.blocks[i].size()):
 			if blocks.get_cell_atlas_coords(Vector2i(i+2, j+2)) != MechData.EMPTY_CELL:
@@ -437,6 +438,8 @@ func new_mech():
 		if mech_prototype.get_child(i).has_meta("price"):
 			unbuy(mech_prototype.get_child(i).get_meta("price"))
 		mech_prototype.get_child(i).queue_free()
+	
+	MechData.new_mech()
 	
 	first_click = true
 	
@@ -520,9 +523,11 @@ func buy(price : int) -> bool:
 		control.attention(control.cash_label, 2)
 		return false
 	PlayerData.money -= price
+	PlayerData.mech_cost += price
 	control.update_cash_panel()
 	return true
 
 func unbuy(price : int):
 	PlayerData.money += price
+	PlayerData.mech_cost -= price
 	control.update_cash_panel()

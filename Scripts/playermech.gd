@@ -171,11 +171,11 @@ func drain_energy(amount : int) -> bool:
 func take_damage(damage_value : int):
 	hp -= damage_value
 	# Godot 4.5 still has no fallthrough switches :/
-	if hp <= 150:
+	if hp <= max_hp:
 		background.break_random_tile()
-	if hp <= 100:
+	if hp <= max_hp/2:
 		background.break_random_tile()
-	if hp <= 50:
+	if hp <= max_hp/4:
 		background.break_random_tile()
 	if hp <= 0:
 		die()

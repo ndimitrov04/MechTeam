@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b63kjdjo5d5da" path="res://Scripts/Minigames/QuickTimeArrow.gd" id="1_0klnx"]
 [ext_resource type="PackedScene" uid="uid://dvty4b4e30seu" path="res://Scenes/Behaviors/timed_game.tscn" id="2_6td2n"]
-[ext_resource type="AudioStream" uid="uid://cx6vcki7yrvo5" path="res://Audio/SFX/UI/retro_beep_04.ogg" id="3_gpsap"]
-[ext_resource type="AudioStream" uid="uid://rf8mda10gl8x" path="res://Audio/SFX/UI/retro_beep_02.ogg" id="4_75b7e"]
 [ext_resource type="AudioStream" uid="uid://bh1sj01j1b2mb" path="res://Audio/SFX/UI/retro_beep_03.ogg" id="5_1qys7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0klnx"]
@@ -65,16 +63,15 @@ layout_mode = 1
 [node name="SFX" type="Node" parent="." unique_id=1279724292]
 
 [node name="Lose" type="AudioStreamPlayer" parent="SFX" unique_id=184095293]
-stream = ExtResource("3_gpsap")
 max_polyphony = 3
 bus = &"SFX"
 
 [node name="Win" type="AudioStreamPlayer" parent="SFX" unique_id=1171833096]
-stream = ExtResource("4_75b7e")
 max_polyphony = 3
 bus = &"SFX"
 
 [node name="Input" type="AudioStreamPlayer" parent="SFX" unique_id=1510407579]
 stream = ExtResource("5_1qys7")
+volume_db = -4.0
 max_polyphony = 3
 bus = &"SFX"

@@ -67,6 +67,8 @@ func start():
 	flow_container.get_child(0).self_modulate = Color(0, 255, 0)
 
 func victory_check(direction):
+	if game_ended:
+		return
 	if direction == directions[direction_index]:
 		flow_container.get_child(0).free() # Dangerous.
 		print("Correct!")
@@ -84,6 +86,7 @@ func victory_check(direction):
 			direction_index += 1
 			flow_container.get_child(0).self_modulate = Color(0, 255, 0)
 	else:
+		game_ended = true
 		lose()
 
 func lose():
@@ -93,5 +96,4 @@ func lose():
 	lose_sfx.play()
 	minigames.lose()
 	minigames.player.end_minigame()
-	await get_tree().create_timer(0.5).timeout
 	queue_free()

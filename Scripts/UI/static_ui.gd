@@ -14,6 +14,9 @@ extends Control
 @onready var minigame_result = $MinigameResult
 @onready var advance = $Advance
 
+@onready var lose: AudioStreamPlayer = $"../SFX/Lose"
+@onready var win: AudioStreamPlayer = $"../SFX/Win"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	status_timeout.timeout.connect(_on_status_timeout)
@@ -52,9 +55,11 @@ func display_minigame_result(victory : bool):
 	if victory:
 		minigame_result.text = "Minigame Success!!!"
 		minigame_result.add_theme_color_override("font_color", Color("green"))
+		win.play()
 	else:
 		minigame_result.text = "Minigame Failure..."
 		minigame_result.add_theme_color_override("font_color", Color("red"))
+		lose.play()
 	minigame_result.modulate = Color(1, 1, 1, 1)  # Make visible
 	minigame_result.show()
 	# Flash effect - 4 quick flashes over 0.4 seconds, then keep visible for 0.6 seconds

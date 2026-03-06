@@ -93,6 +93,9 @@ const NPC = preload("uid://cmy4r8enqaty2")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	PlayerData.money += PlayerData.mech_cost
+	await get_tree().process_frame
+	PlayerData.mech_cost = 0
 	if MechData.mechs.size() > 0:
 		next_mech.disabled = false
 	await get_tree().process_frame
@@ -314,6 +317,7 @@ func _on_npc_list_item_clicked(index, _at_position, _mouse_button_index):
 func _on_next_stage_pressed():
 	match build_stage:
 		0:
+			_on_save_mech_pressed()
 			tab_container.hide()
 			npc_shop.hide()
 			info_panel.hide()
@@ -348,6 +352,7 @@ func _on_previous_stage_pressed():
 		0:
 			pass
 		1:
+			_on_save_mech_pressed()
 			tab_container.show()
 			npc_shop.show()
 			previous_stage.hide()
@@ -359,10 +364,10 @@ func _on_previous_stage_pressed():
 			clear_field.disabled = false
 			new_mech.disabled = false
 			debug_mech.disabled = false
-			next_mech.show()
-			previous_mech.show()
+			#next_mech.show()
+			#previous_mech.show()
 			clear_field.show()
-			new_mech.show()
+			#new_mech.show()
 			debug_mech.show()
 		2:
 			pass
@@ -383,6 +388,7 @@ func _on_save_mech_pressed():
 		previous_mech.disabled = false
 
 func _on_next_mech_pressed():
+	_on_save_mech_pressed()
 	mech_index += 1
 	update_mech_scroll()
 	MechData.load_mech(mech_index)

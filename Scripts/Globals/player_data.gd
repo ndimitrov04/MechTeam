@@ -2,6 +2,7 @@ extends Node
 
 @onready var max_hp : int = 5
 @onready var money : int = 200
+@onready var mech_cost : int = 0
 @onready var current_stage : int = 1
 
 # Called when the node enters the scene tree for the first time.

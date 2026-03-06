@@ -17,7 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://yjvcojipbr0l" path="res://Scenes/ver_num.tscn" id="19_hibaj"]
 [ext_resource type="Script" uid="uid://1i7x3yrfunn2" path="res://Scripts/aim_viewport.gd" id="19_pdsj5"]
 [ext_resource type="Script" uid="uid://drkagrg0iq1mc" path="res://Scripts/mech_viewport.gd" id="20_ee4r6"]
+[ext_resource type="AudioStream" uid="uid://cx6vcki7yrvo5" path="res://Audio/SFX/UI/retro_beep_04.ogg" id="20_gt3je"]
 [ext_resource type="Texture2D" uid="uid://cmiucrejdoxwi" path="res://Images/Objects/Decor/monitor.png" id="21_3pmx8"]
+[ext_resource type="AudioStream" uid="uid://rf8mda10gl8x" path="res://Audio/SFX/UI/retro_beep_02.ogg" id="21_u50mg"]
+[ext_resource type="AudioStream" uid="uid://bh1sj01j1b2mb" path="res://Audio/SFX/UI/retro_beep_03.ogg" id="22_cbgmd"]
 [ext_resource type="Script" uid="uid://d37dfj32lv50m" path="res://Scripts/game_over.gd" id="25_1w6v2"]
 [ext_resource type="Script" uid="uid://bjgkfyj322xtr" path="res://Scripts/UI/static_ui.gd" id="25_cbgmd"]
 
@@ -724,7 +727,6 @@ physics_material_override = SubResource("PhysicsMaterial_pdsj5")
 
 [node name="EnemyMech4" parent="." unique_id=133330300 instance=ExtResource("10_hibaj")]
 position = Vector2(1300, 0)
-metadata/hp = 999
 
 [node name="Player" parent="." unique_id=1706264332 instance=ExtResource("14_k12tt")]
 z_index = 40
@@ -1041,6 +1043,24 @@ offset_left = 1408.32
 offset_top = 1040.0
 offset_right = 1712.32
 offset_bottom = 1073.0
+
+[node name="SFX" type="Node" parent="GUI/Control" unique_id=2138032596]
+
+[node name="Lose" type="AudioStreamPlayer" parent="GUI/Control/SFX" unique_id=1689817607]
+stream = ExtResource("20_gt3je")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="Win" type="AudioStreamPlayer" parent="GUI/Control/SFX" unique_id=396102674]
+stream = ExtResource("21_u50mg")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="Input" type="AudioStreamPlayer" parent="GUI/Control/SFX" unique_id=1389673422]
+stream = ExtResource("22_cbgmd")
+volume_db = -4.0
+max_polyphony = 3
+bus = &"SFX"
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2025517324]
 stream = ExtResource("19_fevyy")

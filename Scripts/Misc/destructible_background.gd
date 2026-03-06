@@ -32,7 +32,7 @@ func break_random_tile():
 		debris_instance = DEBRIS.instantiate()
 	else:
 		debris_instance = DEBRIS_NOEXPL.instantiate()
-	main.add_child(debris_instance)
+	main.call_deferred("add_child", debris_instance)
 	debris_instance.global_position = to_global(map_to_local(chosen_cell))
 	debris_instance.set_sprite(chosen_tile_atlas)
 
