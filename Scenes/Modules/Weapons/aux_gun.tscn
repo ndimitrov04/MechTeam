@@ -77,7 +77,6 @@ position = Vector2(40, 0)
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="SFX" unique_id=874724062]
 stream = ExtResource("4_8wj6m")
-volume_db = 3.0
 max_distance = 1250.0
 max_polyphony = 10
 bus = &"SFX"

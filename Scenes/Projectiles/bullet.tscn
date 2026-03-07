@@ -45,6 +45,13 @@ continuous_cd = 1
 contact_monitor = true
 max_contacts_reported = 3
 script = ExtResource("1_3323x")
+metadata/speed = 200
+metadata/damage_value = 1
+metadata/knockback = 300
+metadata/impact = true
+metadata/lifetime = 4.5
+metadata/hitflash = false
+metadata/pierce_rate = 0
 
 [node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1205890646]
 position = Vector2(-0.5, 0)
@@ -54,3 +61,7 @@ shape = SubResource("RectangleShape2D_12ur6")
 sprite_frames = SubResource("SpriteFrames_1pg7u")
 autoplay = "default"
 frame_progress = 0.43615592
+
+[node name="Timer" type="Timer" parent="." unique_id=1522506310]
+wait_time = 3.0
+one_shot = true

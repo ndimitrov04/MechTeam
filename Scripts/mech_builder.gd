@@ -486,6 +486,7 @@ func finish_mech():
 			for controller in mech_instance.controllers.get_children():
 				# Match controller child #i to module child #i
 				MechData.control_pairs.append(controller.controlled_module_index)
+	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -51,15 +51,6 @@ func _ready():
 		set_collision_layer_value(4, 1)
 		set_collision_mask_value(4, 1)
 	
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
-	
 	# Initiate object parameters
 	bullet = get_meta("bullet")
 	repeat_rate = get_meta("repeat_rate") # Number of bullets fired per volley

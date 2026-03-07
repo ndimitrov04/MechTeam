@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://rbruq7o1vh85"]
+
+[ext_resource type="Script" uid="uid://dnj15b84lvxlb" path="res://Scripts/Projectiles/bullet.gd" id="1_ihw0c"]
+[ext_resource type="Texture2D" uid="uid://ys2p1s6abkep" path="res://Images/Projectiles/SpaceStation_Projectiles_Sheet.png" id="2_13phl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12ur6"]
+size = Vector2(10, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihw0c"]
+atlas = ExtResource("2_13phl")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13phl"]
+atlas = ExtResource("2_13phl")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p326q"]
+atlas = ExtResource("2_13phl")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1pg7u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihw0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13phl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p326q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="PlasmaBlast" type="RigidBody2D" unique_id=764556974]
+z_index = 20
+z_as_relative = false
+collision_layer = 16396
+collision_mask = 16396
+gravity_scale = 0.001
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("1_ihw0c")
+metadata/speed = 300
+metadata/damage_value = 1
+metadata/knockback = 0
+metadata/impact = false
+metadata/lifetime = 3.5
+metadata/hitflash = true
+metadata/pierce_rate = 3
+
+[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1205890646]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_12ur6")
+debug_color = Color(0, 3.8815942, 4.16004, 0.41960785)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=574816881]
+sprite_frames = SubResource("SpriteFrames_1pg7u")
+autoplay = "default"
+frame_progress = 0.45420215
+
+[node name="Timer" type="Timer" parent="." unique_id=607811564]
+wait_time = 3.0
+one_shot = true

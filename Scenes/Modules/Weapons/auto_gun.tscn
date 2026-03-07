@@ -86,7 +86,6 @@ top_level = true
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="SFX" unique_id=282292751]
 stream = ExtResource("4_5r33s")
-volume_db = 3.0
 max_distance = 1250.0
 max_polyphony = 10
 bus = &"SFX"

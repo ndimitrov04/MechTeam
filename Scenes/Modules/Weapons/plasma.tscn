@@ -1,0 +1,242 @@
+[gd_scene format=3 uid="uid://c2estde02njs"]
+
+[ext_resource type="PackedScene" uid="uid://rbruq7o1vh85" path="res://Scenes/Projectiles/plasma_blast.tscn" id="2_cdlgu"]
+[ext_resource type="Texture2D" uid="uid://lo8478b4on5s" path="res://Images/MechGuns/turret_04_mk1.png" id="3_cdlgu"]
+[ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="4_k73cy"]
+[ext_resource type="AudioStream" uid="uid://cemil53000kh5" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Shot_v1_01.wav" id="4_y7ulp"]
+
+[sub_resource type="GDScript" id="GDScript_y7ulp"]
+script/source = "extends RigidBody2D
+
+@onready var main = $\"../../..\"
+@onready var mech = $\"../..\"
+
+@onready var shoot_point = $ShootPoint
+@onready var shoot_sfx: AudioStreamPlayer2D = $SFX/Shoot
+@onready var drop_sfx: AudioStreamPlayer2D = $SFX/Drop
+
+const DEBRIS = preload(\"uid://rg2m11gs0xex\")
+
+
+var bullet
+
+var repeat_rate : int	# Number of bullets fired per volley
+var recoil : float	# Recoil rotation of gun module per shot in radians
+
+var energy_cost : int
+var cooldown_time : float
+
+@onready var is_friendly : bool = false
+@onready var type : MechData.ObjectType = MechData.ObjectType.MODULE
+
+@onready var controller
+
+# Used for saving and loading controller:weapon connection pairs
+var index
+
+#unfreeze gun physics on destruction
+var destroyed : bool = false
+
+# Frame tile to which this module is pinned
+# (module will be destroyed when pinned tile is destroyed)
+#var pinned_frame_tile : Vector2i
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	#if has_meta(\"pinned_tile\"):
+		#pinned_frame_tile = get_meta(\"pinned_tile\")
+	self.body_entered.connect(_on_body_entered)
+	if get_parent().get_parent().name == \"Mech\":
+		index = get_parent().get_child_count() - 1
+		is_friendly = true
+		set_collision_layer_value(2, 1)
+		set_collision_mask_value(2, 1)
+		set_collision_layer_value(4, 0)
+		set_collision_mask_value(4, 0)
+	else:
+		set_collision_layer_value(2, 0)
+		set_collision_mask_value(2, 0)
+		set_collision_layer_value(4, 1)
+		set_collision_mask_value(4, 1)
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	# Initiate object parameters
+	bullet = get_meta(\"bullet\")
+	repeat_rate = get_meta(\"repeat_rate\") # Number of bullets fired per volley
+	recoil = get_meta(\"recoil\") 		# Recoil rotation of gun module per shot in radians
+	energy_cost = get_meta(\"energy_cost\")
+	cooldown_time = get_meta(\"cooldown_time\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(_delta):
+	pass
+
+func _input_event(_viewport, event, _shape_idx):
+	if get_parent().get_parent().name == \"Mech\":
+		if event is InputEventMouseButton and event.pressed and mech.mech_edit:
+			if event.button_index == MOUSE_BUTTON_LEFT and mech.current_terminal != null:
+				print(\"Terminal \" + mech.current_terminal.name + \" has been connected to \" + self.name)
+				mech.current_terminal.arm(self)
+				print(\"Deactivating terminal connection mode.\")
+				mech.current_terminal = null
+
+func engage():
+	for i in range(0, repeat_rate):
+		await get_tree().create_timer(0.15).timeout
+		shoot_sfx.pitch_scale = randf_range(0.8, 1.2)
+		shoot_sfx.play()
+		var bullet_instance = bullet.instantiate()
+		main.add_child(bullet_instance)
+		# Determine who the bullet will hurt
+		if is_friendly:
+			bullet_instance.set_collision_layer_value(1, 0)
+			bullet_instance.set_collision_layer_value(2, 0)
+			bullet_instance.set_collision_layer_value(9, 0)
+			bullet_instance.set_collision_layer_value(3, 1)
+			bullet_instance.set_collision_layer_value(4, 1)
+			bullet_instance.set_collision_layer_value(10, 1)
+			bullet_instance.set_collision_mask_value(1, 0)
+			bullet_instance.set_collision_mask_value(2, 0)
+			bullet_instance.set_collision_mask_value(9, 0)
+			bullet_instance.set_collision_mask_value(3, 1)
+			bullet_instance.set_collision_mask_value(4, 1)
+			bullet_instance.set_collision_mask_value(10, 1)
+			
+		else:
+			bullet_instance.set_collision_layer_value(1, 1)
+			bullet_instance.set_collision_layer_value(2, 1)
+			bullet_instance.set_collision_layer_value(9, 1)
+			bullet_instance.set_collision_layer_value(3, 0)
+			bullet_instance.set_collision_layer_value(4, 0)
+			bullet_instance.set_collision_layer_value(10, 0)
+			bullet_instance.set_collision_mask_value(1, 1)
+			bullet_instance.set_collision_mask_value(2, 1)
+			bullet_instance.set_collision_mask_value(9, 1)
+			bullet_instance.set_collision_mask_value(3, 0)
+			bullet_instance.set_collision_mask_value(4, 0)
+			bullet_instance.set_collision_mask_value(10, 0)
+		bullet_instance.global_rotation = self.global_rotation
+		bullet_instance.global_position = shoot_point.global_position
+		# Apply recoil per shot
+		if recoil != 0:
+			self.rotate(randf_range(-recoil, recoil))
+		if get_parent().get_parent().name == \"Mech\":
+			main.static_ui.set_status(\"Firing Machinegun!\")
+
+func destroy():
+	# Spawn debris
+	var debris_instance = DEBRIS.instantiate()
+	main.call_deferred(\"add_child\", debris_instance)
+	debris_instance.global_position = global_position
+	
+	set_collision_layer_value(2, 0)
+	set_collision_layer_value(4, 0)
+	set_collision_mask_value(2, 0)
+	set_collision_mask_value(4, 0)
+	
+	set_collision_layer_value(7, 1)
+	set_collision_mask_value(7, 1)
+	
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0
+	destroyed = true
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0
+	
+	if controller:
+		controller.disarm()
+	
+	call_deferred(\"set_freeze_enabled\", false)
+
+func _on_body_entered(_body):
+	var debris_instance = DEBRIS.instantiate()
+	main.call_deferred(\"add_child\", debris_instance)
+	debris_instance.global_position = global_position
+	drop()
+	await get_tree().create_timer(1.0).timeout
+	queue_free()
+	
+func drop():
+	const QUBODUP_PUNCH_01 = preload(\"uid://708qbmb1elfe\")
+	const QUBODUP_PUNCH_02 = preload(\"uid://3ym41o68s5hs\")
+	const QUBODUP_PUNCH_03 = preload(\"uid://kx7214pkd02j\")
+	const QUBODUP_PUNCH_04 = preload(\"uid://dmwuh6jgmxre1\")
+	const QUBODUP_PUNCH_05 = preload(\"uid://b1u8fhv870l5e\")
+	
+	const drop_effects = [QUBODUP_PUNCH_01,QUBODUP_PUNCH_02,QUBODUP_PUNCH_03,QUBODUP_PUNCH_04,QUBODUP_PUNCH_05]
+	
+	drop_sfx.stream = drop_effects.pick_random()
+	drop_sfx.play()
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cdlgu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1ilt"]
+radius = 8.0
+height = 26.0
+
+[node name="Plasma" type="RigidBody2D" unique_id=834209248]
+z_index = 10
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = SubResource("GDScript_y7ulp")
+metadata/aim_speed = 1.5
+metadata/pinned_tile = Vector2i(0, 0)
+metadata/price = 25
+metadata/bullet = ExtResource("2_cdlgu")
+metadata/repeat_rate = 5
+metadata/recoil = 0.25
+metadata/energy_cost = 40
+metadata/cooldown_time = 30.0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_d1ilt")
+autoplay = "default"
+
+[node name="Hitbox2" type="CollisionShape2D" parent="." unique_id=196601224]
+position = Vector2(3, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_d1ilt")
+
+[node name="DirectAim" parent="." unique_id=1244187644 instance=ExtResource("4_k73cy")]
+
+[node name="ShootPoint" type="Node2D" parent="." unique_id=670362176]
+position = Vector2(40, 0)
+
+[node name="SFX" type="Node2D" parent="." unique_id=280823543]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="SFX" unique_id=1383703712]
+stream = ExtResource("4_y7ulp")
+volume_db = -2.0
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=10055733]
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"

@@ -39,8 +39,8 @@ func _process(_delta):
 
 func advance():
 	if enemies_left > 0:
-		player.camera.limit_right += SPAWN_OFFSET + 500
-		screen_border.position.x += SPAWN_OFFSET + 500
+		player.camera.limit_right += SPAWN_OFFSET + 1500
+		screen_border.position.x += SPAWN_OFFSET + 1500
 		spawn_random_enemy()
 		static_ui.display_advance_arrow()
 

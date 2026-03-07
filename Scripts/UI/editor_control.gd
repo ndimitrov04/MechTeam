@@ -78,6 +78,7 @@ const SHIELD = preload("uid://cqoj1222gihhh")
 const AUTO_GUN = preload("uid://bhwduvjbtg6l5")
 const RAM = preload("uid://d2uuifeftj3yo")
 const LASER = preload("uid://boso7sg4n7kia")
+const PLASMA = preload("uid://c2estde02njs")
 # CONTROLLERS
 const AIM_CONTROL = preload("uid://bjychxdy31gx5")
 const JUMP_CONTROL = preload("uid://cqf1xuoccxt6k")
@@ -158,6 +159,13 @@ func _ready():
 	modules.set_item_tooltip(7, "Cost: 75
 	Does not destroy tiles. Piercing.
 	Needs 30 energy to shoot.
+	Must be connected to an 
+	ENGAGE control terminal to shoot.
+	Mech must have an AIM control 
+	terminal onboard for this weapon to be aimed.")
+	modules.set_item_tooltip(8, "Cost: 35
+	Piercing. Goes through tiles.
+	Needs 40 energy to shoot.
 	Must be connected to an 
 	ENGAGE control terminal to shoot.
 	Mech must have an AIM control 
@@ -263,6 +271,9 @@ func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 		7:
 			editor.chosen_object = LASER
 			editor.current_cost = 75
+		8:
+			editor.chosen_object = PLASMA
+			editor.current_cost = 35
 
 func _on_controllers_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 2
