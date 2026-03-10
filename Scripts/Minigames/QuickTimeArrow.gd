@@ -79,7 +79,6 @@ func victory_check(direction):
 			win_sfx.play()
 			minigames.win()
 			minigames.player.end_minigame()
-			await get_tree().create_timer(0.2).timeout
 			queue_free()
 		else:
 			input_sfx.play()

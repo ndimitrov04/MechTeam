@@ -6,6 +6,7 @@ extends Control
 var current_module = null
 
 var quicktime_arrow = preload("res://Scenes/Minigames/quick_time_arrow.tscn")
+var precission_target = preload("res://Scenes/Minigames/precission_target.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,6 +24,8 @@ func start_minigame(mname : String, controlled_module):
 	match mname:
 		"quicktime_arrow":
 			spawn_minigame(quicktime_arrow)
+		"precission_target":
+			spawn_minigame(precission_target)
 		_:
 			print("No such minigame exists.")
 

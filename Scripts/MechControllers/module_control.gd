@@ -52,6 +52,7 @@ func _unhandled_input(event):
 			if not player.minigame_mode:
 				mech.drain_energy(energy_cost)
 				player.start_minigame("quicktime_arrow", controlled_module)
+				#player.start_minigame("precission_target", controlled_module)
 				engage.play()
 				start_cooldown()
 			else:
