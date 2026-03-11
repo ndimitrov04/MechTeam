@@ -20,7 +20,7 @@ func _ready():
 	endpoints.get_children().pick_random().show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if game_ended:
 		return
 

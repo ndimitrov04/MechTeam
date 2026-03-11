@@ -9,14 +9,14 @@ extends RigidBody2D
 
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
-var energy_cost : int = 50
-var max_shield_hp : int = 100
-var shield_hp : int = 50 # How much damage the shield takes before turning off
-var shield_regen_rate : int = 2 # Passive regeneration value
-var shield_boost_rate : int = 25 # Active regeneration value
-var energy_drain_rate : int = 5 # Passive energy drain value
-var cooldown_time : float = 25
-var force_disabled : bool = true
+@onready var energy_cost : int = 50
+@onready var max_shield_hp : int = 100
+@onready var shield_hp : int = 50 # How much damage the shield takes before turning off
+@onready var shield_regen_rate : int = 2 # Passive regeneration value
+@onready var shield_boost_rate : int = 25 # Active regeneration value
+@onready var energy_drain_rate : int = 5 # Passive energy drain value
+@onready var cooldown_time : float = 25
+@onready var force_disabled : bool = true
 
 @onready var is_friendly : bool = false
 @onready var type : MechData.ObjectType = MechData.ObjectType.MODULE
@@ -58,6 +58,8 @@ func _ready():
 		set_collision_layer_value(4, 1)
 		set_collision_mask_value(4, 1)
 	force_disable()
+	shield_hp = 50
+	charge.value = shield_hp
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -129,7 +131,7 @@ func _drain_energy():
 		force_disable()
 
 func take_damage(damage_value : int, _collision, _knockback_force):
-	shield_hp -= damage_value
+	shield_hp -= damage_value * 5
 	charge.value = shield_hp
 	if shield_hp <= 0:
 		force_disable()
@@ -137,7 +139,7 @@ func take_damage(damage_value : int, _collision, _knockback_force):
 func force_disable():
 	force_disabled = true
 	charge.value = shield_hp
-	shield_area.monitoring = false
+	#shield_area.monitoring = false
 	shield_area.hide()
 	disable_sfx.play()
 	ambient.stop()

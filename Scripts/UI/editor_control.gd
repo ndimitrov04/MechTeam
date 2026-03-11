@@ -142,6 +142,7 @@ func _ready():
 	modules.set_item_tooltip(4, "Cost: 35
 	Drains 5 energy/sec.
 	Regenerates 2 Shield HP/sec.
+	Must be activated via an ENGAGE terminal.
 	Summons a powerful force field.
 	Can deflect up to 100 damage.")
 	modules.set_item_tooltip(5, "Cost: 35

@@ -13,7 +13,7 @@ func _ready():
 	wall_check.body_entered.connect(_on_body_entered)
 	wall_check.area_entered.connect(_on_area_entered)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	var direction_x := Input.get_axis("left", "right")
 	if direction_x:

@@ -843,6 +843,7 @@ item_5/selectable = false
 item_6/text = "Ram"
 item_6/icon = ExtResource("23_xxkf5")
 item_6/selectable = false
+item_6/disabled = true
 item_7/text = "Laser"
 item_7/icon = ExtResource("24_ag1yu")
 item_7/selectable = false

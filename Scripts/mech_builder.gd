@@ -288,18 +288,21 @@ func _input(event):
 					for child in mech_prototype.get_children():
 						print(child.name + str(child.position))
 						if child.position == Vector2(grid_pos*16+OBJECT_OFFSET):
-							if child.has_meta("npc_capacity"):
-								if npc_count >= npc_capacity:
-									control.show_error("Cannot remove supply required by crew. Remove crew members first.")
-									control.attention(control.capacity_label, 2)
-									return
-								else:
-									npc_capacity -= 1
-									update_capacity_ui()
 							if child.has_meta("friendly_npc"):
 								npc_count -= 1
 								update_capacity_ui()
 								sfx.fire_operator.play()
+							elif child.has_meta("npc_capacity"):
+								if npc_count >= npc_capacity:
+									control.show_error("Cannot remove supply required by crew. Remove crew members first.")
+									control.attention(control.capacity_label, 2)
+									continue
+								else:
+									npc_capacity -= 1
+									update_capacity_ui()
+							elif child.has_meta("is_movement"):
+								control.show_error("Please select movement object\nfrom build menu first.")
+								continue
 							# Return cash
 							unbuy(child.get_meta("price"))
 							# Play sound

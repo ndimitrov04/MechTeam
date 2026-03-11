@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bau5wcx10psmb" path="res://Scripts/wheel_hitbox.gd" id="1_bw5ws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pmx8"]
-size = Vector2(117, 40.5)
+size = Vector2(32, 32)
 
 [node name="WheelHitbox1" type="Area2D" unique_id=1848788113]
 collision_layer = 512
@@ -14,6 +14,5 @@ metadata/whitbox = NodePath("../WheelCollider1")
 metadata/wsprite = NodePath("../MovementSprites/Wheel1")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1730915833]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_3pmx8")
 debug_color = Color(0.9672262, 0, 0.47860748, 0.41960785)

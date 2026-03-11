@@ -37,3 +37,4 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1w6v2")
 autoplay = "default"
 frame_progress = 0.20177686
+metadata/is_movement = true

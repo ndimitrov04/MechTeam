@@ -12,6 +12,7 @@ const NPC = preload("uid://cmy4r8enqaty2")
 @onready var controllers = $Controllers
 @onready var modules = $Modules
 @onready var npcs = $NPCs
+@onready var jump_timer = $JumpTimer
 
 @onready var energy_regen = $EnergyRegen
 
@@ -27,6 +28,7 @@ var current_terminal
 
 var direction : int = 0
 var jump : bool = false
+var can_jump : bool = true
 
 var max_hp : int = 200
 var hp : int = max_hp
@@ -40,6 +42,7 @@ func _ready():
 	if not in_editor:
 		game_over = $"../GUI/Control/GameOver"
 	energy_regen.timeout.connect(_regenerate_energy)
+	jump_timer.timeout.connect(_jump_timeout)
 	if not get_meta("prebuilt"):
 		load_mech()
 	max_hp = frame.get_used_cells().size() / 4
@@ -105,11 +108,13 @@ func _physics_process(delta):
 		linear_velocity += get_gravity() * delta
 
 	# Handle jump.
-	if jump and is_on_floor():
+	if jump and can_jump:
 		linear_velocity.y = JUMP_linear_velocity
 		jump = false
+		can_jump = false
+		jump_timer.start()
 
-	if direction:
+	if direction and movement_sprites.get_child_count() > 0:
 		linear_velocity.x = move_toward(linear_velocity.x, direction * SPEED, 1) 
 	else:
 		linear_velocity.x = move_toward(linear_velocity.x, 0, 1)
@@ -194,6 +199,9 @@ func die():
 
 func is_on_floor():
 	return true
+
+func _jump_timeout():
+	can_jump = true
 
 func summon_friendly_npc(at_position : Vector2):
 	var npc_instance = NPC.instantiate()

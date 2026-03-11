@@ -631,9 +631,9 @@ script = ExtResource("1_hibaj")
 z_index = -2
 
 [node name="Sky" type="Sprite2D" parent="Background" unique_id=775151749]
-position = Vector2(1981.2057, 250.00006)
+position = Vector2(15860.426, 250.00066)
 rotation = 1.5707964
-scale = Vector2(20.243929, 11739.362)
+scale = Vector2(20.243929, 39497.805)
 texture = SubResource("GradientTexture1D_8gbba")
 
 [node name="Parallax" type="Node2D" parent="Background" unique_id=1706915555]
