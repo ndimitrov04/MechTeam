@@ -4,6 +4,12 @@ extends CharacterBody2D
 @onready var sprite = $Sprite
 @onready var camera = $Camera
 
+@onready var jetpack = $Jetpack
+@onready var jetpack_bar = $Jetpack/JetpackBar
+@onready var jump_timer = $Jetpack/JumpTimer
+
+@onready var debug_info = $DebugInfo
+
 @onready var mech = $"../Mech"
 @onready var game_over = $"../GUI/Control/GameOver"
 
@@ -11,10 +17,12 @@ extends CharacterBody2D
 
 @onready var friendly_unit : bool = true
 
+# Consts
 const SPEED = 150.0
 const AIMSPEED = 750
-const JUMP_VELOCITY = -420.0
+const JUMP_VELOCITY = -350.0
 
+# Internal game vars
 var last_platform_velocity : Vector2 = Vector2.ZERO
 
 var zoom : Vector2 = Vector2(2,2)
@@ -22,21 +30,51 @@ var last_zoom : Vector2 = zoom
 var aim_mode : bool = false
 var minigame_mode : bool = false
 
+# Player vars
 var hp : int = 5
 var invincible : bool = false
 
+# Jetpack vars
+var max_thrust : float = -120
+var jetpack_energy : float = 100
+var jetpack_power : float = -1250
+var jumping : bool = false
+
+func _ready():
+	jump_timer.timeout.connect(_on_jump_timeout)
+
 func _physics_process(delta):
+	#debug_info.text = "Velocity: " + str(velocity)
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		jumping = true
+		jump_timer.start(0.1)
 	else:
 		last_platform_velocity = Vector2.ZERO
+		jetpack_bar.hide()
+		jetpack_energy = 100
+		jumping = false
 
-	# Handle jump.
+	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		last_platform_velocity = get_platform_velocity()
 		velocity = last_platform_velocity
 		velocity.y += JUMP_VELOCITY
+	
+	# Handle jetpack
+	if Input.is_action_pressed("jump") and not is_on_floor() and jetpack_energy > 0:
+		if velocity.y > max_thrust:
+			velocity.y += jetpack_power * delta
+			jetpack_energy -= 75 * delta
+			jetpack_bar.value = jetpack_energy
+			if not jetpack.emitting:
+				jetpack_bar.show()
+				jetpack.emitting = true
+	else:
+		if jetpack.emitting: 
+			jetpack.emitting = false
 
 	# Handle camera zoom
 	if Input.is_action_just_pressed("zoom_in") and is_on_floor():
@@ -112,8 +150,9 @@ func take_damage(damage, _collision, _knockback_force):
 	await get_tree().create_timer(inv_time).timeout
 	invincible = false
 
-
 func die():
-	
 	# Game over sequence here
 	game_over.show()
+
+func _on_jump_timeout():
+	jumping = false

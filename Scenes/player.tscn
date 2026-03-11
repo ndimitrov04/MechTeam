@@ -100,6 +100,37 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fkybt"]
+lifetime_randomness = 0.37
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3.74, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 65.0
+initial_velocity_max = 75.0
+gravity = Vector3(0, 98, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(1, 0.73333335, 0, 1)
+hue_variation_min = -0.100000024
+hue_variation_max = 0.049999975
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkybt"]
+shader = ExtResource("3_x3wgy")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="Gradient" id="Gradient_x3wgy"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3smsa"]
+gradient = SubResource("Gradient_x3wgy")
+width = 25
+height = 4
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
 [node name="Player" type="CharacterBody2D" unique_id=1706264332]
 collision_layer = 32
 collision_mask = 32
@@ -128,3 +159,33 @@ autoplay = "default"
 frame_progress = 0.27777863
 
 [node name="Listener" type="AudioListener2D" parent="." unique_id=1278853592]
+
+[node name="Jetpack" type="GPUParticles2D" parent="." unique_id=115112265]
+z_index = -1
+amount = 128
+lifetime = 0.8
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_fkybt")
+
+[node name="JetpackBar" type="TextureProgressBar" parent="Jetpack" unique_id=1004727011]
+visible = false
+material = SubResource("ShaderMaterial_fkybt")
+offset_left = -17.0
+offset_top = -5.0
+offset_right = 8.0
+offset_bottom = -1.0
+rotation = 1.5707964
+value = 50.0
+fill_mode = 1
+texture_progress = SubResource("GradientTexture2D_3smsa")
+tint_progress = Color(1, 0.3529412, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="JumpTimer" type="Timer" parent="Jetpack" unique_id=2110276680]
+wait_time = 0.1
+one_shot = true
+
+[node name="DebugInfo" type="Label" parent="." unique_id=1266848796]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
