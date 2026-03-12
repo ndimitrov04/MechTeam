@@ -54,7 +54,7 @@ func delete_object(coords : Vector2):
 		if coords.is_equal_approx(object_coordinates[i]):
 			delete_index = i
 			break
-	if delete_index:
+	if delete_index != null:
 		object_scenes.remove_at(delete_index)
 		object_actions.remove_at(delete_index)
 		object_types.remove_at(delete_index)
@@ -108,6 +108,11 @@ func load_mech(index: int):
 	object_coordinates = mechs[index].object_coordinates.duplicate()
 	control_pairs = mechs[index].control_pairs.duplicate()
 
+func get_object_index(object_coords : Vector2):
+	for i in range(0, object_coordinates.size()):
+		if object_coords.is_equal_approx(object_coordinates[i]):
+			return i
+	return null
 
 func save_to_file():
 	var container := MechsContainer.new()

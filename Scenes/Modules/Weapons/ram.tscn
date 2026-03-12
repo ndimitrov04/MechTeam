@@ -49,6 +49,7 @@ autoplay = "default"
 frame_progress = 0.43615592
 
 [node name="Marker" type="Sprite2D" parent="." unique_id=1284282660]
+visible = false
 texture = SubResource("GradientTexture2D_d5gtd")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1764044181]

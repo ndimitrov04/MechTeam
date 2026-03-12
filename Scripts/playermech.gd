@@ -108,7 +108,7 @@ func _physics_process(delta):
 		linear_velocity += get_gravity() * delta
 
 	# Handle jump.
-	if jump and can_jump:
+	if jump and can_jump and movement_sprites.get_child_count() > 0:
 		linear_velocity.y = JUMP_linear_velocity
 		jump = false
 		can_jump = false

@@ -89,6 +89,14 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_vlfaf"]
+colors = PackedColorArray(0, 1, 0, 0.5019608, 0, 1, 0, 0.5019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o332s"]
+gradient = SubResource("Gradient_vlfaf")
+width = 32
+height = 32
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5l7g"]
 size = Vector2(22, 64)
 
@@ -124,11 +132,16 @@ script = ExtResource("1_mfo1m")
 metadata/aim_speed = 2.0
 metadata/pinned_tile = Vector2i(0, 0)
 metadata/price = 25
+metadata/big_object = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_d1ilt")
 autoplay = "default"
+
+[node name="Marker" type="Sprite2D" parent="." unique_id=1074317968]
+visible = false
+texture = SubResource("GradientTexture2D_o332s")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1882493289]
 position = Vector2(0, -16)

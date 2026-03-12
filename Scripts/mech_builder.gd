@@ -137,6 +137,22 @@ func _input(event):
 				print(ERR)
 				control.show_error(ERR)
 				return
+			# Block spawning tiles on top
+			# of eachother
+			if edit_layer == EditLayer.BLOCKS:
+				if blocks.get_cell_atlas_coords(grid_pos) != MechData.EMPTY_CELL:
+					const ERR : String = "Can't create block on top of another one!"
+					print(ERR)
+					#control.show_error(ERR)
+					return
+			# Block spawning objects
+			# on top of eachother
+			else:
+				if MechData.get_object_index(to_global(grid_pos*16-OBJECT_OFFSET)) != null:
+					const ERR : String = "Can't create object on top of another one!"
+					print(ERR)
+					control.show_error(ERR)
+					return
 			# Attempt to buy
 			if not buy(current_cost):
 				return
@@ -207,6 +223,9 @@ func _input(event):
 						child.set_process(false)
 					# Add to mech data global
 					MechData.set_object(chosen_object, chosen_action, object_instance.type, to_global(grid_pos*16-OBJECT_OFFSET))
+					# Show object editor helper
+					if object_instance.has_meta("big_object"):
+						object_instance.get_child(1).show()
 					# Play sound
 					sfx.build_entity.play()
 				EditLayer.MOVEMENT:
@@ -232,9 +251,12 @@ func _input(event):
 						child.set_process(false)
 					# Add to mech data global
 					MechData.set_object(chosen_movement_sprite, chosen_action, MechData.ObjectType.SPRITE, to_global(grid_pos*16-OBJECT_OFFSET))
+					# Show object editor helper
+					if object_instance.has_meta("big_object"):
+						object_instance.get_child(1).show()
 					# Play sound
 					sfx.build_entity.play()
-		# Delete tile
+		# Delete tile/object
 		if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 			global_mouse_pos = get_global_mouse_position()
 			print("Global Mouse Position = " + str(global_mouse_pos))
@@ -283,57 +305,63 @@ func _input(event):
 					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = MechData.EMPTY_CELL
 					# Play sound
 					sfx.break_block.play()
-				EditLayer.OBJECTS:
-					# Delete object from editor
-					for child in mech_prototype.get_children():
-						print(child.name + str(child.position))
-						if child.position == Vector2(grid_pos*16+OBJECT_OFFSET):
-							if child.has_meta("friendly_npc"):
-								npc_count -= 1
-								update_capacity_ui()
-								sfx.fire_operator.play()
-							elif child.has_meta("npc_capacity"):
-								if npc_count >= npc_capacity:
-									control.show_error("Cannot remove supply required by crew. Remove crew members first.")
-									control.attention(control.capacity_label, 2)
-									continue
-								else:
-									npc_capacity -= 1
-									update_capacity_ui()
-							elif child.has_meta("is_movement"):
-								control.show_error("Please select movement object\nfrom build menu first.")
-								continue
-							# Return cash
-							unbuy(child.get_meta("price"))
-							# Play sound
-							sfx.break_entity.play()
-							# Delete mech data by position
-							MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
-							print("Deleting " + child.name)
-							child.queue_free()
-				EditLayer.MOVEMENT:
-					# Repeat twice
-					# Delete mech data by position
-					MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
-					# Delete object from editor
-					for child in mech_prototype.get_children():
-						print(child.name + str(child.position))
-						if child.position == Vector2(grid_pos*16+OBJECT_OFFSET):
-							# Return cash
-							if child.has_meta("price"):
-								unbuy(child.get_meta("price"))
-							print("Deleting " + child.name)
-							child.queue_free()
-							# Play sound
-							sfx.break_entity.play()
-					# Delete mech data by position
-					MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
-					# Delete object from editor
-					for child in mech_prototype.get_children():
-						print(child.name + str(child.position))
-						if child.position == Vector2(grid_pos*16+OBJECT_OFFSET):
-							print("Deleting " + child.name)
-							child.queue_free()
+				_:
+					remove_generic_object(grid_pos)
+
+func remove_generic_object(grid_pos):
+	# Delete object from editor
+	for child in mech_prototype.get_children():
+		print(child.name + str(child.position))
+		if child.position == Vector2(grid_pos*16+OBJECT_OFFSET):
+			if child.has_meta("friendly_npc"):
+				npc_count -= 1
+				update_capacity_ui()
+				sfx.fire_operator.play()
+			elif child.has_meta("npc_capacity"):
+				if npc_count >= npc_capacity:
+					control.show_error("Cannot remove supply required by crew. Remove crew members first.")
+					control.attention(control.capacity_label, 2)
+					continue
+				else:
+					npc_capacity -= 1
+					update_capacity_ui()
+			elif child.has_meta("is_movement"):
+				remove_movement_object(grid_pos)
+				return
+			# Return cash
+			unbuy(child.get_meta("price"))
+			# Play sound
+			sfx.break_entity.play()
+			# Delete mech data by position
+			MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
+			print("Deleting " + child.name)
+			child.queue_free()
+
+func remove_movement_object(grid_pos):
+	# Repeat twice
+	# Delete mech data by position
+	MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
+	# Delete object from editor
+	for child in mech_prototype.get_children():
+		print(child.name + str(child.position))
+		if child.position.is_equal_approx(Vector2(grid_pos*16+OBJECT_OFFSET)):
+			# Return cash
+			# Note: I don't know why this works when commented out
+			# Unbuy is called somewhere else ?! :/
+			#if child.has_meta("price"):
+				#unbuy(child.get_meta("price"))
+			print("Deleting " + child.name)
+			child.queue_free()
+			# Play sound
+			sfx.break_entity.play()
+	# Delete mech data by position
+	MechData.delete_object(to_global(grid_pos*16-OBJECT_OFFSET))
+	# Delete object from editor
+	for child in mech_prototype.get_children():
+		print(child.name + str(child.position))
+		if child.position.is_equal_approx(Vector2(grid_pos*16+OBJECT_OFFSET)):
+			print("Deleting " + child.name)
+			child.queue_free()
 
 # Note -> Tilemap is 16x16, Scale = 2
 # Keep in mind that each click will make 4 tiles
@@ -387,6 +415,9 @@ func load_prototype():
 			npc_count += 1
 		if object_instance.has_meta("npc_capacity"):
 			npc_capacity += object_instance.get_meta("npc_capacity")
+		# Show object editor helper
+		if object_instance.has_meta("big_object"):
+			object_instance.get_child(1).show()
 		object_instance.position = MechData.object_coordinates[i] + Vector2(OBJECT_OFFSET*2)
 		# Disable object processing
 		object_instance.set_process(false)

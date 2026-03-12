@@ -31,6 +31,14 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_rn7y4"]
+colors = PackedColorArray(0, 1, 0, 0.5019608, 0, 1, 0, 0.5019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rn7y4"]
+gradient = SubResource("Gradient_rn7y4")
+width = 32
+height = 32
+
 [node name="Wheel1" type="AnimatedSprite2D" unique_id=540767917]
 self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
 scale = Vector2(2, 2)
@@ -38,3 +46,13 @@ sprite_frames = SubResource("SpriteFrames_1w6v2")
 autoplay = "default"
 frame_progress = 0.20177686
 metadata/is_movement = true
+metadata/price = 10
+metadata/big_object = true
+
+[node name="Dummy" type="AnimatedSprite2D" parent="." unique_id=1342193076]
+
+[node name="Marker" type="Sprite2D" parent="." unique_id=1100198517]
+visible = false
+position = Vector2(2.3841858e-07, 2.3841858e-07)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_rn7y4")
