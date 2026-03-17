@@ -45,6 +45,7 @@ func _ready():
 	jump_timer.timeout.connect(_jump_timeout)
 	if not get_meta("prebuilt"):
 		load_mech()
+	@warning_ignore("integer_division")
 	max_hp = frame.get_used_cells().size() / 4
 	hp = max_hp
 
@@ -178,8 +179,10 @@ func take_damage(damage_value : int):
 	# Godot 4.5 still has no fallthrough switches :/
 	if hp <= max_hp:
 		background.break_random_tile()
+	@warning_ignore("integer_division")
 	if hp <= max_hp/2:
 		background.break_random_tile()
+	@warning_ignore("integer_division")
 	if hp <= max_hp/4:
 		background.break_random_tile()
 	if hp <= 0:

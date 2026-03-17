@@ -35,6 +35,8 @@ func temp_disable(time : float):
 
 func face_right(facing : bool):
 	if facing:
+		@warning_ignore("integer_division")
 		hitbox.position.x = sight_range / 2
 	else:
+		@warning_ignore("integer_division")
 		hitbox.position.x = -sight_range / 2

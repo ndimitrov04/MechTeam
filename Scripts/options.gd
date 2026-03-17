@@ -42,6 +42,7 @@ func _on_fullscreen_toggled(is_enabled):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		@warning_ignore("integer_division")
 		DisplayServer.window_set_size(Vector2i(1920/2, 1080/2))
 
 func _show_clear_confirm():

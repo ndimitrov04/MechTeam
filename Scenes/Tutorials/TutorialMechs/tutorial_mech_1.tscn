@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://l4neameihquo"]
+
+[ext_resource type="Script" uid="uid://dq00ant1n6ukr" path="res://Scripts/playermech.gd" id="1_h5eph"]
+[ext_resource type="TileSet" uid="uid://bfp0oqwmvtvs2" path="res://CustomResources/background_tileset.tres" id="2_3cbya"]
+[ext_resource type="Script" uid="uid://by3pf8nx5c5s3" path="res://Scripts/Misc/destructible_background.gd" id="3_75ave"]
+[ext_resource type="TileSet" uid="uid://beya8mv7awxpa" path="res://CustomResources/frame_tileset.tres" id="4_jld5p"]
+[ext_resource type="Script" uid="uid://65apk4w16d4j" path="res://Scripts/Misc/destructible_frame.gd" id="5_b7yyy"]
+[ext_resource type="AudioStream" uid="uid://c2rux4dr3pu54" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3" id="6_f5fyn"]
+[ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="7_bp8tr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6iyac"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bp8tr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Mech" type="RigidBody2D" unique_id=389051570]
+physics_interpolation_mode = 2
+collision_layer = 8192
+collision_mask = 8192
+script = ExtResource("1_h5eph")
+metadata/prebuilt = false
+
+[node name="Background" type="TileMapLayer" parent="." unique_id=796847977]
+z_index = -1
+tile_set = ExtResource("2_3cbya")
+script = ExtResource("3_75ave")
+
+[node name="Frame" type="TileMapLayer" parent="." unique_id=1476641326]
+tile_set = ExtResource("4_jld5p")
+use_kinematic_bodies = true
+script = ExtResource("5_b7yyy")
+
+[node name="MovementSprites" type="Node2D" parent="." unique_id=2035739966]
+
+[node name="Controllers" type="Node2D" parent="." unique_id=2086536356]
+
+[node name="Modules" type="Node2D" parent="." unique_id=1023028695]
+
+[node name="NPCs" type="Node2D" parent="." unique_id=1283548531]
+
+[node name="Ambience" type="Node2D" parent="." unique_id=993467780]
+
+[node name="MechAmbience" type="AudioStreamPlayer2D" parent="Ambience" unique_id=1967501269]
+position = Vector2(184, 304)
+stream = ExtResource("6_f5fyn")
+volume_db = -5.0
+pitch_scale = 0.7
+autoplay = true
+max_distance = 350.0
+bus = &"SFX"
+parameters/looping = true
+
+[node name="MechAmbience2" type="AudioStreamPlayer2D" parent="Ambience" unique_id=1699996290]
+position = Vector2(512, 152)
+stream = ExtResource("6_f5fyn")
+volume_db = -5.0
+pitch_scale = 0.7
+autoplay = true
+max_distance = 350.0
+bus = &"SFX"
+parameters/looping = true
+
+[node name="MechAmbience3" type="AudioStreamPlayer2D" parent="Ambience" unique_id=585803572]
+position = Vector2(816, 304)
+stream = ExtResource("6_f5fyn")
+volume_db = -5.0
+pitch_scale = 0.7
+autoplay = true
+max_distance = 350.0
+bus = &"SFX"
+parameters/looping = true
+
+[node name="MechAmbience4" type="AudioStreamPlayer2D" parent="Ambience" unique_id=1950066814]
+position = Vector2(512, 536)
+stream = ExtResource("6_f5fyn")
+volume_db = -5.0
+pitch_scale = 0.7
+autoplay = true
+max_distance = 350.0
+bus = &"SFX"
+parameters/looping = true
+
+[node name="SFX" type="Node2D" parent="." unique_id=280501906]
+
+[node name="Crosshair" type="AnimatedSprite2D" parent="." unique_id=816728952]
+z_index = 20
+z_as_relative = false
+position = Vector2(1080, 328)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_6iyac")
+autoplay = "default"
+
+[node name="EnergyRegen" type="Timer" parent="." unique_id=76087556]
+autostart = true
+
+[node name="JumpTimer" type="Timer" parent="." unique_id=710872763]
+wait_time = 1.5
+one_shot = true
