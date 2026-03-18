@@ -30,6 +30,12 @@ var last_zoom : Vector2 = Vector2(1, 1)
 @onready var type : MechData.ObjectType = MechData.ObjectType.CONTROLLER
 @onready var npc_controllable : bool = true
 
+# Tutorial hooks
+signal interacted_with()
+signal connection_started()
+
+var first_interaction : bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.timeout.connect(_on_cooldown_timeout)
@@ -53,6 +59,7 @@ func _unhandled_input(event):
 				mech.drain_energy(energy_cost)
 				player.start_minigame("quicktime_arrow", controlled_module)
 				#player.start_minigame("precission_target", controlled_module)
+				interacted_with.emit()
 				engage.play()
 				start_cooldown()
 			else:
@@ -74,6 +81,7 @@ func _input_event(_viewport, event, _shape_idx):
 				connection_marker.show()
 				connection_marker.set_process(true)
 				print("Terminal set as active for connection")
+				connection_started.emit()
 				sfx_disconnect.play()
 				mech.current_terminal = self
 

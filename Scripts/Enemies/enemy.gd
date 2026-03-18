@@ -29,6 +29,8 @@ var direction : int = 1
 
 var asleep : bool = true
 
+var ai : bool = true
+
 func _ready():
 	action_decision.timeout.connect(_on_action_decision_timeout)
 	await get_tree().create_timer(0.1).timeout
@@ -95,7 +97,6 @@ func update_decision_timer():
 func _on_action_decision_timeout():
 	var action = randi_range(1, 100)
 	const directions = [-1, 1]
-	var ai : bool = true
 	
 	if not ai:
 		direction = 0

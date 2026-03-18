@@ -24,6 +24,7 @@ const MECH_4 = preload("uid://b6st1n1r2654j")
 
 var end_text : String = ""
 
+
 # Instruction strings for current tutorial stage
 
 var instruction_0 : String = "Welcome to basic movement training!\n\nUse WASD to move."
@@ -32,6 +33,13 @@ var instruction_2 : String = "On top of this ledge there is a control module tha
 var instruction_3 : String = "Wheeee, we're moving! Get to the end of the stage. This is it for your basic movement training!"
 
 var instructions = [instruction_0, instruction_1, instruction_2, instruction_3]
+
+# Tutorial objects
+
+@onready var stage_end: VisibleOnScreenNotifier2D = $StageEnd
+
+@onready var control_1: Area2D = $Mech/Controllers/Control1
+@onready var highlight_1: ColorRect = $Mech/Controllers/Control1/Highlight
 
 # Specific tutorial instructions and triggers
 
@@ -49,31 +57,32 @@ var triggers = [trigger_0, trigger_1, trigger_2]
 func tutorial_script():
 	var trigger_engaged : bool = false
 	
-	if not trigger_0:
+	if not triggers[0]:
 		if Input.is_action_just_pressed("up"):
-			trigger_0 = true
+			triggers[0] = true
 		if Input.is_action_just_pressed("down"):
-			trigger_0 = true
+			triggers[0] = true
 		if Input.is_action_just_pressed("left"):
-			trigger_0 = true
+			triggers[0] = true
 		if Input.is_action_just_pressed("right"):
-			trigger_0 = true
-		if trigger_0:
+			triggers[0] = true
+		if triggers[0]:
 			trigger_engaged = true
-	elif not trigger_1:
+	elif not triggers[1]:
 		if Input.is_action_just_pressed("jump"):
-			trigger_1 = true
-		if trigger_1:
+			triggers[1] = true
+		if triggers[1]:
 			trigger_engaged = true
-	elif not trigger_2:
+	elif not triggers[2]:
 		# Wait for external trigger mechanism
 		# Tutorial 1 - Forward terminal engaged.
-		pass
+		# Highlight forward terminal
+		highlight_1.show()
 	else:
 		# Tutorial ends here
-		pass
-		
-	# External trigger mechanisms must manually call update trigger
+		# Remove highlight
+		highlight_1.hide()
+	
 	if trigger_engaged:
 		update_trigger()
 
@@ -82,21 +91,26 @@ func update_trigger():
 	current_trigger += 1
 	tutorial_ui.load_instruction(instructions[current_instruction])
 
+# External trigger engage mechanism
+func advance_trigger():
+	triggers[current_trigger] = true
+	update_trigger()
+
 func _ready():
 	tutorial_ui.load_instruction(instruction_0)
 
 func _process(_delta):
-	if enemies_left <= 0 and not triggered:
-		music.stream = preload("uid://bfjye4qxke0i")
-		music.play()
-		end_stage()
-		triggered = true
-	
-	if enemies_left <= 0:
-		minigame_result.modulate = Color(1,1,1,1)
-		minigame_result.text = end_text
-		minigame_result.add_theme_color_override("font_color", Color("green"))
-		minigame_result.show()
+	#if enemies_left <= 0 and not triggered:
+		#music.stream = preload("uid://bfjye4qxke0i")
+		#music.play()
+		#end_stage()
+		#triggered = true
+	#
+	#if enemies_left <= 0:
+		#minigame_result.modulate = Color(1,1,1,1)
+		#minigame_result.text = end_text
+		#minigame_result.add_theme_color_override("font_color", Color("green"))
+		#minigame_result.show()
 	
 	tutorial_script()
 
@@ -128,10 +142,18 @@ func end_stage():
 			"\nCrew Injured: " + str(npc_deaths) + 
 			"\n- Medical fees: " + str(npc_deaths * 10) +
 			"\n\nTotal cash: " + str("Can't recieve cash in tutorial.") +
-			"\n\n\nGoing to next stage in 15 seconds..."
+			"\n\n\nGoing to next stage in 5 seconds..."
 		)
 	minigame_result.text = end_text
 	minigame_result.add_theme_color_override("font_color", Color("green"))
 	minigame_result.show()
-	await get_tree().create_timer(16).timeout
-	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
+	music.stream = preload("uid://bfjye4qxke0i")
+	music.play()
+	await get_tree().create_timer(5).timeout
+	get_tree().change_scene_to_file("res://Scenes/Tutorials/tutorial2.tscn")
+
+func _on_control_1_interacted_with() -> void:
+	advance_trigger()
+
+func _on_stage_end_screen_entered() -> void:
+	end_stage()

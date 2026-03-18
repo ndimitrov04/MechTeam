@@ -17,6 +17,9 @@ var last_zoom : Vector2 = Vector2(1, 1)
 
 @onready var type : MechData.ObjectType = MechData.ObjectType.CONTROLLER
 
+# Tutorial hooks
+signal aim_set()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	body_entered.connect(_on_body_entered)
@@ -34,6 +37,7 @@ func _unhandled_input(event):
 			else:
 				player.aim_mode = false
 				player.zoom = last_zoom
+				aim_set.emit()
 				disengage.play()
 
 func _on_body_entered(body):

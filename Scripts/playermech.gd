@@ -23,7 +23,7 @@ const JUMP_linear_velocity = -600.0
 
 @onready var in_editor : bool = false
 
-@onready var mech_edit : bool = false
+@onready var mech_edit : bool = true
 var current_terminal
 
 var direction : int = 0

@@ -33,6 +33,9 @@ var destroyed : bool = false
 # (module will be destroyed when pinned tile is destroyed)
 #var pinned_frame_tile : Vector2i
 
+# Tutorial hooks
+signal is_connected()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#if has_meta("pinned_tile"):
@@ -68,6 +71,7 @@ func _input_event(_viewport, event, _shape_idx):
 			if event.button_index == MOUSE_BUTTON_LEFT and mech.current_terminal != null:
 				print("Terminal " + mech.current_terminal.name + " has been connected to " + self.name)
 				mech.current_terminal.arm(self)
+				is_connected.emit()
 				print("Deactivating terminal connection mode.")
 				mech.current_terminal = null
 

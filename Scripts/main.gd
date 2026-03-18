@@ -9,6 +9,7 @@ extends Node2D
 @onready var screen_border = $Foreground/Parallax1/ScreenBorder
 
 const SPAWN_OFFSET = 1000 # Next enemy offset in pixels
+@warning_ignore("narrowing_conversion")
 @onready var enemies_left : int = float(PlayerData.current_stage) * 1.5
 @onready var triggered : bool = false
 
