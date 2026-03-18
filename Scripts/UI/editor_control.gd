@@ -39,6 +39,9 @@ extends Control
 @onready var name_label = $InfoPanel/NameLabel
 @onready var desc_label = $InfoPanel/DescLabel
 
+# Tutorial hook
+signal left_interacted_with()
+
 # Staging phase control
 # 0 = Mech Creation
 # 1 = Node Connection
@@ -213,6 +216,8 @@ func _on_right_pressed():
 		return
 	tab_container.current_tab += 1
 	sfx.click_select.play()
+	# Tutorial hook
+	left_interacted_with.emit()
 
 func _on_block_list_item_clicked(index, _at_position, _mouse_button_index):
 	print(index)

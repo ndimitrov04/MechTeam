@@ -36,7 +36,7 @@ enum EditLayer {
 var edit_layer : EditLayer = EditLayer.BLOCKS
 
 # Top left atlas_coords
-var chosen_block : Vector2i = Vector2i.ZERO
+var chosen_block : Vector2i = Vector2i(-1, -1)
 # Atlas coords of visual structure block placed behind chosen frame block
 var structure_wall : Vector2i = Vector2i(10,3)
 
