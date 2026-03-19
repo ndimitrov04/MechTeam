@@ -62,31 +62,41 @@ var instruction_0 : String = "Welcome to mechbuilding training!
 Here, you will learn how to build mechs.
 
 Begin by choosing the basic solid block and drawing a basic mech outline."
-var instruction_1 : String = "After you create your mech's frame, you have to add modules to it.
+var instruction_1 : String = "Now create your mech's frame using the chosen block.
+
+After you create your mech's frame, you have to add modules to it.
 
 Press the right arrow on the menu twice."
-var instruction_2 : String = "When in the module menu, select and place one gun and one battery."
-var instruction_3 : String = "Now, press right once more."
-var instruction_4 : String = "Place control terminals:
+var instruction_2 : String = "Now create your mech's frame using the chosen block.
+
+After you create your mech's frame, you have to add modules to it.
+
+Press the right arrow on the menu twice."
+var instruction_3 : String = "When in the module menu, select and place one gun and one battery."
+var instruction_4 : String = "Now, press right once more."
+var instruction_5 : String = "Place control terminals:
 - A left movement control.
 - A right movement control.
 - A brake control.
 - An engage terminal.
-- An aim terminal."
-var instruction_5 : String = "Good job. Only one thing is left. Press right once more.
-Place two tracks under your frame, so that your mech can actually move."
-var instruction_6 : String = "When you're done building the mech, press the next stage button."
-var instruction_7 : String = "Just like in the combat tutorial, click on the red engage terminal, then click on the gun you placed. This will connect the two and enable you to use the gun in combat via the engage terminal.
+- An aim terminal.
 
-When you're ready, you may press next stage to test out your new mech in combat!"
+Make sure you place them in such a way that you can platform to them while under pressure.
+
+Press right when you're ready."
+var instruction_6 : String = "Place two tracks under your frame, so that your mech can actually move."
+var instruction_7 : String = "Just like in the combat tutorial, click on the red engage terminal, then click on the gun you placed. This will connect the two and enable you to use the gun in combat via the engage terminal."
+var instruction_8 : String = "When you're ready, you may press next stage to test out your new mech in combat!"
 
 var instructions = [instruction_0, instruction_1, instruction_2, 
 					instruction_3, instruction_4, instruction_5, 
-					instruction_6, instruction_7]
+					instruction_6, instruction_7, instruction_8, "FIGHT!"]
 
 # Tutorial objects
 @onready var highlight_item_1: ColorRect = $GUI/Control/HighlightItem1
-
+@onready var highlight_item_2: ColorRect = $GUI/Control/HighlightItem2
+@onready var highlight_right: ColorRect = $GUI/Control/HighlightRight
+@onready var highlight_stage: ColorRect = $GUI/Control/HighlightStage
 
 @onready var label_1: Label = $Mech/Controllers/Control2/Highlight/Label
 @onready var label_2: Label = $Mech/Modules/Gun/Highlight/Label
@@ -101,9 +111,17 @@ var trigger_2 : bool = false
 var trigger_3 : bool = false
 var trigger_4 : bool = false
 var trigger_5 : bool = false
+var trigger_6 : bool = false
+var trigger_7 : bool = false
+var trigger_8 : bool = false
+var trigger_9 : bool = false
+var trigger_10 : bool = false
+var trigger_11 : bool = false
 
 var triggers = [trigger_0, trigger_1, trigger_2,
-				trigger_3, trigger_4, trigger_5]
+				trigger_3, trigger_4, trigger_5,
+				trigger_6, trigger_7, trigger_8,
+				trigger_9, trigger_10, trigger_11]
 
 @onready var current_instruction : int = 0
 @onready var current_trigger : int = 0
@@ -112,20 +130,43 @@ func tutorial_script():
 	var trigger_engaged : bool = false
 	
 	if not triggers[0]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[0] = true
-		if triggers[0]:
-			trigger_engaged = true
+		pass
 	elif not triggers[1]:
+		highlight_item_1.hide()
+		highlight_right.show()
 		pass
 	elif not triggers[2]:
+		# Right is clicked once
 		pass
 	elif not triggers[3]:
+		# Right is clicked twice -> Next instruction
+		highlight_item_1.show()
+		highlight_item_2.show()
+		highlight_right.hide()
+		# Select gun + battery
 		pass
 	elif not triggers[4]:
+		# Handled in module list function
 		pass
 	elif not triggers[5]:
+		# Handled in module list function
 		pass
+	elif not triggers[6]:
+		highlight_right.hide()
+	elif not triggers[7]:
+		highlight_item_1.show()
+	elif not triggers[8]:
+		highlight_item_1.hide()
+		control.next_stage.disabled = false
+		highlight_stage.show()
+	elif not triggers[9]:
+		highlight_stage.hide()
+		if Input.is_action_just_pressed("lmb"):
+			triggers[9] = true
+		if triggers[9]:
+			trigger_engaged = true
+	elif not triggers[10]:
+		highlight_stage.show()
 	else:
 		# Tutorial ends here
 		pass
@@ -617,7 +658,7 @@ func finish_mech():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	tutorial_script()
 
 func update_capacity_ui():
 	capacity_label.text = "Capacity: " + str(npc_count) + "\\" + str(npc_capacity)
@@ -660,7 +701,46 @@ func unbuy(price : int):
 	control.update_cash_panel()
 
 
-
-func _on_control_left_interacted_with() -> void:
-	if current_trigger == 1:
+func _on_blocks_item_clicked(_index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	if current_trigger == 0:
 		advance_trigger()
+
+func _on_right_pressed() -> void:
+	match current_trigger:
+		1:
+			advance_trigger()
+		2:
+			advance_trigger()
+		5:
+			advance_trigger()
+		6:
+			advance_trigger()
+		_:
+			pass
+
+func _on_modules_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	if index == 0 and highlight_item_1.visible:
+		triggers[current_trigger] = true
+		current_trigger += 1
+		highlight_item_1.visible = false
+	elif index == 1 and highlight_item_2.visible:
+		triggers[current_trigger] = true
+		current_trigger += 1
+		highlight_item_2.visible = false
+	if current_trigger == 5:
+		highlight_right.show()
+		current_instruction += 1
+		tutorial_ui.load_instruction(instructions[current_instruction])
+
+func _on_movement_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	if index == 0 and highlight_item_1.visible:
+		triggers[current_trigger] = true
+		current_trigger += 1
+		highlight_item_1.visible = false
+	if current_trigger == 6:
+		highlight_item_1.hide()
+		control.next_stage.disabled = false
+		highlight_stage.show()
+
+func _on_next_stage_pressed() -> void:
+	advance_trigger()
