@@ -23,6 +23,8 @@ func _on_body_entered(body):
 		main.call_deferred("add_child", debris_instance)
 		#main.add_child(debris_instance)
 		debris_instance.global_position = global_position
-		wheel_collider.queue_free()
-		wheel_sprite.queue_free()
+		if wheel_collider != null:
+			wheel_collider.call_deferred("queue_free")
+		if wheel_sprite != null:
+			wheel_sprite.call_deferred("queue_free")
 		self.queue_free()

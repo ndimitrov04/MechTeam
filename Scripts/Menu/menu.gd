@@ -17,8 +17,8 @@ func _process(_delta: float) -> void:
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
 
-func _on_options_pressed() -> void:
-	pass # Replace with function body.
+func _on_play_tutorial_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Tutorials/tutorial1.tscn")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

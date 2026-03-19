@@ -98,9 +98,6 @@ var instructions = [instruction_0, instruction_1, instruction_2,
 @onready var highlight_right: ColorRect = $GUI/Control/HighlightRight
 @onready var highlight_stage: ColorRect = $GUI/Control/HighlightStage
 
-@onready var label_1: Label = $Mech/Controllers/Control2/Highlight/Label
-@onready var label_2: Label = $Mech/Modules/Gun/Highlight/Label
-
 # Specific tutorial instructions and triggers
 
 @onready var tutorial_ui: CanvasLayer = $TutorialUI
@@ -654,7 +651,7 @@ func finish_mech():
 				# Match controller child #i to module child #i
 				MechData.control_pairs.append(controller.controlled_module_index)
 	await get_tree().process_frame
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Tutorials/tutorial4_1.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

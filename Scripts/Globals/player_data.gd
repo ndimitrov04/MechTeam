@@ -18,3 +18,9 @@ func save_data():
 
 func load_data():
 	pass
+
+func reset():
+	max_hp = 5
+	money = 200
+	mech_cost = 0
+	current_stage = 1
