@@ -830,6 +830,8 @@ position = Vector2(256, 344)
 
 [node name="WheelHitbox2" parent="Mech" unique_id=12770221 instance=ExtResource("14_7xkn6")]
 position = Vector2(784, 344)
+metadata/whitbox = NodePath("../WheelCollider2")
+metadata/wsprite = NodePath("../MovementSprites/Wheel2")
 
 [node name="WheelCollider1" parent="Mech" unique_id=1824074158 instance=ExtResource("15_xyoo4")]
 position = Vector2(256, 344)
@@ -992,7 +994,7 @@ collision_mask = 16421
 floor_stop_on_slope = true
 
 [node name="StageEnd" type="VisibleOnScreenNotifier2D" parent="." unique_id=598083299]
-position = Vector2(2336, 464)
+position = Vector2(1632, 464)
 
 [node name="Foreground" type="Node2D" parent="." unique_id=997797821]
 

@@ -188,9 +188,13 @@ func _ready():
 	update_capacity_ui()
 	control.update_cash_panel()
 	await get_tree().create_timer(0.2).timeout
-	PlayerData.money = 800
+	clear_prototype()
 	new_mech()
 	clear_prototype()
+	await get_tree().create_timer(0.2).timeout
+	new_mech()
+	clear_prototype()
+	PlayerData.money = 800
 	tutorial_ui.load_instruction(instruction_0)
 
 func is_connected_to_frame(grid_coords : Vector2i) -> bool:

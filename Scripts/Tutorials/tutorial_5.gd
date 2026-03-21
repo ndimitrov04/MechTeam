@@ -169,9 +169,11 @@ func update_trigger():
 func advance_trigger():
 	triggers[current_trigger] = true
 	update_trigger()
-
+	
+@onready var tab_container: TabContainer = $GUI/Control/TabContainer
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	tab_container.current_tab = 2
 	if get_parent().name == "Editor":
 		in_editor = true
 	update_capacity_ui()

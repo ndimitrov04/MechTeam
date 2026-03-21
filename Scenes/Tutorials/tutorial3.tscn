@@ -1132,6 +1132,8 @@ position = Vector2(256, 344)
 
 [node name="WheelHitbox2" parent="Mech" unique_id=12770221 instance=ExtResource("14_202hd")]
 position = Vector2(784, 344)
+metadata/whitbox = NodePath("../WheelCollider2")
+metadata/wsprite = NodePath("../MovementSprites/Wheel2")
 
 [node name="WheelCollider1" parent="Mech" unique_id=1824074158 instance=ExtResource("15_ound6")]
 position = Vector2(256, 344)
