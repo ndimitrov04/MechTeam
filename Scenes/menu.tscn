@@ -2673,19 +2673,6 @@ cache/0/25/0/glyphs/69/size = Vector2(12, 12)
 cache/0/25/0/glyphs/69/uv_rect = Rect2(40, 1, 12, 12)
 cache/0/25/0/glyphs/69/texture_idx = 0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf86c"]
-content_margin_left = 3.0
-content_margin_top = 2.0
-content_margin_right = 3.0
-content_margin_bottom = 0.0
-bg_color = Color(0.21568628, 0.26666668, 0.43137255, 0.5019608)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-corner_detail = 16
-anti_aliasing = false
-
 [sub_resource type="ButtonGroup" id="ButtonGroup_gjkiu"]
 allow_unpress = true
 
@@ -4342,8 +4329,8 @@ offset_right = 1775.5
 offset_bottom = 892.5
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
+theme = ExtResource("1_158mb")
 theme_override_fonts/font = SubResource("FontFile_wuytc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_tf86c")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_gjkiu")
 text = "Options"
@@ -4483,8 +4470,8 @@ offset_right = 1776.5
 offset_bottom = 964.5
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
+theme = ExtResource("1_158mb")
 theme_override_fonts/font = SubResource("FontFile_wuytc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_tf86c")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_gjkiu")
 text = "Credits"
