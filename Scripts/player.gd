@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var BULLET = preload("uid://7pvmbpigkpq1")
+
 @onready var hitbox = $Hitbox
 @onready var sprite = $Sprite
 @onready var camera = $Camera
@@ -7,6 +9,8 @@ extends CharacterBody2D
 @onready var jetpack = $Jetpack
 @onready var jetpack_bar = $Jetpack/JetpackBar
 @onready var jump_timer = $Jetpack/JumpTimer
+@onready var shootpoint = $Shootpoint
+@onready var gun_cooldown = $Shootpoint/GunCooldown
 
 @onready var debug_info = $DebugInfo
 
@@ -29,6 +33,7 @@ var zoom : Vector2 = Vector2(2,2)
 var last_zoom : Vector2 = zoom
 var aim_mode : bool = false
 var minigame_mode : bool = false
+var on_cooldown : bool = false
 
 # Player vars
 var hp : int = 5
@@ -42,10 +47,11 @@ var jumping : bool = false
 
 func _ready():
 	jump_timer.timeout.connect(_on_jump_timeout)
+	gun_cooldown.timeout.connect(_on_cooldown_timeout)
 
 func _physics_process(delta):
 	#debug_info.text = "Velocity: " + str(velocity)
-	
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -62,7 +68,7 @@ func _physics_process(delta):
 		last_platform_velocity = get_platform_velocity()
 		velocity = last_platform_velocity
 		velocity.y += JUMP_VELOCITY
-	
+
 	# Handle jetpack
 	if Input.is_action_pressed("jump") and not is_on_floor() and jetpack_energy > 0:
 		if velocity.y > max_thrust:
@@ -75,6 +81,14 @@ func _physics_process(delta):
 	else:
 		if jetpack.emitting: 
 			jetpack.emitting = false
+
+	if Input.is_action_just_pressed("shoot") and not on_cooldown:
+		var bullet_instance = BULLET.instantiate()
+		mech.get_parent().add_child(bullet_instance)
+		bullet_instance.global_position = shootpoint.global_position
+		bullet_instance.global_rotation = shootpoint.global_rotation
+		on_cooldown = true
+		gun_cooldown.start()
 
 	# Handle camera zoom
 	if Input.is_action_just_pressed("zoom_in") and is_on_floor():
@@ -99,8 +113,12 @@ func _physics_process(delta):
 	if direction and not aim_mode and not minigame_mode:
 		if direction > 0:
 			sprite.flip_h = false
+			shootpoint.position.x = 24
+			shootpoint.rotation_degrees = 0
 		else:
 			sprite.flip_h = true
+			shootpoint.position.x = -24
+			shootpoint.rotation_degrees = 180
 		sprite.play("run")
 		velocity.x = direction * SPEED
 	else:
@@ -115,7 +133,7 @@ func start_minigame(mname : String, controlled_module):
 	minigames.start_minigame(mname, controlled_module)
 	last_zoom = zoom
 	zoom = Vector2(1, 1)
-	
+
 func end_minigame():
 	minigame_mode = false
 	minigames.end_minigame()
@@ -156,3 +174,6 @@ func die():
 
 func _on_jump_timeout():
 	jumping = false
+
+func _on_cooldown_timeout():
+	on_cooldown = false

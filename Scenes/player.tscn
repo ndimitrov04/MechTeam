@@ -160,6 +160,12 @@ frame_progress = 0.27777863
 
 [node name="Listener" type="AudioListener2D" parent="." unique_id=1278853592]
 
+[node name="Shootpoint" type="Node2D" parent="." unique_id=945802627]
+position = Vector2(24, 8)
+
+[node name="GunCooldown" type="Timer" parent="Shootpoint" unique_id=978473012]
+wait_time = 2.0
+
 [node name="Jetpack" type="GPUParticles2D" parent="." unique_id=115112265]
 z_index = -1
 amount = 128

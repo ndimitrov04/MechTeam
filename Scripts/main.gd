@@ -56,7 +56,7 @@ func end_stage():
 	PlayerData.current_stage += 1
 	PlayerData.money -= (mech.max_hp - mech.hp) * 0.5
 	PlayerData.money -= npc_deaths * 10
-	end_text =  (
+	end_text = (
 			"YOU WIN!\n\n\n" +
 			"Rewards collected: " + str(rewards_collected) +
 			"\n\nMech Status" +
