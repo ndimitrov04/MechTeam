@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cn01hfej6r20"]
+
+[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="1_jtc3c"]
+[ext_resource type="Script" uid="uid://barplbo1q3q87" path="res://Scripts/Enemies/offensive_drone.gd" id="1_tcknq"]
+[ext_resource type="Texture2D" uid="uid://k2ry6w7ot2h3" path="res://Images/Characters/Enemies/Enemy2/Walk.png" id="2_djg7s"]
+[ext_resource type="PackedScene" uid="uid://byutd7jujdnp3" path="res://Scenes/Behaviors/NPCBehaviors/npc_fight.tscn" id="3_7h38m"]
+[ext_resource type="PackedScene" uid="uid://cpvw0r1pp1mx8" path="res://Scenes/Behaviors/NPCBehaviors/npc_fly_to.tscn" id="4_t3oxq"]
+[ext_resource type="PackedScene" uid="uid://cakc2c25okepc" path="res://Scenes/Behaviors/NPCBehaviors/npc_cooldown.tscn" id="6_cft2b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqv10"]
+shader = ExtResource("1_jtc3c")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jtc3c"]
+custom_solver_bias = 1.0
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjo4v"]
+atlas = ExtResource("2_djg7s")
+region = Rect2(0, 0, 29, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3oxq"]
+atlas = ExtResource("2_djg7s")
+region = Rect2(48, 0, 29, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtc3c"]
+atlas = ExtResource("2_djg7s")
+region = Rect2(96, 0, 29, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqv10"]
+atlas = ExtResource("2_djg7s")
+region = Rect2(144, 0, 29, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cft2b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjo4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3oxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtc3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqv10")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djg7s"]
+size = Vector2(25, 25)
+
+[node name="OffensiveDrone" type="CharacterBody2D" unique_id=1143559221]
+top_level = true
+material = SubResource("ShaderMaterial_gqv10")
+collision_layer = 8
+collision_mask = 4096
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_tcknq")
+
+[node name="ShootPoint" type="Node2D" parent="." unique_id=439647975]
+position = Vector2(16, 0)
+
+[node name="Walkbox" type="CollisionShape2D" parent="." unique_id=1624442328]
+position = Vector2(1.5, -1.5)
+shape = SubResource("CircleShape2D_jtc3c")
+debug_color = Color(0.77925515, 0.1298804, 0.99999994, 0.41960785)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1097531537]
+sprite_frames = SubResource("SpriteFrames_cft2b")
+autoplay = "default"
+frame = 2
+frame_progress = 0.09586925
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=2014863566]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox" unique_id=1779369838]
+position = Vector2(3.5, 7.5)
+shape = SubResource("RectangleShape2D_djg7s")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCFight" parent="." unique_id=1039391821 instance=ExtResource("3_7h38m")]
+
+[node name="NPCFlyTo" parent="." unique_id=869284909 instance=ExtResource("4_t3oxq")]
+
+[node name="NPCCooldown" parent="." unique_id=331200671 instance=ExtResource("6_cft2b")]
+position = Vector2(1, -30)

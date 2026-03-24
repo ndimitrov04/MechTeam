@@ -4,10 +4,9 @@
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="2_rv24q"]
 [ext_resource type="Texture2D" uid="uid://bsvxcregusx5a" path="res://Images/Characters/Enemies/Enemy1/Attack.png" id="3_emy6p"]
 [ext_resource type="Texture2D" uid="uid://cnbgel3oj0o2w" path="res://Images/Characters/Enemies/Enemy1/Idle.png" id="4_2dm46"]
-[ext_resource type="Script" uid="uid://baiso3ce2d01v" path="res://Scripts/Behaviors/NPCBehaviors/npc_fight.gd" id="4_ervb5"]
 [ext_resource type="Texture2D" uid="uid://5ed7f5o6iab8" path="res://Images/Characters/Enemies/Enemy1/Walk.png" id="5_1c2ht"]
 [ext_resource type="PackedScene" uid="uid://c1tsun6sshawv" path="res://Scenes/Behaviors/NPCBehaviors/npc_walk.tscn" id="5_2dm46"]
-[ext_resource type="PackedScene" uid="uid://baicns6vv5igj" path="res://Scenes/Behaviors/NPCBehaviors/npc_engage.tscn" id="6_1c2ht"]
+[ext_resource type="PackedScene" uid="uid://byutd7jujdnp3" path="res://Scenes/Behaviors/NPCBehaviors/npc_fight.tscn" id="6_emy6p"]
 [ext_resource type="PackedScene" uid="uid://cakc2c25okepc" path="res://Scenes/Behaviors/NPCBehaviors/npc_cooldown.tscn" id="7_k0esn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gudg"]
@@ -131,9 +130,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6atyd"]
 size = Vector2(15, 24)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_33out"]
-size = Vector2(200, 37)
-
 [node name="Defender" type="CharacterBody2D" unique_id=2022641288]
 process_mode = 4
 z_index = 30
@@ -163,23 +159,9 @@ position = Vector2(2.5, 12)
 shape = SubResource("RectangleShape2D_6atyd")
 debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
 
-[node name="NPCFight" type="Node2D" parent="." unique_id=1407770630]
-script = ExtResource("4_ervb5")
-
-[node name="DetectionArea" type="Area2D" parent="NPCFight" unique_id=1159858953]
-collision_layer = 0
-collision_mask = 6159
-monitorable = false
-
-[node name="Hitbox" type="CollisionShape2D" parent="NPCFight/DetectionArea" unique_id=782933909]
-position = Vector2(100, 0)
-shape = SubResource("RectangleShape2D_33out")
-debug_color = Color(5.2943824e-06, 0.5894488, 0.7620854, 0.06666667)
+[node name="NPCFight" parent="." unique_id=1039391821 instance=ExtResource("6_emy6p")]
 
 [node name="NPCWalk" parent="." unique_id=1222509953 instance=ExtResource("5_2dm46")]
-position = Vector2(-2, -9)
-
-[node name="NPCEngage" parent="." unique_id=911372698 instance=ExtResource("6_1c2ht")]
 position = Vector2(-2, -9)
 
 [node name="NPCCooldown" parent="." unique_id=331200671 instance=ExtResource("7_k0esn")]

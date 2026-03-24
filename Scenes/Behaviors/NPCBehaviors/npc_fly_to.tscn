@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cpvw0r1pp1mx8"]
+
+[ext_resource type="Script" uid="uid://digk7inbtrg8m" path="res://Scripts/Behaviors/NPCBehaviors/npc_fly_to.gd" id="1_h0ew7"]
+
+[node name="NPCFlyTo" type="Node2D" unique_id=869284909]
+script = ExtResource("1_h0ew7")
+
+[node name="Navigation" type="NavigationAgent2D" parent="." unique_id=648912590]
+path_desired_distance = 25.0
+target_desired_distance = 55.0
+path_postprocessing = 2
+debug_enabled = true
+
+[node name="Retarget" type="Timer" parent="." unique_id=558552118]

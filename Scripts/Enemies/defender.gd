@@ -19,7 +19,6 @@ const BULLET = preload("uid://7pvmbpigkpq1")
 @onready var direction = 0
 
 @onready var npc_walk = $NPCWalk
-@onready var npc_engage = $NPCEngage
 @onready var npc_cooldown = $NPCCooldown
 @onready var npc_fight = $NPCFight
 
@@ -71,7 +70,6 @@ func _physics_process(delta):
 # Fighters should not stop moving ever
 func make_busy(time : float):
 	npc_walk.stop_moving(time)
-	npc_engage.temp_disable(time)
 	npc_cooldown.start(time)
 
 # Invincibility frame visual effect

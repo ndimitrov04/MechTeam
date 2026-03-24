@@ -8,6 +8,11 @@
 [ext_resource type="AudioStream" uid="uid://c2rux4dr3pu54" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3" id="7_0xx7q"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="11_07nox"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0xx7q"]
+vertices = PackedVector2Array(1150, 622, -6, 622, -6, 82, 1150, 82)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, 72, 1160, 72, 1160, 632, -16, 632)])
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_6iyac"]
 animations = [{
 "frames": [{
@@ -35,6 +40,9 @@ script = ExtResource("3_tp74p")
 tile_set = ExtResource("4_cfoyv")
 use_kinematic_bodies = true
 script = ExtResource("5_cfoyv")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1146321950]
+navigation_polygon = SubResource("NavigationPolygon_0xx7q")
 
 [node name="MovementSprites" type="Node2D" parent="." unique_id=2035739966]
 
