@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 @onready var main = $"../.."
+#@onready var navigation_region: NavigationRegion2D = $"../NavigationRegion"
 
 const DEBRIS = preload("uid://rg2m11gs0xex")
 const DEBRIS_NOEXPL = preload("uid://cnockwlnou78d")
@@ -106,3 +107,6 @@ func regenerate_frame_collision():
 		var collider_instance = PHYSICS_COLLIDER.instantiate()
 		get_parent().add_child(collider_instance)
 		collider_instance.position = self.map_to_local(cell_coord)
+	
+	# Regenerate loacl navmesh
+	#navigation_region.bake_navigation_polygon()

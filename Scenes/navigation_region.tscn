@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://tkpp4uaa018x"]
+
+[ext_resource type="Script" uid="uid://bmw17wqsngiav" path="res://Scripts/navigation_region.gd" id="1_agllg"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6vcvc"]
+vertices = PackedVector2Array(13017, -24.992188, 2255, 599, 2255, 313, -9, -17, 2193, 313, 13017, 1232.9922, -9, 1225, 2193, 599, 2193, 361, 2129, 361, 2129, 457, 2129, 489, 1871, 489, 1871, 423, 2065, 423, 2065, 455, 2159, 455, 2193, 457, 2193, 407, 2159, 409, 2129, 407, 2127, 409, 2127, 329, 1903, 329, 1903, 313, 1841, 313, 1841, 361, 1777, 361, 1777, 407, 1809, 407, 1809, 457, 1807, 457, 1807, 425, 1745, 425, 1745, 489, 1713, 489, 1713, 537, 1697, 537, 1697, 599, 1807, 599, 1807, 551, 1905, 551, 1905, 583, 1937, 583, 1937, 599, 2031, 599, 2031, 583, 2063, 583, 2063, 551, 2193, 551)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2), PackedInt32Array(3, 2, 4), PackedInt32Array(1, 0, 5), PackedInt32Array(1, 5, 6), PackedInt32Array(7, 1, 6), PackedInt32Array(4, 8, 9), PackedInt32Array(10, 11, 12), PackedInt32Array(12, 13, 14), PackedInt32Array(12, 14, 15), PackedInt32Array(10, 12, 15), PackedInt32Array(10, 15, 16), PackedInt32Array(17, 10, 16), PackedInt32Array(18, 17, 16), PackedInt32Array(18, 16, 19), PackedInt32Array(20, 18, 19), PackedInt32Array(20, 19, 21), PackedInt32Array(20, 21, 22), PackedInt32Array(9, 20, 22), PackedInt32Array(4, 9, 22), PackedInt32Array(3, 4, 22), PackedInt32Array(22, 23, 24), PackedInt32Array(3, 22, 24), PackedInt32Array(3, 24, 25), PackedInt32Array(6, 3, 25), PackedInt32Array(25, 26, 27), PackedInt32Array(6, 25, 27), PackedInt32Array(6, 27, 28), PackedInt32Array(29, 30, 31), PackedInt32Array(29, 31, 32), PackedInt32Array(28, 29, 32), PackedInt32Array(28, 32, 33), PackedInt32Array(6, 28, 33), PackedInt32Array(33, 34, 35), PackedInt32Array(6, 33, 35), PackedInt32Array(35, 36, 37), PackedInt32Array(6, 35, 37), PackedInt32Array(6, 37, 38), PackedInt32Array(39, 40, 41), PackedInt32Array(39, 41, 42), PackedInt32Array(42, 43, 44), PackedInt32Array(45, 46, 47), PackedInt32Array(47, 48, 49), PackedInt32Array(47, 49, 7), PackedInt32Array(39, 42, 44), PackedInt32Array(45, 47, 7), PackedInt32Array(45, 7, 6), PackedInt32Array(44, 45, 6), PackedInt32Array(39, 44, 6), PackedInt32Array(39, 6, 38)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-24, -32, 13032, -40, 13032, 1248, -24, 1240)])
+source_geometry_mode = 2
+source_geometry_group_name = &"global_nav"
+cell_size = 50.0
+border_size = 5.0
+agent_radius = 15.0
+
+[node name="NavigationRegion" type="NavigationRegion2D" unique_id=831838858]
+navigation_polygon = SubResource("NavigationPolygon_6vcvc")
+script = ExtResource("1_agllg")
+
+[node name="RebakeNavmesh" type="Timer" parent="." unique_id=1886585832]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="RebakeNavmesh" to="." method="_on_rebake_navmesh_timeout"]

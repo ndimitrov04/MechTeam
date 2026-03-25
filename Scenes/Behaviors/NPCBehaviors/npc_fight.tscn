@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://baiso3ce2d01v" path="res://Scripts/Behaviors/NPCBehaviors/npc_fight.gd" id="1_7awku"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33out"]
-size = Vector2(200, 37)
+size = Vector2(200, 10)
 
 [node name="NPCFight" type="Node2D" unique_id=1039391821]
 script = ExtResource("1_7awku")

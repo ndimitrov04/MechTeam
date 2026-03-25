@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var sprite = $Sprite
 @onready var hitbox = $Hitbox
 
-const SPEED = 50.0
+const SPEED = 85.0
 const JUMP_VELOCITY = -400.0
 
 # NPC Sprites
