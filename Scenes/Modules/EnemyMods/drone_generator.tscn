@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://c803xurnxvrtb"]
+
+[ext_resource type="Script" uid="uid://bjptx8w4jyuq2" path="res://Scripts/Modules/EnemyMods/drone_generator.gd" id="1_hwlt0"]
+[ext_resource type="Texture2D" uid="uid://blw0qobpbfk6b" path="res://Images/Objects/Decor/decor_5.png" id="2_446kb"]
+[ext_resource type="AudioStream" uid="uid://ctju2u7uhycnw" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Boost PowerDown_v1.wav" id="20_fxd1o"]
+[ext_resource type="AudioStream" uid="uid://c2yvv86sp1kpa" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Build Up_Short_var 1.wav" id="21_o4esj"]
+[ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="22_fol1b"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
+friction = 0.9
+bounce = 0.44
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_446kb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_vlfaf"]
+colors = PackedColorArray(0, 1, 0, 0.5019608, 0, 1, 0, 0.5019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o332s"]
+gradient = SubResource("Gradient_vlfaf")
+width = 32
+height = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5l7g"]
+size = Vector2(25, 34)
+
+[node name="DroneGenerator" type="RigidBody2D" unique_id=834209248]
+z_index = 10
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_hptm8")
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_hwlt0")
+metadata/aim_speed = 2.0
+metadata/pinned_tile = Vector2i(0, 0)
+metadata/price = 25
+metadata/big_object = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_d1ilt")
+autoplay = "default"
+
+[node name="Marker" type="Sprite2D" parent="." unique_id=1074317968]
+visible = false
+texture = SubResource("GradientTexture2D_o332s")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1882493289]
+position = Vector2(1.5, -16)
+shape = SubResource("RectangleShape2D_m5l7g")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=112413684]
+wait_time = 10.0
+autostart = true
+
+[node name="SFX" type="Node2D" parent="." unique_id=1580841413]
+
+[node name="Drain" type="AudioStreamPlayer2D" parent="SFX" unique_id=1439534329]
+stream = ExtResource("20_fxd1o")
+max_distance = 200.0
+bus = &"SFX"
+
+[node name="Charge" type="AudioStreamPlayer2D" parent="SFX" unique_id=1702358490]
+stream = ExtResource("21_o4esj")
+max_distance = 700.0
+bus = &"SFX"
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="SFX" unique_id=883132215]
+stream = ExtResource("22_fol1b")
+volume_db = -27.0
+autoplay = true
+max_distance = 200.0
+bus = &"SFX"
+parameters/looping = true
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=1786066304]
+bus = &"SFX"

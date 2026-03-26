@@ -12,3 +12,7 @@ path_postprocessing = 2
 debug_enabled = true
 
 [node name="Retarget" type="Timer" parent="." unique_id=558552118]
+wait_time = 6.5
+autostart = true
+
+[connection signal="timeout" from="Retarget" to="." method="_retarget"]

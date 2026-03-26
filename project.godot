@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="MechTeam"
-config/version="0.346"
+config/version="0.347"
 run/main_scene="uid://m4q4cm7li360"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/use_filter=false
@@ -158,6 +158,8 @@ menu={
 
 [navigation]
 
+2d/warnings/navmesh_edge_merge_errors=false
+2d/warnings/navmesh_cell_size_mismatch=false
 2d/version="0.344"
 
 [rendering]

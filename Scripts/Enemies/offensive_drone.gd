@@ -27,7 +27,7 @@ const BULLET = preload("uid://7pvmbpigkpq1")
 
 @onready var shoot_point = $ShootPoint
 
-var hp : int = 3
+var hp : int = 2
 var invincible : bool = false
 
 func _ready():
