@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://byq36523c31uh"
+path="res://.godot/imported/10 running wild.ogg-147d9d32e9b92939d487b3fc5a901a30.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/10 running wild.ogg"
+dest_files=["res://.godot/imported/10 running wild.ogg-147d9d32e9b92939d487b3fc5a901a30.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

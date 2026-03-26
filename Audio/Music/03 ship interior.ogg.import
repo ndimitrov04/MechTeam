@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ce4508tlmtnyx"
+path="res://.godot/imported/03 ship interior.ogg-c46775def5cf20ea6c889135604a146f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/03 ship interior.ogg"
+dest_files=["res://.godot/imported/03 ship interior.ogg-c46775def5cf20ea6c889135604a146f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

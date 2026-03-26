@@ -25,6 +25,28 @@ const MECH_4 = preload("uid://b6st1n1r2654j")
 
 var end_text : String = ""
 
+
+# Stage props
+# Backgrounds
+@onready var BG_1 = preload("uid://di1e18fc8a085")
+@onready var BG_2 = preload("uid://d14axc4abnp8l")
+@onready var BG_3 = preload("uid://ebasi4gf18tp")
+@onready var BG_4 = preload("uid://b6puxakxfkx2h")
+@onready var backgrounds = [BG_1, BG_2, BG_3, BG_4]
+# Soundtracks
+@onready var OST_1 = preload("uid://6xm4gvdu3qsl")
+@onready var OST_2 = preload("uid://ce4508tlmtnyx")
+@onready var OST_3 = preload("uid://m8uma6bexyvi")
+@onready var OST_4 = preload("uid://byq36523c31uh")
+@onready var soundtracks = [OST_1, OST_2, OST_3, OST_4]
+func _ready():
+	var stage_number = randi_range(0, backgrounds.size()-1)
+	var current_background = backgrounds[stage_number].instantiate()
+	add_child(current_background)
+	move_child(current_background, 0)
+	music.stream = soundtracks[stage_number]
+	music.play()
+
 func _process(_delta):
 	if enemies_left <= 0 and not triggered:
 		music.stream = preload("uid://bfjye4qxke0i")

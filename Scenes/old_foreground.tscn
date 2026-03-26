@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bo2b3nh5fbf2p"]
+
+[sub_resource type="Gradient" id="Gradient_3pmx8"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.18243243, 0.3310811)
+colors = PackedColorArray(0, 0, 0, 0, 0.8039216, 0.5647059, 0.7254902, 0.8745098, 0.5647059, 0.3019608, 0.42745098, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h1bgf"]
+gradient = SubResource("Gradient_3pmx8")
+width = 256
+fill_from = Vector2(0.012237762, 0)
+
+[node name="Foreground" type="Node2D" unique_id=1645455696]
+
+[node name="Parallax1" type="Parallax2D" parent="." unique_id=16863076]
+
+[node name="ScreenBorder" type="TextureRect" parent="Parallax1" unique_id=1746746854]
+offset_left = 1700.0
+offset_top = -4385.0
+offset_right = 6178.0
+offset_bottom = 1530.0
+texture = SubResource("GradientTexture2D_h1bgf")
+
+[node name="Parallax2" type="Parallax2D" parent="." unique_id=1076754031]
+
+[node name="TextureRect" type="TextureRect" parent="Parallax2" unique_id=545539663]
+offset_left = -4279.0
+offset_top = -4385.0
+offset_right = 199.0
+offset_bottom = 1530.0
+texture = SubResource("GradientTexture2D_h1bgf")
+flip_h = true
