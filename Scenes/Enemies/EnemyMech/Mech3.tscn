@@ -713,6 +713,9 @@ metadata/labeltext = "Break"
 
 [node name="Modules" type="Node2D" parent="." unique_id=33090995]
 
+[node name="DroneGenerator" parent="Modules" unique_id=1975261127 instance=ExtResource("13_w70a5")]
+position = Vector2(638, 303)
+
 [node name="Gun" parent="Modules" unique_id=834209248 instance=ExtResource("8_qve30")]
 position = Vector2(112, 240)
 
@@ -784,6 +787,3 @@ autoplay = "default"
 [node name="ActionDecision" type="Timer" parent="." unique_id=1783348607]
 wait_time = 0.5
 autostart = true
-
-[node name="DroneGenerator" parent="." unique_id=1975261127 instance=ExtResource("13_w70a5")]
-position = Vector2(638, 303)

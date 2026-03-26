@@ -113,7 +113,7 @@ shape = SubResource("CircleShape2D_6t61r")
 
 [node name="Shieldsprite" type="Sprite2D" parent="ShieldArea" unique_id=121536855]
 modulate = Color(1, 1, 1, 0.19215687)
-z_index = -1
+z_index = 100
 position = Vector2(0, -16)
 texture = ExtResource("4_o5f7a")
 

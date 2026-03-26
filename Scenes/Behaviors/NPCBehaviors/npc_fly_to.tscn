@@ -9,7 +9,6 @@ script = ExtResource("1_h0ew7")
 path_desired_distance = 25.0
 target_desired_distance = 55.0
 path_postprocessing = 2
-debug_enabled = true
 
 [node name="Retarget" type="Timer" parent="." unique_id=558552118]
 wait_time = 6.5
