@@ -873,6 +873,8 @@ texture = SubResource("GradientTexture2D_dr66a")
 
 [node name="ScreenLimit" type="StaticBody2D" parent="Foreground/Parallax1/ScreenBorder" unique_id=805259760]
 position = Vector2(-224, 0)
+collision_layer = 65535
+collision_mask = 65535
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax1/ScreenBorder/ScreenLimit" unique_id=723114807]
 position = Vector2(1004, 4825)
@@ -890,6 +892,8 @@ flip_h = true
 
 [node name="ScreenLimit" type="StaticBody2D" parent="Foreground/Parallax2/TextureRect" unique_id=2015162172]
 position = Vector2(3847, 4929)
+collision_layer = 65535
+collision_mask = 65535
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax2/TextureRect/ScreenLimit" unique_id=1661217783]
 position = Vector2(-4, 0)
