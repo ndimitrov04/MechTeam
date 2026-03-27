@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://65apk4w16d4j" path="res://Scripts/Misc/destructible_frame.gd" id="13_w6r2e"]
 [ext_resource type="PackedScene" uid="uid://gabbdsxamcdv" path="res://Scenes/MovementObjects/wheel_hitbox_1.tscn" id="14_ang03"]
 [ext_resource type="PackedScene" uid="uid://cuhp74yuarb08" path="res://Scenes/MovementObjects/wheel_collider_1.tscn" id="15_7imj6"]
+[ext_resource type="AudioStream" uid="uid://dfgtuk70n5ubo" path="res://Audio/Music/07 high in the mountains.ogg" id="33_j38be"]
 [ext_resource type="Script" uid="uid://cfcgqox3nhdhw" path="res://Scripts/highlight.gd" id="42_agj4u"]
 [ext_resource type="AudioStream" uid="uid://c2rux4dr3pu54" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3" id="97_ygrk7"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="98_6ni2a"]
@@ -32,7 +33,6 @@
 [ext_resource type="AudioStream" uid="uid://rf8mda10gl8x" path="res://Audio/SFX/UI/retro_beep_02.ogg" id="110_xepnf"]
 [ext_resource type="AudioStream" uid="uid://bh1sj01j1b2mb" path="res://Audio/SFX/UI/retro_beep_03.ogg" id="111_422l0"]
 [ext_resource type="Script" uid="uid://gdydsl2c347d" path="res://Scripts/Tutorials/tutorial_ui.gd" id="112_2hil8"]
-[ext_resource type="AudioStream" uid="uid://6xm4gvdu3qsl" path="res://Audio/Music/02 lava city.ogg" id="113_7hmin"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
 offsets = PackedFloat32Array(0.47333333, 0.5)
@@ -635,15 +635,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_3pmx8"]
+[sub_resource type="Gradient" id="Gradient_j38be"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.18243243, 0.3310811)
-colors = PackedColorArray(0, 0, 0, 0, 0.8039216, 0.5647059, 0.7254902, 0.8745098, 0.5647059, 0.3019608, 0.42745098, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.39308554, 0.3930855, 0.39308548, 0.8745098, 0.4390491, 0.43904912, 0.43904912, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_h1bgf"]
-gradient = SubResource("Gradient_3pmx8")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dr66a"]
+gradient = SubResource("Gradient_j38be")
 width = 256
 fill_from = Vector2(0.012237762, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5s42s"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0i5x4"]
+normal = Vector2(1, 0)
 
 [node name="Main" type="Node2D" unique_id=105152583]
 script = ExtResource("1_j38be")
@@ -852,26 +858,42 @@ collision_layer = 16421
 collision_mask = 16421
 floor_stop_on_slope = true
 
-[node name="Foreground" type="Node2D" parent="." unique_id=997797821]
+[node name="Foreground" type="Node2D" parent="." unique_id=2111792255]
+z_index = 999
+z_as_relative = false
 
-[node name="Parallax1" type="Parallax2D" parent="Foreground" unique_id=590175283]
+[node name="Parallax1" type="Parallax2D" parent="Foreground" unique_id=787932542]
 
-[node name="ScreenBorder" type="TextureRect" parent="Foreground/Parallax1" unique_id=1594507432]
-offset_left = 1704.0
-offset_top = -4392.0
-offset_right = 6182.0
-offset_bottom = 1523.0
-texture = SubResource("GradientTexture2D_h1bgf")
+[node name="ScreenBorder" type="TextureRect" parent="Foreground/Parallax1" unique_id=1924200858]
+offset_left = 1700.0
+offset_top = -4385.0
+offset_right = 6178.0
+offset_bottom = 1530.0
+texture = SubResource("GradientTexture2D_dr66a")
 
-[node name="Parallax2" type="Parallax2D" parent="Foreground" unique_id=1167256759]
+[node name="ScreenLimit" type="StaticBody2D" parent="Foreground/Parallax1/ScreenBorder" unique_id=805259760]
+position = Vector2(-224, 0)
 
-[node name="TextureRect" type="TextureRect" parent="Foreground/Parallax2" unique_id=401354994]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax1/ScreenBorder/ScreenLimit" unique_id=723114807]
+position = Vector2(1004, 4825)
+shape = SubResource("WorldBoundaryShape2D_5s42s")
+
+[node name="Parallax2" type="Parallax2D" parent="Foreground" unique_id=303507242]
+
+[node name="TextureRect" type="TextureRect" parent="Foreground/Parallax2" unique_id=1114976506]
 offset_left = -4279.0
 offset_top = -4385.0
 offset_right = 199.0
 offset_bottom = 1530.0
-texture = SubResource("GradientTexture2D_h1bgf")
+texture = SubResource("GradientTexture2D_dr66a")
 flip_h = true
+
+[node name="ScreenLimit" type="StaticBody2D" parent="Foreground/Parallax2/TextureRect" unique_id=2015162172]
+position = Vector2(3847, 4929)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax2/TextureRect/ScreenLimit" unique_id=1661217783]
+position = Vector2(-4, 0)
+shape = SubResource("WorldBoundaryShape2D_0i5x4")
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=64329098]
 
@@ -1247,7 +1269,7 @@ Use WASD to move."
 autowrap_mode = 3
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2025517324]
-stream = ExtResource("113_7hmin")
+stream = ExtResource("33_j38be")
 autoplay = true
 bus = &"Music"
 

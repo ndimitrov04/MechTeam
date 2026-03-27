@@ -5,6 +5,9 @@
 [sub_resource type="TileMapPattern" id="TileMapPattern_y5l3b"]
 tile_data = PackedInt32Array(0, 0, 6, 65536, 0, 7, 1, 65536, 6, 65537, 65536, 7)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y5l3b"]
+rough = true
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gt3je"]
 texture = ExtResource("1_y5l3b")
 0:0/0 = 0
@@ -628,5 +631,6 @@ texture = ExtResource("1_y5l3b")
 [resource]
 physics_layer_0/collision_layer = 6177
 physics_layer_0/collision_mask = 6177
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_y5l3b")
 sources/0 = SubResource("TileSetAtlasSource_gt3je")
 pattern_0 = SubResource("TileMapPattern_y5l3b")

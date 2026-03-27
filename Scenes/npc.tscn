@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="5_qi7up"]
 [ext_resource type="Script" uid="uid://c5nteey1artcx" path="res://Scripts/Behaviors/NPCBehaviors/npc_cooldown.gd" id="6_2xkex"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gudg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0c7gy"]
 size = Vector2(15, 22)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xkex"]
@@ -42,7 +42,7 @@ metadata/price = 35
 
 [node name="Walkbox" type="CollisionShape2D" parent="." unique_id=1172288629]
 position = Vector2(0.5, 4)
-shape = SubResource("RectangleShape2D_8gudg")
+shape = SubResource("RectangleShape2D_0c7gy")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1697861877]
 material = SubResource("ShaderMaterial_2xkex")

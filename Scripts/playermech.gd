@@ -30,8 +30,10 @@ var direction : int = 0
 var jump : bool = false
 var can_jump : bool = true
 
-var max_hp : int = 200
-var hp : int = max_hp
+var max_hp : int = 200 # Default value
+var hp : int = max_hp # Default value
+var base_weight : float = 25 # Default value
+var weight : float = base_weight + max_hp / 4.0 # Default value
 var max_energy : int
 var energy : int
 var regen_rate : int = 1
@@ -46,8 +48,13 @@ func _ready():
 	if not get_meta("prebuilt"):
 		load_mech()
 	@warning_ignore("integer_division")
+	# Calculate and set true weight/hp for mech
 	max_hp = frame.get_used_cells().size() / 4
 	hp = max_hp
+	weight = base_weight + max_hp / 4.0 + movement_sprites.get_child_count() * 0.2
+	self.mass = weight
+	if has_meta("constant_weight"):
+		self.mass = get_meta("constant_weight")
 
 func load_mech():
 	# Load mech frame and background
@@ -115,11 +122,25 @@ func _physics_process(delta):
 		can_jump = false
 		jump_timer.start()
 
-	if direction and movement_sprites.get_child_count() > 0:
-		linear_velocity.x = move_toward(linear_velocity.x, direction * SPEED, 1) 
+	# Handle physics movement
+	if direction:
+		# Apply movement force at wheels/tracks if they are touching the floor
+		for movement_object in movement_sprites.get_children():
+			if movement_object.floor_detector.is_colliding():
+				var push_point = movement_object.global_position - Vector2(0, center_of_mass.y + 150)
+				self.apply_force(Vector2(direction, 0) * SPEED * 450, push_point)
+		#linear_velocity.x = move_toward(linear_velocity.x, direction * SPEED, 1) 
 	else:
-		linear_velocity.x = move_toward(linear_velocity.x, 0, 1)
+		linear_velocity.x = move_toward(linear_velocity.x, 0, 0.2)
 
+	# Max/Top speed (horizontal) - Determined by number of movement objects
+	var max_speed = movement_sprites.get_child_count() * 45
+	if linear_velocity.x > max_speed:
+		linear_velocity.x = max_speed
+	if linear_velocity.x < -max_speed:
+		linear_velocity.x = -max_speed
+
+	# Handle wheel/track animations
 	if abs(linear_velocity.x) > 0:
 		for spr in movement_sprites.get_children():
 			if not spr.is_playing():
@@ -128,6 +149,7 @@ func _physics_process(delta):
 		for spr in movement_sprites.get_children():
 			spr.stop()
 	
+	# Recalculate total mech energy
 	total_energy()
 	
 func _unhandled_input(event):
@@ -176,7 +198,7 @@ func drain_energy(amount : int) -> bool:
 
 func take_damage(damage_value : int):
 	hp -= damage_value
-	# Godot 4.5 still has no fallthrough switches :/
+	# Godot 4.6 still has no fallthrough switches :/
 	if hp <= max_hp:
 		background.break_random_tile()
 	@warning_ignore("integer_division")

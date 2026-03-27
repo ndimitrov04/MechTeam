@@ -21,7 +21,9 @@ const JUMP_linear_velocity = -400.0
 @onready var level_multiplier : float = 0.5 + (PlayerData.current_stage * 0.25)
 @onready var base_hp = get_meta("hp")
 var max_hp : int = 999 # Placeholder value (must be positive; non-null); Real value is set in _ready()
-var hp : int = max_hp
+var hp : int = max_hp # Default value
+var base_weight : float = 25 # Default value
+var weight : float = base_weight + max_hp / 4.0 # Default value
 var energy : int = 100
 var reward : int = 25
 
@@ -36,6 +38,10 @@ func _ready():
 	await get_tree().create_timer(0.1).timeout
 	max_hp = base_hp * level_multiplier
 	hp = max_hp
+	weight = base_weight + frame.get_used_cells().size() / 16
+	self.mass = weight
+	if has_meta("constant_weight"):
+		self.mass = get_meta("constant_weight")
 	await get_tree().create_timer(0.5).timeout
 	update_decision_timer()
 
@@ -48,10 +54,23 @@ func _physics_process(delta):
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		#linear_velocity.y = JUMP_linear_velocity
 		
+	# Handle physics movement
 	if direction:
-		linear_velocity.x = direction * SPEED
+		# Apply movement force at wheels/tracks if they are touching the floor
+		for movement_object in movement_sprites.get_children():
+			if movement_object.floor_detector.is_colliding():
+				var push_point = movement_object.global_position - Vector2(0, center_of_mass.y + 150)
+				self.apply_force(Vector2(direction, 0) * SPEED * 450, push_point)
+		#linear_velocity.x = move_toward(linear_velocity.x, direction * SPEED, 1) 
 	else:
-		linear_velocity.x = move_toward(linear_velocity.x, 0, SPEED)
+		linear_velocity.x = move_toward(linear_velocity.x, 0, 0.2)
+
+	# Max/Top speed (horizontal) - Determined by number of movement objects
+	var max_speed = movement_sprites.get_child_count() * 45
+	if linear_velocity.x > max_speed:
+		linear_velocity.x = max_speed
+	if linear_velocity.x < -max_speed:
+		linear_velocity.x = -max_speed
 
 	if abs(linear_velocity.x) > 0:
 		for spr in movement_sprites.get_children():

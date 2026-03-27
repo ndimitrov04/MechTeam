@@ -41,6 +41,7 @@ var end_text : String = ""
 @onready var soundtracks = [OST_1, OST_2, OST_3, OST_4]
 func _ready():
 	var stage_number = randi_range(0, backgrounds.size()-1)
+	#stage_number = 0  # debug stage lock
 	var current_background = backgrounds[stage_number].instantiate()
 	add_child(current_background)
 	move_child(current_background, 0)

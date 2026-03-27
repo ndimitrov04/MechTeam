@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://uxt82jfkcjx8" path="res://Scenes/MovementObjects/wheel_1.tscn" id="13_l6llh"]
 [ext_resource type="Texture2D" uid="uid://l0br0i4oadx" path="res://Images/MechGuns/turret_01_mk1.png" id="15_lvy56"]
 [ext_resource type="Texture2D" uid="uid://kk6q8rqjg2y3" path="res://Images/Objects/Control3/tile000.png" id="15_vrwsj"]
-[ext_resource type="PackedScene" uid="uid://cmy4r8enqaty2" path="res://Scenes/npc.tscn" id="16_d77ms"]
 [ext_resource type="Texture2D" uid="uid://ctebmj2o1ye8i" path="res://Images/Objects/Control3/tile001.png" id="16_lkj0u"]
 [ext_resource type="Texture2D" uid="uid://bnpfidpohw54n" path="res://Images/Characters/Player/Cyborg_idle.png" id="17_dldpb"]
 [ext_resource type="Texture2D" uid="uid://cd88u8op1khtr" path="res://Images/Objects/Control3/tile002.png" id="17_exfoy"]
@@ -95,8 +94,13 @@
 [ext_resource type="Texture2D" uid="uid://u74a7m55t87w" path="res://Images/Objects/Control2/tile018.png" id="53_rwwdd"]
 [ext_resource type="Texture2D" uid="uid://bib4gre6gyyiu" path="res://Images/Objects/Control2/tile019.png" id="54_iuvs5"]
 [ext_resource type="Texture2D" uid="uid://b1wt3rxhih26o" path="res://Images/Objects/Control1/Screen2.png" id="56_ov15f"]
+[ext_resource type="Script" uid="uid://bbjxg02ymu5kl" path="res://Scripts/Behaviors/NPCBehaviors/npc.gd" id="92_46enp"]
+[ext_resource type="SpriteFrames" uid="uid://bvy5i3vh6phgd" path="res://Images/Characters/Friendlies/NPC1/npc_1.tres" id="93_c1kd7"]
 [ext_resource type="Script" uid="uid://5uivdxicfykd" path="res://Scripts/menuplayer.gd" id="93_lkj0u"]
 [ext_resource type="AudioStream" uid="uid://dh3uoo6pjx8yk" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Vehicle Engine Running_acceleration level 1_var 1.mp3" id="93_rgrl2"]
+[ext_resource type="Script" uid="uid://d23j2fdh1ytj1" path="res://Scripts/Behaviors/NPCBehaviors/npc_walk.gd" id="94_61u4v"]
+[ext_resource type="Script" uid="uid://cnviq1alqbvln" path="res://Scripts/Behaviors/NPCBehaviors/npc_engage.gd" id="95_nijow"]
+[ext_resource type="Script" uid="uid://c5nteey1artcx" path="res://Scripts/Behaviors/NPCBehaviors/npc_cooldown.gd" id="96_5ej1k"]
 [ext_resource type="Texture2D" uid="uid://b0psbol26toq0" path="res://xficon2t.png" id="97_1q3u6"]
 [ext_resource type="Script" uid="uid://py5etfplmy7y" path="res://Scripts/credits.gd" id="97_tf86c"]
 [ext_resource type="AudioStream" uid="uid://cpajjfgpfw7cf" path="res://Audio/Music/11 die vonstantine.ogg" id="98_fngy1"]
@@ -1454,6 +1458,30 @@ animations = [{
 "name": &"run",
 "speed": 8.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0c7gy"]
+size = Vector2(15, 22)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xkex"]
+shader = ExtResource("47_2laoa")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6atyd"]
+size = Vector2(15, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xkex"]
+size = Vector2(24, 29)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8gudg"]
+shader = ExtResource("47_2laoa")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qi7up"]
+load_path = "res://.godot/imported/Circle.png-c6367644dfe9e873ba9cd21dc651e9f9.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hptm8"]
 atlas = ExtResource("17_dldpb")
@@ -4020,29 +4048,581 @@ frame_progress = 0.79964155
 
 [node name="NPCs" type="Node2D" parent="FakeMech" unique_id=1283548531]
 
-[node name="NPC" parent="FakeMech/NPCs" unique_id=1885607827 instance=ExtResource("16_d77ms")]
-position = Vector2(824, 448)
+[node name="NPC" type="CharacterBody2D" parent="FakeMech/NPCs" unique_id=1885607827]
+process_mode = 4
+z_index = 30
+position = Vector2(840, 448)
+collision_layer = 2
+collision_mask = 2048
+script = ExtResource("92_46enp")
+metadata/friendly_npc = true
+metadata/price = 35
 
-[node name="NPC2" parent="FakeMech/NPCs" unique_id=2113620448 instance=ExtResource("16_d77ms")]
+[node name="Walkbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC" unique_id=604328284]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_0c7gy")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="FakeMech/NPCs/NPC" unique_id=1993910773]
+material = SubResource("ShaderMaterial_2xkex")
+position = Vector2(-2, -9)
+sprite_frames = ExtResource("93_c1kd7")
+autoplay = "default"
+frame_progress = 0.74073035
+
+[node name="Hitbox" type="Area2D" parent="FakeMech/NPCs/NPC" unique_id=1231064687]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC/Hitbox" unique_id=1674009463]
+position = Vector2(2.5, 12)
+shape = SubResource("RectangleShape2D_6atyd")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCWalk" type="Node2D" parent="FakeMech/NPCs/NPC" unique_id=1466972808]
+position = Vector2(-2, -9)
+script = ExtResource("94_61u4v")
+
+[node name="EdgeDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC/NPCWalk" unique_id=1641564601]
+position = Vector2(18, 16)
+target_position = Vector2(0, 10)
+collision_mask = 8193
+
+[node name="WallDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC/NPCWalk" unique_id=483200029]
+position = Vector2(0, 10)
+target_position = Vector2(25, 0)
+collision_mask = 8193
+
+[node name="NPCEngage" type="Node2D" parent="FakeMech/NPCs/NPC" unique_id=958080512]
+position = Vector2(-2, -9)
+script = ExtResource("95_nijow")
+
+[node name="EngageArea" type="Area2D" parent="FakeMech/NPCs/NPC/NPCEngage" unique_id=1264355953]
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC/NPCEngage/EngageArea" unique_id=1157481432]
+position = Vector2(2, 9.5)
+shape = SubResource("RectangleShape2D_2xkex")
+debug_color = Color(0, 0.6392157, 0.38039216, 0.06666667)
+
+[node name="NPCCooldown" type="Node2D" parent="FakeMech/NPCs/NPC" unique_id=1417923914]
+position = Vector2(-2, -35)
+script = ExtResource("96_5ej1k")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="FakeMech/NPCs/NPC/NPCCooldown" unique_id=1340832369]
+material = SubResource("ShaderMaterial_8gudg")
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 15.0
+fill_mode = 5
+texture_progress = SubResource("CompressedTexture2D_qi7up")
+tint_progress = Color(0, 0.7199734, 0.28871077, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="FakeMech/NPCs/NPC/NPCCooldown" unique_id=523050683]
+one_shot = true
+
+[node name="NPC2" type="CharacterBody2D" parent="FakeMech/NPCs" unique_id=2113620448]
+process_mode = 4
+z_index = 30
 position = Vector2(784, 344)
+collision_layer = 2
+collision_mask = 2048
+script = ExtResource("92_46enp")
+metadata/friendly_npc = true
+metadata/price = 35
 
-[node name="NPC3" parent="FakeMech/NPCs" unique_id=1582535967 instance=ExtResource("16_d77ms")]
+[node name="Walkbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC2" unique_id=969933534]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_0c7gy")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="FakeMech/NPCs/NPC2" unique_id=1630030547]
+material = SubResource("ShaderMaterial_2xkex")
+position = Vector2(-2, -9)
+sprite_frames = ExtResource("93_c1kd7")
+autoplay = "default"
+frame_progress = 0.74073035
+
+[node name="Hitbox" type="Area2D" parent="FakeMech/NPCs/NPC2" unique_id=542037848]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC2/Hitbox" unique_id=1839488444]
+position = Vector2(2.5, 12)
+shape = SubResource("RectangleShape2D_6atyd")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCWalk" type="Node2D" parent="FakeMech/NPCs/NPC2" unique_id=1056229464]
+position = Vector2(-2, -9)
+script = ExtResource("94_61u4v")
+
+[node name="EdgeDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC2/NPCWalk" unique_id=793627447]
+position = Vector2(18, 16)
+target_position = Vector2(0, 10)
+collision_mask = 8193
+
+[node name="WallDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC2/NPCWalk" unique_id=1547959704]
+position = Vector2(0, 10)
+target_position = Vector2(25, 0)
+collision_mask = 8193
+
+[node name="NPCEngage" type="Node2D" parent="FakeMech/NPCs/NPC2" unique_id=1137298868]
+position = Vector2(-2, -9)
+script = ExtResource("95_nijow")
+
+[node name="EngageArea" type="Area2D" parent="FakeMech/NPCs/NPC2/NPCEngage" unique_id=1347302347]
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC2/NPCEngage/EngageArea" unique_id=1723003035]
+position = Vector2(2, 9.5)
+shape = SubResource("RectangleShape2D_2xkex")
+debug_color = Color(0, 0.6392157, 0.38039216, 0.06666667)
+
+[node name="NPCCooldown" type="Node2D" parent="FakeMech/NPCs/NPC2" unique_id=875049273]
+position = Vector2(-2, -35)
+script = ExtResource("96_5ej1k")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="FakeMech/NPCs/NPC2/NPCCooldown" unique_id=1182611763]
+material = SubResource("ShaderMaterial_8gudg")
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 15.0
+fill_mode = 5
+texture_progress = SubResource("CompressedTexture2D_qi7up")
+tint_progress = Color(0, 0.7199734, 0.28871077, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="FakeMech/NPCs/NPC2/NPCCooldown" unique_id=1163339695]
+one_shot = true
+
+[node name="NPC3" type="CharacterBody2D" parent="FakeMech/NPCs" unique_id=1582535967]
+process_mode = 4
+z_index = 30
 position = Vector2(344, 448)
+collision_layer = 2
+collision_mask = 2048
+script = ExtResource("92_46enp")
+metadata/friendly_npc = true
+metadata/price = 35
 
-[node name="NPC4" parent="FakeMech/NPCs" unique_id=1102083300 instance=ExtResource("16_d77ms")]
+[node name="Walkbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC3" unique_id=561715603]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_0c7gy")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="FakeMech/NPCs/NPC3" unique_id=2127701485]
+material = SubResource("ShaderMaterial_2xkex")
+position = Vector2(-2, -9)
+sprite_frames = ExtResource("93_c1kd7")
+autoplay = "default"
+frame_progress = 0.74073035
+
+[node name="Hitbox" type="Area2D" parent="FakeMech/NPCs/NPC3" unique_id=2114562868]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC3/Hitbox" unique_id=82002890]
+position = Vector2(2.5, 12)
+shape = SubResource("RectangleShape2D_6atyd")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCWalk" type="Node2D" parent="FakeMech/NPCs/NPC3" unique_id=1273895102]
+position = Vector2(-2, -9)
+script = ExtResource("94_61u4v")
+
+[node name="EdgeDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC3/NPCWalk" unique_id=242496112]
+position = Vector2(18, 16)
+target_position = Vector2(0, 10)
+collision_mask = 8193
+
+[node name="WallDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC3/NPCWalk" unique_id=1196122166]
+position = Vector2(0, 10)
+target_position = Vector2(25, 0)
+collision_mask = 8193
+
+[node name="NPCEngage" type="Node2D" parent="FakeMech/NPCs/NPC3" unique_id=1029873246]
+position = Vector2(-2, -9)
+script = ExtResource("95_nijow")
+
+[node name="EngageArea" type="Area2D" parent="FakeMech/NPCs/NPC3/NPCEngage" unique_id=856487415]
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC3/NPCEngage/EngageArea" unique_id=654795671]
+position = Vector2(2, 9.5)
+shape = SubResource("RectangleShape2D_2xkex")
+debug_color = Color(0, 0.6392157, 0.38039216, 0.06666667)
+
+[node name="NPCCooldown" type="Node2D" parent="FakeMech/NPCs/NPC3" unique_id=784886389]
+position = Vector2(-2, -35)
+script = ExtResource("96_5ej1k")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="FakeMech/NPCs/NPC3/NPCCooldown" unique_id=498160649]
+material = SubResource("ShaderMaterial_8gudg")
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 15.0
+fill_mode = 5
+texture_progress = SubResource("CompressedTexture2D_qi7up")
+tint_progress = Color(0, 0.7199734, 0.28871077, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="FakeMech/NPCs/NPC3/NPCCooldown" unique_id=1309030634]
+one_shot = true
+
+[node name="NPC4" type="CharacterBody2D" parent="FakeMech/NPCs" unique_id=1102083300]
+process_mode = 4
+z_index = 30
 position = Vector2(344, 512)
+collision_layer = 2
+collision_mask = 2048
+script = ExtResource("92_46enp")
+metadata/friendly_npc = true
+metadata/price = 35
 
-[node name="NPC5" parent="FakeMech/NPCs" unique_id=1430477565 instance=ExtResource("16_d77ms")]
+[node name="Walkbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC4" unique_id=1399910093]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_0c7gy")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="FakeMech/NPCs/NPC4" unique_id=137299048]
+material = SubResource("ShaderMaterial_2xkex")
+position = Vector2(-2, -9)
+sprite_frames = ExtResource("93_c1kd7")
+autoplay = "default"
+frame_progress = 0.74073035
+
+[node name="Hitbox" type="Area2D" parent="FakeMech/NPCs/NPC4" unique_id=983098586]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC4/Hitbox" unique_id=831604781]
+position = Vector2(2.5, 12)
+shape = SubResource("RectangleShape2D_6atyd")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCWalk" type="Node2D" parent="FakeMech/NPCs/NPC4" unique_id=782864600]
+position = Vector2(-2, -9)
+script = ExtResource("94_61u4v")
+
+[node name="EdgeDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC4/NPCWalk" unique_id=1664205202]
+position = Vector2(18, 16)
+target_position = Vector2(0, 10)
+collision_mask = 8193
+
+[node name="WallDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC4/NPCWalk" unique_id=941776716]
+position = Vector2(0, 10)
+target_position = Vector2(25, 0)
+collision_mask = 8193
+
+[node name="NPCEngage" type="Node2D" parent="FakeMech/NPCs/NPC4" unique_id=479246052]
+position = Vector2(-2, -9)
+script = ExtResource("95_nijow")
+
+[node name="EngageArea" type="Area2D" parent="FakeMech/NPCs/NPC4/NPCEngage" unique_id=1073793650]
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC4/NPCEngage/EngageArea" unique_id=1202876364]
+position = Vector2(2, 9.5)
+shape = SubResource("RectangleShape2D_2xkex")
+debug_color = Color(0, 0.6392157, 0.38039216, 0.06666667)
+
+[node name="NPCCooldown" type="Node2D" parent="FakeMech/NPCs/NPC4" unique_id=1519037107]
+position = Vector2(-2, -35)
+script = ExtResource("96_5ej1k")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="FakeMech/NPCs/NPC4/NPCCooldown" unique_id=758300453]
+material = SubResource("ShaderMaterial_8gudg")
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 15.0
+fill_mode = 5
+texture_progress = SubResource("CompressedTexture2D_qi7up")
+tint_progress = Color(0, 0.7199734, 0.28871077, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="FakeMech/NPCs/NPC4/NPCCooldown" unique_id=1591121677]
+one_shot = true
+
+[node name="NPC5" type="CharacterBody2D" parent="FakeMech/NPCs" unique_id=1430477565]
+process_mode = 4
+z_index = 30
 position = Vector2(-16, 272)
+collision_layer = 2
+collision_mask = 2048
+script = ExtResource("92_46enp")
+metadata/friendly_npc = true
+metadata/price = 35
 
-[node name="NPC6" parent="FakeMech/NPCs" unique_id=2131686385 instance=ExtResource("16_d77ms")]
+[node name="Walkbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC5" unique_id=1255245640]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_0c7gy")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="FakeMech/NPCs/NPC5" unique_id=921490975]
+material = SubResource("ShaderMaterial_2xkex")
+position = Vector2(-2, -9)
+sprite_frames = ExtResource("93_c1kd7")
+autoplay = "default"
+frame_progress = 0.74073035
+
+[node name="Hitbox" type="Area2D" parent="FakeMech/NPCs/NPC5" unique_id=1150577353]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC5/Hitbox" unique_id=662367248]
+position = Vector2(2.5, 12)
+shape = SubResource("RectangleShape2D_6atyd")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCWalk" type="Node2D" parent="FakeMech/NPCs/NPC5" unique_id=1922445123]
+position = Vector2(-2, -9)
+script = ExtResource("94_61u4v")
+
+[node name="EdgeDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC5/NPCWalk" unique_id=1961797076]
+position = Vector2(18, 16)
+target_position = Vector2(0, 10)
+collision_mask = 8193
+
+[node name="WallDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC5/NPCWalk" unique_id=1312123625]
+position = Vector2(0, 10)
+target_position = Vector2(25, 0)
+collision_mask = 8193
+
+[node name="NPCEngage" type="Node2D" parent="FakeMech/NPCs/NPC5" unique_id=1947459625]
+position = Vector2(-2, -9)
+script = ExtResource("95_nijow")
+
+[node name="EngageArea" type="Area2D" parent="FakeMech/NPCs/NPC5/NPCEngage" unique_id=1205617837]
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC5/NPCEngage/EngageArea" unique_id=480203488]
+position = Vector2(2, 9.5)
+shape = SubResource("RectangleShape2D_2xkex")
+debug_color = Color(0, 0.6392157, 0.38039216, 0.06666667)
+
+[node name="NPCCooldown" type="Node2D" parent="FakeMech/NPCs/NPC5" unique_id=733567261]
+position = Vector2(-2, -35)
+script = ExtResource("96_5ej1k")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="FakeMech/NPCs/NPC5/NPCCooldown" unique_id=600568498]
+material = SubResource("ShaderMaterial_8gudg")
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 15.0
+fill_mode = 5
+texture_progress = SubResource("CompressedTexture2D_qi7up")
+tint_progress = Color(0, 0.7199734, 0.28871077, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="FakeMech/NPCs/NPC5/NPCCooldown" unique_id=1486372537]
+one_shot = true
+
+[node name="NPC6" type="CharacterBody2D" parent="FakeMech/NPCs" unique_id=2131686385]
+process_mode = 4
+z_index = 30
 position = Vector2(168, 128)
+collision_layer = 2
+collision_mask = 2048
+script = ExtResource("92_46enp")
+metadata/friendly_npc = true
+metadata/price = 35
 
-[node name="NPC7" parent="FakeMech/NPCs" unique_id=918158659 instance=ExtResource("16_d77ms")]
+[node name="Walkbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC6" unique_id=1325863218]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_0c7gy")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="FakeMech/NPCs/NPC6" unique_id=1302233663]
+material = SubResource("ShaderMaterial_2xkex")
+position = Vector2(-2, -9)
+sprite_frames = ExtResource("93_c1kd7")
+autoplay = "default"
+frame_progress = 0.74073035
+
+[node name="Hitbox" type="Area2D" parent="FakeMech/NPCs/NPC6" unique_id=133366031]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC6/Hitbox" unique_id=109113626]
+position = Vector2(2.5, 12)
+shape = SubResource("RectangleShape2D_6atyd")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCWalk" type="Node2D" parent="FakeMech/NPCs/NPC6" unique_id=1468163839]
+position = Vector2(-2, -9)
+script = ExtResource("94_61u4v")
+
+[node name="EdgeDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC6/NPCWalk" unique_id=510466278]
+position = Vector2(18, 16)
+target_position = Vector2(0, 10)
+collision_mask = 8193
+
+[node name="WallDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC6/NPCWalk" unique_id=1184876008]
+position = Vector2(0, 10)
+target_position = Vector2(25, 0)
+collision_mask = 8193
+
+[node name="NPCEngage" type="Node2D" parent="FakeMech/NPCs/NPC6" unique_id=1160341776]
+position = Vector2(-2, -9)
+script = ExtResource("95_nijow")
+
+[node name="EngageArea" type="Area2D" parent="FakeMech/NPCs/NPC6/NPCEngage" unique_id=280764461]
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC6/NPCEngage/EngageArea" unique_id=1467722294]
+position = Vector2(2, 9.5)
+shape = SubResource("RectangleShape2D_2xkex")
+debug_color = Color(0, 0.6392157, 0.38039216, 0.06666667)
+
+[node name="NPCCooldown" type="Node2D" parent="FakeMech/NPCs/NPC6" unique_id=184574371]
+position = Vector2(-2, -35)
+script = ExtResource("96_5ej1k")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="FakeMech/NPCs/NPC6/NPCCooldown" unique_id=292828522]
+material = SubResource("ShaderMaterial_8gudg")
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 15.0
+fill_mode = 5
+texture_progress = SubResource("CompressedTexture2D_qi7up")
+tint_progress = Color(0, 0.7199734, 0.28871077, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="FakeMech/NPCs/NPC6/NPCCooldown" unique_id=1856568613]
+one_shot = true
+
+[node name="NPC7" type="CharacterBody2D" parent="FakeMech/NPCs" unique_id=918158659]
+process_mode = 4
+z_index = 30
 position = Vector2(88, -64)
+collision_layer = 2
+collision_mask = 2048
+script = ExtResource("92_46enp")
+metadata/friendly_npc = true
+metadata/price = 35
 
-[node name="NPC8" parent="FakeMech/NPCs" unique_id=757529912 instance=ExtResource("16_d77ms")]
+[node name="Walkbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC7" unique_id=429401779]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_0c7gy")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="FakeMech/NPCs/NPC7" unique_id=577225455]
+material = SubResource("ShaderMaterial_2xkex")
+position = Vector2(-2, -9)
+sprite_frames = ExtResource("93_c1kd7")
+autoplay = "default"
+frame_progress = 0.74073035
+
+[node name="Hitbox" type="Area2D" parent="FakeMech/NPCs/NPC7" unique_id=403787328]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC7/Hitbox" unique_id=1566242168]
+position = Vector2(2.5, 12)
+shape = SubResource("RectangleShape2D_6atyd")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCWalk" type="Node2D" parent="FakeMech/NPCs/NPC7" unique_id=1570158734]
+position = Vector2(-2, -9)
+script = ExtResource("94_61u4v")
+
+[node name="EdgeDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC7/NPCWalk" unique_id=1696970526]
+position = Vector2(18, 16)
+target_position = Vector2(0, 10)
+collision_mask = 8193
+
+[node name="WallDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC7/NPCWalk" unique_id=1327906087]
+position = Vector2(0, 10)
+target_position = Vector2(25, 0)
+collision_mask = 8193
+
+[node name="NPCEngage" type="Node2D" parent="FakeMech/NPCs/NPC7" unique_id=787615794]
+position = Vector2(-2, -9)
+script = ExtResource("95_nijow")
+
+[node name="EngageArea" type="Area2D" parent="FakeMech/NPCs/NPC7/NPCEngage" unique_id=1812955798]
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC7/NPCEngage/EngageArea" unique_id=199931617]
+position = Vector2(2, 9.5)
+shape = SubResource("RectangleShape2D_2xkex")
+debug_color = Color(0, 0.6392157, 0.38039216, 0.06666667)
+
+[node name="NPCCooldown" type="Node2D" parent="FakeMech/NPCs/NPC7" unique_id=1265183034]
+position = Vector2(-2, -35)
+script = ExtResource("96_5ej1k")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="FakeMech/NPCs/NPC7/NPCCooldown" unique_id=1481606679]
+material = SubResource("ShaderMaterial_8gudg")
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 15.0
+fill_mode = 5
+texture_progress = SubResource("CompressedTexture2D_qi7up")
+tint_progress = Color(0, 0.7199734, 0.28871077, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="FakeMech/NPCs/NPC7/NPCCooldown" unique_id=1858998389]
+one_shot = true
+
+[node name="NPC8" type="CharacterBody2D" parent="FakeMech/NPCs" unique_id=757529912]
+process_mode = 4
+z_index = 30
 position = Vector2(-40, 448)
+collision_layer = 2
+collision_mask = 2048
+script = ExtResource("92_46enp")
+metadata/friendly_npc = true
+metadata/price = 35
+
+[node name="Walkbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC8" unique_id=1067529394]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_0c7gy")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="FakeMech/NPCs/NPC8" unique_id=1721020757]
+material = SubResource("ShaderMaterial_2xkex")
+position = Vector2(-2, -9)
+sprite_frames = ExtResource("93_c1kd7")
+autoplay = "default"
+frame_progress = 0.74073035
+
+[node name="Hitbox" type="Area2D" parent="FakeMech/NPCs/NPC8" unique_id=1764642880]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC8/Hitbox" unique_id=703186628]
+position = Vector2(2.5, 12)
+shape = SubResource("RectangleShape2D_6atyd")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCWalk" type="Node2D" parent="FakeMech/NPCs/NPC8" unique_id=1910350320]
+position = Vector2(-2, -9)
+script = ExtResource("94_61u4v")
+
+[node name="EdgeDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC8/NPCWalk" unique_id=2083147378]
+position = Vector2(18, 16)
+target_position = Vector2(0, 10)
+collision_mask = 8193
+
+[node name="WallDetector" type="RayCast2D" parent="FakeMech/NPCs/NPC8/NPCWalk" unique_id=2011500575]
+position = Vector2(0, 10)
+target_position = Vector2(25, 0)
+collision_mask = 8193
+
+[node name="NPCEngage" type="Node2D" parent="FakeMech/NPCs/NPC8" unique_id=270874195]
+position = Vector2(-2, -9)
+script = ExtResource("95_nijow")
+
+[node name="EngageArea" type="Area2D" parent="FakeMech/NPCs/NPC8/NPCEngage" unique_id=798528419]
+
+[node name="Hitbox" type="CollisionShape2D" parent="FakeMech/NPCs/NPC8/NPCEngage/EngageArea" unique_id=121108992]
+position = Vector2(2, 9.5)
+shape = SubResource("RectangleShape2D_2xkex")
+debug_color = Color(0, 0.6392157, 0.38039216, 0.06666667)
+
+[node name="NPCCooldown" type="Node2D" parent="FakeMech/NPCs/NPC8" unique_id=1774460241]
+position = Vector2(-2, -35)
+script = ExtResource("96_5ej1k")
+
+[node name="CooldownBar" type="TextureProgressBar" parent="FakeMech/NPCs/NPC8/NPCCooldown" unique_id=790518112]
+material = SubResource("ShaderMaterial_8gudg")
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 15.0
+fill_mode = 5
+texture_progress = SubResource("CompressedTexture2D_qi7up")
+tint_progress = Color(0, 0.7199734, 0.28871077, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="FakeMech/NPCs/NPC8/NPCCooldown" unique_id=1986549444]
+one_shot = true
 
 [node name="Ambience" type="Node2D" parent="FakeMech" unique_id=993467780]
 

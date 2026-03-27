@@ -34,6 +34,11 @@ func _ready():
 	sprite.sprite_frames = NPC_SPRITES.pick_random()
 
 func _physics_process(delta):
+	
+	# Set as top level
+	#if not top_level and not get_parent().get_parent().name == "FakeMech":
+		#top_level = true
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

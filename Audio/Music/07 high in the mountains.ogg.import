@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dfgtuk70n5ubo"
+path="res://.godot/imported/07 high in the mountains.ogg-188818b8c764faebea22c6350278c0c4.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/07 high in the mountains.ogg"
+dest_files=["res://.godot/imported/07 high in the mountains.ogg-188818b8c764faebea22c6350278c0c4.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

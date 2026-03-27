@@ -16,8 +16,6 @@ colors = PackedColorArray(0.8039216, 0.5647059, 0.7254902, 1, 0.99215686, 0.7254
 gradient = SubResource("Gradient_hibaj")
 width = 512
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ee4r6"]
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gt3je"]
 texture = ExtResource("7_k7d2b")
 0:0/0 = 0
@@ -592,7 +590,6 @@ texture = ExtResource("7_k7d2b")
 [sub_resource type="TileSet" id="TileSet_jjvhh"]
 physics_layer_0/collision_layer = 65535
 physics_layer_0/collision_mask = 65535
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_ee4r6")
 sources/2 = SubResource("TileSetAtlasSource_gt3je")
 
 [node name="Background" type="Node2D" unique_id=1437686219]

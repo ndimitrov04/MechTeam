@@ -40,12 +40,12 @@ func _ready():
 
 func _physics_process(_delta):
 	
-	if velocity.x > 0:
+	if velocity.x > 0.2:
 		sprite.flip_h = false
 		shoot_point.position.x = 15
 		shoot_point.rotation_degrees = 0
 		npc_fight.face_right(true)
-	else:
+	elif velocity.x < -0.2:
 		sprite.flip_h = true
 		shoot_point.position.x = -15
 		shoot_point.rotation_degrees = 180

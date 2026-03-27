@@ -59,6 +59,9 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	var impact_dir = biased_pos - collision.get_position()
 	debris_instance.apply_impulse(impact_dir.normalized() * knockback_force)
 	debris_instance.apply_impulse(Vector2.UP * knockback_force * 2)
+	# Push parent back; Push the parent back more *the more it weighs*
+	# (No, this is not a mistake)
+	get_parent().apply_impulse(impact_dir * knockback_force * (get_parent().weight + 30), collision_pos_global)
 	# Regenerate physics body's hitboxes
 	regenerate_frame_collision()
 

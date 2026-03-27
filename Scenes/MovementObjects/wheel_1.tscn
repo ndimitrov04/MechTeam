@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://uxt82jfkcjx8"]
 
 [ext_resource type="Texture2D" uid="uid://cujqusmchfqck" path="res://Images/Placeholders/oll.png" id="1_rn7y4"]
+[ext_resource type="Script" uid="uid://byn8nbt8vtu7n" path="res://Scripts/wheel_1.gd" id="2_0qchd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3pmx8"]
 atlas = ExtResource("1_rn7y4")
@@ -45,6 +46,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1w6v2")
 autoplay = "default"
 frame_progress = 0.20177686
+script = ExtResource("2_0qchd")
 metadata/is_movement = true
 metadata/price = 10
 metadata/big_object = true
@@ -56,3 +58,6 @@ visible = false
 position = Vector2(2.3841858e-07, 2.3841858e-07)
 scale = Vector2(0.5, 0.5)
 texture = SubResource("GradientTexture2D_rn7y4")
+
+[node name="FloorDetector" type="RayCast2D" parent="." unique_id=351526491]
+target_position = Vector2(0, 17)

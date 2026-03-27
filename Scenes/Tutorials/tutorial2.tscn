@@ -75,7 +75,6 @@
 [ext_resource type="Script" uid="uid://gdydsl2c347d" path="res://Scripts/Tutorials/tutorial_ui.gd" id="39_m1v2e"]
 [ext_resource type="Texture2D" uid="uid://c2y0xh7m1ab5b" path="res://Images/Objects/Control3/tile013.png" id="39_t8qt8"]
 [ext_resource type="Texture2D" uid="uid://dpsr4vhie26ia" path="res://Images/Objects/Control3/tile014.png" id="40_88efu"]
-[ext_resource type="AudioStream" uid="uid://6xm4gvdu3qsl" path="res://Audio/Music/02 lava city.ogg" id="40_t8qt8"]
 [ext_resource type="Texture2D" uid="uid://dijbhn87vlxy" path="res://Images/Objects/Control3/tile015.png" id="41_eyafc"]
 [ext_resource type="Texture2D" uid="uid://dcqjpux0m6rd8" path="res://Images/Objects/Control3/tile016.png" id="42_8lp4v"]
 [ext_resource type="Texture2D" uid="uid://csqyry070vlce" path="res://Images/Objects/Control3/tile017.png" id="43_tlruk"]
@@ -115,6 +114,7 @@
 [ext_resource type="Texture2D" uid="uid://l0br0i4oadx" path="res://Images/MechGuns/turret_01_mk1.png" id="93_df6mt"]
 [ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="94_kxhne"]
 [ext_resource type="AudioStream" uid="uid://mjrlfhuxnkmp" path="res://Audio/SFX/Modules/bang_04.ogg" id="95_s3rjo"]
+[ext_resource type="AudioStream" uid="uid://dfgtuk70n5ubo" path="res://Audio/Music/07 high in the mountains.ogg" id="115_dtx0r"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
 offsets = PackedFloat32Array(0.47333333, 0.5)
@@ -1639,15 +1639,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_3pmx8"]
+[sub_resource type="Gradient" id="Gradient_dtx0r"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.18243243, 0.3310811)
-colors = PackedColorArray(0, 0, 0, 0, 0.8039216, 0.5647059, 0.7254902, 0.8745098, 0.5647059, 0.3019608, 0.42745098, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.39308554, 0.3930855, 0.39308548, 0.8745098, 0.4390491, 0.43904912, 0.43904912, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_h1bgf"]
-gradient = SubResource("Gradient_3pmx8")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_50v2b"]
+gradient = SubResource("Gradient_dtx0r")
 width = 256
 fill_from = Vector2(0.012237762, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7rxhw"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hrlx4"]
+normal = Vector2(1, 0)
 
 [node name="Main" type="Node2D" unique_id=105152583]
 script = ExtResource("1_4qmvw")
@@ -1754,6 +1760,7 @@ collision_mask = 8192
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")
 script = ExtResource("9_mhtlr")
 metadata/prebuilt = true
+metadata/constant_weight = 850.0
 
 [node name="Background" type="TileMapLayer" parent="Mech" unique_id=796847977]
 z_index = -1
@@ -2242,6 +2249,7 @@ collision_layer = 8192
 collision_mask = 8192
 script = ExtResource("72_l3pya")
 metadata/hp = 20
+metadata/constant_weight = 1500.0
 
 [node name="Background" parent="EnemyMech4" unique_id=816430182 instance=ExtResource("73_uj3mx")]
 tile_map_data = PackedByteArray()
@@ -2276,26 +2284,42 @@ autoplay = "default"
 wait_time = 0.5
 autostart = true
 
-[node name="Foreground" type="Node2D" parent="." unique_id=997797821]
+[node name="Foreground" type="Node2D" parent="." unique_id=387373883]
+z_index = 999
+z_as_relative = false
 
-[node name="Parallax1" type="Parallax2D" parent="Foreground" unique_id=590175283]
+[node name="Parallax1" type="Parallax2D" parent="Foreground" unique_id=941219184]
 
-[node name="ScreenBorder" type="TextureRect" parent="Foreground/Parallax1" unique_id=1594507432]
-offset_left = 1704.0
-offset_top = -4392.0
-offset_right = 6182.0
-offset_bottom = 1523.0
-texture = SubResource("GradientTexture2D_h1bgf")
+[node name="ScreenBorder" type="TextureRect" parent="Foreground/Parallax1" unique_id=317583425]
+offset_left = 1700.0
+offset_top = -4385.0
+offset_right = 6178.0
+offset_bottom = 1530.0
+texture = SubResource("GradientTexture2D_50v2b")
 
-[node name="Parallax2" type="Parallax2D" parent="Foreground" unique_id=1167256759]
+[node name="ScreenLimit" type="StaticBody2D" parent="Foreground/Parallax1/ScreenBorder" unique_id=1997323260]
+position = Vector2(-224, 0)
 
-[node name="TextureRect" type="TextureRect" parent="Foreground/Parallax2" unique_id=401354994]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax1/ScreenBorder/ScreenLimit" unique_id=1034010928]
+position = Vector2(1004, 4825)
+shape = SubResource("WorldBoundaryShape2D_7rxhw")
+
+[node name="Parallax2" type="Parallax2D" parent="Foreground" unique_id=1924463048]
+
+[node name="TextureRect" type="TextureRect" parent="Foreground/Parallax2" unique_id=1129800102]
 offset_left = -4279.0
 offset_top = -4385.0
 offset_right = 199.0
 offset_bottom = 1530.0
-texture = SubResource("GradientTexture2D_h1bgf")
+texture = SubResource("GradientTexture2D_50v2b")
 flip_h = true
+
+[node name="ScreenLimit" type="StaticBody2D" parent="Foreground/Parallax2/TextureRect" unique_id=1975809057]
+position = Vector2(3847, 4929)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax2/TextureRect/ScreenLimit" unique_id=1153240747]
+position = Vector2(-4, 0)
+shape = SubResource("WorldBoundaryShape2D_hrlx4")
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=64329098]
 
@@ -2671,7 +2695,7 @@ Use WASD to move."
 autowrap_mode = 3
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2025517324]
-stream = ExtResource("40_t8qt8")
+stream = ExtResource("115_dtx0r")
 autoplay = true
 bus = &"Music"
 

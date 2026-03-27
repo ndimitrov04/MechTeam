@@ -8,7 +8,7 @@ extends Node2D
 @onready var minigame_result = $GUI/Control/StaticUI/MinigameResult
 @onready var screen_border = $Foreground/Parallax1/ScreenBorder
 
-const SPAWN_OFFSET = 1000
+const SPAWN_OFFSET = 700
 @onready var enemies_left : int = 2
 @onready var triggered : bool = false
 

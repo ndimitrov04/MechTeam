@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://cuhp74yuarb08"]
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_bo1nx"]
-length = 35.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_byj66"]
+radius = 32.0
+height = 130.0
 
 [node name="WheelCollider1" type="CollisionShape2D" unique_id=1824074158]
-shape = SubResource("SeparationRayShape2D_bo1nx")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_byj66")
 debug_color = Color(1, 1, 0, 1)
 metadata/price = 10
