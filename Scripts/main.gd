@@ -8,7 +8,8 @@ extends Node2D
 @onready var minigame_result = $GUI/Control/StaticUI/MinigameResult
 @onready var screen_border = $Foreground/Parallax1/ScreenBorder
 
-const SPAWN_OFFSET = 400 # Next enemy offset in pixels
+
+const SPAWN_OFFSET = 750 # Next enemy offset in pixels
 @warning_ignore("narrowing_conversion")
 @onready var enemies_left : int = float(PlayerData.current_stage) * 1.5
 @onready var triggered : bool = false
@@ -64,20 +65,25 @@ func _process(_delta):
 func advance():
 	if enemies_left > 0:
 		player.camera.limit_right += SPAWN_OFFSET + 1500
-		var tween = create_tween()
-		tween.tween_property(
-			screen_border,
-			"position:x",
-			screen_border.position.x + SPAWN_OFFSET + 1500,
-			4.5 # duration in seconds
-		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		screen_border.position.x = screen_border.position.x + SPAWN_OFFSET + 1500
+		# The code below breaks the game due to enemy spawning 
+		# too fast inside of the world border
+		#var tween = create_tween()
+		#tween.tween_property(
+			#screen_border,
+			#"position:x",
+			#screen_border.position.x + SPAWN_OFFSET + 1500,
+			#4.5 # duration in seconds
+		#).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		spawn_random_enemy()
 		static_ui.display_advance_arrow()
 
 func spawn_random_enemy():
 	var enemy_instance = enemies.pick_random().instantiate()
 	mech.add_sibling(enemy_instance)
-	enemy_instance.global_position.x = screen_border.position.x + SPAWN_OFFSET + 1000
+	print("Mech X:" + str(mech.global_position.x))
+	print("Enemy X:" + str(mech.global_position.x + SPAWN_OFFSET + 2000))
+	enemy_instance.global_position.x = mech.global_position.x + SPAWN_OFFSET + 2000
 
 func end_stage():
 	await get_tree().create_timer(0.1).timeout
