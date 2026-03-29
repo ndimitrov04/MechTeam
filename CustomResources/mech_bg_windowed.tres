@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://coh3po53fjlnr"]
+
+[ext_resource type="Shader" uid="uid://b7xi5cjqi1mcg" path="res://Shaders/chroma_key.gdshader" id="1_ys2ko"]
+
+[resource]
+shader = ExtResource("1_ys2ko")
+shader_parameter/key_color = Vector4(0.105, 0.141, 0.141, 1)
+shader_parameter/similarity = 0.0210000009975
+shader_parameter/smoothness = 0.010000000475
+shader_parameter/spill = 0.0

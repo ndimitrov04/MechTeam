@@ -978,7 +978,7 @@ repeat_times = 3
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax1" unique_id=1315367623]
 offset_left = -1120.0
 offset_top = -52.0
-offset_right = 1184.0
+offset_right = 1440.0
 offset_bottom = 272.0
 texture = ExtResource("1_d71xf")
 stretch_mode = 1
@@ -990,7 +990,7 @@ repeat_times = 3
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax2" unique_id=1162558281]
 offset_left = -1120.0
 offset_top = -52.0
-offset_right = 1184.0
+offset_right = 1440.0
 offset_bottom = 128.0
 texture = ExtResource("2_62cpv")
 stretch_mode = 1
@@ -1003,7 +1003,7 @@ repeat_times = 3
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax3" unique_id=1668786599]
 offset_left = -1120.0
 offset_top = -52.0
-offset_right = 1184.0
+offset_right = 1440.0
 offset_bottom = 272.0
 texture = ExtResource("3_k8gxw")
 stretch_mode = 1
@@ -1016,7 +1016,7 @@ repeat_times = 3
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax4" unique_id=1356819236]
 offset_left = -1120.0
 offset_top = -52.0
-offset_right = 1184.0
+offset_right = 1440.0
 offset_bottom = 272.0
 texture = ExtResource("4_h3lkm")
 stretch_mode = 1
@@ -1029,7 +1029,7 @@ repeat_times = 3
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax5" unique_id=634747215]
 offset_left = -1120.0
 offset_top = -52.0
-offset_right = 1184.0
+offset_right = 1440.0
 offset_bottom = 272.0
 texture = ExtResource("5_s1jbg")
 stretch_mode = 1
@@ -1042,7 +1042,7 @@ repeat_times = 3
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax6" unique_id=83401741]
 offset_left = -1120.0
 offset_top = -52.0
-offset_right = 1184.0
+offset_right = 1440.0
 offset_bottom = 272.0
 texture = ExtResource("6_s1jbg")
 stretch_mode = 1

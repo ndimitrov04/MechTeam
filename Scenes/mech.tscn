@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bg0x4kcl3emfw"]
 
 [ext_resource type="Script" uid="uid://dq00ant1n6ukr" path="res://Scripts/playermech.gd" id="1_u2n0e"]
+[ext_resource type="Material" uid="uid://coh3po53fjlnr" path="res://CustomResources/mech_bg_windowed.tres" id="2_rpjgl"]
 [ext_resource type="TileSet" uid="uid://bfp0oqwmvtvs2" path="res://CustomResources/background_tileset.tres" id="2_u2n0e"]
 [ext_resource type="Script" uid="uid://by3pf8nx5c5s3" path="res://Scripts/Misc/destructible_background.gd" id="3_tp74p"]
 [ext_resource type="TileSet" uid="uid://beya8mv7awxpa" path="res://CustomResources/frame_tileset.tres" id="4_kq1j2"]
@@ -32,6 +33,7 @@ metadata/prebuilt = false
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=796847977]
 z_index = -1
+material = ExtResource("2_rpjgl")
 tile_set = ExtResource("2_u2n0e")
 script = ExtResource("3_tp74p")
 
