@@ -83,6 +83,7 @@ func spawn_random_enemy():
 	mech.add_sibling(enemy_instance)
 	print("Mech X:" + str(mech.global_position.x))
 	print("Enemy X:" + str(mech.global_position.x + SPAWN_OFFSET + 2000))
+	enemy_instance.global_position.y = -540
 	enemy_instance.global_position.x = mech.global_position.x + SPAWN_OFFSET + 2000
 
 func end_stage():

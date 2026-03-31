@@ -40,6 +40,9 @@ gradient = SubResource("Gradient_rn7y4")
 width = 32
 height = 32
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qchd"]
+size = Vector2(54.61, 7.255)
+
 [node name="Wheel1" type="AnimatedSprite2D" unique_id=540767917]
 self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
 scale = Vector2(2, 2)
@@ -59,5 +62,7 @@ position = Vector2(2.3841858e-07, 2.3841858e-07)
 scale = Vector2(0.5, 0.5)
 texture = SubResource("GradientTexture2D_rn7y4")
 
-[node name="FloorDetector" type="RayCast2D" parent="." unique_id=351526491]
-target_position = Vector2(0, 17)
+[node name="FloorDetector" type="ShapeCast2D" parent="." unique_id=1669275256]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_0qchd")
+target_position = Vector2(0, 2.675)

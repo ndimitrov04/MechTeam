@@ -7,13 +7,11 @@
 [ext_resource type="TileSet" uid="uid://cidmnbvfhbfkd" path="res://CustomResources/enemy_frame_tileset.tres" id="4_57uhv"]
 [ext_resource type="PackedScene" uid="uid://gabbdsxamcdv" path="res://Scenes/MovementObjects/wheel_hitbox_1.tscn" id="5_417gv"]
 [ext_resource type="PackedScene" uid="uid://uxt82jfkcjx8" path="res://Scenes/MovementObjects/wheel_1.tscn" id="6_gddkl"]
+[ext_resource type="PackedScene" uid="uid://cuhp74yuarb08" path="res://Scenes/MovementObjects/wheel_collider_1.tscn" id="7_omjeo"]
 [ext_resource type="PackedScene" uid="uid://dkk6dac4fqg53" path="res://Scenes/Controllers/mov_control_x_axis.tscn" id="7_smunj"]
 [ext_resource type="PackedScene" uid="uid://tgc6pvjmf1xi" path="res://Scenes/Modules/Weapons/gun.tscn" id="8_1pdc1"]
 [ext_resource type="Script" uid="uid://c65hpvf8mn4fl" path="res://Scripts/Behaviors/preset_enemy_spawning.gd" id="9_uk3pb"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="10_vc5jg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pmx8"]
-size = Vector2(117, 40.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u50mg"]
 animations = [{
@@ -43,20 +41,17 @@ navigation_visibility_mode = 1
 
 [node name="WheelHitbox1" parent="." unique_id=1848788113 instance=ExtResource("5_417gv")]
 position = Vector2(-6, 292)
-metadata/wsprite = NodePath("")
 
 [node name="WheelHitbox2" parent="." unique_id=1503815305 instance=ExtResource("5_417gv")]
 position = Vector2(290, 292)
 metadata/whitbox = NodePath("../WheelCollider2")
-metadata/wsprite = NodePath("")
+metadata/wsprite = NodePath("../MovementSprites/Wheel2")
 
-[node name="WheelCollider1" type="CollisionShape2D" parent="." unique_id=205720847]
-position = Vector2(-6, 292.5)
-shape = SubResource("RectangleShape2D_3pmx8")
+[node name="WheelCollider1" parent="." unique_id=1824074158 instance=ExtResource("7_omjeo")]
+position = Vector2(-6, 282.5)
 
-[node name="WheelCollider2" type="CollisionShape2D" parent="." unique_id=171149185]
-position = Vector2(289.5, 292.25)
-shape = SubResource("RectangleShape2D_3pmx8")
+[node name="WheelCollider2" parent="." unique_id=154364405 instance=ExtResource("7_omjeo")]
+position = Vector2(289.5, 282.25)
 
 [node name="MovementSprites" type="Node2D" parent="." unique_id=550254542]
 

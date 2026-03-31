@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cuhp74yuarb08"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_byj66"]
-radius = 32.0
+radius = 29.5
 height = 130.0
 
 [node name="WheelCollider1" type="CollisionShape2D" unique_id=1824074158]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_byj66")
-debug_color = Color(1, 1, 0, 1)
+debug_color = Color(1, 1, 0, 0.12156863)
 metadata/price = 10

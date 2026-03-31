@@ -80,8 +80,13 @@ func _on_body_exited(body):
 func _on_cooldown_timeout():
 	on_cooldown = false
 	cooldown_bar.hide()
+	start_cooldown()
+	if mech.energy < energy_cost:
+		print("INSUFFICIENT ENERGY TO AUTOENGAGE")
+		return
+	if mech.has_method("drain_energy"):
+		mech.drain_energy(energy_cost)
 	controlled_module.engage()
-	timer.start(cooldown_time)
 
 func start_cooldown():
 	on_cooldown = true

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dl7xqntfpk5nv"]
+
+[ext_resource type="Script" uid="uid://b1uak5i5atek4" path="res://Scripts/terrain.gd" id="1_g24sy"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g24sy"]
+friction = 0.25
+
+[node name="Terrain" type="StaticBody2D" unique_id=769621585]
+collision_layer = 65535
+collision_mask = 65535
+physics_material_override = SubResource("PhysicsMaterial_g24sy")
+script = ExtResource("1_g24sy")
+
+[node name="DebugCam" type="Camera2D" parent="." unique_id=1389483533]
+position = Vector2(3000, -1500)
+enabled = false
+zoom = Vector2(0.25, 0.25)
+
+[node name="HorizonLine" type="Line2D" parent="." unique_id=1251295951]
+closed = true
+default_color = Color(0.31506962, 0.6157064, 0.27388656, 1)
+
+[node name="Underground" type="Polygon2D" parent="." unique_id=501586758]
+color = Color(0.4529404, 0.2545101, 0.07391203, 1)
+
+[node name="HorizonCollision" type="CollisionPolygon2D" parent="." unique_id=866892061]

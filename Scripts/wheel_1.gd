@@ -1,6 +1,6 @@
 extends AnimatedSprite2D
 
-@onready var floor_detector: RayCast2D = $FloorDetector
+@onready var floor_detector: ShapeCast2D = $FloorDetector
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

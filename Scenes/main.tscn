@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7bt1tmoslwbs"]
 
 [ext_resource type="Script" uid="uid://cg2ajlbm378ot" path="res://Scripts/main.gd" id="1_hibaj"]
+[ext_resource type="PackedScene" uid="uid://dl7xqntfpk5nv" path="res://Scenes/terrain.tscn" id="2_fevyy"]
 [ext_resource type="PackedScene" uid="uid://bg0x4kcl3emfw" path="res://Scenes/mech.tscn" id="9_hibaj"]
 [ext_resource type="PackedScene" uid="uid://b6st1n1r2654j" path="res://Scenes/Enemies/EnemyMech/Mech4.tscn" id="10_6vcvc"]
 [ext_resource type="PackedScene" uid="uid://tkpp4uaa018x" path="res://Scenes/navigation_region.tscn" id="12_7k868"]
@@ -39,6 +40,8 @@ normal = Vector2(1, 0)
 
 [node name="Main" type="Node2D" unique_id=105152583]
 script = ExtResource("1_hibaj")
+
+[node name="Terrain" parent="." unique_id=769621585 instance=ExtResource("2_fevyy")]
 
 [node name="Mech" parent="." unique_id=389051570 instance=ExtResource("9_hibaj")]
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")
