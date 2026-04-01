@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="11_07nox"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kq1j2"]
-friction = 0.0
+friction = 0.1
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6iyac"]
 animations = [{

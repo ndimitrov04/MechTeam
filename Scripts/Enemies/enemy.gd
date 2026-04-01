@@ -44,6 +44,7 @@ func _ready():
 		self.mass = get_meta("constant_weight")
 	await get_tree().create_timer(0.5).timeout
 	update_decision_timer()
+	die()
 
 func _physics_process(delta):
 	# Add the gravity.

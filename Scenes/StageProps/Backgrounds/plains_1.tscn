@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bo385qj8osw5w" path="res://Images/Backgrounds/ParallaxField1/tile_4.png" id="5_s1jbg"]
 [ext_resource type="Texture2D" uid="uid://8grjm55o3rrh" path="res://Images/Backgrounds/ParallaxCity1/6.png" id="6_s1jbg"]
 [ext_resource type="Texture2D" uid="uid://1l1vb5sintp3" path="res://Images/Tilesets/jungle tileset.png" id="7_0a3ug"]
+[ext_resource type="PackedScene" uid="uid://dl7xqntfpk5nv" path="res://Scenes/terrain.tscn" id="7_h3lkm"]
 [ext_resource type="Texture2D" uid="uid://deinkajit0i5w" path="res://Images/Tilesets/Buildings.png" id="7_mc8u1"]
+[ext_resource type="Texture2D" uid="uid://b0ssfumq0m8jq" path="res://Images/Tiles/plains1_floor.png" id="8_s1jbg"]
+[ext_resource type="Texture2D" uid="uid://c66e1ca4cpsuk" path="res://Images/Tiles/plains1_ground.png" id="9_mc8u1"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
 offsets = PackedFloat32Array(0.30940595, 0.3490099, 0.47333333, 0.5)
@@ -972,7 +975,7 @@ position = Vector2(639.99994, 383.99994)
 scale = Vector2(2, 2)
 
 [node name="Parallax1" type="Parallax2D" parent="Parallax" unique_id=934669055]
-repeat_size = Vector2(2304, 0)
+repeat_size = Vector2(2560, 0)
 repeat_times = 3
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax1" unique_id=1315367623]
@@ -984,7 +987,7 @@ texture = ExtResource("1_d71xf")
 stretch_mode = 1
 
 [node name="Parallax2" type="Parallax2D" parent="Parallax" unique_id=286662755]
-repeat_size = Vector2(2304, 0)
+repeat_size = Vector2(2560, 0)
 repeat_times = 3
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax2" unique_id=1162558281]
@@ -997,7 +1000,7 @@ stretch_mode = 1
 
 [node name="Parallax3" type="Parallax2D" parent="Parallax" unique_id=1396425584]
 scroll_scale = Vector2(1.07, 1.06)
-repeat_size = Vector2(2304, 0)
+repeat_size = Vector2(2560, 0)
 repeat_times = 3
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax3" unique_id=1668786599]
@@ -1010,7 +1013,7 @@ stretch_mode = 1
 
 [node name="Parallax4" type="Parallax2D" parent="Parallax" unique_id=428915249]
 scroll_scale = Vector2(1.09, 1.07)
-repeat_size = Vector2(2304, 0)
+repeat_size = Vector2(2560, 0)
 repeat_times = 3
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax4" unique_id=1356819236]
@@ -1023,7 +1026,7 @@ stretch_mode = 1
 
 [node name="Parallax5" type="Parallax2D" parent="Parallax" unique_id=1250544776]
 scroll_scale = Vector2(1.13, 1.08)
-repeat_size = Vector2(2304, 0)
+repeat_size = Vector2(2560, 0)
 repeat_times = 3
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax5" unique_id=634747215]
@@ -1036,7 +1039,7 @@ stretch_mode = 1
 
 [node name="Parallax6" type="Parallax2D" parent="Parallax" unique_id=444698895]
 scroll_scale = Vector2(1.2, 1.09)
-repeat_size = Vector2(2304, 0)
+repeat_size = Vector2(2560, 0)
 repeat_times = 3
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax6" unique_id=83401741]
@@ -1046,6 +1049,10 @@ offset_right = 1440.0
 offset_bottom = 272.0
 texture = ExtResource("6_s1jbg")
 stretch_mode = 1
+
+[node name="Terrain" parent="." unique_id=769621585 instance=ExtResource("7_h3lkm")]
+texture_line = ExtResource("8_s1jbg")
+texture_polygon = ExtResource("9_mc8u1")
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1143803086]
 self_modulate = Color(0.47957683, 0.6365175, 0.74627346, 1)

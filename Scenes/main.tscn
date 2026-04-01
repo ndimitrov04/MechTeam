@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://7bt1tmoslwbs"]
 
 [ext_resource type="Script" uid="uid://cg2ajlbm378ot" path="res://Scripts/main.gd" id="1_hibaj"]
-[ext_resource type="PackedScene" uid="uid://dl7xqntfpk5nv" path="res://Scenes/terrain.tscn" id="2_fevyy"]
 [ext_resource type="PackedScene" uid="uid://bg0x4kcl3emfw" path="res://Scenes/mech.tscn" id="9_hibaj"]
 [ext_resource type="PackedScene" uid="uid://b6st1n1r2654j" path="res://Scenes/Enemies/EnemyMech/Mech4.tscn" id="10_6vcvc"]
 [ext_resource type="PackedScene" uid="uid://tkpp4uaa018x" path="res://Scenes/navigation_region.tscn" id="12_7k868"]
@@ -21,6 +20,7 @@
 [ext_resource type="Script" uid="uid://bjgkfyj322xtr" path="res://Scripts/UI/static_ui.gd" id="25_cbgmd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pdsj5"]
+friction = 0.1
 
 [sub_resource type="Gradient" id="Gradient_fevyy"]
 interpolation_mode = 2
@@ -40,8 +40,6 @@ normal = Vector2(1, 0)
 
 [node name="Main" type="Node2D" unique_id=105152583]
 script = ExtResource("1_hibaj")
-
-[node name="Terrain" parent="." unique_id=769621585 instance=ExtResource("2_fevyy")]
 
 [node name="Mech" parent="." unique_id=389051570 instance=ExtResource("9_hibaj")]
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")
@@ -70,12 +68,12 @@ offset_bottom = 1530.0
 texture = SubResource("GradientTexture2D_h1bgf")
 
 [node name="ScreenLimit" type="StaticBody2D" parent="Foreground/Parallax1/ScreenBorder" unique_id=1013346961]
-position = Vector2(-224, 0)
+top_level = true
+position = Vector2(2500, 448)
 collision_layer = 65535
 collision_mask = 65535
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax1/ScreenBorder/ScreenLimit" unique_id=1045923508]
-position = Vector2(1004, 4825)
 shape = SubResource("WorldBoundaryShape2D_gt3je")
 
 [node name="Parallax2" type="Parallax2D" parent="Foreground" unique_id=1076754031]

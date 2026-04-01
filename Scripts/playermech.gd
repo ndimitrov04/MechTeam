@@ -130,8 +130,8 @@ func _physics_process(delta):
 				var push_point = movement_object.global_position - Vector2(0, center_of_mass.y + 150)
 				self.apply_force(Vector2(direction, 0) * SPEED * 450, push_point)
 		#linear_velocity.x = move_toward(linear_velocity.x, direction * SPEED, 1) 
-	else:
-		linear_velocity.x = move_toward(linear_velocity.x, 0, 0.2)
+	#else:
+		#linear_velocity.x = move_toward(linear_velocity.x, 0, 0.2)
 
 	# Max/Top speed (horizontal) - Determined by number of movement objects
 	var max_speed = movement_sprites.get_child_count() * 45
