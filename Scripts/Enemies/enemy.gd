@@ -9,6 +9,7 @@ extends RigidBody2D
 @onready var frame = $Frame
 @onready var npcs = $NPCs
 @onready var spawners = $Spawners
+@onready var controllers = $Controllers
 
 @onready var modules = $Modules
 
@@ -44,7 +45,6 @@ func _ready():
 		self.mass = get_meta("constant_weight")
 	await get_tree().create_timer(0.5).timeout
 	update_decision_timer()
-	die()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -94,6 +94,16 @@ func take_damage(damage_value : int):
 		die()
 
 func die():
+	# Destroy wheels
+	for child in self.get_children():
+		if child.has_meta("whitbox"):
+			child.destroy()
+	# Hide controllers
+	controllers.hide()
+	# Kill NPCs
+	for npc in npcs.get_children():
+		npc.die()
+	# Destroy modules
 	for module in modules.get_children():
 		module.destroy()
 	background.break_all_tiles()

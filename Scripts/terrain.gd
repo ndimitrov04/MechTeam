@@ -17,8 +17,8 @@ const FIRST_ENEMY = 2500 # First enemy X coordinate
 @export var SPAWN_INTERVAL = 2250
 
 ## Length of flatland for 1v1 mech combat
-@export var COMBAT_ARENA_LENGTH : int = 400
-@export var COMBAT_ARENA_OFFSET : int = 400
+@export var COMBAT_ARENA_LENGTH : int = 300
+@export var COMBAT_ARENA_OFFSET : int = 300
 
 ## Average length of terrain generated before height change
 @export var SMOOTHNESS : int = 128

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7bt1tmoslwbs"]
 
 [ext_resource type="Script" uid="uid://cg2ajlbm378ot" path="res://Scripts/main.gd" id="1_hibaj"]
+[ext_resource type="PackedScene" uid="uid://c1hqhwr5yvny4" path="res://Scenes/post_fx.tscn" id="6_fevyy"]
 [ext_resource type="PackedScene" uid="uid://bg0x4kcl3emfw" path="res://Scenes/mech.tscn" id="9_hibaj"]
 [ext_resource type="PackedScene" uid="uid://b6st1n1r2654j" path="res://Scenes/Enemies/EnemyMech/Mech4.tscn" id="10_6vcvc"]
 [ext_resource type="PackedScene" uid="uid://tkpp4uaa018x" path="res://Scenes/navigation_region.tscn" id="12_7k868"]
@@ -98,7 +99,10 @@ shape = SubResource("WorldBoundaryShape2D_3pmx8")
 [node name="NavigationRegion" parent="." unique_id=831838858 instance=ExtResource("12_7k868")]
 rebake_period = 0.5
 
+[node name="PostFX" parent="." unique_id=748460950 instance=ExtResource("6_fevyy")]
+
 [node name="GUI" type="CanvasLayer" parent="." unique_id=64329098]
+layer = 2
 
 [node name="Control" type="Control" parent="GUI" unique_id=1528325534]
 layout_mode = 3
@@ -122,10 +126,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.104
 anchor_right = 0.104
-offset_left = 11.84
-offset_top = 264.0
-offset_right = 227.84
-offset_bottom = 344.0
+offset_left = 6.84
+offset_top = 256.0
+offset_right = 142.84
+offset_bottom = 410.0
 theme_override_font_sizes/font_size = 16
 text = "Move with WASD
 Jump with SPACE
@@ -134,11 +138,9 @@ CTRL to Shoot
 Use Jetpack with SPACE (in midair)
 Interact with F
 
-SHIFT+E to enter connection mode.
+PG-UP/PG-DOWN to Zoom IN/OUT
 
-SHIFT+N to spawn friendly NPC
-
-PG-UP/PG-DOWN to Zoom IN/OUT"
+ESC to Pause"
 autowrap_mode = 3
 
 [node name="StatusPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=221317803]
@@ -408,6 +410,7 @@ max_polyphony = 3
 bus = &"SFX"
 
 [node name="Menu" parent="." unique_id=1660427890 instance=ExtResource("17_b3802")]
+layer = 3
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2025517324]
 stream = ExtResource("19_fevyy")

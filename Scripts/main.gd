@@ -11,7 +11,7 @@ extends Node2D
 
 const SPAWN_OFFSET = 750 # Next enemy offset in pixels
 @warning_ignore("narrowing_conversion")
-@onready var enemies_left : int = float(PlayerData.current_stage) * 1.5 + 9
+@onready var enemies_left : int = float(PlayerData.current_stage) * 1.5
 @onready var triggered : bool = false
 
 @onready var npc_deaths : int = 0
@@ -23,9 +23,9 @@ const MECH_3 = preload("uid://j5p75yywprhn")
 const MECH_4 = preload("uid://b6st1n1r2654j")
 
 @onready var enemies = [MECH_1, MECH_2, MECH_3, MECH_4]
+@onready var Y_SPAWN = -650 # Y-Level at which mechs will spawn
 
 var end_text : String = ""
-
 
 # Stage props
 # Backgrounds
@@ -42,6 +42,8 @@ var end_text : String = ""
 @onready var soundtracks = [OST_1, OST_2, OST_3, OST_4]
 func _ready():
 	var stage_number = randi_range(0, backgrounds.size()-1)
+	if stage_number == 2:
+		Y_SPAWN = 0 # Stage with BG3 is a cave, accomodate for low celling
 	#stage_number = 0  # debug stage lock
 	var current_background = backgrounds[stage_number].instantiate()
 	add_child(current_background)
@@ -84,7 +86,7 @@ func spawn_random_enemy():
 	mech.add_sibling(enemy_instance)
 	print("Mech X:" + str(mech.global_position.x))
 	print("Enemy X:" + str(screen_limit.global_position.x - 950))
-	enemy_instance.global_position.y = -650
+	enemy_instance.global_position.y = Y_SPAWN
 	enemy_instance.global_position.x = screen_limit.global_position.x - 950
 	enemy_instance.rotation = 0
 

@@ -8,10 +8,13 @@
 [ext_resource type="Script" uid="uid://d4lpuucmeksjx" path="res://Scripts/menu_button.gd" id="6_6ni7c"]
 [ext_resource type="PackedScene" uid="uid://dwdxe5skik7we" path="res://logo.tscn" id="7_sv1ki"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aeafk"]
+blend_mode = 2
+
 [sub_resource type="Gradient" id="Gradient_6vcvc"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.25636575, 0.8443287)
-colors = PackedColorArray(0, 0, 0, 0, 0.8039216, 0.5647059, 0.7254902, 0.6392157, 0.5647059, 0.3019608, 0.42745098, 0.6862745)
+offsets = PackedFloat32Array(0, 0.25636575, 0.7916667)
+colors = PackedColorArray(1, 1, 1, 0, 0.2592937, 0.2592937, 0.2592937, 0.22352941, 0.25882354, 0.25882354, 0.25882354, 0.22352941)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1w6v2"]
 gradient = SubResource("Gradient_6vcvc")
@@ -1163,6 +1166,7 @@ visible = false
 script = ExtResource("1_aeafk")
 
 [node name="ScreenBorder" type="TextureRect" parent="." unique_id=1795983422]
+material = SubResource("CanvasItemMaterial_aeafk")
 offset_left = 728.0
 offset_top = -4385.0
 offset_right = 1932.0
@@ -1180,9 +1184,26 @@ anchor_bottom = 0.5
 offset_left = 0.95996094
 offset_top = 92.0
 offset_right = 448.96045
-offset_bottom = 436.0
+offset_bottom = 508.0
 theme = ExtResource("2_h8r5p")
 theme_override_styles/panel = SubResource("StyleBoxFlat_hpc6h")
+
+[node name="Retry" type="Button" parent="MenuPanel" unique_id=2008919113]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.11100001
+anchor_right = 0.125
+anchor_bottom = 0.11100001
+offset_left = -6.1035156e-05
+offset_top = -21.176003
+offset_right = 335.99994
+offset_bottom = 57.823997
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_h8r5p")
+theme_override_font_sizes/font_size = 32
+text = "Restart Stage"
+script = ExtResource("6_6ni7c")
 
 [node name="Options" type="Control" parent="MenuPanel" unique_id=1882788481]
 anchors_preset = 0
@@ -1281,9 +1302,9 @@ text = "Clear Data"
 [node name="ShowOptions" type="Button" parent="MenuPanel/Options" unique_id=306811670]
 layout_mode = 0
 offset_left = 1609.0
-offset_top = 781.0
+offset_top = 864.0
 offset_right = 1776.5
-offset_bottom = 821.5
+offset_bottom = 904.5
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_h8r5p")
@@ -1422,9 +1443,9 @@ selection_enabled = true
 [node name="ShowCredits" type="Button" parent="MenuPanel/Credits" unique_id=1641218129]
 layout_mode = 0
 offset_left = 1609.0
-offset_top = 877.0
+offset_top = 960.0
 offset_right = 1776.5
-offset_bottom = 917.0
+offset_bottom = 1000.0
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_h8r5p")
@@ -1441,10 +1462,10 @@ anchor_left = 0.125
 anchor_top = 0.11100001
 anchor_right = 0.125
 anchor_bottom = 0.11100001
-offset_left = 0.99993896
-offset_top = 190.83199
-offset_right = 336.99994
-offset_bottom = 269.832
+offset_left = -6.1035156e-05
+offset_top = 265.824
+offset_right = 335.99994
+offset_bottom = 344.824
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_h8r5p")
 theme_override_font_sizes/font_size = 32
@@ -1456,6 +1477,7 @@ z_index = 400
 position = Vector2(-720, -664.00006)
 scale = Vector2(0.75, 0.75)
 
+[connection signal="pressed" from="MenuPanel/Retry" to="." method="_on_retry_pressed"]
 [connection signal="toggled" from="MenuPanel/Options/ShowOptions" to="MenuPanel/Options" method="_on_show_options_toggled"]
 [connection signal="meta_clicked" from="MenuPanel/Credits/CreditPanel/RichTextLabel" to="MenuPanel/Credits" method="_on_rich_text_label_meta_clicked"]
 [connection signal="toggled" from="MenuPanel/Credits/ShowCredits" to="MenuPanel/Credits" method="_on_show_credits_toggled"]

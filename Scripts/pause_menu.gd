@@ -8,3 +8,6 @@ func _unhandled_input(event):
 		else:
 			show()
 			get_tree().paused = true
+
+func _on_retry_pressed() -> void:
+	get_tree().reload_current_scene()

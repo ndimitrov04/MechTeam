@@ -13,7 +13,7 @@
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
 offsets = PackedFloat32Array(0.47333333, 0.5)
-colors = PackedColorArray(0.8039216, 0.5647059, 0.7254902, 1, 0.99215686, 0.7254902, 0.6431373, 1)
+colors = PackedColorArray(0.9137255, 0.6392157, 0.8235294, 1, 0.99215686, 0.7254902, 0.6431373, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8gbba"]
 gradient = SubResource("Gradient_hibaj")
@@ -613,6 +613,7 @@ repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax1" unique_id=1315367623]
+modulate = Color(1.1357135, 1.1357135, 1.1357135, 1)
 offset_left = -1120.0
 offset_top = -208.0
 offset_right = 1184.0

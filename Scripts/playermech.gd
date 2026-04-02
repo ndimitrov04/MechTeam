@@ -141,7 +141,7 @@ func _physics_process(delta):
 		linear_velocity.x = -max_speed
 
 	# Handle wheel/track animations
-	if abs(linear_velocity.x) > 0:
+	if abs(linear_velocity.x) > 0.1:
 		for spr in movement_sprites.get_children():
 			if not spr.is_playing():
 				spr.play("default")
@@ -211,6 +211,16 @@ func take_damage(damage_value : int):
 		die()
 
 func die():
+	# Destroy wheels
+	for child in self.get_children():
+		if child.has_meta("whitbox"):
+			child.destroy()
+	# Hide controllers
+	controllers.hide()
+	# Kill NPCs
+	for npc in npcs.get_children():
+		npc.die()
+	# Destroy modules
 	for module in modules.get_children():
 		module.destroy()
 	background.break_all_tiles()

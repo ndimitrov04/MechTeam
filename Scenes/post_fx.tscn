@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c1hqhwr5yvny4"]
+
+[ext_resource type="Shader" uid="uid://bicbljvf2w1qg" path="res://Shaders/godrays.gdshader" id="1_8gpb5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hibaj"]
+shader = ExtResource("1_8gpb5")
+shader_parameter/light_pos = Vector2(0.5, 0.135)
+shader_parameter/exposure = 0.065
+shader_parameter/decay = 0.915
+shader_parameter/density = 0.3
+shader_parameter/weight = 0.32
+shader_parameter/samples = 25
+shader_parameter/threshold = 0.106
+
+[node name="PostFX" type="CanvasLayer" unique_id=748460950]
+
+[node name="GodRays" type="ColorRect" parent="." unique_id=1884073122]
+material = SubResource("ShaderMaterial_hibaj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
