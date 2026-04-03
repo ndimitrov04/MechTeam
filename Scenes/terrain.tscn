@@ -16,7 +16,7 @@ position = Vector2(3000, -1500)
 zoom = Vector2(0.25, 0.25)
 
 [node name="HorizonLine" type="Line2D" parent="." unique_id=1251295951]
-z_index = 1000
+z_index = 201
 position = Vector2(0, 1)
 closed = true
 joint_mode = 1
@@ -24,7 +24,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Underground" type="Polygon2D" parent="." unique_id=501586758]
-z_index = 1001
+z_index = 200
 position = Vector2(0, 9)
 
 [node name="HorizonCollision" type="CollisionPolygon2D" parent="." unique_id=866892061]

@@ -113,6 +113,7 @@ style_name = "Medium"
 font_weight = 500
 subpixel_positioning = 0
 msdf_pixel_range = 8
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0
@@ -1178,6 +1179,16 @@ Tank assets by zool707 via Itch.io - [url]https://zool707.itch.io/pixel-tank[/ur
 
 1-Bit Input prompts by Kenney via Kenney.nl - [url]https://kenney.nl/assets/1-bit-input-prompts-pixel-16[/url]
 
+Charged Laser Beam by LinkNinja via Itch.io -[url] https://linkninja.itch.io/charging-laser-animation[/url]
+
+Jungle Pack by Jesse M via Itch.io - [url]https://jesse-m.itch.io/jungle-pack?download[/url]
+
+Cave Background by Codecrackers via Itch.io - [url]https://codecrackers.itch.io/cave-background[/url]
+
+Parallax Field by Codecrackers via Itch.io - [url]https://codecrackers.itch.io/parallax-field[/url]
+
+Smoke n dust by Pimen via Itch.io -  [url]https://pimen.itch.io/smoke-n-dust-03[/url]
+
 
 
 [b]Music[/b]
@@ -1187,6 +1198,7 @@ RPG Battle Loop by iamoneabe via OpenGameArt.org - [url]https://opengameart.org/
 Game-Game (Soundtrack) by Metaruka via OpenGameArt.org - [url]https://opengameart.org/content/game-game[/url]
 
 Game Over (The World Stood Still.mp3) by Insydnis via OpengameArt.org - [url]https://opengameart.org/content/game-over-4[/url]
+
 
 
 
@@ -1218,6 +1230,7 @@ RTS commands and reports by Scribe via Opengameart - [url]https://opengameart.or
 
 SciFi RTS Status Vocals by Beast via Opengameart - [url]https://opengameart.org/content/scifi-rts-status-vocals[/url]
 
+Wind1 by Luke.RUSTLTD via Opengameart - [url]https://opengameart.org/content/wind1[/url]
 
 
 [b]Fonts[/b]

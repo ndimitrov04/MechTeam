@@ -4,6 +4,7 @@ extends RigidBody2D
 @onready var mech = $"../.."
 
 @onready var shoot_point = $ShootPoint
+@onready var smoke: GPUParticles2D = $ShootPoint/Smoke
 
 @onready var pole: Sprite2D = $Pole
 @onready var hitbox: CollisionShape2D = $Hitbox
@@ -88,6 +89,7 @@ func engage():
 		main.add_child(bullet_instance)
 		shoot_sfx.pitch_scale = randf_range(1, 1.4)
 		shoot_sfx.play()
+		smoke.emitting = true
 		# Determine who the bullet will hurt
 		if is_friendly:
 			bullet_instance.set_collision_layer_value(1, 0)

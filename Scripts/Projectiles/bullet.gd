@@ -7,7 +7,6 @@ extends RigidBody2D
 
 @onready var damage_value : int = get_meta("damage_value")
 
-@onready var collision : KinematicCollision2D = null
 @onready var knockback_force : int = get_meta("knockback")
 
 @onready var lifetime : float = get_meta("lifetime")
@@ -22,12 +21,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var move_vector = transform.x * SPEED * delta
-	collision = move_and_collide(move_vector)
+	var collision = move_and_collide(move_vector)
 	
 	if collision:
-		_on_body_entered(collision.get_collider())
+		_on_body_entered(collision.get_collider(), collision)
 
-func _on_body_entered(body):
+func _on_body_entered(body, collision):
 	#print("Hit " + body.name)
 	#print(body.name + ": ")
 	#print("Parent: " + body.get_parent().name)

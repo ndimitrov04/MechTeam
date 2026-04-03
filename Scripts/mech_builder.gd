@@ -147,7 +147,7 @@ func _input(event):
 					return
 			# Block spawning objects
 			# on top of eachother
-			else:
+			elif edit_layer != EditLayer.WALLS:
 				if MechData.get_object_index(to_global(grid_pos*16-OBJECT_OFFSET)) != null:
 					const ERR : String = "Can't create object on top of another one!"
 					print(ERR)

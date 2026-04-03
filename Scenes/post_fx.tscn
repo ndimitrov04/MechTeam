@@ -4,7 +4,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hibaj"]
 shader = ExtResource("1_8gpb5")
-shader_parameter/light_pos = Vector2(0.5, 0.135)
+shader_parameter/light_pos = Vector2(0.405, 0.135)
 shader_parameter/exposure = 0.065
 shader_parameter/decay = 0.915
 shader_parameter/density = 0.3

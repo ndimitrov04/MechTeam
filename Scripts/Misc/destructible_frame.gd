@@ -96,6 +96,8 @@ func break_all_tiles():
 	explosions = false
 	while get_used_cells().size() > 0:
 		await get_tree().process_frame
+		await get_tree().process_frame
+		await get_tree().process_frame
 		_break_random_tile()
 
 ## Generates static hitboxes based on tile data.

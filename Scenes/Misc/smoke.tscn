@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://y84ad1x71nus"]
+
+[ext_resource type="Script" uid="uid://dd17ftvxo6qg3" path="res://Scripts/Misc/smoke.gd" id="1_76raw"]
+
+[sub_resource type="Gradient" id="Gradient_5r33s"]
+offsets = PackedFloat32Array(0, 0.99230766)
+colors = PackedColorArray(0.29803923, 0.29803923, 0.29803923, 0.21568628, 0.29803923, 0.29803923, 0.29803923, 0.21568628)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_77e0b"]
+gradient = SubResource("Gradient_5r33s")
+width = 8
+height = 8
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ih5in"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 0, 0)
+turbulence_noise_strength = 0.03
+turbulence_noise_scale = 0.859
+turbulence_influence_min = 0.003
+turbulence_influence_max = 0.030000001
+
+[node name="Smoke" type="GPUParticles2D" unique_id=582111232]
+emitting = false
+amount = 64
+texture = SubResource("GradientTexture2D_77e0b")
+lifetime = 6.0
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_ih5in")
+script = ExtResource("1_76raw")

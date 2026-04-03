@@ -95,6 +95,7 @@
 [ext_resource type="Texture2D" uid="uid://u74a7m55t87w" path="res://Images/Objects/Control2/tile018.png" id="53_rwwdd"]
 [ext_resource type="Texture2D" uid="uid://bib4gre6gyyiu" path="res://Images/Objects/Control2/tile019.png" id="54_iuvs5"]
 [ext_resource type="Texture2D" uid="uid://b1wt3rxhih26o" path="res://Images/Objects/Control1/Screen2.png" id="56_ov15f"]
+[ext_resource type="PackedScene" uid="uid://y84ad1x71nus" path="res://Scenes/Misc/smoke.tscn" id="63_nijow"]
 [ext_resource type="Script" uid="uid://bbjxg02ymu5kl" path="res://Scripts/Behaviors/NPCBehaviors/npc.gd" id="92_46enp"]
 [ext_resource type="SpriteFrames" uid="uid://bvy5i3vh6phgd" path="res://Images/Characters/Friendlies/NPC1/npc_1.tres" id="93_c1kd7"]
 [ext_resource type="Script" uid="uid://5uivdxicfykd" path="res://Scripts/menuplayer.gd" id="93_lkj0u"]
@@ -3396,6 +3397,9 @@ shape = SubResource("RectangleShape2D_mn7h6")
 [node name="ShootPoint" type="Node2D" parent="FakeMech/Modules/AuxGun" unique_id=670362176]
 position = Vector2(40, 0)
 
+[node name="Smoke" parent="FakeMech/Modules/AuxGun/ShootPoint" unique_id=582111232 instance=ExtResource("63_nijow")]
+position = Vector2(-24, 0)
+
 [node name="Control" parent="FakeMech/Modules/AuxGun" unique_id=573389250 instance=ExtResource("20_flyo0")]
 
 [node name="SFX" type="Node2D" parent="FakeMech/Modules/AuxGun" unique_id=387330273]
@@ -3455,6 +3459,9 @@ shape = SubResource("RectangleShape2D_mn7h6")
 [node name="ShootPoint" type="Node2D" parent="FakeMech/Modules/AuxGun2" unique_id=1688300083]
 position = Vector2(40, 0)
 
+[node name="Smoke" parent="FakeMech/Modules/AuxGun2/ShootPoint" unique_id=1074836722 instance=ExtResource("63_nijow")]
+position = Vector2(-24, 0)
+
 [node name="Control" parent="FakeMech/Modules/AuxGun2" unique_id=1167979981 instance=ExtResource("20_flyo0")]
 
 [node name="SFX" type="Node2D" parent="FakeMech/Modules/AuxGun2" unique_id=1427918156]
@@ -3513,6 +3520,9 @@ shape = SubResource("RectangleShape2D_mn7h6")
 
 [node name="ShootPoint" type="Node2D" parent="FakeMech/Modules/AuxGun3" unique_id=1252186704]
 position = Vector2(40, 0)
+
+[node name="Smoke" parent="FakeMech/Modules/AuxGun3/ShootPoint" unique_id=56241752 instance=ExtResource("63_nijow")]
+position = Vector2(-24, 0)
 
 [node name="Control" parent="FakeMech/Modules/AuxGun3" unique_id=232762959 instance=ExtResource("20_flyo0")]
 
@@ -3576,6 +3586,9 @@ shape = SubResource("RectangleShape2D_ymfbl")
 
 [node name="ShootPoint" type="Node2D" parent="FakeMech/Modules/AutoGun" unique_id=1916178836]
 position = Vector2(40, 0)
+
+[node name="Smoke" parent="FakeMech/Modules/AutoGun/ShootPoint" unique_id=1732154763 instance=ExtResource("63_nijow")]
+position = Vector2(-24, 0)
 
 [node name="Control" parent="FakeMech/Modules/AutoGun" unique_id=1856714233 instance=ExtResource("23_lx18h")]
 top_level = true

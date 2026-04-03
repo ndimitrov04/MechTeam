@@ -48,7 +48,7 @@ void fragment() {
 
         vec3 sample_col = texture(SCREEN_TEXTURE, coord).rgb;
 
-        // Only keep bright areas
+        // only keep bright areas
         float lum = local_brightness(coord);
         float mask = smoothstep(threshold, 1.0, lum);
         sample_col *= mask;

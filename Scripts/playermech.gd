@@ -111,6 +111,9 @@ func _physics_process(delta):
 	#if in_editor:
 		#return
 	
+	# Keep upright
+	clamp(rotation_degrees, -45, 45)
+	
 	# Add the gravity.
 	if not is_on_floor():
 		linear_velocity += get_gravity() * delta
@@ -141,13 +144,23 @@ func _physics_process(delta):
 		linear_velocity.x = -max_speed
 
 	# Handle wheel/track animations
-	if abs(linear_velocity.x) > 0.1:
+	if abs(linear_velocity.x) > 1:
 		for spr in movement_sprites.get_children():
 			if not spr.is_playing():
 				spr.play("default")
+			if not spr.dust.emitting and spr.floor_detector.is_colliding():
+				spr.dust.emitting = true
+				spr.start_dust.play("default")
+				if direction < 0:
+					spr.start_dust.flip_h = true
+					spr.start_dust.offset.x = +35
+				else:
+					spr.start_dust.flip_h = false
+					spr.start_dust.offset.x = -35
 	else:
 		for spr in movement_sprites.get_children():
 			spr.stop()
+			spr.dust.emitting = false
 	
 	# Recalculate total mech energy
 	total_energy()

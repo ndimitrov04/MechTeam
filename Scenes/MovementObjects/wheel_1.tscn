@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cujqusmchfqck" path="res://Images/Placeholders/oll.png" id="1_rn7y4"]
 [ext_resource type="Script" uid="uid://byn8nbt8vtu7n" path="res://Scripts/wheel_1.gd" id="2_0qchd"]
+[ext_resource type="Texture2D" uid="uid://dcl1l8c057iwg" path="res://Images/Placeholders/SmokeNDust P03 VFX 1.png" id="3_i8srh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3pmx8"]
 atlas = ExtResource("1_rn7y4")
@@ -43,6 +44,99 @@ height = 32
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qchd"]
 size = Vector2(54.61, 7.255)
 
+[sub_resource type="Gradient" id="Gradient_i8srh"]
+offsets = PackedFloat32Array(0, 0.99230766)
+colors = PackedColorArray(0.3882353, 0.3882353, 0.3882353, 0.5019608, 0.29803923, 0.29803923, 0.29803923, 0.5019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i8srh"]
+gradient = SubResource("Gradient_i8srh")
+width = 8
+height = 8
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r4tlf"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(27.065, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 70.0
+initial_velocity_max = 90.0
+gravity = Vector3(0, 250, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4tlf"]
+atlas = ExtResource("3_i8srh")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j86kr"]
+atlas = ExtResource("3_i8srh")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go6qf"]
+atlas = ExtResource("3_i8srh")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhptf"]
+atlas = ExtResource("3_i8srh")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7658"]
+atlas = ExtResource("3_i8srh")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbdip"]
+atlas = ExtResource("3_i8srh")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vnw0"]
+atlas = ExtResource("3_i8srh")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xttm3"]
+atlas = ExtResource("3_i8srh")
+region = Rect2(560, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tejgx"]
+atlas = ExtResource("3_i8srh")
+region = Rect2(640, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_50iei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4tlf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j86kr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go6qf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhptf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7658")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbdip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vnw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xttm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tejgx")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]
+
 [node name="Wheel1" type="AnimatedSprite2D" unique_id=540767917]
 self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
 scale = Vector2(2, 2)
@@ -66,3 +160,18 @@ texture = SubResource("GradientTexture2D_rn7y4")
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_0qchd")
 target_position = Vector2(0, 2.675)
+
+[node name="Dust" type="GPUParticles2D" parent="." unique_id=1182060644]
+position = Vector2(0, 16)
+emitting = false
+amount = 32
+texture = SubResource("GradientTexture2D_i8srh")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_r4tlf")
+
+[node name="StartDust" type="AnimatedSprite2D" parent="Dust" unique_id=853888653]
+position = Vector2(0, -14.5)
+sprite_frames = SubResource("SpriteFrames_50iei")
+frame = 9
+frame_progress = 1.0
+offset = Vector2(-50, 0)

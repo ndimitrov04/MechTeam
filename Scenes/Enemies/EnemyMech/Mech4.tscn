@@ -105,3 +105,5 @@ autoplay = "default"
 [node name="ActionDecision" type="Timer" parent="." unique_id=1783348607]
 wait_time = 0.5
 autostart = true
+
+[connection signal="interacted_with" from="Controllers/MovControlXAxis" to="." method="_on_mov_control_x_axis_interacted_with"]

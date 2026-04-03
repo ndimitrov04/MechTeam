@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://7pvmbpigkpq1" path="res://Scenes/Projectiles/bullet.tscn" id="2_nm7d3"]
 [ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="3_ut0fn"]
 [ext_resource type="AudioStream" uid="uid://mjrlfhuxnkmp" path="res://Audio/SFX/Modules/bang_04.ogg" id="4_ehhxj"]
+[ext_resource type="PackedScene" uid="uid://y84ad1x71nus" path="res://Scenes/Misc/smoke.tscn" id="5_dcqmh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
 animations = [{
@@ -64,6 +65,9 @@ shape = SubResource("CapsuleShape2D_d1ilt")
 
 [node name="ShootPoint" type="Node2D" parent="." unique_id=670362176]
 position = Vector2(40, 0)
+
+[node name="Smoke" parent="ShootPoint" unique_id=582111232 instance=ExtResource("5_dcqmh")]
+position = Vector2(-5, 0)
 
 [node name="SFX" type="Node2D" parent="." unique_id=280823543]
 

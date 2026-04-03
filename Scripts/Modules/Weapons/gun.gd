@@ -6,6 +6,7 @@ extends RigidBody2D
 @onready var shoot_point = $ShootPoint
 @onready var shoot_sfx: AudioStreamPlayer2D = $SFX/Shoot
 @onready var drop_sfx: AudioStreamPlayer2D = $SFX/Drop
+@onready var smoke: GPUParticles2D = $ShootPoint/Smoke
 
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
@@ -80,6 +81,7 @@ func engage():
 		await get_tree().create_timer(0.15).timeout
 		shoot_sfx.pitch_scale = randf_range(0.8, 1.2)
 		shoot_sfx.play()
+		smoke.emitting = true
 		var bullet_instance = bullet.instantiate()
 		main.add_child(bullet_instance)
 		# Determine who the bullet will hurt

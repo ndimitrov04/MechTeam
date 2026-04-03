@@ -16,6 +16,8 @@ extends RigidBody2D
 # Mech controller AI
 @onready var action_decision = $ActionDecision
 
+@onready var mov_control_x_axis = $Controllers/MovControlXAxis
+
 const SPEED = 45.0
 const JUMP_linear_velocity = -400.0
 
@@ -28,6 +30,7 @@ var weight : float = base_weight + max_hp / 4.0 # Default value
 var energy : int = 100
 var reward : int = 25
 
+var perma_brake : bool = false
 var direction : int = 1
 
 var asleep : bool = true
@@ -37,6 +40,7 @@ var ai : bool = true
 func _ready():
 	action_decision.timeout.connect(_on_action_decision_timeout)
 	await get_tree().create_timer(0.1).timeout
+	
 	max_hp = base_hp * level_multiplier
 	hp = max_hp
 	weight = base_weight + frame.get_used_cells().size() / 16
@@ -47,6 +51,9 @@ func _ready():
 	update_decision_timer()
 
 func _physics_process(delta):
+	# Keep upright
+	clamp(rotation_degrees, -45, 45)
+	
 	# Add the gravity.
 	if not is_on_floor():
 		linear_velocity += get_gravity() * delta
@@ -73,13 +80,24 @@ func _physics_process(delta):
 	if linear_velocity.x < -max_speed:
 		linear_velocity.x = -max_speed
 
-	if abs(linear_velocity.x) > 0:
+	if abs(linear_velocity.x) > 1:
 		for spr in movement_sprites.get_children():
 			if not spr.is_playing():
 				spr.play("default")
+			if not spr.dust.emitting and spr.floor_detector.is_colliding():
+				spr.dust.emitting = true
+				spr.start_dust.play("default")
+				if direction < 0:
+					spr.start_dust.flip_h = true
+					spr.start_dust.offset.x = +35
+				else:
+					spr.start_dust.flip_h = false
+					spr.start_dust.offset.x = -35
+				spr.dust.emitting = true
 	else:
 		for spr in movement_sprites.get_children():
 			spr.stop()
+			spr.dust.emitting = false
 
 func take_damage(damage_value : int):
 	hp -= damage_value
@@ -114,7 +132,7 @@ func die():
 	print("Player has gained " + str(reward) + " coins!")
 	PlayerData.money += reward
 	main.rewards_collected += reward
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(1.5).timeout
 	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
 	main.advance()
 	queue_free()
@@ -133,12 +151,15 @@ func _on_action_decision_timeout():
 		return
 
 	# Move 65%
-	if action < 65:
+	if action < 65 and not perma_brake:
 		direction = directions.pick_random()
 	# Aim 15%
-	elif action >= 65 and action < 90:
+	elif action >= 65 and action < 80:
 		direction = 0
 		crosshair.position += Vector2(randi_range(-35, 35), randi_range(-35, 35))
+	# Call in airstrike 10%
+	elif action >= 80 and action < 90:
+		airstrike()
 	# Shoot 10%
 	elif action >= 90:
 		if modules.get_child_count() > 0:
@@ -156,3 +177,18 @@ func _on_action_decision_timeout():
 
 func is_on_floor():
 	return true
+
+# Call in airstrike
+func airstrike():
+	const MORTAR_SHELL = preload("uid://di5dx65o5wvg3")
+	var bomb_instance = MORTAR_SHELL.instantiate()
+	main.add_child(bomb_instance)
+	var playermech_pos = main.mech.global_position
+	const X_RANGE : int = 1024
+	const HEIGHT : int = 1200
+	bomb_instance.global_position.x = randi_range(playermech_pos.x, playermech_pos.x + X_RANGE)
+	bomb_instance.global_position.y = playermech_pos.y - HEIGHT
+
+# Permanent brake
+func _on_mov_control_x_axis_interacted_with() -> void:
+	perma_brake = true

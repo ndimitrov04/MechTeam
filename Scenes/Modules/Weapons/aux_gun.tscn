@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://g2evhlrxorh6" path="res://Scripts/Modules/Weapons/aux_gun.gd" id="1_fspxv"]
 [ext_resource type="Texture2D" uid="uid://0nsu3doe2kyg" path="res://Images/MechGuns/turret_01_mk1s.png" id="2_mn7h6"]
+[ext_resource type="PackedScene" uid="uid://y84ad1x71nus" path="res://Scenes/Misc/smoke.tscn" id="3_31nxx"]
 [ext_resource type="PackedScene" uid="uid://d23lcjrnsoyau" path="res://Scenes/Behaviors/local_control.tscn" id="3_mn7h6"]
 [ext_resource type="AudioStream" uid="uid://mjrlfhuxnkmp" path="res://Audio/SFX/Modules/bang_04.ogg" id="4_8wj6m"]
 
@@ -70,6 +71,9 @@ shape = SubResource("RectangleShape2D_mn7h6")
 
 [node name="ShootPoint" type="Node2D" parent="." unique_id=670362176]
 position = Vector2(40, 0)
+
+[node name="Smoke" parent="ShootPoint" unique_id=582111232 instance=ExtResource("3_31nxx")]
+position = Vector2(-23, 0)
 
 [node name="Control" parent="." unique_id=573389250 instance=ExtResource("3_mn7h6")]
 
