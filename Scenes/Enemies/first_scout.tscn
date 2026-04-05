@@ -1,0 +1,426 @@
+[gd_scene format=4 uid="uid://c5ubno4qb8w7q"]
+
+[ext_resource type="Script" uid="uid://blpdd1g7y67gh" path="res://Scripts/Enemies/enemy.gd" id="1_rvxw2"]
+[ext_resource type="PackedScene" uid="uid://bxxxinj6ti4h2" path="res://Scenes/Misc/destructible_background.tscn" id="2_4jp26"]
+[ext_resource type="Material" uid="uid://coh3po53fjlnr" path="res://CustomResources/mech_bg_windowed.tres" id="3_3xa7j"]
+[ext_resource type="PackedScene" uid="uid://d24cenbiacnj3" path="res://Scenes/Misc/destructible_frame.tscn" id="4_ywnxy"]
+[ext_resource type="TileSet" uid="uid://cidmnbvfhbfkd" path="res://CustomResources/enemy_frame_tileset.tres" id="5_dbpik"]
+[ext_resource type="PackedScene" uid="uid://gabbdsxamcdv" path="res://Scenes/MovementObjects/wheel_hitbox_1.tscn" id="6_7wndn"]
+[ext_resource type="PackedScene" uid="uid://cuhp74yuarb08" path="res://Scenes/MovementObjects/wheel_collider_1.tscn" id="7_i3cpe"]
+[ext_resource type="PackedScene" uid="uid://uxt82jfkcjx8" path="res://Scenes/MovementObjects/wheel_1.tscn" id="8_uqanl"]
+[ext_resource type="Script" uid="uid://dy8gvg3wwqymn" path="res://Scripts/MechControllers/mov_control_x_axis.gd" id="9_4rr5d"]
+[ext_resource type="Texture2D" uid="uid://b1wt3rxhih26o" path="res://Images/Objects/Control1/Screen2.png" id="10_8pw0l"]
+[ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="11_njixv"]
+[ext_resource type="Texture2D" uid="uid://ds3cnl75d7mh6" path="res://Images/Tilesets/Industrial_Tileset.png" id="12_4bhkk"]
+[ext_resource type="AudioStream" uid="uid://diruuak81ohbd" path="res://Audio/SFX/Misc/terminal_03.ogg" id="13_ymsuo"]
+[ext_resource type="AudioStream" uid="uid://dayqkdehp1fm8" path="res://Audio/SFX/Misc/terminal_05.ogg" id="14_e2lq5"]
+[ext_resource type="Script" uid="uid://dndcwl738edf5" path="res://Scripts/Modules/EnemyMods/airstrike_caller.gd" id="15_npoxp"]
+[ext_resource type="Texture2D" uid="uid://cihbppdoipueb" path="res://Images/Objects/Decor/decor_3.png" id="16_hvhsj"]
+[ext_resource type="AudioStream" uid="uid://ctju2u7uhycnw" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Boost PowerDown_v1.wav" id="17_r0cxt"]
+[ext_resource type="AudioStream" uid="uid://c2yvv86sp1kpa" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Build Up_Short_var 1.wav" id="18_0jd0f"]
+[ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="19_rvvym"]
+[ext_resource type="PackedScene" uid="uid://tgc6pvjmf1xi" path="res://Scenes/Modules/Weapons/gun.tscn" id="20_ohs0s"]
+[ext_resource type="Script" uid="uid://c65hpvf8mn4fl" path="res://Scripts/Behaviors/preset_enemy_spawning.gd" id="21_l6qr3"]
+[ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="22_scqyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
+size = Vector2(26, 34)
+
+[sub_resource type="Shader" id="Shader_aqgau"]
+code = "shader_type canvas_item;
+
+uniform vec4 color : source_color = vec4(1.0);
+
+uniform int pixels_to_check = 1;
+uniform int center_distance_cap = 1;
+
+bool has_neighbor(vec2 uv, vec2 texture_pixel_size, sampler2D sprite_texture) {
+	for (int x = -pixels_to_check; x < pixels_to_check + 1; x+= 1) {
+		for (int y = -pixels_to_check; y < pixels_to_check + 1; y+= 1) {
+			
+			if (x == 0 && y == 0) {
+				continue;
+			}
+			if (abs(x) + abs(y) > center_distance_cap) {
+				continue;
+			}
+			
+			vec2 xy = vec2(float(x), float(y));
+			vec2 sprite_coordinates = uv + xy * texture_pixel_size;
+			if (texture(sprite_texture, sprite_coordinates).a > .0) {
+				return true;
+			}
+			
+		}
+	}
+	
+	return false;
+	
+}
+
+void fragment() {
+	
+	if (COLOR.a == .0 && has_neighbor(UV, TEXTURE_PIXEL_SIZE, TEXTURE)) {
+		COLOR = color;
+	}
+	
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dncu7"]
+shader = SubResource("Shader_aqgau")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hibaj"]
+atlas = ExtResource("10_8pw0l")
+region = Rect2(0, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdsj5"]
+atlas = ExtResource("10_8pw0l")
+region = Rect2(32, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee4r6"]
+atlas = ExtResource("10_8pw0l")
+region = Rect2(64, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt3je"]
+atlas = ExtResource("10_8pw0l")
+region = Rect2(96, 0, 32, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3pmx8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hibaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdsj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee4r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt3je")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u50mg"]
+line_spacing = 0.0
+font = ExtResource("11_njixv")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dncu7"]
+size = Vector2(27, 13)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
+friction = 0.9
+bounce = 0.44
+
+[sub_resource type="Shader" id="Shader_8cuat"]
+code = "shader_type canvas_item;
+
+uniform vec4 color : source_color = vec4(1.0);
+
+uniform int pixels_to_check = 1;
+uniform int center_distance_cap = 1;
+
+bool has_neighbor(vec2 uv, vec2 texture_pixel_size, sampler2D sprite_texture) {
+	for (int x = -pixels_to_check; x < pixels_to_check + 1; x+= 1) {
+		for (int y = -pixels_to_check; y < pixels_to_check + 1; y+= 1) {
+			
+			if (x == 0 && y == 0) {
+				continue;
+			}
+			if (abs(x) + abs(y) > center_distance_cap) {
+				continue;
+			}
+			
+			vec2 xy = vec2(float(x), float(y));
+			vec2 sprite_coordinates = uv + xy * texture_pixel_size;
+			if (texture(sprite_texture, sprite_coordinates).a > .0) {
+				return true;
+			}
+			
+		}
+	}
+	
+	return false;
+	
+}
+
+void fragment() {
+	
+	if (COLOR.a == .0 && has_neighbor(UV, TEXTURE_PIXEL_SIZE, TEXTURE)) {
+		COLOR = color;
+	}
+	
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlkgw"]
+shader = SubResource("Shader_8cuat")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yetb0"]
+atlas = ExtResource("16_hvhsj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yetb0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_vlfaf"]
+colors = PackedColorArray(0, 1, 0, 0.5019608, 0, 1, 0, 0.5019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o332s"]
+gradient = SubResource("Gradient_vlfaf")
+width = 32
+height = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5l7g"]
+size = Vector2(25, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u50mg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_scqyc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyMech4" type="RigidBody2D" unique_id=70120494]
+collision_layer = 8192
+collision_mask = 8192
+script = ExtResource("1_rvxw2")
+metadata/hp = 20
+metadata/choice_ranges = PackedByteArray("UFpf")
+
+[node name="Background" parent="." unique_id=316679328 instance=ExtResource("2_4jp26")]
+material = ExtResource("3_3xa7j")
+tile_map_data = PackedByteArray("AAAEAAwAAAADAAcAAAAEAA0AAAAKAAIAAAAFAAwAAAAEAAcAAAAFAA0AAAAJAAIAAAAEAAoAAAADAAUAAAAEAAsAAAADAAYAAAAFAAoAAAAEAAUAAAAFAAsAAAAEAAYAAAAEAAgAAAAHAAcAAAAEAAkAAAADAAQAAAAFAAgAAAAJAAIAAAAFAAkAAAAEAAQAAAAEAAYAAAAIAAMAAAAEAAcAAAAIAAQAAAAFAAYAAAAJAAMAAAAFAAcAAAAJAAQAAAAEAAQAAAAIAAMAAAAEAAUAAAAIAAQAAAAFAAQAAAAJAAMAAAAFAAUAAAAJAAQAAAAEAAIA//////////8EAAMA//////////8FAAIA//////////8FAAMA///////////6/wwAAAAIAAMAAAD6/w0AAAAIAAQAAAD7/wwAAAAJAAMAAAD7/w0AAAAJAAQAAAD6/woA///////////6/wsA///////////7/woA///////////7/wsA///////////6/wgA///////////6/wkA///////////7/wgA///////////7/wkA///////////6/wYA///////////6/wcA///////////7/wYA///////////7/wcA///////////6/wQA///////////6/wUA///////////7/wQA///////////7/wUA///////////6/wIA///////////6/wMA///////////7/wIA///////////7/wMA//////////8GAAMA//////////8GAAQAAAAIAAMAAAAGAAUAAAAIAAQAAAAGAAYAAAAIAAMAAAAGAAcAAAAIAAQAAAAGAAgAAAAKAAIAAAAGAAkAAAAFAAQAAAAGAAoAAAAFAAUAAAAGAAsAAAAFAAYAAAAGAAwAAAAFAAcAAAAGAA0AAAAKAAIAAAADAAMA//////////8DAAQAAAAJAAMAAAADAAUAAAAJAAQAAAADAAYAAAAJAAMAAAADAAcAAAAJAAQAAAADAAgAAAAGAAcAAAADAAkAAAACAAQAAAADAAoAAAACAAUAAAADAAsAAAACAAYAAAADAAwAAAACAAcAAAADAA0AAAAJAAIAAAD8/wMA///////////8/wQA///////////8/wUA///////////8/wYA///////////8/wcA///////////8/wgA///////////8/wkA///////////8/woA///////////8/wsAAAAIAAUAAAD8/wwAAAAIAAMAAAD8/w0AAAAIAAQAAAD5/wMA///////////5/wQA///////////5/wUA///////////5/wYA///////////5/wcA///////////5/wgA///////////5/wkA///////////5/woA///////////5/wsA///////////5/wwA///////////5/w0A///////////5/wIA///////////8/wIA//////////8DAAIA//////////8GAAIA//////////8EAP////////////8EAAAA//////////8FAP////////////8FAAAA///////////6///////////////6/wAA///////////7///////////////7/wAA//////////////v///////////////z///////////8AAPv///////////8AAPz///////////8DAAEA//////////8EAAEA//////////8FAAEA//////////8GAAEA//////////8GAAAA//////////8GAP////////////8GAP7///////////8FAP7///////////8EAP7///////////8DAP7///////////8DAP////////////8DAAAA//////////8BAAAA//////////8BAAEA//////////8CAAAA//////////8CAAEA//////////8BAP7///////////8BAP////////////8CAP7///////////8CAP////////////////7///////////////////////////8AAP7///////////8AAP///////////////wAA/////////////wEA//////////8AAAAA//////////8AAAEA///////////9/wAA///////////9/wEA///////////+/wAA///////////+/wEA///////////9//7////////////9///////////////+//7////////////+///////////////9//j////////////9//n////////////+//j////////////+//n////////////9//r////////////9//v////////////+//r////////////+//v////////////9//z////////////9//3////////////+//z////////////+//3///////////8BAPz///////////8BAP3///////////8CAPz///////////8CAP3///////////8BAPr///////////8BAPv///////////8CAPr///////////8CAPv///////////8BAPj///////////8BAPn///////////8CAPj///////////8CAPn///////////////j///////////////n///////////8AAPj///////////8AAPn///////////////r///////////8AAPr///////////////3///////////8AAP3///////////8DAPz///////////8DAP3///////////8EAPz///////////8EAP3///////////8FAPz///////////8FAP3///////////8GAPz///////////8GAP3///////////8FAPr///////////8FAPv///////////8GAPr///////////8GAPv///////////8FAPj///////////8FAPn///////////8GAPj///////////8GAPn///////////8DAPj///////////8DAPn///////////8EAPj///////////8EAPn///////////8DAPr///////////8DAPv///////////8EAPr///////////8EAPv////////////7//r////////////7//v////////////8//r////////////8//v////////////7//z////////////7//3////////////8//z////////////8//3////////////5//z////////////5//3////////////6//z////////////6//3////////////5//7////////////6//7////////////7//7////////////8//7////////////8///////////////8/wAA///////////8/wEA///////////7/wEA///////////6/wEA///////////5/wEA///////////5/wAA///////////5//////////////8VAAIA//////////8VAAMA//////////8WAAIA//////////8WAAMA//////////8VAAQAAAAKAAQAAAAVAAUAAAAKAAQAAAAWAAQAAAAIAAMAAAAWAAUAAAAIAAQAAAAVAAYA//////////8VAAcAAAAKAAQAAAAWAAYAAAAIAAMAAAAWAAcAAAAIAAQAAAAVAAgAAAAKAAQAAAAVAAkAAAAKAAQAAAAWAAgAAAAIAAMAAAAWAAkAAAAIAAQAAAAVAAoAAAAKAAQAAAAVAAsAAAAKAAQAAAAWAAoAAAAIAAMAAAAWAAsAAAAIAAQAAAAVAAwAAAAJAAMAAAAVAA0AAAAJAAQAAAAWAAwAAAAIAAMAAAAWAA0AAAAIAAQAAAATAAIA//////////8TAAMA//////////8UAAIA//////////8UAAMA//////////8TAAQAAAAKAAMAAAATAAUAAAAKAAMAAAAUAAQAAAAKAAMAAAAUAAUAAAAKAAMAAAATAAYAAAAKAAMAAAATAAcAAAAKAAMAAAAUAAYAAAAKAAMAAAAUAAcAAAAKAAMAAAATAAgAAAAKAAMAAAATAAkAAAAHAAUAAAAUAAgAAAAKAAMAAAAUAAkAAAAKAAMAAAATAAoAAAAHAAYAAAATAAsAAAAKAAMAAAAUAAoAAAAKAAMAAAAUAAsAAAAKAAMAAAATAAwAAAAJAAMAAAATAA0AAAAJAAQAAAAUAAwAAAAIAAMAAAAUAA0AAAAIAAQAAAAdAAIA//////////8dAAMA//////////8dAAQA//////////8dAAUA//////////8eAAIA//////////8eAAMA//////////8eAAQA//////////8eAAUA//////////8fAAIA//////////8fAAMA//////////8fAAQA//////////8fAAUA//////////8gAAIA//////////8gAAMA//////////8gAAQA//////////8gAAUA//////////8hAAIA//////////8hAAMA//////////8hAAQA//////////8hAAUA//////////8iAAIA//////////8iAAMA//////////8iAAQA//////////8iAAUA//////////8KAAkAAAADAAQAAAAKAAoAAAADAAUAAAAKAAsAAAADAAYAAAAKAAwAAAADAAcAAAALAAkAAAAEAAQAAAALAAoAAAAEAAUAAAALAAsAAAAEAAYAAAALAAwAAAAEAAcAAAAMAAkAAAAFAAQAAAAMAAoAAAAFAAUAAAAMAAsAAAAFAAYAAAAMAAwAAAAFAAcAAAANAAkAAAAKAAMAAAANAAoAAAAKAAMAAAANAAsAAAAKAAMAAAANAAwAAAAKAAMAAAAOAAkAAAAIAAQAAAAOAAoAAAAGAAMAAAAOAAsAAAAGAAQAAAAOAAwAAAAGAAMAAAAPAAkAAAAJAAQAAAAPAAoAAAAHAAMAAAAPAAsAAAAHAAQAAAAPAAwAAAAHAAMAAAAKAAgAAAAHAAcAAAALAAgAAAAJAAIAAAAMAAgAAAAKAAIAAAANAAgAAAAKAAMAAAAOAAgAAAAIAAMAAAAPAAgAAAAJAAMAAAAPAA0AAAAHAAQAAAAOAA0AAAAGAAQAAAANAA0AAAAKAAMAAAAMAA0AAAAJAAUAAAALAA0AAAAIAAUAAAAKAA0AAAAKAAIAAAAQAAgAAAAKAAQAAAAQAAkAAAAKAAQAAAAQAAoAAAAKAAQAAAAQAAsAAAAKAAQAAAAQAAwAAAAKAAQAAAAQAA0AAAAKAAQAAAAJAAgAAAAGAAcAAAAJAAkAAAACAAQAAAAJAAoAAAACAAUAAAAJAAsAAAACAAYAAAAJAAwAAAACAAcAAAAJAA0AAAAJAAIAAAARAAgAAAAKAAMAAAARAAkAAAAKAAMAAAASAAgAAAAKAAMAAAASAAkAAAAGAAUAAAARAAoAAAAKAAMAAAARAAsAAAAKAAMAAAASAAoAAAAGAAYAAAASAAsAAAAKAAMAAAARAAwAAAAKAAMAAAARAA0AAAAKAAMAAAASAAwAAAAIAAMAAAASAA0AAAAIAAQAAAAHAAYAAAAJAAMAAAAHAAcAAAAJAAQAAAAIAAYAAAAIAAMAAAAIAAcAAAAIAAQAAAAHAAgAAAAJAAIAAAAHAAkAAAAAAAQAAAAIAAgAAAAKAAIAAAAIAAkAAAABAAQAAAAHAAoAAAAAAAUAAAAHAAsAAAAAAAYAAAAIAAoAAAABAAUAAAAIAAsAAAABAAYAAAAHAAwAAAAAAAcAAAAHAA0AAAAJAAIAAAAIAAwAAAABAAcAAAAIAA0AAAAKAAIAAAAXAAgAAAAJAAMAAAAXAAkAAAAJAAQAAAAYAAgA//////////8YAAkA//////////8ZAAgA//////////8ZAAkA//////////8aAAgA//////////8aAAkA//////////8ZAAoA//////////8ZAAsA//////////8aAAoA//////////8aAAsA//////////8XAAoAAAAJAAMAAAAXAAsAAAAJAAQAAAAYAAoA//////////8YAAsA//////////8XAAwAAAAJAAMAAAAXAA0AAAAJAAQAAAAYAAwA//////////8YAA0A//////////8ZAAwA//////////8ZAA0A//////////8aAAwA//////////8aAA0A//////////8SAAIA//////////8SAAMA//////////8SAAQAAAAKAAMAAAASAAUAAAAKAAMAAAARAAUAAAAKAAMAAAARAAQAAAAKAAMAAAARAAMA//////////8RAAIA//////////8XAAIA//////////8XAAMA//////////8YAAIA//////////8YAAMA//////////8ZAAIA//////////8ZAAMA//////////8aAAIA//////////8aAAMA//////////8ZAAQA//////////8ZAAUA//////////8aAAQA//////////8aAAUA//////////8XAAQAAAAJAAMAAAAXAAUAAAAJAAQAAAAYAAQA//////////8YAAUA//////////8bAAQA//////////8bAAUA//////////8cAAQA//////////8cAAUA//////////8bAAIA//////////8bAAMA//////////8cAAIA//////////8cAAMA//////////8HAAEA//////////8IAAEA//////////8HAP7///////////8HAP////////////8IAP7///////////8IAP////////////8HAAAA//////////8IAAAA//////////8BAAkAAAAAAAQAAAABAAoAAAAAAAUAAAABAAsAAAAAAAYAAAABAAwAAAAAAAcAAAACAAkAAAABAAQAAAACAAoAAAABAAUAAAACAAsAAAABAAYAAAACAAwAAAABAAcAAAABAAgAAAAJAAIAAAACAAgAAAAKAAIAAAABAA0AAAAIAAUAAAACAA0AAAAJAAUAAAAAAAgAAAAKAAMAAAAAAAkAAAAKAAMAAAAAAAoAAAAKAAMAAAAAAAsAAAAKAAMAAAAAAAwAAAAKAAMAAAAAAA0AAAAKAAMAAAAQAAQAAAAKAAQAAAAQAAUAAAAKAAQAAAAQAAYAAAAKAAQAAAAQAAcAAAAKAAQAAAARAAYAAAAKAAMAAAARAAcAAAAKAAMAAAASAAYAAAAKAAMAAAASAAcAAAAKAAMAAAD9/wsAAAAJAAUAAAAXAAYAAAAJAAMAAAAXAAcAAAAJAAQAAAAWAA4AAAAIAAMAAAAWAA8AAAAIAAQAAAAXAA4AAAAJAAMAAAAXAA8AAAAJAAQAAAAAAAQAAAAIAAMAAAAAAAUAAAAIAAQAAAABAAQAAAAJAAMAAAABAAUAAAAJAAQAAAAAAAYAAAAIAAMAAAAAAAcAAAAIAAQAAAABAAYAAAAJAAMAAAABAAcAAAAJAAQAAAACAAQAAAAIAAMAAAACAAUAAAAIAAQAAAACAAYAAAAIAAMAAAACAAcAAAAIAAQAAAAHAAQAAAAJAAMAAAAHAAUAAAAJAAQAAAAIAAQAAAAIAAMAAAAIAAUAAAAIAAQAAAAJAAQAAAAJAAMAAAAJAAUAAAAJAAQAAAAJAAYAAAAJAAMAAAAJAAcAAAAJAAQAAAAKAAQAAAAIAAMAAAAKAAUAAAAIAAQAAAALAAQAAAAJAAMAAAALAAUAAAAJAAQAAAAKAAYAAAAIAAMAAAAKAAcAAAAIAAQAAAALAAYAAAAJAAMAAAALAAcAAAAJAAQAAAAMAAQAAAAIAAMAAAAMAAUAAAAIAAQAAAANAAQAAAAJAAMAAAANAAUAAAAJAAQAAAAMAAYAAAAIAAMAAAAMAAcAAAAIAAQAAAANAAYAAAAJAAMAAAANAAcAAAAJAAQAAAAOAAQAAAAIAAMAAAAOAAUAAAAIAAQAAAAPAAQAAAAJAAMAAAAPAAUAAAAJAAQAAAAOAAYAAAAIAAMAAAAOAAcAAAAIAAQAAAAPAAYAAAAJAAMAAAAPAAcAAAAJAAQAAAASAA4AAAAIAAMAAAASAA8AAAAIAAQAAAATAA4AAAAJAAMAAAATAA8AAAAJAAQAAAAUAA4AAAAIAAMAAAAUAA8AAAAIAAQAAAAVAA4AAAAJAAMAAAAVAA8AAAAJAAQAAAD6/w4AAAAIAAMAAAD6/w8AAAAIAAQAAAD7/w4AAAAJAAMAAAD7/w8AAAAJAAQAAAD8/w4AAAAIAAMAAAD8/w8AAAAIAAQAAAD9/w4AAAAJAAMAAAD9/w8AAAAJAAQAAAD+/w4AAAAIAAMAAAD+/w8AAAAIAAQAAAD//w4AAAAJAAMAAAD//w8AAAAJAAQAAAAAAA4AAAAIAAMAAAAAAA8AAAAIAAQAAAABAA4AAAAJAAMAAAABAA8AAAAJAAQAAAACAA4AAAAIAAMAAAACAA8AAAAIAAQAAAADAA4AAAAJAAMAAAADAA8AAAAJAAQAAAAEAA4AAAAIAAMAAAAEAA8AAAAIAAQAAAAFAA4AAAAJAAMAAAAFAA8AAAAJAAQAAAAGAA4AAAAIAAMAAAAGAA8AAAAIAAQAAAAHAA4AAAAJAAMAAAAHAA8AAAAJAAQAAAAIAA4AAAAIAAMAAAAIAA8AAAAIAAQAAAAJAA4AAAAJAAMAAAAJAA8AAAAJAAQAAAAKAA4AAAAIAAMAAAAKAA8AAAAIAAQAAAALAA4AAAAJAAMAAAALAA8AAAAJAAQAAAAMAA4AAAAIAAMAAAAMAA8AAAAIAAQAAAANAA4AAAAJAAMAAAANAA8AAAAJAAQAAAAOAA4AAAAIAAMAAAAOAA8AAAAIAAQAAAAPAA4AAAAJAAMAAAAPAA8AAAAJAAQAAAAQAA4AAAAIAAMAAAAQAA8AAAAIAAQAAAARAA4AAAAJAAMAAAARAA8AAAAJAAQAAAD9/wwAAAAJAAMAAAD9/w0AAAAJAAQAAAD+/wwAAAAIAAMAAAD+/w0AAAAIAAQAAAD//wwAAAAJAAMAAAD//w0AAAAJAAQAAAAEABAAAAAIAAMAAAAEABEAAAAIAAQAAAAFABAAAAAJAAMAAAAFABEAAAAJAAQAAAAGABAAAAAIAAMAAAAGABEAAAAIAAQAAAAHABAAAAAJAAMAAAAHABEAAAAJAAQAAAAIABAAAAAIAAMAAAAIABEAAAAIAAQAAAAJABAAAAAJAAMAAAAJABEAAAAJAAQAAAAKABAAAAAIAAMAAAAKABEAAAAIAAQAAAALABAAAAAJAAMAAAALABEAAAAJAAQAAAA=")
+
+[node name="Frame" parent="." unique_id=200560338 instance=ExtResource("4_ywnxy")]
+tile_map_data = PackedByteArray("AAD3/w4A///////////3/w8A///////////4/w4AAAACAAQAAAD4/w8A///////////5/w4AAAADAAQAAAD5/w8A///////////6/w4AAAAAAAYAAAD6/w8AAAAAAAcAAAD7/w4AAAABAAYAAAD7/w8AAAABAAcAAAD8/w4AAAAAAAYAAAD8/w8AAAAAAAcAAAD9/w4AAAABAAYAAAD9/w8AAAABAAcAAAD+/w4AAAAAAAYAAAD+/w8AAAAAAAcAAAD9/wwAAAABAAYAAAD9/w0AAAABAAcAAAD+/wwAAAAAAAYAAAD+/w0AAAAAAAcAAAD3/wwA///////////3/w0A///////////4/wwA///////////4/w0A///////////3/woA///////////3/wsA///////////4/woA///////////4/wsA///////////9/woA///////////9/wsA///////////+/woAAAAMAA4AAAD+/wsAAAAMAA8AAAD9/wgA///////////9/wkA///////////+/wgAAAAMAA4AAAD+/wkAAAAMAA8AAAD3/wgA///////////3/wkA///////////4/wgA///////////4/wkA//////////8BAAgA//////////8BAAkA//////////8CAAgA//////////8CAAkA//////////8BAAoA//////////8BAAsA//////////8CAAoA//////////8CAAsA//////////8BAAwA//////////8BAA0A//////////8CAAwA//////////8CAA0A//////////8BAA4AAAABAAYAAAABAA8AAAABAAcAAAACAA4AAAAAAAYAAAACAA8AAAAAAAcAAAADAA4AAAABAAYAAAADAA8AAAABAAcAAAAEAA4AAAAAAAYAAAAEAA8AAAAAAAcAAAAFAA4AAAABAAYAAAAFAA8AAAABAAcAAAAGAA4AAAAAAAYAAAAGAA8AAAAAAAcAAAAHAA4AAAABAAYAAAAHAA8AAAABAAcAAAAIAA4AAAAAAAYAAAAIAA8AAAAAAAcAAAABAAYAAAABAAYAAAABAAcAAAABAAcAAAACAAYAAAAAAAYAAAACAAcAAAAAAAcAAAABAAQAAAABAAYAAAABAAUAAAABAAcAAAACAAQAAAAAAAYAAAACAAUAAAAAAAcAAAABAAIA//////////8BAAMAAAAKAA4AAAACAAIA//////////8CAAMA///////////9/wYAAAADAAQAAAD9/wcA///////////+/wYAAAAAAAYAAAD+/wcAAAAAAAcAAAD9/wQA///////////9/wUA///////////+/wQA///////////+/wUA///////////9/wIA///////////9/wMA///////////+/wIA///////////+/wMA/////////////wIA/////////////wMA//////////8AAAIA//////////8AAAMAAAAKAA4AAAD3/wYA///////////3/wcA///////////4/wYA///////////4/wcA///////////3/wQA///////////3/wUA///////////4/wQA///////////4/wUA///////////3/wIA///////////3/wMA///////////4/wIA///////////4/wMA///////////3/wAA///////////3/wEA///////////4/wAA///////////4/wEA///////////3//7////////////3///////////////4//7////////////4///////////////3//z////////////3//3////////////4//z////////////4//3////////////3//r////////////3//v////////////4//r////////////4//v////////////3//j////////////3//n////////////4//j////////////4//n////////////3//b////////////3//f////////////4//b////////////4//f////////////5//b////////////5//f////////////6//b////////////6//f////////////7//b////////////7//f////////////8//b////////////8//f////////////9//b////////////9//f////////////+//b////////////+//f///////////////b///////////////f///////////8AAPb///////////8AAPf///////////8BAPb///////////8BAPf///////////8CAPb///////////8CAPf///////////8DAPb///////////8DAPf///////////8EAPb///////////8EAPf///////////8FAPb///////////8FAPf///////////8GAPb///////////8GAPf///////////8HAPb///////////8HAPf///////////8IAPb///////////8IAPf///////////8HAPj///////////8HAPn///////////8IAPj///////////8IAPn///////////8HAPr///////////8HAPv///////////8IAPr///////////8IAPv///////////8HAPz///////////8HAP3///////////8IAPz///////////8IAP3///////////8HAAIA//////////8HAAMA//////////8IAAIA//////////8IAAMA//////////8HAAQAAAABAAYAAAAHAAUAAAABAAcAAAAIAAQAAAAAAAYAAAAIAAUAAAAAAAcAAAAFAAIA//////////8GAAIA///////////5/wIA///////////6/wIA///////////5//j////////////5//n////////////6//j////////////6//n////////////5//r////////////5//v////////////6//r////////////6//v////////////7//j////////////7//n////////////8//j////////////8//n///////////////3///////////8AAP3///////////8FAAoA//////////8GAAoA///////////5/woA///////////6/woAAAAGAAgAAAD7/wYA///////////8/wYAAAACAAQAAAADAAYAAAABAAYAAAAEAAYAAAAAAAYAAAAJAA4AAAABAAYAAAAJAA8AAAABAAcAAAAKAA4AAAAAAAYAAAAKAA8AAAAAAAcAAAALAA4AAAABAAYAAAALAA8AAAABAAcAAAAMAA4AAAAAAAYAAAAMAA8AAAAAAAcAAAANAA4AAAABAAYAAAANAA8AAAABAAcAAAAOAA4AAAAAAAYAAAAOAA8AAAAAAAcAAAAPAA4AAAABAAYAAAAPAA8AAAABAAcAAAAQAA4AAAAAAAYAAAAQAA8AAAAAAAcAAAARAA4AAAABAAYAAAARAA8AAAABAAcAAAASAA4AAAAAAAYAAAASAA8AAAAAAAcAAAATAA4AAAABAAYAAAATAA8AAAABAAcAAAAUAA4AAAAAAAYAAAAUAA8AAAAAAAcAAAAVAA4AAAABAAYAAAAVAA8AAAABAAcAAAAWAA4AAAAAAAYAAAAWAA8AAAAAAAcAAAAXAA4AAAABAAYAAAAXAA8AAAABAAcAAAAYAA4A//////////8YAA8A//////////8ZAA4A//////////8ZAA8A//////////8aAA4A//////////8aAA8A//////////8bAA4A//////////8bAA8A//////////8cAA4A//////////8cAA8A//////////8bAAwA//////////8bAA0A//////////8cAAwA//////////8cAA0A//////////8bAAoA//////////8bAAsA//////////8cAAoA//////////8cAAsA//////////8bAAgA//////////8bAAkA//////////8cAAgA//////////8cAAkA//////////8bAAYA//////////8bAAcA//////////8cAAYA//////////8cAAcA//////////8ZAAYA//////////8ZAAcA//////////8aAAYA//////////8aAAcA//////////8XAAYAAAABAAYAAAAXAAcAAAABAAcAAAAYAAYA//////////8YAAcA//////////8RAAYA//////////8RAAcA//////////8SAAYAAAAKABIAAAASAAcA//////////8PAAYAAAABAAYAAAAPAAcAAAABAAcAAAAQAAYA//////////8QAAcA//////////8NAAYAAAABAAYAAAANAAcAAAABAAcAAAAOAAYAAAAAAAYAAAAOAAcAAAAAAAcAAAALAAYAAAABAAYAAAALAAcAAAABAAcAAAAMAAYAAAAAAAYAAAAMAAcAAAAAAAcAAAAJAAYAAAABAAYAAAAJAAcAAAABAAcAAAAKAAYAAAAAAAYAAAAKAAcAAAAAAAcAAAAJAAQAAAABAAYAAAAJAAUAAAABAAcAAAAKAAQAAAAAAAYAAAAKAAUAAAAAAAcAAAAPAAQAAAABAAYAAAAPAAUAAAABAAcAAAAQAAQA//////////8QAAUA//////////8PAAIA//////////8PAAMA//////////8QAAIA//////////8QAAMA//////////8PAAAA//////////8PAAEA//////////8QAAAA//////////8QAAEA//////////8RAAAA//////////8RAAEA//////////8SAAAA//////////8SAAEA//////////8TAAAA//////////8TAAEA//////////8UAAAA//////////8UAAEA//////////8VAAAA//////////8VAAEA//////////8WAAAA//////////8WAAEA//////////8XAAAA//////////8XAAEA//////////8YAAAA//////////8YAAEA//////////8ZAAAA//////////8ZAAEA//////////8aAAAA//////////8aAAEA//////////8bAAAA//////////8bAAEA//////////8cAAAA//////////8cAAEA//////////8dAAAA//////////8dAAEA//////////8eAAAA//////////8eAAEA//////////8fAAAA//////////8fAAEA//////////8gAAAA//////////8gAAEA//////////8hAAAA//////////8hAAEA//////////8iAAAA//////////8iAAEA//////////8jAAAA//////////8jAAEA//////////8kAAAA//////////8kAAEA//////////8dAAYA//////////8dAAcA//////////8eAAYA//////////8eAAcA//////////8fAAYA//////////8fAAcA//////////8gAAYA//////////8gAAcA//////////8hAAYA//////////8hAAcA//////////8iAAYA//////////8iAAcA//////////8jAAYA//////////8jAAcA//////////8kAAYA//////////8kAAcA//////////8jAAQA//////////8jAAUA//////////8kAAQA//////////8kAAUA//////////8jAAIA//////////8jAAMA//////////8kAAIA//////////8kAAMA//////////8VAAYAAAALABIAAAAWAAYAAAAAAAYAAAAVAAoA//////////8WAAoAAAAAAAYAAAAJAAIA//////////8KAAIA//////////8LAAIA//////////8MAAIA//////////8NAAIA//////////8OAAIA///////////6/wwAAAAAAAYAAAD6/w0AAAAAAAcAAAD7/wwAAAABAAYAAAD7/w0AAAABAAcAAAD8/wwAAAAAAAYAAAD8/w0AAAAAAAcAAAD//wwAAAABAAYAAAD//w0AAAABAAcAAAASAAwAAAAAAAYAAAASAA0AAAAAAAcAAAATAAwAAAABAAYAAAATAA0AAAABAAcAAAAUAAwAAAAAAAYAAAAUAA0AAAAAAAcAAAAVAAwAAAABAAYAAAAVAA0AAAABAAcAAAAWAAwAAAAAAAYAAAAWAA0AAAAAAAcAAAAXAAwAAAABAAYAAAAXAA0AAAABAAcAAAD//w4AAAABAAYAAAD//w8AAAABAAcAAAAAAA4AAAAAAAYAAAAAAA8AAAAAAAcAAAD//wYAAAABAAYAAAD//wcAAAABAAcAAAAAAAYAAAAAAAYAAAAAAAcAAAAAAAcAAAADAAcAAAABAAcAAAAEAAcAAAAAAAcAAAAFAAYAAAABAAYAAAAFAAcAAAABAAcAAAAGAAYAAAAAAAYAAAAGAAcAAAAAAAcAAAAHAAYAAAABAAYAAAAHAAcAAAABAAcAAAAIAAYAAAAAAAYAAAAIAAcAAAAAAAcAAAAOAAgAAAAAAAYAAAAOAAkAAAAAAAcAAAAPAAgAAAABAAYAAAAPAAkAAAABAAcAAAD//wgAAAANAA4AAAD//wkAAAANAA8AAAD//woAAAANAA4AAAD//wsAAAANAA8AAAADAAQAAAABAAYAAAADAAUAAAABAAcAAAALAAQAAAABAAYAAAALAAUAAAABAAcAAAAEAAQAAAAAAAYAAAAEAAUAAAAAAAcAAAAFAAQAAAABAAYAAAAFAAUAAAABAAcAAAAGAAQAAAAAAAYAAAAGAAUAAAAAAAcAAAAAAAQAAAAAAAYAAAAAAAUAAAAAAAcAAAAMAAQAAAAAAAYAAAAMAAUAAAAAAAcAAAANAAQAAAABAAYAAAANAAUAAAABAAcAAAD6/wsAAAAGAAkAAAD7/woAAAAHAAgAAAD7/wsAAAAHAAkAAAAWAAsAAAAAAAcAAAAXAAoAAAABAAYAAAAXAAsAAAABAAcAAAAWAAgAAAAAAAYAAAAWAAkAAAAAAAcAAAAXAAgAAAABAAYAAAAXAAkAAAABAAcAAAAWAAcAAAAAAAcAAAAWAAQAAAAAAAYAAAAWAAUAAAAAAAcAAAAXAAQAAAABAAYAAAAXAAUAAAABAAcAAAAOAAQAAAAAAAYAAAAOAAUAAAAAAAcAAAATAAYAAAALABIAAAAUAAYAAAAKABIAAAAIABAAAAAAAAYAAAAIABEAAAAAAAcAAAAJABAAAAABAAYAAAAJABEAAAABAAcAAAAKABAAAAAAAAYAAAAKABEAAAAAAAcAAAALABAAAAABAAYAAAALABEAAAABAAcAAAAGABAAAAAAAAYAAAAGABEAAAAAAAcAAAAHABAAAAABAAYAAAAHABEAAAABAAcAAAAEABAAAAAAAAYAAAAEABEAAAAAAAcAAAAFABAAAAABAAYAAAAFABEAAAABAAcAAAAQAAkAAAACAAQAAAARAAkAAAADAAQAAAD7/xAAAAAKAA4AAAD6/xAAAAAKAA4AAAD6/xEAAAAKAA4AAAD7/xEAAAAKAA4AAAD5/xEAAAAKAA4AAAAGABIAAAAKAA4AAAAHABIAAAAKAA4AAAAIABIAAAAKAA4AAAAJABIAAAAKAA4AAAAXABAAAAAKAA4AAAAWABAAAAAKAA4AAAAWABEAAAAKAA4AAAAXABEAAAAKAA4AAAAXABIAAAAKAA4AAAAWABIAAAAKAA4AAAD7/xIAAAAKAA4AAAD6/xIAAAAKAA4AAAD5/xIAAAAKAA4AAAD4/xIAAAAKAA4AAAD3/xIAAAAKAA4AAAD4/xEAAAAKAA4AAAD3/xEAAAAKAA4AAAD5/xAAAAAKAA4AAAD4/xAAAAAKAA4AAAAWAAMAAAAKAA4AAAAXAAMAAAAKAA4AAAA=")
+tile_set = ExtResource("5_dbpik")
+navigation_visibility_mode = 1
+
+[node name="WheelHitbox1" parent="." unique_id=1848788113 instance=ExtResource("6_7wndn")]
+position = Vector2(-6, 292)
+
+[node name="WheelHitbox2" parent="." unique_id=381639764 instance=ExtResource("6_7wndn")]
+position = Vector2(290, 292)
+metadata/whitbox = NodePath("../WheelCollider2")
+metadata/wsprite = NodePath("../MovementSprites/Wheel2")
+
+[node name="WheelCollider1" parent="." unique_id=1824074158 instance=ExtResource("7_i3cpe")]
+position = Vector2(-6, 282.5)
+
+[node name="WheelCollider2" parent="." unique_id=133361819 instance=ExtResource("7_i3cpe")]
+position = Vector2(289.5, 282.25)
+
+[node name="MovementSprites" type="Node2D" parent="." unique_id=1463226433]
+
+[node name="Wheel1" parent="MovementSprites" unique_id=540767917 instance=ExtResource("8_uqanl")]
+position = Vector2(-8, 280)
+
+[node name="Wheel2" parent="MovementSprites" unique_id=895685877 instance=ExtResource("8_uqanl")]
+position = Vector2(288, 280)
+
+[node name="Controllers" type="Node2D" parent="." unique_id=223670056]
+
+[node name="MovControlXAxis" type="Area2D" parent="Controllers" unique_id=1924572478]
+position = Vector2(80, 208)
+script = ExtResource("9_4rr5d")
+metadata/direction = 0
+metadata/labeltext = "Destroy Suspension"
+metadata/price = 5
+
+[node name="Hitbox" type="CollisionShape2D" parent="Controllers/MovControlXAxis" unique_id=873412707]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_d1ilt")
+debug_color = Color(3.85046e-06, 0.60451144, 0.25219792, 0.44705883)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Controllers/MovControlXAxis" unique_id=1723327234]
+material = SubResource("ShaderMaterial_dncu7")
+position = Vector2(1, -5)
+sprite_frames = SubResource("SpriteFrames_3pmx8")
+autoplay = "default"
+
+[node name="InteractionLabel" type="Label" parent="Controllers/MovControlXAxis" unique_id=1379727810]
+self_modulate = Color(1, 0, 0, 1)
+offset_left = -43.0
+offset_top = 25.0
+offset_right = 42.0
+offset_bottom = 58.0
+text = "Engage to 
+Destroy 
+Suspension"
+label_settings = SubResource("LabelSettings_u50mg")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="IndestructablePlatform" type="StaticBody2D" parent="Controllers/MovControlXAxis" unique_id=980938167]
+z_index = -1
+collision_layer = 16384
+collision_mask = 16384
+
+[node name="Sprite" type="Sprite2D" parent="Controllers/MovControlXAxis/IndestructablePlatform" unique_id=1666480404]
+position = Vector2(0.43750098, 21.999998)
+scale = Vector2(0.43750003, 0.4375)
+texture = ExtResource("12_4bhkk")
+region_enabled = true
+region_rect = Rect2(49, 225, 62, 29)
+
+[node name="Hitbox" type="CollisionShape2D" parent="Controllers/MovControlXAxis/IndestructablePlatform" unique_id=1419418622]
+position = Vector2(0.5, 24)
+shape = SubResource("RectangleShape2D_dncu7")
+one_way_collision = true
+
+[node name="SFX" type="Node2D" parent="Controllers/MovControlXAxis" unique_id=1455470533]
+
+[node name="Engage" type="AudioStreamPlayer2D" parent="Controllers/MovControlXAxis/SFX" unique_id=10282189]
+stream = ExtResource("13_ymsuo")
+bus = &"SFX"
+
+[node name="Disengage" type="AudioStreamPlayer2D" parent="Controllers/MovControlXAxis/SFX" unique_id=2063188478]
+stream = ExtResource("14_e2lq5")
+bus = &"SFX"
+
+[node name="Modules" type="Node2D" parent="." unique_id=139325739]
+
+[node name="AirstrikeCaller" type="RigidBody2D" parent="Modules" unique_id=2104638904]
+z_index = 10
+z_as_relative = false
+position = Vector2(192, 224)
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_hptm8")
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("15_npoxp")
+metadata/aim_speed = 2.0
+metadata/pinned_tile = Vector2i(0, 0)
+metadata/price = 25
+metadata/big_object = true
+metadata/airstrike_object = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Modules/AirstrikeCaller" unique_id=1263059184]
+material = SubResource("ShaderMaterial_hlkgw")
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_d1ilt")
+autoplay = "default"
+
+[node name="Marker" type="Sprite2D" parent="Modules/AirstrikeCaller" unique_id=670175906]
+visible = false
+texture = SubResource("GradientTexture2D_o332s")
+
+[node name="InteractionLabel" type="Label" parent="Modules/AirstrikeCaller" unique_id=1327889269]
+self_modulate = Color(1, 0, 0, 1)
+offset_left = -43.0
+offset_top = 1.0
+offset_right = 62.0
+offset_bottom = 45.0
+text = "Shoot to Destroy 
+Airstrike CommNet"
+label_settings = SubResource("LabelSettings_u50mg")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="Modules/AirstrikeCaller" unique_id=855111267]
+position = Vector2(1.5, -16)
+shape = SubResource("RectangleShape2D_m5l7g")
+
+[node name="SFX" type="Node2D" parent="Modules/AirstrikeCaller" unique_id=1570965498]
+
+[node name="Drain" type="AudioStreamPlayer2D" parent="Modules/AirstrikeCaller/SFX" unique_id=982742496]
+stream = ExtResource("17_r0cxt")
+max_distance = 200.0
+bus = &"SFX"
+
+[node name="Charge" type="AudioStreamPlayer2D" parent="Modules/AirstrikeCaller/SFX" unique_id=189773904]
+stream = ExtResource("18_0jd0f")
+max_distance = 700.0
+bus = &"SFX"
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="Modules/AirstrikeCaller/SFX" unique_id=1422459574]
+stream = ExtResource("19_rvvym")
+volume_db = -27.0
+autoplay = true
+max_distance = 200.0
+bus = &"SFX"
+parameters/looping = true
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="Modules/AirstrikeCaller/SFX" unique_id=269647526]
+bus = &"SFX"
+
+[node name="Gun" parent="Modules" unique_id=834209248 instance=ExtResource("20_ohs0s")]
+position = Vector2(-80, 176)
+metadata/pinned_tile = Vector2i(-3, 13)
+
+[node name="Gun2" parent="Modules" unique_id=557110876 instance=ExtResource("20_ohs0s")]
+position = Vector2(48, 80)
+metadata/pinned_tile = Vector2i(3, 5)
+
+[node name="Spawners" type="Node2D" parent="." unique_id=774132149]
+script = ExtResource("21_l6qr3")
+metadata/spawn_chance = 0.75
+
+[node name="1" type="Node2D" parent="Spawners" unique_id=2097822685]
+position = Vector2(208, 192)
+
+[node name="2" type="Node2D" parent="Spawners" unique_id=2143783085]
+position = Vector2(176, 32)
+
+[node name="3" type="Node2D" parent="Spawners" unique_id=1808351714]
+position = Vector2(48, 192)
+
+[node name="NPCs" type="Node2D" parent="." unique_id=362719547]
+
+[node name="Crosshair" type="AnimatedSprite2D" parent="." unique_id=416633391]
+modulate = Color(0.5294118, 1, 1, 1)
+z_index = 20
+z_as_relative = false
+position = Vector2(-568, 64)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_u50mg")
+autoplay = "default"
+
+[node name="ActionDecision" type="Timer" parent="." unique_id=709148271]
+wait_time = 0.5
+autostart = true
+
+[connection signal="interacted_with" from="Controllers/MovControlXAxis" to="." method="_on_mov_control_x_axis_interacted_with"]

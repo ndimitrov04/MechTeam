@@ -36,8 +36,18 @@ var direction : int = 1
 var asleep : bool = true
 
 var ai : bool = true
+var choice_ranges : PackedByteArray = [65, 80, 90]
+# Default values:
+# Move = [0, choice_ranges[0]]
+# Aim = [choice_ranges[0], choice_ranges[1]]
+# Airstrike = [choice_ranges[1], choice_ranges[2]]
+# Trigger Module = [choice_ranges[2], 100]
 
 func _ready():
+	# Load choice ranges of current mech
+	if has_meta("choice_ranges"):
+		choice_ranges = get_meta("choice_ranges")
+	
 	action_decision.timeout.connect(_on_action_decision_timeout)
 	await get_tree().create_timer(0.1).timeout
 	
@@ -150,18 +160,18 @@ func _on_action_decision_timeout():
 		direction = 0
 		return
 
-	# Move 65%
-	if action < 65 and not perma_brake:
+	# Move
+	if action < choice_ranges[0] and not perma_brake:
 		direction = directions.pick_random()
-	# Aim 15%
-	elif action >= 65 and action < 80:
+	# Aim
+	elif action >= choice_ranges[0] and action < choice_ranges[1]:
 		direction = 0
 		crosshair.position += Vector2(randi_range(-35, 35), randi_range(-35, 35))
-	# Call in airstrike 10%
-	elif action >= 80 and action < 90:
+	# Call in airstrike
+	elif action >= choice_ranges[1] and action < choice_ranges[2]:
 		airstrike()
-	# Shoot 10%
-	elif action >= 90:
+	# Shoot
+	elif action >= choice_ranges[2]:
 		if modules.get_child_count() > 0:
 			var module = null
 			# Find a random gun that can be crew controlled; Make 5 attempts
@@ -180,6 +190,13 @@ func is_on_floor():
 
 # Call in airstrike
 func airstrike():
+	var can_airstrike : bool = false
+	for module in modules.get_children():
+		if module.has_meta("airstrike_object"):
+			can_airstrike = true
+			break
+	if not can_airstrike:
+		return
 	const MORTAR_SHELL = preload("uid://di5dx65o5wvg3")
 	var bomb_instance = MORTAR_SHELL.instantiate()
 	main.add_child(bomb_instance)

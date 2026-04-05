@@ -22,13 +22,14 @@ extends CharacterBody2D
 @onready var friendly_unit : bool = true
 
 # Consts
-const SPEED = 150.0
+const SPEED = 170.0
 const AIMSPEED = 750
 const JUMP_VELOCITY = -350.0
 
 # Internal game vars
 var last_platform_velocity : Vector2 = Vector2.ZERO
 
+var direction
 var zoom : Vector2 = Vector2(2,2)
 var last_zoom : Vector2 = zoom
 var aim_mode : bool = false
@@ -109,7 +110,7 @@ func _physics_process(delta):
 		mech.crosshair.position += Vector2(aim_x*AIMSPEED*delta, aim_y*AIMSPEED*delta)
 
 	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis("left", "right")
+	direction = Input.get_axis("left", "right")
 	if direction and not aim_mode and not minigame_mode:
 		if direction > 0:
 			sprite.flip_h = false

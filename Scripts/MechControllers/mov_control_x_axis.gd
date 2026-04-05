@@ -23,6 +23,22 @@ var first_interaction : bool = true
 func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	
+@onready var mod_label: Label = $ModLabel
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	if has_meta("enemy_mod"):
+		if Input.is_action_pressed("scan"):
+			mod_label.show()
+			sprite.material.set_shader_parameter("color", Color(1, 0, 0))
+		else:
+			mod_label.hide()
+			sprite.material.set_shader_parameter("color", Color(1, 1, 1))
+	else:
+		if Input.is_action_pressed("scan"):
+			interaction_label.show()
+		elif not player_in_range:
+			interaction_label.hide()
 
 func _unhandled_input(event):
 	if player_in_range:

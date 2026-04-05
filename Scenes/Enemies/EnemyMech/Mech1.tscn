@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cuhp74yuarb08" path="res://Scenes/MovementObjects/wheel_collider_1.tscn" id="7_ojagv"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="8_rwft3"]
 [ext_resource type="Script" uid="uid://c65hpvf8mn4fl" path="res://Scripts/Behaviors/preset_enemy_spawning.gd" id="9_2d2mi"]
+[ext_resource type="PackedScene" uid="uid://bpluligp45uvw" path="res://Scenes/Modules/EnemyMods/airstrike_caller.tscn" id="13_hqs80"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u50mg"]
 animations = [{
@@ -29,6 +30,7 @@ collision_layer = 8192
 collision_mask = 8192
 script = ExtResource("1_vfcbj")
 metadata/hp = 30
+metadata/choice_ranges = PackedByteArray("N0ZQ")
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_gegrq")]
 material = ExtResource("3_pi20n")
@@ -77,8 +79,12 @@ position = Vector2(640, 280)
 position = Vector2(80, 208)
 metadata/direction = 0
 metadata/labeltext = "Brake"
+metadata/enemy_mod = true
 
 [node name="Modules" type="Node2D" parent="." unique_id=33090995]
+
+[node name="AirstrikeCaller" parent="Modules" unique_id=43215061 instance=ExtResource("13_hqs80")]
+position = Vector2(176, 64)
 
 [node name="Gun" parent="Modules" unique_id=834209248 instance=ExtResource("7_mhfcp")]
 position = Vector2(-80, 176)

@@ -7,12 +7,11 @@ func _on_retry_pressed():
 
 func _on_menu_pressed():
 	# Reset game variables
-	PlayerData.money = 200
-	PlayerData.current_stage = 1
 	DirAccess.remove_absolute("user://mechteam_save.tres")
 	MechData.load_from_file()
 	MechData.mechs.clear()
 	print("Game data cleared.")
+	PlayerData.reset()
 	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
 
 func _on_visibility_changed():

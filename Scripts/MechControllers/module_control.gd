@@ -45,6 +45,10 @@ func _ready():
 	interaction_label.text = get_meta("labeltext")
 
 func _process(_delta):
+	if Input.is_action_pressed("scan"):
+		interaction_label.show()
+	elif not player_in_range:
+		interaction_label.hide()
 	var time_elapsed = cooldown_time - timer.time_left
 	var time_percentage_left = time_elapsed / cooldown_time * cooldown_bar.max_value
 	cooldown_bar.value = cooldown_bar.max_value - time_percentage_left

@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://c65hpvf8mn4fl" path="res://Scripts/Behaviors/preset_enemy_spawning.gd" id="9_qcb7d"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="10_6m86x"]
 [ext_resource type="PackedScene" uid="uid://dkk6dac4fqg53" path="res://Scenes/Controllers/mov_control_x_axis.tscn" id="12_1ypu3"]
+[ext_resource type="PackedScene" uid="uid://bpluligp45uvw" path="res://Scenes/Modules/EnemyMods/airstrike_caller.tscn" id="15_125bp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1ypu3"]
 friction = 0.0
@@ -35,6 +36,7 @@ collision_mask = 8192
 physics_material_override = SubResource("PhysicsMaterial_1ypu3")
 script = ExtResource("1_5syey")
 metadata/hp = 45
+metadata/choice_ranges = PackedByteArray("QUZf")
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_h7n35")]
 material = ExtResource("3_67ym3")
@@ -47,11 +49,6 @@ tile_set = ExtResource("4_dxt5m")
 [node name="WheelHitbox1" parent="." unique_id=1848788113 instance=ExtResource("5_67ym3")]
 position = Vector2(112, 408)
 
-[node name="WheelHitbox2" parent="." unique_id=1677203010 instance=ExtResource("5_67ym3")]
-position = Vector2(496, 410)
-metadata/whitbox = NodePath("../WheelCollider2")
-metadata/wsprite = NodePath("../MovementSprites/Wheel2")
-
 [node name="WheelHitbox3" parent="." unique_id=1339897267 instance=ExtResource("5_67ym3")]
 position = Vector2(880, 410)
 metadata/whitbox = NodePath("../WheelCollider3")
@@ -60,9 +57,6 @@ metadata/wsprite = NodePath("../MovementSprites/Wheel3")
 [node name="WheelCollider1" parent="." unique_id=1824074158 instance=ExtResource("6_yt2lo")]
 position = Vector2(112, 390)
 
-[node name="WheelCollider2" parent="." unique_id=1318474398 instance=ExtResource("6_yt2lo")]
-position = Vector2(496, 390)
-
 [node name="WheelCollider3" parent="." unique_id=1709539280 instance=ExtResource("6_yt2lo")]
 position = Vector2(880, 390)
 
@@ -70,9 +64,6 @@ position = Vector2(880, 390)
 
 [node name="Wheel1" parent="MovementSprites" unique_id=540767917 instance=ExtResource("7_5syey")]
 position = Vector2(112, 391)
-
-[node name="Wheel2" parent="MovementSprites" unique_id=1699623866 instance=ExtResource("7_5syey")]
-position = Vector2(496, 391)
 
 [node name="Wheel3" parent="MovementSprites" unique_id=210860432 instance=ExtResource("7_5syey")]
 position = Vector2(880, 391)
@@ -83,26 +74,18 @@ position = Vector2(880, 391)
 position = Vector2(160, 145)
 metadata/direction = 0
 metadata/labeltext = "Break"
+metadata/enemy_mod = true
 
 [node name="Modules" type="Node2D" parent="." unique_id=33090995]
+
+[node name="AirstrikeCaller" parent="Modules" unique_id=353034105 instance=ExtResource("15_125bp")]
+position = Vector2(688, 144)
 
 [node name="DroneGenerator" parent="Modules" unique_id=834209248 instance=ExtResource("9_dxt5m")]
 position = Vector2(239, 161)
 
 [node name="Gun" parent="Modules" unique_id=524628861 instance=ExtResource("8_pkt0r")]
 position = Vector2(96, 0)
-
-[node name="Gun2" parent="Modules" unique_id=110667167 instance=ExtResource("8_pkt0r")]
-position = Vector2(232, 0)
-
-[node name="Gun3" parent="Modules" unique_id=853403411 instance=ExtResource("8_pkt0r")]
-position = Vector2(128, 312)
-
-[node name="Gun4" parent="Modules" unique_id=781318495 instance=ExtResource("8_pkt0r")]
-position = Vector2(256, 312)
-
-[node name="Gun5" parent="Modules" unique_id=939339680 instance=ExtResource("8_pkt0r")]
-position = Vector2(504, 312)
 
 [node name="AutoGun" parent="Modules" unique_id=1127020541 instance=ExtResource("9_h7n35")]
 position = Vector2(120, -56)
@@ -138,9 +121,6 @@ position = Vector2(728, -32)
 
 [node name="7" type="Node2D" parent="Spawners" unique_id=478663339]
 position = Vector2(224, -64)
-
-[node name="8" type="Node2D" parent="Spawners" unique_id=338105967]
-position = Vector2(-32, 328)
 
 [node name="NPCs" type="Node2D" parent="." unique_id=1123477044]
 

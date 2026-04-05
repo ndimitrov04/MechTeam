@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d2hosm7xhaf38"]
+
+[ext_resource type="Script" uid="uid://wwdrd3baig56" path="res://Scripts/Behaviors/platform_detector.gd" id="1_wwsdk"]
+
+[node name="PlatformDetector" type="RayCast2D" unique_id=18091374]
+target_position = Vector2(0, 105)
+script = ExtResource("1_wwsdk")

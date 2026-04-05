@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="11_p2t8f"]
 [ext_resource type="PackedScene" uid="uid://dkk6dac4fqg53" path="res://Scenes/Controllers/mov_control_x_axis.tscn" id="12_rpo7w"]
 [ext_resource type="PackedScene" uid="uid://c803xurnxvrtb" path="res://Scenes/Modules/EnemyMods/drone_generator.tscn" id="13_w70a5"]
+[ext_resource type="PackedScene" uid="uid://bpluligp45uvw" path="res://Scenes/Modules/EnemyMods/airstrike_caller.tscn" id="15_53oxl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a4e53"]
 friction = 0.0
@@ -35,6 +36,7 @@ collision_mask = 8192
 physics_material_override = SubResource("PhysicsMaterial_a4e53")
 script = ExtResource("1_a4e53")
 metadata/hp = 45
+metadata/choice_ranges = PackedByteArray("N1Va")
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_w70a5")]
 material = ExtResource("3_53oxl")
@@ -83,8 +85,12 @@ position = Vector2(880, 391)
 position = Vector2(226, 256)
 metadata/direction = 0
 metadata/labeltext = "Break"
+metadata/enemy_mod = true
 
 [node name="Modules" type="Node2D" parent="." unique_id=33090995]
+
+[node name="AirstrikeCaller" parent="Modules" unique_id=1331754021 instance=ExtResource("15_53oxl")]
+position = Vector2(208, 336)
 
 [node name="DroneGenerator" parent="Modules" unique_id=1975261127 instance=ExtResource("13_w70a5")]
 position = Vector2(638, 303)
@@ -94,15 +100,6 @@ position = Vector2(112, 240)
 
 [node name="Gun2" parent="Modules" unique_id=1862339585 instance=ExtResource("8_qve30")]
 position = Vector2(112, 304)
-
-[node name="Gun3" parent="Modules" unique_id=1618205691 instance=ExtResource("8_qve30")]
-position = Vector2(368, 112)
-
-[node name="Gun4" parent="Modules" unique_id=244060813 instance=ExtResource("8_qve30")]
-position = Vector2(432, 48)
-
-[node name="Gun5" parent="Modules" unique_id=340281853 instance=ExtResource("8_qve30")]
-position = Vector2(320, -128)
 
 [node name="AutoGun" parent="Modules" unique_id=503654748 instance=ExtResource("9_gokd2")]
 position = Vector2(288, 96)

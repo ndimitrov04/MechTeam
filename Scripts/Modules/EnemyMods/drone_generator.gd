@@ -58,9 +58,16 @@ func _ready():
 	await get_tree().create_timer(1).timeout
 	_spawn_enemy()
 
+@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var interaction_label: Label = $InteractionLabel
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	pass
+	if Input.is_action_pressed("scan"):
+		interaction_label.show()
+		sprite.material.set_shader_parameter("color", Color(1, 0, 0))
+	else:
+		interaction_label.hide()
+		sprite.material.set_shader_parameter("color", Color(1, 1, 1))
 
 func _input_event(_viewport, event, _shape_idx):
 	if get_parent().get_parent().name == "Mech":

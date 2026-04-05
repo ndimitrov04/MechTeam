@@ -20,6 +20,12 @@ func _ready():
 	body_exited.connect(_on_body_exited)
 	interaction_label.text = get_meta("labeltext")
 
+func _process(_delta):
+	if Input.is_action_pressed("scan"):
+		interaction_label.show()
+	elif not player_in_range:
+		interaction_label.hide()
+
 func _unhandled_input(event):
 	if player_in_range:
 		if event.is_action_pressed("interact"):

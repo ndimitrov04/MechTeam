@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dkk6dac4fqg53"]
 
 [ext_resource type="Script" uid="uid://dy8gvg3wwqymn" path="res://Scripts/MechControllers/mov_control_x_axis.gd" id="1_3c7ac"]
-[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="2_edgd4"]
 [ext_resource type="Texture2D" uid="uid://b1wt3rxhih26o" path="res://Images/Objects/Control1/Screen2.png" id="2_f77a1"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_edgd4"]
 [ext_resource type="Texture2D" uid="uid://ds3cnl75d7mh6" path="res://Images/Tilesets/Industrial_Tileset.png" id="5_edgd4"]
@@ -11,8 +10,55 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
 size = Vector2(26, 34)
 
+[sub_resource type="Shader" id="Shader_dncu7"]
+code = "shader_type canvas_item;
+
+uniform vec4 color : source_color = vec4(1.0);
+
+uniform int pixels_to_check = 1;
+uniform int center_distance_cap = 1;
+
+bool has_neighbor(vec2 uv, vec2 texture_pixel_size, sampler2D sprite_texture) {
+	for (int x = -pixels_to_check; x < pixels_to_check + 1; x+= 1) {
+		for (int y = -pixels_to_check; y < pixels_to_check + 1; y+= 1) {
+			
+			if (x == 0 && y == 0) {
+				continue;
+			}
+			if (abs(x) + abs(y) > center_distance_cap) {
+				continue;
+			}
+			
+			vec2 xy = vec2(float(x), float(y));
+			vec2 sprite_coordinates = uv + xy * texture_pixel_size;
+			if (texture(sprite_texture, sprite_coordinates).a > .0) {
+				return true;
+			}
+			
+		}
+	}
+	
+	return false;
+	
+}
+
+void fragment() {
+	
+	if (COLOR.a == .0 && has_neighbor(UV, TEXTURE_PIXEL_SIZE, TEXTURE)) {
+		COLOR = color;
+	}
+	
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dncu7"]
-shader = ExtResource("2_edgd4")
+resource_local_to_scene = true
+shader = SubResource("Shader_dncu7")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/pixels_to_check = 1
 shader_parameter/center_distance_cap = 1
@@ -60,6 +106,14 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
+[sub_resource type="LabelSettings" id="LabelSettings_dncu7"]
+line_spacing = 0.0
+font = ExtResource("3_edgd4")
+font_color = Color(1, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dncu7"]
 size = Vector2(27, 13)
 
@@ -88,6 +142,20 @@ offset_right = 42.0
 offset_bottom = -24.0
 text = "Go Right"
 label_settings = SubResource("LabelSettings_u50mg")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ModLabel" type="Label" parent="." unique_id=688231698]
+visible = false
+offset_left = -43.0
+offset_top = 25.0
+offset_right = 42.0
+offset_bottom = 48.0
+text = "Engage to
+Destroy
+Suspension"
+label_settings = SubResource("LabelSettings_dncu7")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
