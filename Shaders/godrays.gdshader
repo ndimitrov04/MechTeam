@@ -23,8 +23,8 @@ float local_brightness(vec2 uv) {
 
     float offset = 0.002; // tweak based on resolution
 
-    for (int x = -2; x <= 2; x++) {
-        for (int y = -2; y <= 2; y++) {
+    for (int x = -1; x <= 1; x++) {
+        for (int y = -1; y <= 1; y++) {
             vec2 o = vec2(float(x), float(y)) * offset;
             vec3 col = texture(SCREEN_TEXTURE, uv + o).rgb;
             sum += luminance(col);
