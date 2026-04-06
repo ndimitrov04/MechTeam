@@ -113,6 +113,7 @@
 [ext_resource type="PackedScene" uid="uid://7pvmbpigkpq1" path="res://Scenes/Projectiles/bullet.tscn" id="92_l6lkl"]
 [ext_resource type="Texture2D" uid="uid://l0br0i4oadx" path="res://Images/MechGuns/turret_01_mk1.png" id="93_df6mt"]
 [ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="94_kxhne"]
+[ext_resource type="PackedScene" uid="uid://y84ad1x71nus" path="res://Scenes/Misc/smoke.tscn" id="95_50v2b"]
 [ext_resource type="AudioStream" uid="uid://mjrlfhuxnkmp" path="res://Audio/SFX/Modules/bang_04.ogg" id="95_s3rjo"]
 [ext_resource type="AudioStream" uid="uid://dfgtuk70n5ubo" path="res://Audio/Music/07 high in the mountains.ogg" id="115_dtx0r"]
 
@@ -2133,6 +2134,9 @@ shape = SubResource("CapsuleShape2D_d1ilt")
 
 [node name="ShootPoint" type="Node2D" parent="Mech/Modules/Gun" unique_id=670362176]
 position = Vector2(40, 0)
+
+[node name="Smoke" parent="Mech/Modules/Gun/ShootPoint" unique_id=582111232 instance=ExtResource("95_50v2b")]
+position = Vector2(-5, 0)
 
 [node name="SFX" type="Node2D" parent="Mech/Modules/Gun" unique_id=280823543]
 

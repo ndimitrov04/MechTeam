@@ -84,6 +84,7 @@
 [ext_resource type="Texture2D" uid="uid://dyt0o42f7o4f6" path="res://Images/Objects/Generator/tile017.png" id="87_aku6e"]
 [ext_resource type="AudioStream" uid="uid://ctju2u7uhycnw" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Boost PowerDown_v1.wav" id="88_ec212"]
 [ext_resource type="AudioStream" uid="uid://c2yvv86sp1kpa" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Build Up_Short_var 1.wav" id="89_w4n0l"]
+[ext_resource type="PackedScene" uid="uid://y84ad1x71nus" path="res://Scenes/Misc/smoke.tscn" id="90_awcoh"]
 [ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="90_rmn85"]
 [ext_resource type="Script" uid="uid://cp3kgexvunvtf" path="res://Scripts/Modules/Weapons/gun.gd" id="91_h0wpx"]
 [ext_resource type="PackedScene" uid="uid://7pvmbpigkpq1" path="res://Scenes/Projectiles/bullet.tscn" id="92_v0l8k"]
@@ -1144,6 +1145,9 @@ shape = SubResource("CapsuleShape2D_d1ilt")
 [node name="ShootPoint" type="Node2D" parent="Mech/Modules/Gun" unique_id=670362176]
 position = Vector2(40, 0)
 
+[node name="Smoke" parent="Mech/Modules/Gun/ShootPoint" unique_id=582111232 instance=ExtResource("90_awcoh")]
+position = Vector2(-5, 0)
+
 [node name="SFX" type="Node2D" parent="Mech/Modules/Gun" unique_id=280823543]
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="Mech/Modules/Gun/SFX" unique_id=1383703712]
@@ -1216,6 +1220,9 @@ shape = SubResource("CapsuleShape2D_d1ilt")
 
 [node name="ShootPoint" type="Node2D" parent="Mech/Modules/Gun2" unique_id=1392146954]
 position = Vector2(40, 0)
+
+[node name="Smoke" parent="Mech/Modules/Gun2/ShootPoint" unique_id=1019161387 instance=ExtResource("90_awcoh")]
+position = Vector2(-5, 0)
 
 [node name="SFX" type="Node2D" parent="Mech/Modules/Gun2" unique_id=603878843]
 
@@ -1290,6 +1297,9 @@ shape = SubResource("CapsuleShape2D_d1ilt")
 [node name="ShootPoint" type="Node2D" parent="Mech/Modules/Gun3" unique_id=1923040926]
 position = Vector2(40, 0)
 
+[node name="Smoke" parent="Mech/Modules/Gun3/ShootPoint" unique_id=616867754 instance=ExtResource("90_awcoh")]
+position = Vector2(-5, 0)
+
 [node name="SFX" type="Node2D" parent="Mech/Modules/Gun3" unique_id=1292349353]
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="Mech/Modules/Gun3/SFX" unique_id=2101694925]
@@ -1362,6 +1372,9 @@ shape = SubResource("CapsuleShape2D_d1ilt")
 
 [node name="ShootPoint" type="Node2D" parent="Mech/Modules/Gun4" unique_id=1039731678]
 position = Vector2(40, 0)
+
+[node name="Smoke" parent="Mech/Modules/Gun4/ShootPoint" unique_id=2005141570 instance=ExtResource("90_awcoh")]
+position = Vector2(-5, 0)
 
 [node name="SFX" type="Node2D" parent="Mech/Modules/Gun4" unique_id=1483609805]
 
