@@ -5,7 +5,7 @@ func _unhandled_input(event):
 		if visible:
 			hide()
 			get_tree().paused = false
-		else:
+		elif not visible and get_tree().current_scene.name != "Menu":
 			show()
 			get_tree().paused = true
 

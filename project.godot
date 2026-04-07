@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="MechTeam"
-config/version="0.386"
+config/version="0.39"
 run/main_scene="uid://m4q4cm7li360"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/use_filter=false
@@ -31,6 +31,7 @@ buses/default_bus_layout="uid://qhe3qgmosvnd"
 
 MechData="*res://Scripts/Globals/mech_data.gd"
 PlayerData="*uid://dx0gnk8ix335p"
+OptionMenu="*uid://ckel0dyg6a0hs"
 
 [display]
 

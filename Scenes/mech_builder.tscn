@@ -45,7 +45,6 @@
 [ext_resource type="AudioStream" uid="uid://dkbxm1b82vxc3" path="res://Audio/SFX/UI/mouseclick1.wav" id="40_15liy"]
 [ext_resource type="AudioStream" uid="uid://bgyn152peon2x" path="res://Audio/SFX/UI/unit_ready.ogg" id="41_pqdt3"]
 [ext_resource type="AudioStream" uid="uid://c0xkx2vswbwu4" path="res://Audio/SFX/UI/unit_canceled.ogg" id="42_fnvon"]
-[ext_resource type="PackedScene" uid="uid://ckel0dyg6a0hs" path="res://Scenes/option_menu.tscn" id="45_7vk52"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rirod"]
 texture = ExtResource("3_34mun")
@@ -1265,8 +1264,6 @@ stream = ExtResource("42_fnvon")
 volume_db = -5.0
 max_polyphony = 2
 bus = &"SFX"
-
-[node name="Menu" parent="." unique_id=1660427890 instance=ExtResource("45_7vk52")]
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1629900139]
 stream = ExtResource("10_q3hfk")

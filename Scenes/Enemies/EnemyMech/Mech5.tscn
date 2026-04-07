@@ -30,8 +30,8 @@ animations = [{
 collision_layer = 8192
 collision_mask = 8192
 script = ExtResource("1_xaqjh")
-metadata/hp = 20
-metadata/choice_ranges = PackedByteArray("UFpf")
+metadata/hp = 30
+metadata/choice_ranges = PackedByteArray("QUZf")
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_uvdv6")]
 material = ExtResource("3_4t5wm")
@@ -79,24 +79,21 @@ position = Vector2(495, 320)
 
 [node name="AutoGun" parent="Modules" unique_id=1700531767 instance=ExtResource("11_4t5wm")]
 position = Vector2(400, 352)
-rotation = 3.1415927
 
 [node name="AutoGun2" parent="Modules" unique_id=227516509 instance=ExtResource("11_4t5wm")]
 position = Vector2(16, 480)
-rotation = 3.1415927
 metadata/default_angle = 180.0
 
 [node name="AutoGun3" parent="Modules" unique_id=1572707037 instance=ExtResource("11_4t5wm")]
 position = Vector2(144, 448)
-rotation = 3.1415927
 metadata/default_angle = 180.0
 
 [node name="Gun" parent="Modules" unique_id=512166110 instance=ExtResource("10_1bhwb")]
-position = Vector2(80, 320)
+position = Vector2(16, 320)
 metadata/pinned_tile = Vector2i(-3, 13)
 
 [node name="Gun2" parent="Modules" unique_id=1484137075 instance=ExtResource("10_1bhwb")]
-position = Vector2(152, 64)
+position = Vector2(16, 256)
 metadata/pinned_tile = Vector2i(3, 5)
 
 [node name="Spawners" type="Node2D" parent="." unique_id=1122453186]

@@ -21,8 +21,13 @@ const MECH_1 = preload("uid://b8wn41m8pycq8")
 const MECH_2 = preload("uid://c6itfhereaxo0")
 const MECH_3 = preload("uid://j5p75yywprhn")
 const MECH_4 = preload("uid://b6st1n1r2654j")
+const MECH_5 = preload("uid://cswrah0x8i0f4")
+const MECH_6 = preload("uid://1wjcby4h5nyl")
+const MECH_7 = preload("uid://bfhkp7r7o5oi4")
+const MECH_8 = preload("uid://cpdelmkd6jtbm")
+const MECH_9 = preload("uid://dh2noacyx7w6x")
 
-@onready var enemies = [MECH_1, MECH_2, MECH_3, MECH_4]
+@onready var enemies = [MECH_1, MECH_2, MECH_3, MECH_4, MECH_5, MECH_6, MECH_7, MECH_8, MECH_9]
 @onready var Y_SPAWN = -650 # Y-Level at which mechs will spawn
 
 var end_text : String = ""

@@ -81,7 +81,8 @@ func engage():
 		await get_tree().create_timer(0.15).timeout
 		shoot_sfx.pitch_scale = randf_range(0.8, 1.2)
 		shoot_sfx.play()
-		smoke.emitting = true
+		if smoke:
+			smoke.emitting = true
 		var bullet_instance = bullet.instantiate()
 		main.add_child(bullet_instance)
 		# Determine who the bullet will hurt

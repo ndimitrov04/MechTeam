@@ -34,6 +34,7 @@ var perma_brake : bool = false
 var direction : int = 1
 
 var asleep : bool = true
+var destroyed : bool = false
 
 var ai : bool = true
 var choice_ranges : PackedByteArray = [65, 80, 90]
@@ -122,6 +123,8 @@ func take_damage(damage_value : int):
 		die()
 
 func die():
+	destroyed = true
+	
 	# Destroy wheels
 	for child in self.get_children():
 		if child.has_meta("whitbox"):

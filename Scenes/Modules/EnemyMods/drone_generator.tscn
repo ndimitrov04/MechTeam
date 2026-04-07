@@ -137,7 +137,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=112413684]
-wait_time = 10.0
+wait_time = 15.0
 autostart = true
 
 [node name="SFX" type="Node2D" parent="." unique_id=1580841413]
