@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cbca6xdhii5cn"
+path="res://.godot/imported/Sequence_SciFi Pack Vol 1_Mechanical LOOP.ogg-a7b8c20508e0eb02d0a4bd3c735feae8.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/SFX/Modules/Sequence_SciFi Pack Vol 1_Mechanical LOOP.ogg"
+dest_files=["res://.godot/imported/Sequence_SciFi Pack Vol 1_Mechanical LOOP.ogg-a7b8c20508e0eb02d0a4bd3c735feae8.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

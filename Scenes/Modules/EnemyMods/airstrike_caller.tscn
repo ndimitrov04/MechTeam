@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://dndcwl738edf5" path="res://Scripts/Modules/EnemyMods/airstrike_caller.gd" id="1_0qxdi"]
 [ext_resource type="Texture2D" uid="uid://cihbppdoipueb" path="res://Images/Objects/Decor/decor_3.png" id="2_jfodm"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_jfodm"]
-[ext_resource type="AudioStream" uid="uid://ctju2u7uhycnw" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Boost PowerDown_v1.wav" id="3_yetb0"]
-[ext_resource type="AudioStream" uid="uid://c2yvv86sp1kpa" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Build Up_Short_var 1.wav" id="4_hlkgw"]
-[ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="5_7fm78"]
+[ext_resource type="AudioStream" uid="uid://4tcc2wxsamaw" path="res://Audio/SFX/Modules/Loop_SciFi Pack Vol 1_Futuristic Machine Hum.ogg" id="4_x46vm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
 friction = 0.9
@@ -144,21 +142,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SFX" type="Node2D" parent="." unique_id=1580841413]
 
-[node name="Drain" type="AudioStreamPlayer2D" parent="SFX" unique_id=1439534329]
-stream = ExtResource("3_yetb0")
-max_distance = 200.0
-bus = &"SFX"
-
-[node name="Charge" type="AudioStreamPlayer2D" parent="SFX" unique_id=1702358490]
-stream = ExtResource("4_hlkgw")
-max_distance = 700.0
-bus = &"SFX"
-
 [node name="Ambient" type="AudioStreamPlayer2D" parent="SFX" unique_id=883132215]
-stream = ExtResource("5_7fm78")
-volume_db = -27.0
+stream = ExtResource("4_x46vm")
+volume_db = -1.605
 autoplay = true
 max_distance = 200.0
+attenuation = 0.7578583
 bus = &"SFX"
 parameters/looping = true
 

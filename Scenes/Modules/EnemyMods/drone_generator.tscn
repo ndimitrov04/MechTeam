@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://bjptx8w4jyuq2" path="res://Scripts/Modules/EnemyMods/drone_generator.gd" id="1_hwlt0"]
 [ext_resource type="Texture2D" uid="uid://blw0qobpbfk6b" path="res://Images/Objects/Decor/decor_5.png" id="2_446kb"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_cberv"]
-[ext_resource type="AudioStream" uid="uid://ctju2u7uhycnw" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Boost PowerDown_v1.wav" id="20_fxd1o"]
-[ext_resource type="AudioStream" uid="uid://c2yvv86sp1kpa" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Build Up_Short_var 1.wav" id="21_o4esj"]
-[ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="22_fol1b"]
+[ext_resource type="AudioStream" uid="uid://cbca6xdhii5cn" path="res://Audio/SFX/Modules/Sequence_SciFi Pack Vol 1_Mechanical LOOP.ogg" id="4_cknub"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
 friction = 0.9
@@ -142,21 +140,12 @@ autostart = true
 
 [node name="SFX" type="Node2D" parent="." unique_id=1580841413]
 
-[node name="Drain" type="AudioStreamPlayer2D" parent="SFX" unique_id=1439534329]
-stream = ExtResource("20_fxd1o")
-max_distance = 200.0
-bus = &"SFX"
-
-[node name="Charge" type="AudioStreamPlayer2D" parent="SFX" unique_id=1702358490]
-stream = ExtResource("21_o4esj")
-max_distance = 700.0
-bus = &"SFX"
-
 [node name="Ambient" type="AudioStreamPlayer2D" parent="SFX" unique_id=883132215]
-stream = ExtResource("22_fol1b")
-volume_db = -27.0
+stream = ExtResource("4_cknub")
+volume_db = -2.008
 autoplay = true
 max_distance = 200.0
+attenuation = 0.6597539
 bus = &"SFX"
 parameters/looping = true
 

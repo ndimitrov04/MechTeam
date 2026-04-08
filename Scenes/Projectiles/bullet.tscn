@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ys2p1s6abkep" path="res://Images/Projectiles/SpaceStation_Projectiles_Sheet.png" id="1_12ur6"]
 [ext_resource type="Script" uid="uid://dnj15b84lvxlb" path="res://Scripts/Projectiles/bullet.gd" id="1_3323x"]
+[ext_resource type="AudioStream" uid="uid://bnscl4djdcyow" path="res://Audio/SFX/Modules/bang_02.ogg" id="3_t1vox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12ur6"]
 size = Vector2(9, 4)
@@ -65,3 +66,7 @@ frame_progress = 0.43615592
 [node name="Timer" type="Timer" parent="." unique_id=1522506310]
 wait_time = 3.0
 one_shot = true
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1359933576]
+stream = ExtResource("3_t1vox")
+autoplay = true

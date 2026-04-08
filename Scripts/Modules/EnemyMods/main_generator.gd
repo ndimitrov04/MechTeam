@@ -3,8 +3,6 @@ extends RigidBody2D
 @onready var main = $"../../.."
 @onready var mech = $"../.."
 
-@onready var drain_sfx: AudioStreamPlayer2D = $SFX/Drain
-@onready var charge_sfx: AudioStreamPlayer2D = $SFX/Charge
 @onready var ambient: AudioStreamPlayer2D = $SFX/Ambient
 @onready var drop_sfx: AudioStreamPlayer2D = $SFX/Drop
 

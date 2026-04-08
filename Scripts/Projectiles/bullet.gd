@@ -14,7 +14,7 @@ extends RigidBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	body_entered.connect(_on_body_entered)
+	#body_entered.connect(_on_body_entered)
 	timer.timeout.connect(_on_timeout)
 	timer.start(lifetime)
 

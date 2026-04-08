@@ -342,7 +342,7 @@ use_kinematic_bodies = true
 wait_time = 3.0
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1658774164]
-volume_db = -15.0
-attenuation = 2.4622905
+volume_db = -12.0
+attenuation = 2.0000014
 max_polyphony = 2
 bus = &"SFX"

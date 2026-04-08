@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://bdt6y3mg2fgjs" path="res://Scripts/Modules/EnemyMods/main_generator.gd" id="1_vtp86"]
 [ext_resource type="Texture2D" uid="uid://bpmdolkg0pjmm" path="res://Images/Objects/Decor/decor_4.png" id="2_vtp86"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_mg7tn"]
-[ext_resource type="AudioStream" uid="uid://ctju2u7uhycnw" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Boost PowerDown_v1.wav" id="4_cbmpb"]
-[ext_resource type="AudioStream" uid="uid://c2yvv86sp1kpa" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Build Up_Short_var 1.wav" id="5_87yg4"]
-[ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="6_rq7uv"]
+[ext_resource type="AudioStream" uid="uid://b3o8urgq0unm3" path="res://Audio/SFX/Modules/Loop_SciFi Pack Vol 1_Ship Interior Near Engine_v1 .ogg" id="4_rt85p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
 friction = 0.9
@@ -144,21 +142,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SFX" type="Node2D" parent="." unique_id=1580841413]
 
-[node name="Drain" type="AudioStreamPlayer2D" parent="SFX" unique_id=1439534329]
-stream = ExtResource("4_cbmpb")
-max_distance = 200.0
-bus = &"SFX"
-
-[node name="Charge" type="AudioStreamPlayer2D" parent="SFX" unique_id=1702358490]
-stream = ExtResource("5_87yg4")
-max_distance = 700.0
-bus = &"SFX"
-
 [node name="Ambient" type="AudioStreamPlayer2D" parent="SFX" unique_id=883132215]
-stream = ExtResource("6_rq7uv")
-volume_db = -27.0
+stream = ExtResource("4_rt85p")
+volume_db = -5.317
 autoplay = true
 max_distance = 200.0
+attenuation = 0.59460354
 bus = &"SFX"
 parameters/looping = true
 

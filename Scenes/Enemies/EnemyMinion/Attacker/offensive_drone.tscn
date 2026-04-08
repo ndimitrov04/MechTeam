@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://byutd7jujdnp3" path="res://Scenes/Behaviors/NPCBehaviors/npc_fight.tscn" id="3_7h38m"]
 [ext_resource type="PackedScene" uid="uid://cpvw0r1pp1mx8" path="res://Scenes/Behaviors/NPCBehaviors/npc_fly_to.tscn" id="4_t3oxq"]
 [ext_resource type="PackedScene" uid="uid://cakc2c25okepc" path="res://Scenes/Behaviors/NPCBehaviors/npc_cooldown.tscn" id="6_cft2b"]
+[ext_resource type="AudioStream" uid="uid://cj2tlfl4m58sj" path="res://Audio/SFX/Enemies/loop_machine_02.ogg" id="7_gqv10"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gqv10"]
 shader = ExtResource("1_jtc3c")
@@ -93,3 +94,10 @@ debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
 
 [node name="NPCCooldown" parent="." unique_id=331200671 instance=ExtResource("6_cft2b")]
 position = Vector2(1, -30)
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1738473329]
+stream = ExtResource("7_gqv10")
+volume_db = -17.191
+autoplay = true
+attenuation = 1.7411014
+bus = &"SFX"

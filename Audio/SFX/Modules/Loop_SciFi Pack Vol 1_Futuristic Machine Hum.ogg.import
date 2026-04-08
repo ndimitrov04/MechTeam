@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://4tcc2wxsamaw"
+path="res://.godot/imported/Loop_SciFi Pack Vol 1_Futuristic Machine Hum.ogg-0605464b6f6a93bb2ce9a60d79bc26be.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/SFX/Modules/Loop_SciFi Pack Vol 1_Futuristic Machine Hum.ogg"
+dest_files=["res://.godot/imported/Loop_SciFi Pack Vol 1_Futuristic Machine Hum.ogg-0605464b6f6a93bb2ce9a60d79bc26be.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
