@@ -459,11 +459,12 @@ func attention(ui_object, duration : int, fade_out : bool = false):
 	ui_object.set_modulate(Color("red"))
 	# Flash sequence
 	for i in range(0, duration*2):
+		tween.tween_property(ui_object, "modulate:a", 1.0, 0.05)
 		tween.tween_property(ui_object, "modulate:a", 0.0, 0.1)
 		tween.tween_property(ui_object, "modulate:a", 1.0, 0.3)
 		tween.tween_property(ui_object, "modulate:a", 1.0, 0.1)
 	if fade_out:
-		tween.tween_property(ui_object, "modulate:a", 1.0, 1.5)
+		tween.tween_property(ui_object, "modulate:a", 1.0, 0.1)
 		tween.tween_property(ui_object, "modulate:a", 0.0, 0.1)
 	else:
 		ui_object.set_modulate(Color("white"))

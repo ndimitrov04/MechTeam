@@ -84,7 +84,154 @@ func is_connected_to_frame(grid_coords : Vector2i) -> bool:
 			return true
 	return false
 
+func _process(_delta):
+	if lmb_down and get_tree().get_frame() % 5 == 0:
+		global_mouse_pos = get_global_mouse_position()
+		print("Global Mouse Position = " + str(global_mouse_pos))
+		# Mouse pos relative to grid node
+		var mouse_pos = mouse_to_tilemap()
+		var grid_pos = expand_position(mouse_pos)
+		# Check if click is in bounds
+		if grid_pos.x / 2 - 1 < 0 or grid_pos.x / 2 - 1 >= 34:
+			return
+		if grid_pos.y / 2 - 1 < 0 or grid_pos.y / 2 - 1 >= 17:
+			return
+		# Check if click is on top of spawn area
+		if grid_pos.x / 2 == 12:
+			if grid_pos.y / 2 == 8 or grid_pos.y / 2 == 9:
+				return
+		# Check if block would be connected to another block or wall
+		var tile_connected : bool = true
+		if not first_click:
+			tile_connected = is_connected_to_frame(grid_pos)
+		first_click = false
+		if not tile_connected:
+			const ERR : String = "Cannot place that there. Tile is not connected to mech!"
+			print(ERR)
+			control.show_error(ERR)
+			return
+		# Block spawning tiles on top
+		# of eachother
+		if edit_layer == EditLayer.BLOCKS:
+			if blocks.get_cell_atlas_coords(grid_pos) != MechData.EMPTY_CELL:
+				const ERR : String = "Can't create block on top of another one!"
+				print(ERR)
+				#control.show_error(ERR)
+				return
+		# Block spawning objects
+		# on top of eachother
+		elif edit_layer != EditLayer.WALLS:
+			if MechData.get_object_index(to_global(grid_pos*16-OBJECT_OFFSET)) != null:
+				const ERR : String = "Can't create object on top of another one!"
+				print(ERR)
+				control.show_error(ERR)
+				return
+		# Attempt to buy
+		if not buy(current_cost):
+			return
+		# Place block on given layer
+		match edit_layer:
+			EditLayer.BLOCKS:
+				# Add a frame tile
+				# Set 4 16x16 tiles to make one 32x32 tile
+				blocks.set_cell(grid_pos + Vector2i.ZERO, 0 , chosen_block + Vector2i.ZERO)
+				blocks.set_cell(grid_pos + Vector2i.RIGHT, 0, chosen_block + Vector2i.RIGHT)
+				blocks.set_cell(grid_pos + Vector2i.DOWN, 0, chosen_block + Vector2i.DOWN)
+				blocks.set_cell(grid_pos + Vector2i.ONE, 0, chosen_block + Vector2i.ONE)
+				# Add to mech data global
+				MechData.blocks[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = chosen_block
+				MechData.blocks[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = chosen_block + Vector2i.RIGHT
+				MechData.blocks[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.DOWN
+				MechData.blocks[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.ONE
+				# Add a background wall tile behind the frame tile for a visual strucutre effect
+				# Set 4 16x16 tiles to make one 32x32 tile
+				walls.set_cell(grid_pos + Vector2i.ZERO, 0 , structure_wall)
+				walls.set_cell(grid_pos + Vector2i.RIGHT, 0, structure_wall)
+				walls.set_cell(grid_pos + Vector2i.DOWN, 0, structure_wall)
+				walls.set_cell(grid_pos + Vector2i.ONE, 0, structure_wall)
+				# Add to mech data global
+				MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = structure_wall
+				MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = structure_wall
+				MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = structure_wall
+				MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = structure_wall
+				# Play sound
+				sfx.bulld_block.play()
+			EditLayer.WALLS:
+				# Set 4 16x16 tiles to make one 32x32 tile
+				walls.set_cell(grid_pos + Vector2i.ZERO, 0, chosen_block + Vector2i.ZERO)
+				walls.set_cell(grid_pos + Vector2i.RIGHT, 0, chosen_block + Vector2i.RIGHT)
+				walls.set_cell(grid_pos + Vector2i.DOWN, 0, chosen_block + Vector2i.DOWN)
+				walls.set_cell(grid_pos + Vector2i.ONE, 0, chosen_block + Vector2i.ONE)
+				# Add to mech data global
+				MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = chosen_block
+				MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = chosen_block + Vector2i.RIGHT
+				MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.DOWN
+				MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.ONE
+				# Play sound
+				sfx.bulld_block.play()
+			EditLayer.OBJECTS:
+				if npc_mode:
+					if npc_count < npc_capacity:
+						npc_count += 1
+						update_capacity_ui()
+						sfx.hire_operator.play()
+					else:
+						control.attention(control.capacity_label, 2)
+						const ERR : String = "Insufficient crew capacity! Build more supllies."
+						print(ERR)
+						control.show_error(ERR)
+						# Refund
+						unbuy(current_cost)
+						return
+				# Set object in editor
+				var object_instance = chosen_object.instantiate()
+				if object_instance.has_meta("npc_capacity"):
+					npc_capacity += object_instance.get_meta("npc_capacity")
+					update_capacity_ui()
+				mech_prototype.add_child(object_instance)
+				object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
+				# Disable object processing
+				object_instance.set_process(false)
+				for child in object_instance.get_children():
+					child.set_process(false)
+				# Add to mech data global
+				MechData.set_object(chosen_object, chosen_action, object_instance.type, to_global(grid_pos*16-OBJECT_OFFSET))
+				# Show object editor helper
+				if object_instance.has_meta("big_object"):
+					object_instance.get_child(1).show()
+				# Play sound
+				sfx.build_entity.play()
+			EditLayer.MOVEMENT:
+				# ADD COLLIDER
+				# Set object in editor
+				var object_instance = chosen_movement_collider.instantiate()
+				mech_prototype.add_child(object_instance)
+				object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
+				# Disable object processing
+				object_instance.set_process(false)
+				for child in object_instance.get_children():
+					child.set_process(false)
+				# Add to mech data global
+				MechData.set_object(chosen_movement_collider, chosen_action, MechData.ObjectType.COLLIDER, to_global(grid_pos*16-OBJECT_OFFSET))
+				# ADD SPRITE
+				# Set object in editor
+				object_instance = chosen_movement_sprite.instantiate()
+				mech_prototype.add_child(object_instance)
+				object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
+				# Disable object processing
+				object_instance.set_process(false)
+				for child in object_instance.get_children():
+					child.set_process(false)
+				# Add to mech data global
+				MechData.set_object(chosen_movement_sprite, chosen_action, MechData.ObjectType.SPRITE, to_global(grid_pos*16-OBJECT_OFFSET))
+				# Show object editor helper
+				if object_instance.has_meta("big_object"):
+					object_instance.get_child(1).show()
+				# Play sound
+				sfx.build_entity.play()
+
 var mech_instance
+var lmb_down : bool = false
 func _input(event):
 	# Test mech loading
 	if Input.is_action_just_pressed("debug_mech_load"):
@@ -110,152 +257,16 @@ func _input(event):
 		PlayerData.money += 100
 		control.update_cash_panel()
 	
+	# ON LMB RELEASE - stop spam
 	if event is InputEventMouseButton and build_ui_enabled:
-		# Set tile
+		if not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			lmb_down = false
+	
+	if event is InputEventMouseButton and build_ui_enabled:
+		# ON LMB PRESS - spam
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			global_mouse_pos = get_global_mouse_position()
-			print("Global Mouse Position = " + str(global_mouse_pos))
-			# Mouse pos relative to grid node
-			var mouse_pos = mouse_to_tilemap()
-			var grid_pos = expand_position(mouse_pos)
-			# Check if click is in bounds
-			if grid_pos.x / 2 - 1 < 0 or grid_pos.x / 2 - 1 >= 34:
-				return
-			if grid_pos.y / 2 - 1 < 0 or grid_pos.y / 2 - 1 >= 17:
-				return
-			# Check if click is on top of spawn area
-			if grid_pos.x / 2 == 12:
-				if grid_pos.y / 2 == 8 or grid_pos.y / 2 == 9:
-					return
-			# Check if block would be connected to another block or wall
-			var tile_connected : bool = true
-			if not first_click:
-				tile_connected = is_connected_to_frame(grid_pos)
-			first_click = false
-			if not tile_connected:
-				const ERR : String = "Cannot place that there. Tile is not connected to mech!"
-				print(ERR)
-				control.show_error(ERR)
-				return
-			# Block spawning tiles on top
-			# of eachother
-			if edit_layer == EditLayer.BLOCKS:
-				if blocks.get_cell_atlas_coords(grid_pos) != MechData.EMPTY_CELL:
-					const ERR : String = "Can't create block on top of another one!"
-					print(ERR)
-					#control.show_error(ERR)
-					return
-			# Block spawning objects
-			# on top of eachother
-			elif edit_layer != EditLayer.WALLS:
-				if MechData.get_object_index(to_global(grid_pos*16-OBJECT_OFFSET)) != null:
-					const ERR : String = "Can't create object on top of another one!"
-					print(ERR)
-					control.show_error(ERR)
-					return
-			# Attempt to buy
-			if not buy(current_cost):
-				return
-			# Place block on given layer
-			match edit_layer:
-				EditLayer.BLOCKS:
-					# Add a frame tile
-					# Set 4 16x16 tiles to make one 32x32 tile
-					blocks.set_cell(grid_pos + Vector2i.ZERO, 0 , chosen_block + Vector2i.ZERO)
-					blocks.set_cell(grid_pos + Vector2i.RIGHT, 0, chosen_block + Vector2i.RIGHT)
-					blocks.set_cell(grid_pos + Vector2i.DOWN, 0, chosen_block + Vector2i.DOWN)
-					blocks.set_cell(grid_pos + Vector2i.ONE, 0, chosen_block + Vector2i.ONE)
-					# Add to mech data global
-					MechData.blocks[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = chosen_block
-					MechData.blocks[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = chosen_block + Vector2i.RIGHT
-					MechData.blocks[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.DOWN
-					MechData.blocks[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.ONE
-					# Add a background wall tile behind the frame tile for a visual strucutre effect
-					# Set 4 16x16 tiles to make one 32x32 tile
-					walls.set_cell(grid_pos + Vector2i.ZERO, 0 , structure_wall)
-					walls.set_cell(grid_pos + Vector2i.RIGHT, 0, structure_wall)
-					walls.set_cell(grid_pos + Vector2i.DOWN, 0, structure_wall)
-					walls.set_cell(grid_pos + Vector2i.ONE, 0, structure_wall)
-					# Add to mech data global
-					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = structure_wall
-					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = structure_wall
-					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = structure_wall
-					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = structure_wall
-					# Play sound
-					sfx.bulld_block.play()
-				EditLayer.WALLS:
-					# Set 4 16x16 tiles to make one 32x32 tile
-					walls.set_cell(grid_pos + Vector2i.ZERO, 0, chosen_block + Vector2i.ZERO)
-					walls.set_cell(grid_pos + Vector2i.RIGHT, 0, chosen_block + Vector2i.RIGHT)
-					walls.set_cell(grid_pos + Vector2i.DOWN, 0, chosen_block + Vector2i.DOWN)
-					walls.set_cell(grid_pos + Vector2i.ONE, 0, chosen_block + Vector2i.ONE)
-					# Add to mech data global
-					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 0)] = chosen_block
-					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 0)] = chosen_block + Vector2i.RIGHT
-					MechData.walls[-2 + (grid_pos.x + 0)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.DOWN
-					MechData.walls[-2 + (grid_pos.x + 1)][-2 + (grid_pos.y + 1)] = chosen_block + Vector2i.ONE
-					# Play sound
-					sfx.bulld_block.play()
-				EditLayer.OBJECTS:
-					if npc_mode:
-						if npc_count < npc_capacity:
-							npc_count += 1
-							update_capacity_ui()
-							sfx.hire_operator.play()
-						else:
-							control.attention(control.capacity_label, 2)
-							const ERR : String = "Insufficient crew capacity! Build more supllies."
-							print(ERR)
-							control.show_error(ERR)
-							# Refund
-							unbuy(current_cost)
-							return
-					# Set object in editor
-					var object_instance = chosen_object.instantiate()
-					if object_instance.has_meta("npc_capacity"):
-						npc_capacity += object_instance.get_meta("npc_capacity")
-						update_capacity_ui()
-					mech_prototype.add_child(object_instance)
-					object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
-					# Disable object processing
-					object_instance.set_process(false)
-					for child in object_instance.get_children():
-						child.set_process(false)
-					# Add to mech data global
-					MechData.set_object(chosen_object, chosen_action, object_instance.type, to_global(grid_pos*16-OBJECT_OFFSET))
-					# Show object editor helper
-					if object_instance.has_meta("big_object"):
-						object_instance.get_child(1).show()
-					# Play sound
-					sfx.build_entity.play()
-				EditLayer.MOVEMENT:
-					# ADD COLLIDER
-					# Set object in editor
-					var object_instance = chosen_movement_collider.instantiate()
-					mech_prototype.add_child(object_instance)
-					object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
-					# Disable object processing
-					object_instance.set_process(false)
-					for child in object_instance.get_children():
-						child.set_process(false)
-					# Add to mech data global
-					MechData.set_object(chosen_movement_collider, chosen_action, MechData.ObjectType.COLLIDER, to_global(grid_pos*16-OBJECT_OFFSET))
-					# ADD SPRITE
-					# Set object in editor
-					object_instance = chosen_movement_sprite.instantiate()
-					mech_prototype.add_child(object_instance)
-					object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
-					# Disable object processing
-					object_instance.set_process(false)
-					for child in object_instance.get_children():
-						child.set_process(false)
-					# Add to mech data global
-					MechData.set_object(chosen_movement_sprite, chosen_action, MechData.ObjectType.SPRITE, to_global(grid_pos*16-OBJECT_OFFSET))
-					# Show object editor helper
-					if object_instance.has_meta("big_object"):
-						object_instance.get_child(1).show()
-					# Play sound
-					sfx.build_entity.play()
+			lmb_down = true
+		# ON RMB PRESS - do once
 		# Delete tile/object
 		if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 			global_mouse_pos = get_global_mouse_position()
@@ -522,10 +533,6 @@ func finish_mech():
 				MechData.control_pairs.append(controller.controlled_module_index)
 	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 
 func update_capacity_ui():
 	capacity_label.text = "Capacity: " + str(npc_count) + "\\" + str(npc_capacity)

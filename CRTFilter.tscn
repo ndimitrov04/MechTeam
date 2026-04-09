@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cl1yhfsjtpj"]
+
+[ext_resource type="Script" uid="uid://bghaddibpt6f1" path="res://addons/crt/crt.gd" id="1_t8x7l"]
+
+[node name="CrtFilter" type="CanvasLayer" unique_id=2080624151]
+
+[node name="CRT" type="CanvasLayer" parent="." unique_id=1392502146]
+script = ExtResource("1_t8x7l")
+resolution = Vector2(1920, 1080)
+scan_line_amount = 0.0
+scan_line_strength = -9.818
+grille_amount = 0.0
+vignette_amount = 0.236
+roll_line_amount = 0.0
+metadata/_custom_type_script = "uid://bghaddibpt6f1"
