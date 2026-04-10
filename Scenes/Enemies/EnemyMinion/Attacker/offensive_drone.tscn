@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cpvw0r1pp1mx8" path="res://Scenes/Behaviors/NPCBehaviors/npc_fly_to.tscn" id="4_t3oxq"]
 [ext_resource type="PackedScene" uid="uid://cakc2c25okepc" path="res://Scenes/Behaviors/NPCBehaviors/npc_cooldown.tscn" id="6_cft2b"]
 [ext_resource type="AudioStream" uid="uid://cj2tlfl4m58sj" path="res://Audio/SFX/Enemies/loop_machine_02.ogg" id="7_gqv10"]
+[ext_resource type="AudioStream" uid="uid://cv4823muu8on" path="res://Audio/SFX/Misc/383016__thedcheck__clap-9.mp3" id="8_cft2b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gqv10"]
 shader = ExtResource("1_jtc3c")
@@ -100,4 +101,8 @@ stream = ExtResource("7_gqv10")
 volume_db = -17.191
 autoplay = true
 attenuation = 1.7411014
+bus = &"SFX"
+
+[node name="HurtSFX" type="AudioStreamPlayer2D" parent="." unique_id=675378694]
+stream = ExtResource("8_cft2b")
 bus = &"SFX"

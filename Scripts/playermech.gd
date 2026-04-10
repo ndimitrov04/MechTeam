@@ -112,7 +112,7 @@ func _physics_process(delta):
 		#return
 	
 	# Keep upright
-	clamp(rotation_degrees, -45, 45)
+	rotation_degrees = clamp(rotation_degrees, -45, 45)
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -127,13 +127,15 @@ func _physics_process(delta):
 
 	# Handle physics movement
 	if direction:
+		physics_material_override.friction = 0.1
 		# Apply movement force at wheels/tracks if they are touching the floor
 		for movement_object in movement_sprites.get_children():
 			if movement_object.floor_detector.is_colliding():
 				var push_point = movement_object.global_position - Vector2(0, center_of_mass.y + 150)
 				self.apply_force(Vector2(direction, 0) * SPEED * 450, push_point)
 		#linear_velocity.x = move_toward(linear_velocity.x, direction * SPEED, 1) 
-	#else:
+	else:
+		physics_material_override.friction = 0.8
 		#linear_velocity.x = move_toward(linear_velocity.x, 0, 0.2)
 
 	# Max/Top speed (horizontal) - Determined by number of movement objects

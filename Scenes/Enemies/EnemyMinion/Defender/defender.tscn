@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c1tsun6sshawv" path="res://Scenes/Behaviors/NPCBehaviors/npc_walk.tscn" id="5_2dm46"]
 [ext_resource type="PackedScene" uid="uid://byutd7jujdnp3" path="res://Scenes/Behaviors/NPCBehaviors/npc_fight.tscn" id="6_emy6p"]
 [ext_resource type="PackedScene" uid="uid://cakc2c25okepc" path="res://Scenes/Behaviors/NPCBehaviors/npc_cooldown.tscn" id="7_k0esn"]
+[ext_resource type="AudioStream" uid="uid://cv4823muu8on" path="res://Audio/SFX/Misc/383016__thedcheck__clap-9.mp3" id="9_emy6p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gudg"]
 size = Vector2(15, 22)
@@ -128,7 +129,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6atyd"]
-size = Vector2(15, 24)
+size = Vector2(11, 33)
 
 [node name="Defender" type="CharacterBody2D" unique_id=2022641288]
 process_mode = 4
@@ -152,10 +153,10 @@ sprite_frames = SubResource("SpriteFrames_bishy")
 autoplay = "default"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1231064687]
-position = Vector2(-2, -9)
+position = Vector2(-2, -15.475)
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox" unique_id=1674009463]
-position = Vector2(2.5, 12)
+position = Vector2(0.5, 13.975)
 shape = SubResource("RectangleShape2D_6atyd")
 debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
 
@@ -166,3 +167,7 @@ position = Vector2(-2, -9)
 
 [node name="NPCCooldown" parent="." unique_id=331200671 instance=ExtResource("7_k0esn")]
 position = Vector2(-2, -43)
+
+[node name="HurtSFX" type="AudioStreamPlayer2D" parent="." unique_id=2095372996]
+stream = ExtResource("9_emy6p")
+bus = &"SFX"

@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @onready var sprite = $Sprite
 @onready var hitbox = $Hitbox
+@onready var hurt_sfx = $HurtSFX
 
 const SPEED = 85.0
 const JUMP_VELOCITY = -400.0
@@ -70,6 +71,7 @@ func inv_frame_vfx(duration : float):
 func take_damage(damage, _collision, _knockback_force):
 	const inv_time : float = 0.2
 	if not invincible:
+		hurt_sfx.play()
 		hp -= damage
 	if hp <= 0:
 		die()

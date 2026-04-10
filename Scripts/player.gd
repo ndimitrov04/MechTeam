@@ -5,9 +5,11 @@ extends CharacterBody2D
 @onready var hitbox = $Hitbox
 @onready var sprite = $Sprite
 @onready var camera = $Camera
+@onready var hurt_sfx = $HurtSFX
 
 @onready var jetpack = $Jetpack
 @onready var jetpack_bar = $Jetpack/JetpackBar
+@onready var jetpack_sfx = $Jetpack/SFX
 @onready var jump_timer = $Jetpack/JumpTimer
 @onready var shootpoint = $Shootpoint
 @onready var gun_cooldown = $Shootpoint/GunCooldown
@@ -73,6 +75,8 @@ func _physics_process(delta):
 	# Handle jetpack
 	if Input.is_action_pressed("jump") and not is_on_floor() and jetpack_energy > 0:
 		if velocity.y > max_thrust:
+			if not jetpack_sfx.playing:
+				jetpack_sfx.play()
 			velocity.y += jetpack_power * delta
 			jetpack_energy -= 75 * delta
 			jetpack_bar.value = jetpack_energy
@@ -81,6 +85,7 @@ func _physics_process(delta):
 				jetpack.emitting = true
 	else:
 		if jetpack.emitting: 
+			jetpack_sfx.stop()
 			jetpack.emitting = false
 
 	if Input.is_action_just_pressed("shoot") and not on_cooldown:
@@ -160,6 +165,7 @@ func inv_frame_vfx(duration : float):
 func take_damage(damage, _collision, _knockback_force):
 	const inv_time : float = 1
 	if not invincible:
+		hurt_sfx.play()
 		hp -= damage
 	if hp <= 0:
 		die()
