@@ -46,7 +46,8 @@ var end_text : String = ""
 @onready var OST_4 = preload("uid://byq36523c31uh")
 @onready var soundtracks = [OST_1, OST_2, OST_3, OST_4]
 func _ready():
-	var stage_number = randi_range(0, backgrounds.size()-1)
+	# Stage Number:  0 = NEOS, 1 = GAIA, 2 = TERRA, 3 = SELENA
+	var stage_number = PlayerData.current_planet
 	if stage_number == 2:
 		Y_SPAWN = 0 # Stage with BG3 is a cave, accomodate for low celling
 	#stage_number = 0  # debug stage lock
@@ -98,7 +99,6 @@ func spawn_random_enemy():
 func end_stage():
 	await get_tree().create_timer(0.1).timeout
 	minigame_result.position.y -= 550
-	PlayerData.current_stage += 1
 	PlayerData.money -= (mech.max_hp - mech.hp) * 0.5
 	PlayerData.money -= npc_deaths * 10
 	end_text = (
@@ -111,11 +111,20 @@ func end_stage():
 			"\nCrew Wages: " + str(mech.npcs.get_child_count() * 5) +
 			"\nCrew Injured: " + str(npc_deaths) + 
 			"\n- Medical fees: " + str(npc_deaths * 10) +
-			"\n\nTotal cash: " + str(PlayerData.money) +
-			"\n\n\nGoing to next stage in 15 seconds..."
+			"\n\nTotal cash: " + str(PlayerData.money)
 		)
+	if PlayerData.current_stage % 3 == 0:
+		end_text += "\n\n\nLeaving planet in 15 seconds..."
+	else:
+		end_text += "\n\n\nGoing to next stage in 15 seconds..."
 	minigame_result.text = end_text
 	minigame_result.add_theme_color_override("font_color", Color("green"))
 	minigame_result.show()
 	await get_tree().create_timer(16).timeout
-	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
+	if PlayerData.current_stage % 3 == 0:
+		PlayerData.planets_finished.append(PlayerData.current_planet)
+		PlayerData.current_stage += 1
+		get_tree().change_scene_to_file("res://Scenes/planet_selector.tscn")
+	else:
+		PlayerData.current_stage += 1
+		get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")

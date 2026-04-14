@@ -1163,7 +1163,6 @@ allow_unpress = true
 [node name="Menu" type="CanvasLayer" unique_id=1660427890]
 process_mode = 3
 layer = 4
-visible = false
 script = ExtResource("1_aeafk")
 
 [node name="ScreenBorder" type="TextureRect" parent="." unique_id=1795983422]
@@ -1183,7 +1182,7 @@ anchor_top = 0.5
 anchor_right = 0.712
 anchor_bottom = 0.5
 offset_left = 0.95996094
-offset_top = 92.0
+offset_top = 76.0
 offset_right = 448.96045
 offset_bottom = 508.0
 theme = ExtResource("2_h8r5p")
@@ -1197,14 +1196,31 @@ anchor_top = 0.11100001
 anchor_right = 0.125
 anchor_bottom = 0.11100001
 offset_left = -6.1035156e-05
-offset_top = -21.176003
-offset_right = 335.99994
-offset_bottom = 57.823997
+offset_top = -13.1760025
+offset_right = 167.99994
+offset_bottom = 65.824
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_h8r5p")
 theme_override_font_sizes/font_size = 32
-text = "Restart Stage"
-script = ExtResource("6_6ni7c")
+text = "Restart 
+Stage"
+
+[node name="AbandonPlanet" type="Button" parent="MenuPanel" unique_id=1676595538]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.11100001
+anchor_right = 0.125
+anchor_bottom = 0.11100001
+offset_left = 175.99994
+offset_top = -13.1760025
+offset_right = 335.99994
+offset_bottom = 65.824
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_h8r5p")
+theme_override_font_sizes/font_size = 32
+text = "Abandon 
+Planet"
 
 [node name="Options" type="Control" parent="MenuPanel" unique_id=1882788481]
 anchors_preset = 0
@@ -1303,9 +1319,9 @@ text = "Clear Data"
 [node name="ShowOptions" type="Button" parent="MenuPanel/Options" unique_id=306811670]
 layout_mode = 0
 offset_left = 1609.0
-offset_top = 864.0
+offset_top = 872.0
 offset_right = 1776.5
-offset_bottom = 904.5
+offset_bottom = 912.5
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_h8r5p")
@@ -1444,9 +1460,9 @@ selection_enabled = true
 [node name="ShowCredits" type="Button" parent="MenuPanel/Credits" unique_id=1641218129]
 layout_mode = 0
 offset_left = 1609.0
-offset_top = 960.0
+offset_top = 968.0
 offset_right = 1776.5
-offset_bottom = 1000.0
+offset_bottom = 1008.0
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_h8r5p")
@@ -1464,9 +1480,9 @@ anchor_top = 0.11100001
 anchor_right = 0.125
 anchor_bottom = 0.11100001
 offset_left = -6.1035156e-05
-offset_top = 265.824
+offset_top = 273.824
 offset_right = 335.99994
-offset_bottom = 344.824
+offset_bottom = 352.824
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_h8r5p")
 theme_override_font_sizes/font_size = 32
@@ -1478,7 +1494,9 @@ z_index = 400
 position = Vector2(-720, -664.00006)
 scale = Vector2(0.75, 0.75)
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MenuPanel/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="MenuPanel/AbandonPlanet" to="." method="_on_abandon_planet_pressed"]
 [connection signal="toggled" from="MenuPanel/Options/ShowOptions" to="MenuPanel/Options" method="_on_show_options_toggled"]
 [connection signal="meta_clicked" from="MenuPanel/Credits/CreditPanel/RichTextLabel" to="MenuPanel/Credits" method="_on_rich_text_label_meta_clicked"]
 [connection signal="toggled" from="MenuPanel/Credits/ShowCredits" to="MenuPanel/Credits" method="_on_show_credits_toggled"]

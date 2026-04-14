@@ -3,7 +3,12 @@ extends Node
 @onready var max_hp : int = 5
 @onready var money : int = 200
 @onready var mech_cost : int = 0
+
+enum planets {NEOS, GAIA, TERRA, SELENE}
 @onready var current_stage : int = 1
+@onready var current_planet = planets.NEOS
+@onready var planets_finished = []
+@onready var planets_lost = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,3 +29,6 @@ func reset():
 	money = 200
 	mech_cost = 0
 	current_stage = 1
+	current_planet = planets.NEOS
+	planets_finished.clear()
+	planets_lost.clear()

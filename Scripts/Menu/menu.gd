@@ -12,10 +12,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-
-
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
+	get_tree().change_scene_to_file("res://Scenes/planet_selector.tscn")
 
 func _on_play_tutorial_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Tutorials/tutorial1.tscn")

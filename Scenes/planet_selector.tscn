@@ -1,0 +1,330 @@
+[gd_scene format=3 uid="uid://be8el6i2wdt7y"]
+
+[ext_resource type="Script" uid="uid://h7f3jnsnhwfn" path="res://Scripts/planet_selector.gd" id="1_vuyeq"]
+[ext_resource type="Texture2D" uid="uid://b814oamf67pee" path="res://Images/Planets/Space/blue-back.png" id="2_6fqms"]
+[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="2_k84k0"]
+[ext_resource type="Texture2D" uid="uid://cgngb0jxk5ama" path="res://Images/Planets/Space/blue-stars.png" id="3_hedr5"]
+[ext_resource type="Texture2D" uid="uid://matif25e7nks" path="res://Images/Planets/neos.png" id="3_vuyeq"]
+[ext_resource type="Texture2D" uid="uid://jh1ycglc5bd" path="res://Images/Planets/selene.png" id="4_p4sl1"]
+[ext_resource type="Texture2D" uid="uid://dbplatpxta6dq" path="res://Images/Planets/Space/prop-planet-small.png" id="4_ulvfm"]
+[ext_resource type="Texture2D" uid="uid://biu3m3awq7hs8" path="res://Images/Planets/Space/prop-planet-big.png" id="5_1x2yn"]
+[ext_resource type="Texture2D" uid="uid://bf4vw1r7bt43s" path="res://Images/Planets/gaia.png" id="5_sxs7l"]
+[ext_resource type="Texture2D" uid="uid://b2541xcxi62t" path="res://Images/Planets/Space/asteroid-1.png" id="6_v86hd"]
+[ext_resource type="Texture2D" uid="uid://cmfxnhqo4sy2u" path="res://Images/Planets/terra.png" id="6_xmtju"]
+[ext_resource type="Texture2D" uid="uid://gpuagqk6mv55" path="res://Images/Planets/Space/asteroid-2.png" id="7_dubf6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_74qqg"]
+shader = ExtResource("2_k84k0")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 3
+shader_parameter/center_distance_cap = 15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hedr5"]
+shader = ExtResource("2_k84k0")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 3
+shader_parameter/center_distance_cap = 15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ulvfm"]
+shader = ExtResource("2_k84k0")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 3
+shader_parameter/center_distance_cap = 15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6fqms"]
+shader = ExtResource("2_k84k0")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 3
+shader_parameter/center_distance_cap = 15
+
+[node name="PlanetSelector" type="CanvasLayer" unique_id=291066862]
+layer = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1199458043]
+position = Vector2(960, 540)
+
+[node name="PlanetSelector" type="Control" parent="." unique_id=1335177134]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vuyeq")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="PlanetSelector" unique_id=1776799058]
+layout_mode = 0
+offset_left = -384.0
+offset_top = -304.0
+offset_right = 2400.0
+offset_bottom = 1440.0
+color = Color(0, 0, 0, 1)
+
+[node name="Parallax2D" type="Parallax2D" parent="PlanetSelector" unique_id=1801698703]
+scroll_scale = Vector2(0.05, 0.05)
+scroll_offset = Vector2(-16, 80)
+follow_viewport = false
+
+[node name="BG1" type="TextureRect" parent="PlanetSelector/Parallax2D" unique_id=552839860]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_top = 56.0
+offset_right = 976.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("2_6fqms")
+stretch_mode = 4
+
+[node name="Parallax2D2" type="Parallax2D" parent="PlanetSelector" unique_id=1334302449]
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(-168, -56)
+follow_viewport = false
+
+[node name="BG2" type="TextureRect" parent="PlanetSelector/Parallax2D2" unique_id=687164349]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_top = 56.0
+offset_right = 1011.19995
+offset_bottom = 552.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("3_hedr5")
+stretch_mode = 4
+
+[node name="Parallax2D4" type="Parallax2D" parent="PlanetSelector" unique_id=135869163]
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(-168, -56)
+follow_viewport = false
+
+[node name="PropPlanetSmall" type="Sprite2D" parent="PlanetSelector/Parallax2D4" unique_id=1613763074]
+position = Vector2(396, 628)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("4_ulvfm")
+
+[node name="PropPlanetSmall2" type="Sprite2D" parent="PlanetSelector/Parallax2D4" unique_id=1440245657]
+position = Vector2(964.00006, 220.00012)
+rotation = 1.8989183
+scale = Vector2(5, 5)
+texture = ExtResource("4_ulvfm")
+
+[node name="Parallax2D3" type="Parallax2D" parent="PlanetSelector" unique_id=515503352]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(96, -128)
+follow_viewport = false
+
+[node name="PropPlanetBig" type="Sprite2D" parent="PlanetSelector/Parallax2D3" unique_id=204343516]
+position = Vector2(1560, 200)
+scale = Vector2(16, 16)
+texture = ExtResource("5_1x2yn")
+
+[node name="Parallax2D5" type="Parallax2D" parent="PlanetSelector" unique_id=1138914174]
+scroll_scale = Vector2(0.45, 0.45)
+scroll_offset = Vector2(-400, -296)
+follow_viewport = false
+
+[node name="Asteroid1" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=141127702]
+position = Vector2(1358.5186, 538.25006)
+rotation = -3.117158
+scale = Vector2(3, 3)
+texture = ExtResource("6_v86hd")
+
+[node name="Asteroid2" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=304819968]
+position = Vector2(1504, 728.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid3" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=988832658]
+position = Vector2(1264.0001, 208.00006)
+rotation = 0.14660765
+scale = Vector2(3, 3)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid4" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=1215002615]
+position = Vector2(824, 392.00006)
+rotation = 2.4364796
+scale = Vector2(3, 3)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid5" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=223077177]
+position = Vector2(670.51855, 202.25012)
+scale = Vector2(3, 3)
+texture = ExtResource("6_v86hd")
+
+[node name="Asteroid6" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=1965060705]
+position = Vector2(734.51855, 882.25)
+rotation = -3.117158
+scale = Vector2(3, 3)
+texture = ExtResource("6_v86hd")
+
+[node name="Asteroid7" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=1853704235]
+position = Vector2(880.00024, 1072.0001)
+scale = Vector2(3, 3)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid8" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=1558122165]
+position = Vector2(640.0001, 552.00006)
+rotation = 0.14660765
+scale = Vector2(3, 3)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid9" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=1787743796]
+position = Vector2(200.00014, 736.00006)
+rotation = 2.4364796
+scale = Vector2(3, 3)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid10" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=1291880318]
+position = Vector2(46.518555, 546.2501)
+scale = Vector2(3, 3)
+texture = ExtResource("6_v86hd")
+
+[node name="Asteroid11" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=259897239]
+position = Vector2(1774.5183, 850.25)
+rotation = -3.117158
+scale = Vector2(3, 3)
+texture = ExtResource("6_v86hd")
+
+[node name="Asteroid12" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=616797746]
+position = Vector2(1920.0001, 1040.0001)
+scale = Vector2(3, 3)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid13" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=1487443733]
+position = Vector2(1680, 520.00006)
+rotation = 0.14660765
+scale = Vector2(3, 3)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid14" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=1106187292]
+position = Vector2(1240.0001, 704)
+rotation = 2.4364796
+scale = Vector2(3, 3)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid15" type="Sprite2D" parent="PlanetSelector/Parallax2D5" unique_id=2111282417]
+position = Vector2(1086.5186, 514.2501)
+scale = Vector2(3, 3)
+texture = ExtResource("6_v86hd")
+
+[node name="Parallax2D55" type="Parallax2D" parent="PlanetSelector" unique_id=1837863137]
+scroll_scale = Vector2(0.42, 0.42)
+scroll_offset = Vector2(-456, -232)
+follow_viewport = false
+
+[node name="Planets" type="Control" parent="PlanetSelector/Parallax2D55" unique_id=1955031614]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = 56.0
+offset_right = 160.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Neos" type="TextureButton" parent="PlanetSelector/Parallax2D55/Planets" unique_id=1184779870]
+material = SubResource("ShaderMaterial_74qqg")
+layout_mode = 0
+offset_left = 896.0
+offset_top = 416.0
+offset_right = 1096.0001
+offset_bottom = 616.00006
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_vuyeq")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/planet_number = 0
+metadata/finished = false
+metadata/lost = false
+
+[node name="Gaia" type="TextureButton" parent="PlanetSelector/Parallax2D55/Planets" unique_id=1574860272]
+material = SubResource("ShaderMaterial_hedr5")
+layout_mode = 0
+offset_left = 264.0
+offset_top = 368.0
+offset_right = 463.99988
+offset_bottom = 568.0001
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_sxs7l")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/planet_number = 1
+metadata/finished = false
+metadata/lost = false
+
+[node name="Terra" type="TextureButton" parent="PlanetSelector/Parallax2D55/Planets" unique_id=669344021]
+material = SubResource("ShaderMaterial_ulvfm")
+layout_mode = 0
+offset_left = 1384.0
+offset_top = 184.0
+offset_right = 1583.9999
+offset_bottom = 383.99994
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6_xmtju")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/planet_number = 2
+metadata/finished = false
+metadata/lost = false
+
+[node name="Selene" type="TextureButton" parent="PlanetSelector/Parallax2D55/Planets" unique_id=312419100]
+material = SubResource("ShaderMaterial_6fqms")
+layout_mode = 0
+offset_left = 1248.0
+offset_top = 696.0
+offset_right = 1448.0
+offset_bottom = 896.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_p4sl1")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/planet_number = 3
+metadata/finished = false
+metadata/lost = false
+
+[node name="Parallax2D6" type="Parallax2D" parent="PlanetSelector" unique_id=71632047]
+scroll_scale = Vector2(0.7, 0.7)
+scroll_offset = Vector2(-368, -304)
+follow_viewport = false
+
+[node name="Asteroid6" type="Sprite2D" parent="PlanetSelector/Parallax2D6" unique_id=804557152]
+position = Vector2(1608.0001, 896)
+rotation = -3.117158
+scale = Vector2(7.0000005, 7.0000005)
+texture = ExtResource("6_v86hd")
+
+[node name="Asteroid7" type="Sprite2D" parent="PlanetSelector/Parallax2D6" unique_id=1403362527]
+position = Vector2(1696.0001, 496.00018)
+scale = Vector2(7, 7)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid8" type="Sprite2D" parent="PlanetSelector/Parallax2D6" unique_id=1906237286]
+position = Vector2(1072, 839.99994)
+rotation = 0.14660765
+scale = Vector2(7.0000005, 7.0000005)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid9" type="Sprite2D" parent="PlanetSelector/Parallax2D6" unique_id=2126329181]
+position = Vector2(559.9999, 920.00024)
+rotation = 2.4364796
+scale = Vector2(6.9999995, 6.9999995)
+texture = ExtResource("7_dubf6")
+
+[node name="Asteroid10" type="Sprite2D" parent="PlanetSelector/Parallax2D6" unique_id=1610484424]
+position = Vector2(208.00005, 224.00003)
+scale = Vector2(7, 7)
+texture = ExtResource("6_v86hd")
+
+[connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Neos" to="PlanetSelector" method="_on_neos_pressed"]
+[connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Gaia" to="PlanetSelector" method="_on_gaia_pressed"]
+[connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Terra" to="PlanetSelector" method="_on_terra_pressed"]
+[connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Selene" to="PlanetSelector" method="_on_selene_pressed"]
