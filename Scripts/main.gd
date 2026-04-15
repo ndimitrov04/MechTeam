@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var player = $Player
-@onready var music = $Music
 @onready var mech = $Mech
 
 @onready var static_ui = $GUI/Control/StaticUI
@@ -40,10 +39,10 @@ var end_text : String = ""
 @onready var BG_4 = preload("uid://b6puxakxfkx2h")
 @onready var backgrounds = [BG_1, BG_2, BG_3, BG_4]
 # Soundtracks
-@onready var OST_1 = preload("uid://6xm4gvdu3qsl")
-@onready var OST_2 = preload("uid://ce4508tlmtnyx")
-@onready var OST_3 = preload("uid://m8uma6bexyvi")
-@onready var OST_4 = preload("uid://byq36523c31uh")
+const OST_1 = "uid://6xm4gvdu3qsl"
+const OST_2 = "uid://ce4508tlmtnyx"
+const OST_3 = "uid://m8uma6bexyvi"
+const OST_4 = "uid://byq36523c31uh"
 @onready var soundtracks = [OST_1, OST_2, OST_3, OST_4]
 func _ready():
 	# Stage Number:  0 = NEOS, 1 = GAIA, 2 = TERRA, 3 = SELENA
@@ -54,13 +53,11 @@ func _ready():
 	var current_background = backgrounds[stage_number].instantiate()
 	add_child(current_background)
 	move_child(current_background, 0)
-	music.stream = soundtracks[stage_number]
-	music.play()
+	GlobalMusic.queue_track(soundtracks[stage_number], 2)
 
 func _process(_delta):
 	if enemies_left <= 0 and not triggered:
-		music.stream = preload("uid://bfjye4qxke0i")
-		music.play()
+		GlobalMusic.queue_track("uid://bfjye4qxke0i", 0.5)
 		end_stage()
 		triggered = true
 	

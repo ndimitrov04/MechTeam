@@ -58,6 +58,7 @@ var npc_count : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GlobalMusic.queue_track("res://Audio/Music/rbl.mp3", 1.0)
 	if get_parent().name == "Editor":
 		in_editor = true
 	update_capacity_ui()

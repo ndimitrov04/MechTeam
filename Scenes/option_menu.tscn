@@ -1163,6 +1163,7 @@ allow_unpress = true
 [node name="Menu" type="CanvasLayer" unique_id=1660427890]
 process_mode = 3
 layer = 4
+visible = false
 script = ExtResource("1_aeafk")
 
 [node name="ScreenBorder" type="TextureRect" parent="." unique_id=1795983422]

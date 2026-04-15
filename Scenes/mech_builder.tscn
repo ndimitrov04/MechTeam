@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://cenobjevlni5" path="res://Images/Placeholders/right.png" id="8_tgtas"]
 [ext_resource type="PackedScene" uid="uid://yjvcojipbr0l" path="res://Scenes/ver_num.tscn" id="9_liku1"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="9_tgtas"]
-[ext_resource type="AudioStream" uid="uid://cs8s38pem2m8w" path="res://Audio/Music/rbl.mp3" id="10_q3hfk"]
 [ext_resource type="Texture2D" uid="uid://bs2fqwxm2rdeq" path="res://Images/Placeholders/up.png" id="10_s1xxn"]
 [ext_resource type="Texture2D" uid="uid://dcrp6tppbsvl4" path="res://Images/Placeholders/down.png" id="11_c8yhn"]
 [ext_resource type="Texture2D" uid="uid://dk7q58v53nuhc" path="res://Images/Icons/Editor/Blocks/IndustrialTile_25.png" id="11_evt8d"]
@@ -1264,11 +1263,6 @@ stream = ExtResource("42_fnvon")
 volume_db = -5.0
 max_polyphony = 2
 bus = &"SFX"
-
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1629900139]
-stream = ExtResource("10_q3hfk")
-autoplay = true
-bus = &"Music"
 
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Blocks" to="GUI/Control" method="_on_block_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Walls" to="GUI/Control" method="_on_wall_list_item_clicked"]

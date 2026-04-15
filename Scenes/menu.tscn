@@ -105,7 +105,6 @@
 [ext_resource type="Script" uid="uid://c5nteey1artcx" path="res://Scripts/Behaviors/NPCBehaviors/npc_cooldown.gd" id="96_5ej1k"]
 [ext_resource type="Texture2D" uid="uid://b0psbol26toq0" path="res://xficon2t.png" id="97_1q3u6"]
 [ext_resource type="Script" uid="uid://py5etfplmy7y" path="res://Scripts/credits.gd" id="97_tf86c"]
-[ext_resource type="AudioStream" uid="uid://cpajjfgpfw7cf" path="res://Audio/Music/11 die vonstantine.ogg" id="98_fngy1"]
 [ext_resource type="PackedScene" uid="uid://yjvcojipbr0l" path="res://Scenes/ver_num.tscn" id="98_tf86c"]
 [ext_resource type="FontFile" uid="uid://rw3jqyo4erwa" path="res://04b19.ttf" id="98_y4wb4"]
 [ext_resource type="Script" uid="uid://bfv8spg8h3v4v" path="res://Scripts/options.gd" id="100_gjkiu"]
@@ -5128,11 +5127,6 @@ offset_top = 508.0
 offset_right = 487.40796
 offset_bottom = 547.0
 horizontal_alignment = 2
-
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=843025085]
-stream = ExtResource("98_fngy1")
-autoplay = true
-bus = &"Music"
 
 [node name="SFX" type="Node" parent="." unique_id=254702348]
 

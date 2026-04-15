@@ -3,8 +3,11 @@ extends Control
 @onready var camera_2d: Camera2D = $"../Camera2D"
 @onready var planets: Control = $Parallax2D55/Planets
 
+@onready var planet_info: Control = $PlanetInfo
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalMusic.queue_track("res://Audio/Music/Lost signal main theme.mp3", 2)
 	for planet in planets.get_children():
 		if PlayerData.planets_finished.has(planet.get_meta("planet_number")):
 			planet.set_meta("finished", true)
@@ -19,7 +22,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	camera_2d.set_position(get_global_mouse_position() * 0.1)
+	camera_2d.set_position(get_global_mouse_position() * 0.2)
 	
 func _on_neos_pressed() -> void:
 	PlayerData.current_planet = PlayerData.planets.NEOS
@@ -36,3 +39,7 @@ func _on_terra_pressed() -> void:
 func _on_selene_pressed() -> void:
 	PlayerData.current_planet = PlayerData.planets.SELENE
 	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
+
+
+func _on_neos_mouse_entered() -> void:
+	pass # Replace with function body.

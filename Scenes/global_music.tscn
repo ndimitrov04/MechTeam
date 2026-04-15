@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://gdotyeagh8sm"]
+
+[ext_resource type="Script" uid="uid://bc284ck02mciy" path="res://Scripts/Globals/global_music.gd" id="1_jmqbo"]
+[ext_resource type="AudioStream" uid="uid://cpajjfgpfw7cf" path="res://Audio/Music/11 die vonstantine.ogg" id="2_kb2ma"]
+
+[node name="GlobalMusic" type="Node" unique_id=1331979404]
+process_mode = 3
+script = ExtResource("1_jmqbo")
+
+[node name="Track1" type="AudioStreamPlayer" parent="." unique_id=1019797122]
+stream = ExtResource("2_kb2ma")
+bus = &"Music"
+
+[node name="Track2" type="AudioStreamPlayer" parent="." unique_id=1192808950]
+bus = &"Music"
