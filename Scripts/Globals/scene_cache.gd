@@ -2,10 +2,10 @@ extends Node
 
 # Paths only (no preload, no load at init)
 const PATHS := {
-	"menu": "res://SCENES/menu.tscn",
-	"main": "res://SCENES/main.tscn",
-	"mech_builder": "res://SCENES/mech_builder.tscn",
-	"planet_selector": "res://SCENES/planet_selector.tscn"
+	"menu": "res://Scenes/menu.tscn",
+	"main": "res://Scenes/main.tscn",
+	"mech_builder": "res://Scenes/mech_builder.tscn",
+	"planet_selector": "res://Scenes/planet_selector.tscn"
 }
 
 # Loaded SCENES cache

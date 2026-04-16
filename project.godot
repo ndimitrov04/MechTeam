@@ -60,7 +60,7 @@ folder_colors={
 "res://Scripts/": "gray",
 "res://Scripts/Globals/": "purple",
 "res://Shaders/": "pink",
-"res://addons/": "pink"
+"res://addons/": "blue"
 }
 
 [gui]
