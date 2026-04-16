@@ -101,15 +101,15 @@ follow_viewport = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 168.0
-offset_top = 56.0
-offset_right = 976.0
-offset_bottom = 500.0
+offset_left = -95.00004
+offset_top = -127.00004
+offset_right = 357.83328
+offset_bottom = 135.49997
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
+scale = Vector2(6, 6)
 texture = ExtResource("2_6fqms")
-stretch_mode = 4
+stretch_mode = 1
 
 [node name="Parallax2D2" type="Parallax2D" parent="PlanetSelector" unique_id=1334302449]
 scroll_scale = Vector2(0.1, 0.1)
@@ -120,15 +120,15 @@ follow_viewport = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 168.0
-offset_top = 56.0
-offset_right = 1011.19995
-offset_bottom = 552.0
+offset_left = 75.0
+offset_top = 1.0
+offset_right = 1094.0
+offset_bottom = 596.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 texture = ExtResource("3_hedr5")
-stretch_mode = 4
+stretch_mode = 1
 
 [node name="Parallax2D4" type="Parallax2D" parent="PlanetSelector" unique_id=135869163]
 scroll_scale = Vector2(0.2, 0.2)
@@ -374,7 +374,7 @@ anchors_preset = -1
 anchor_left = 0.0147160655
 anchor_top = 0.5
 anchor_right = 0.98550725
-anchor_bottom = 0.94166666
+anchor_bottom = 0.84166664
 offset_left = 2.2888184e-05
 metadata/_edit_use_anchors_ = true
 
@@ -391,7 +391,7 @@ theme_override_font_sizes/font_size = 64
 text = "Planet Description"
 metadata/_edit_use_anchors_ = true
 
-[node name="PlanetName" type="Label" parent="PlanetSelector/PlanetInfo/Panel/LoreData" unique_id=1567607549]
+[node name="PlanetLore" type="Label" parent="PlanetSelector/PlanetInfo/Panel/LoreData" unique_id=1567607549]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.04455632
@@ -404,8 +404,52 @@ autowrap_mode = 3
 text_overrun_behavior = 5
 metadata/_edit_use_anchors_ = true
 
+[node name="StatusData" type="Panel" parent="PlanetSelector/PlanetInfo/Panel" unique_id=2032174666]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0147160655
+anchor_top = 0.86041665
+anchor_right = 0.98550725
+anchor_bottom = 0.96666664
+offset_left = 2.2888184e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="NameLabel" type="Label" parent="PlanetSelector/PlanetInfo/Panel/StatusData" unique_id=325337348]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056307036
+anchor_top = 0.105263166
+anchor_right = 0.20921358
+anchor_bottom = 0.321
+offset_right = 0.060943604
+offset_bottom = -0.0051574707
+theme_override_font_sizes/font_size = 32
+text = "Status:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Status" type="Label" parent="PlanetSelector/PlanetInfo/Panel/StatusData" unique_id=521244369]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2535596
+anchor_top = 0.049019385
+anchor_right = 0.9402847
+anchor_bottom = 0.94339615
+theme_override_font_sizes/font_size = 128
+text = "UNSAFE"
+horizontal_alignment = 2
+autowrap_mode = 3
+text_overrun_behavior = 5
+metadata/_edit_use_anchors_ = true
+
 [connection signal="mouse_entered" from="PlanetSelector/Parallax2D55/Planets/Neos" to="PlanetSelector" method="_on_neos_mouse_entered"]
+[connection signal="mouse_exited" from="PlanetSelector/Parallax2D55/Planets/Neos" to="PlanetSelector" method="_on_neos_mouse_exited"]
 [connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Neos" to="PlanetSelector" method="_on_neos_pressed"]
+[connection signal="mouse_entered" from="PlanetSelector/Parallax2D55/Planets/Gaia" to="PlanetSelector" method="_on_gaia_mouse_entered"]
+[connection signal="mouse_exited" from="PlanetSelector/Parallax2D55/Planets/Gaia" to="PlanetSelector" method="_on_gaia_mouse_exited"]
 [connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Gaia" to="PlanetSelector" method="_on_gaia_pressed"]
+[connection signal="mouse_entered" from="PlanetSelector/Parallax2D55/Planets/Terra" to="PlanetSelector" method="_on_terra_mouse_entered"]
+[connection signal="mouse_exited" from="PlanetSelector/Parallax2D55/Planets/Terra" to="PlanetSelector" method="_on_terra_mouse_exited"]
 [connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Terra" to="PlanetSelector" method="_on_terra_pressed"]
+[connection signal="mouse_entered" from="PlanetSelector/Parallax2D55/Planets/Selene" to="PlanetSelector" method="_on_selene_mouse_entered"]
+[connection signal="mouse_exited" from="PlanetSelector/Parallax2D55/Planets/Selene" to="PlanetSelector" method="_on_selene_mouse_exited"]
 [connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Selene" to="PlanetSelector" method="_on_selene_pressed"]
