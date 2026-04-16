@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="MechTeam"
-config/version="0.396"
+config/version="0.398"
 run/main_scene="uid://m4q4cm7li360"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/use_filter=false
@@ -34,6 +34,8 @@ PlayerData="*uid://dx0gnk8ix335p"
 OptionMenu="*uid://ckel0dyg6a0hs"
 CrtFilter="*uid://cl1yhfsjtpj"
 GlobalMusic="*uid://gdotyeagh8sm"
+IndieBlueprintSceneTransitioner="*uid://cx6pdxa5atxe8"
+SceneCache="*uid://ddb7f5w1o1jfg"
 
 [display]
 
@@ -46,7 +48,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/crt/plugin.cfg")
+enabled=PackedStringArray("res://addons/crt/plugin.cfg", "res://addons/ninetailsrabbit.indie_blueprint_scene_transition/plugin.cfg")
 
 [file_customization]
 

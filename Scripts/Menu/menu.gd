@@ -16,10 +16,27 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/planet_selector.tscn")
+	IndieBlueprintSceneTransitioner.transition_to(
+		SceneCache.SCENES.get("planet_selector"), 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 0.5, "color": Color("CD90B9")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+	)
 
 func _on_play_tutorial_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Tutorials/tutorial1.tscn")
+	GlobalMusic.stop()
+	IndieBlueprintSceneTransitioner.transition_to(
+		preload("res://Scenes/Tutorials/tutorial1.tscn"), 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 0.5, "color": Color("CD90B9")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+	)
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

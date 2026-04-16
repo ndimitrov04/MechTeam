@@ -119,4 +119,12 @@ func end_stage():
 	minigame_result.add_theme_color_override("font_color", Color("green"))
 	minigame_result.show()
 	await get_tree().create_timer(5).timeout
-	get_tree().change_scene_to_file("res://Scenes/Tutorials/tutorial5.tscn")
+	IndieBlueprintSceneTransitioner.transition_to(
+		"res://Scenes/Tutorials/tutorial5.tscn", 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 0.5, "color": Color("55648C")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+	)

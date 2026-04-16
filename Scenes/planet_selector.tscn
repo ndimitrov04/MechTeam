@@ -262,6 +262,7 @@ visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 process_material = SubResource("ParticleProcessMaterial_6fqms")
 
 [node name="PlanetInfo" type="Control" parent="PlanetSelector" unique_id=701769879]
+visible = false
 layout_mode = 1
 anchor_left = 0.68333334
 anchor_right = 1.0

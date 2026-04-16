@@ -18,7 +18,15 @@ func _unhandled_input(event):
 func _on_retry_pressed() -> void:
 	hide()
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	IndieBlueprintSceneTransitioner.transition_to(
+		get_tree().current_scene.scene_file_path, 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 0.5, "color": Color("55648C")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+	)
 
 func _on_abandon_planet_pressed() -> void:
 	hide()
@@ -38,7 +46,15 @@ func _on_abandon_planet_pressed() -> void:
 		PlayerData.current_stage += 3
 	PlayerData.planets_finished.append(PlayerData.current_planet)
 	PlayerData.planets_lost.append(PlayerData.current_planet)
-	get_tree().change_scene_to_file("res://Scenes/planet_selector.tscn")
+	IndieBlueprintSceneTransitioner.transition_to(
+		"res://Scenes/planet_selector.tscn", 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 0.5, "color": Color("55648C")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("000418")}
+		}
+	)
 
 func _on_visibility_changed() -> void:
 	if get_tree().current_scene.name == "Editor":
@@ -46,7 +62,9 @@ func _on_visibility_changed() -> void:
 		abandon_planet.show()
 	elif get_tree().current_scene.name == "Main":
 		retry.show()
-		abandon_planet.show()
+		abandon_planet.hide()
+		if get_tree().current_scene.has_meta("main_gamemode"):
+			abandon_planet.show()
 	elif get_tree().current_scene.name == "PlanetSelector":
 		retry.hide()
 		abandon_planet.hide()

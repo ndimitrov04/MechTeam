@@ -150,7 +150,15 @@ func end_stage():
 	music.stream = preload("uid://bfjye4qxke0i")
 	music.play()
 	await get_tree().create_timer(5).timeout
-	get_tree().change_scene_to_file("res://Scenes/Tutorials/tutorial2.tscn")
+	IndieBlueprintSceneTransitioner.transition_to(
+		"res://Scenes/Tutorials/tutorial2.tscn", 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 0.5, "color": Color("55648C")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+		)
 
 func _on_control_1_interacted_with() -> void:
 	advance_trigger()

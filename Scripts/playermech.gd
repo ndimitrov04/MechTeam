@@ -127,7 +127,10 @@ func _physics_process(delta):
 
 	# Handle physics movement
 	if direction:
-		physics_material_override.friction = 0.1
+		if get_meta("prebuilt"):
+			physics_material_override.friction = 0.0
+		else:
+			physics_material_override.friction = 0.1
 		# Apply movement force at wheels/tracks if they are touching the floor
 		for movement_object in movement_sprites.get_children():
 			if movement_object.floor_detector.is_colliding():

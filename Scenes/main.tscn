@@ -39,6 +39,7 @@ normal = Vector2(1, 0)
 
 [node name="Main" type="Node2D" unique_id=105152583]
 script = ExtResource("1_hibaj")
+metadata/main_gamemode = true
 
 [node name="Mech" parent="." unique_id=389051570 instance=ExtResource("9_hibaj")]
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")

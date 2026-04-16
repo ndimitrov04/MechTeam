@@ -43,3 +43,7 @@ func queue_track(track_path, fade_duration : float) -> void:
 	tween.parallel().tween_property(track_2, "volume_db", MIN_VOLUME, fade_duration)
 	tween.parallel().tween_property(track_1, "volume_db", 0.0, fade_duration)
 	tween.tween_callback(track_2.stop)
+
+func stop():
+	track_1.stop()
+	track_2.stop()

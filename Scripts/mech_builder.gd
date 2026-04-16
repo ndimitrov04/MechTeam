@@ -533,7 +533,15 @@ func finish_mech():
 				# Match controller child #i to module child #i
 				MechData.control_pairs.append(controller.controlled_module_index)
 	await get_tree().process_frame
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	IndieBlueprintSceneTransitioner.transition_to(
+		SceneCache.SCENES.get("main"), 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("000418")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+	)
 
 func update_capacity_ui():
 	capacity_label.text = "Capacity: " + str(npc_count) + "\\" + str(npc_capacity)

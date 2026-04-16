@@ -80,19 +80,51 @@ func _process(_delta: float) -> void:
 	
 func _on_neos_pressed() -> void:
 	PlayerData.current_planet = PlayerData.planets.NEOS
-	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
+	IndieBlueprintSceneTransitioner.transition_to(
+		SceneCache.SCENES.get("mech_builder"), 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("000418")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+	)
 
 func _on_gaia_pressed() -> void:
 	PlayerData.current_planet = PlayerData.planets.GAIA
-	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
+	IndieBlueprintSceneTransitioner.transition_to(
+		SceneCache.SCENES.get("mech_builder"), 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("000418")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+	)
 
 func _on_terra_pressed() -> void:
 	PlayerData.current_planet = PlayerData.planets.TERRA
-	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
+	IndieBlueprintSceneTransitioner.transition_to(
+		SceneCache.SCENES.get("mech_builder"), 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("000418")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+	)
 
 func _on_selene_pressed() -> void:
 	PlayerData.current_planet = PlayerData.planets.SELENE
-	get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
+	IndieBlueprintSceneTransitioner.transition_to(
+		SceneCache.SCENES.get("mech_builder"), 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("000418")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+	)
 
 func load_planet_data(planet_enum):
 	planet_name.text = planet_names[planet_enum]

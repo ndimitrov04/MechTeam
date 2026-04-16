@@ -640,7 +640,15 @@ func finish_mech():
 				# Match controller child #i to module child #i
 				MechData.control_pairs.append(controller.controlled_module_index)
 	await get_tree().process_frame
-	get_tree().change_scene_to_file("res://Scenes/Tutorials/tutorial5_1.tscn")
+	IndieBlueprintSceneTransitioner.transition_to(
+		"res://Scenes/Tutorials/tutorial5_1.tscn", 
+		IndieBlueprintPremadeTransitions.Dissolve,
+		IndieBlueprintPremadeTransitions.Dissolve,
+		{ 
+			"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 0.5, "color": Color("55648C")},
+			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+		}
+	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

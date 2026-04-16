@@ -121,7 +121,23 @@ func end_stage():
 	if PlayerData.current_stage % 3 == 0:
 		PlayerData.planets_finished.append(PlayerData.current_planet)
 		PlayerData.current_stage += 1
-		get_tree().change_scene_to_file("res://Scenes/planet_selector.tscn")
+		IndieBlueprintSceneTransitioner.transition_to(
+		"res://Scenes/planet_selector.tscn", 
+			IndieBlueprintPremadeTransitions.Dissolve,
+			IndieBlueprintPremadeTransitions.Dissolve,
+			{ 
+				"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 0.5, "color": Color("55648C")},
+				"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("000418")}
+			}
+		)
 	else:
 		PlayerData.current_stage += 1
-		get_tree().change_scene_to_file("res://Scenes/mech_builder.tscn")
+		IndieBlueprintSceneTransitioner.transition_to(
+			"res://Scenes/mech_builder.tscn", 
+			IndieBlueprintPremadeTransitions.Dissolve,
+			IndieBlueprintPremadeTransitions.Dissolve,
+			{ 
+				"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 0.5, "color": Color("55648C")},
+				"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
+			}
+		)
