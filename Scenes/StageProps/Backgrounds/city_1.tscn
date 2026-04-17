@@ -688,6 +688,8 @@ texture = ExtResource("6_r6yst")
 stretch_mode = 1
 
 [node name="Terrain" parent="." unique_id=769621585 instance=ExtResource("7_d0sgx")]
+SMOOTHNESS = 160
+ROUGHNESS = 170
 texture_line = ExtResource("8_a04h6")
 texture_polygon = ExtResource("9_21t4n")
 

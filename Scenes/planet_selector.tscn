@@ -262,7 +262,6 @@ visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 process_material = SubResource("ParticleProcessMaterial_6fqms")
 
 [node name="PlanetInfo" type="Control" parent="PlanetSelector" unique_id=701769879]
-visible = false
 layout_mode = 1
 anchor_left = 0.68333334
 anchor_right = 1.0
@@ -392,17 +391,14 @@ theme_override_font_sizes/font_size = 64
 text = "Planet Description"
 metadata/_edit_use_anchors_ = true
 
-[node name="PlanetLore" type="Label" parent="PlanetSelector/PlanetInfo/Panel/LoreData" unique_id=1567607549]
+[node name="PlanetLore" type="RichTextLabel" parent="PlanetSelector/PlanetInfo/Panel/LoreData" unique_id=1239868544]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.04455632
 anchor_top = 0.30188683
 anchor_right = 0.9552136
 anchor_bottom = 0.9433962
-theme_override_font_sizes/font_size = 32
 text = "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. "
-autowrap_mode = 3
-text_overrun_behavior = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="StatusData" type="Panel" parent="PlanetSelector/PlanetInfo/Panel" unique_id=2032174666]

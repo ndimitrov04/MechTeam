@@ -11,15 +11,15 @@ extends Control
 
 @onready var planet_name: Label = $PlanetInfo/Panel/MainData/PlanetName
 @onready var planet_stats: Label = $PlanetInfo/Panel/StatsData/PlanetStats
-@onready var planet_lore: Label = $PlanetInfo/Panel/LoreData/PlanetLore
+@onready var planet_lore: RichTextLabel = $PlanetInfo/Panel/LoreData/PlanetLore
 @onready var planet_picture: TextureRect = $PlanetInfo/Panel/PictureData/Picture
 @onready var status: Label = $PlanetInfo/Panel/StatusData/Status
 
 const planet_lores = [
-	"Neos lore",
-	"Gaia lore",
-	"Terra lore",
-	"Selene lore"
+	"Dubbed as a planet of hope, Neos was the first bastion of the newly free world in a series of planets whose politics would be controlled by cold but fair steel - Scopos - a super AI whose only task was to optimize the quality of life of its people. Once created, Scopos' architecture would be completely unchangeable for even its own creators to prevent its manipulation by bad actors.\n\nFor close to a century this planet was an utopia and the home to a thriving human community. All of this was destroyed 10 years ago with the rise of a group known as Anima, who destroyed Scopos for an undisclosed reason.\n\nCurrently, this planet is being assaulted by unknown forces. The citizens need your help.\n\nNote: Starter enemy types; Steep terrain, small mechs preferable.",
+	"Gaia is a mining colony powered by its own ring, which consists of nuclear rock. Governed by shadow stakeholders, this place exists solely to generate profit for an unknown third party. It is full of paramillitary operators whose only job is to keep the mining operations going. This planet is uninhabited by civillians on paper, but our sources hint that there is an indigenous alien population which resides in a far corner of the planet.\n\nAn anonymous source has contacted us to warn of an impending attack by a rival group known as GEOS. If GEOS sets foot on Gaia, this will be the start of a resource war between them and the current government. Two corporate paramillitaries fighting is none of our concern, however, there are innocent souls on this planet who would be annihilated in the crossfire.\n\nStop GEOS at any cost!\n\nNote: Advanced enemy types. Harmful atmosphere! Do not leave mech!",
+	"Terra is a fortress planet, home to billions of people and governed by an organization known as 'Liberty'. \n\nThis planet is currently under assault by the Anima group. Liberty has contacted us and are requesting backup at the underground checkpoint of AX13C - the third most inhabited city of the planet.\n\nAs always, Anima's motives are unknown. Nevertheless, one thing is clear: They have already destroyed one thriving planet, stop them from destroying another! \n\nNote: Only tough enemy types; Flat terrain; Take advantage of enemy self destruct buttons!",
+	"AAAAAA\n\nNote: All enemy types; Extreme terrain"
 ]
 
 const planet_names = [
@@ -30,26 +30,26 @@ const planet_names = [
 ]
 
 const planet_data = [
-	"Climate: -
-	Terrain: -
-	Hostility: -
-	Atmosphere: -
-	Difficulty: -",
-	"Climate: -
-	Terrain: -
-	Hostility: -
-	Atmosphere: -
-	Difficulty: -",
-	"Climate: -
-	Terrain: -
-	Hostility: -
-	Atmosphere: -
-	Difficulty: -",
-	"Climate: -
-	Terrain: -
-	Hostility: -
-	Atmosphere: -
-	Difficulty: -",
+	"Climate: Warm
+	Terrain: Steep
+	Hostility: Low
+	Atmosphere: Fair
+	Difficulty: Easy",
+	"Climate: Cold
+	Terrain: Fair
+	Hostility: Medium
+	Atmosphere: Polluted
+	Difficulty: Normal",
+	"Climate: Subterranian
+	Terrain: Flat
+	Hostility: Brutal
+	Atmosphere: Fair
+	Difficulty: Hard",
+	"Climate: Fair
+	Terrain: Extreme
+	Hostility: Severe
+	Atmosphere: Fair
+	Difficulty: Brutal",
 ]
 
 const planet_pictures = [
@@ -148,7 +148,6 @@ func _on_neos_mouse_entered() -> void:
 	neos.self_modulate = Color(1.3, 1.3, 1.3)
 
 func _on_neos_mouse_exited() -> void:
-	planet_info.hide()
 	if neos.get_meta("finished"):
 		return
 	neos.self_modulate = Color(1.0, 1.0, 1.0)
@@ -161,7 +160,6 @@ func _on_gaia_mouse_entered() -> void:
 	gaia.self_modulate = Color(1.3, 1.3, 1.3)
 
 func _on_gaia_mouse_exited() -> void:
-	planet_info.hide()
 	if gaia.get_meta("finished"):
 		return
 	gaia.self_modulate = Color(1.0, 1.0, 1.0)
@@ -174,7 +172,6 @@ func _on_terra_mouse_entered() -> void:
 	terra.self_modulate = Color(1.3, 1.3, 1.3)
 
 func _on_terra_mouse_exited() -> void:
-	planet_info.hide()
 	if terra.get_meta("finished"):
 		return
 	terra.self_modulate = Color(1.0, 1.0, 1.0)
@@ -187,7 +184,6 @@ func _on_selene_mouse_entered() -> void:
 	selene.self_modulate = Color(1.3, 1.3, 1.3)
 
 func _on_selene_mouse_exited() -> void:
-	planet_info.hide()
 	if selene.get_meta("finished"):
 		return
 	selene.self_modulate = Color(1.0, 1.0, 1.0)

@@ -10,7 +10,7 @@ extends Node2D
 
 const SPAWN_OFFSET = 750 # Next enemy offset in pixels
 @warning_ignore("narrowing_conversion")
-@onready var enemies_left : int = float(PlayerData.current_stage) * 1.5
+@onready var enemies_left : int = clamp(0.75 * PlayerData.current_stage, 2, 10)
 @onready var triggered : bool = false
 
 @onready var npc_deaths : int = 0
@@ -27,6 +27,24 @@ const MECH_8 = preload("uid://cpdelmkd6jtbm")
 const MECH_9 = preload("uid://dh2noacyx7w6x")
 
 @onready var enemies = [MECH_1, MECH_2, MECH_3, MECH_4, MECH_5, MECH_6, MECH_7, MECH_8, MECH_9]
+@onready var planet_enemies = [
+	# NEOS
+	[
+		MECH_1, MECH_2, MECH_4, MECH_5, MECH_6
+	],
+	# GAIA
+	[
+		MECH_1, MECH_2, MECH_3, MECH_4, MECH_5, MECH_6, MECH_8
+	],
+	# TERRA
+	[
+		MECH_2, MECH_3, MECH_7, MECH_8, MECH_9
+	],
+	# SELENE
+	[
+		MECH_1, MECH_2, MECH_3, MECH_4, MECH_5, MECH_6, MECH_7, MECH_8, MECH_9
+	]
+]
 @onready var Y_SPAWN = -650 # Y-Level at which mechs will spawn
 
 var end_text : String = ""
@@ -85,7 +103,8 @@ func advance():
 		static_ui.display_advance_arrow()
 
 func spawn_random_enemy():
-	var enemy_instance = enemies.pick_random().instantiate()
+	#var enemy_instance = enemies.pick_random().instantiate()
+	var enemy_instance = planet_enemies[PlayerData.current_planet].pick_random().instantiate()
 	mech.add_sibling(enemy_instance)
 	print("Mech X:" + str(mech.global_position.x))
 	print("Enemy X:" + str(screen_limit.global_position.x - 950))
