@@ -84,9 +84,10 @@ func is_connected_to_frame(grid_coords : Vector2i) -> bool:
 		if walls.get_cell_atlas_coords(cell_coords + Vector2i.ONE) != MechData.EMPTY_CELL:
 			return true
 	return false
-
+	
+@onready var click_cooldown: Timer = $ClickCooldown
 func _process(_delta):
-	if lmb_down and get_tree().get_frame() % 5 == 0:
+	if lmb_down and click_cooldown.is_stopped():
 		global_mouse_pos = get_global_mouse_position()
 		print("Global Mouse Position = " + str(global_mouse_pos))
 		# Mouse pos relative to grid node
@@ -171,6 +172,7 @@ func _process(_delta):
 				# Play sound
 				sfx.bulld_block.play()
 			EditLayer.OBJECTS:
+				click_cooldown.start(0.3)
 				if npc_mode:
 					if npc_count < npc_capacity:
 						npc_count += 1
@@ -203,6 +205,7 @@ func _process(_delta):
 				# Play sound
 				sfx.build_entity.play()
 			EditLayer.MOVEMENT:
+				click_cooldown.start(0.3)
 				# ADD COLLIDER
 				# Set object in editor
 				var object_instance = chosen_movement_collider.instantiate()
@@ -465,6 +468,9 @@ func clear_prototype():
 	
 	MechData.control_pairs.clear()
 	first_click = true
+	
+	PlayerData.money += PlayerData.mech_cost
+	PlayerData.mech_cost = 0
 	
 	update_capacity_ui()
 	control.update_cash_panel()

@@ -8,4 +8,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	self.set_point_position(1, get_global_mouse_position() - get_parent().global_position + OFFSET)
+	var p = get_parent().to_local(get_global_mouse_position())
+	self.set_point_position(1, p + OFFSET)

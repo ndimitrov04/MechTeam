@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var BULLET = preload("uid://7pvmbpigkpq1")
+@onready var BULLET = preload("uid://blse43qjj8wf3")
 
 @onready var hitbox = $Hitbox
 @onready var sprite = $Sprite
@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var jetpack_bar = $Jetpack/JetpackBar
 @onready var jetpack_sfx = $Jetpack/SFX
 @onready var jump_timer = $Jetpack/JumpTimer
+@onready var floor_detector = $FloorDetector
 @onready var shootpoint = $Shootpoint
 @onready var gun_cooldown = $Shootpoint/GunCooldown
 
@@ -30,6 +31,7 @@ const JUMP_VELOCITY = -350.0
 
 # Internal game vars
 var last_platform_velocity : Vector2 = Vector2.ZERO
+var last_platform = null
 
 var direction
 var zoom : Vector2 = Vector2(2,2)
@@ -51,6 +53,7 @@ var jumping : bool = false
 func _ready():
 	jump_timer.timeout.connect(_on_jump_timeout)
 	gun_cooldown.timeout.connect(_on_cooldown_timeout)
+	sprite.animation_finished.connect(_on_sprite_animation_finished)
 
 func _physics_process(delta):
 	#debug_info.text = "Velocity: " + str(velocity)
@@ -61,16 +64,21 @@ func _physics_process(delta):
 		jumping = true
 		jump_timer.start(0.1)
 	else:
-		last_platform_velocity = Vector2.ZERO
+		if floor_detector.is_colliding():
+			if floor_detector.get_collider().name == "Frame":
+				last_platform = floor_detector.get_collider().get_parent()
+				last_platform_velocity = last_platform.linear_velocity
+		if last_platform != null:
+			last_platform_velocity = last_platform.linear_velocity
 		jetpack_bar.hide()
 		jetpack_energy = 100
 		jumping = false
 
 	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		last_platform_velocity = get_platform_velocity()
-		velocity = last_platform_velocity
+		#last_platform_velocity = get_platform_velocity()
 		velocity.y += JUMP_VELOCITY
+		velocity.x = last_platform_velocity.x
 
 	# Handle jetpack
 	if Input.is_action_pressed("jump") and not is_on_floor() and jetpack_energy > 0:
@@ -89,8 +97,12 @@ func _physics_process(delta):
 			jetpack.emitting = false
 
 	if Input.is_action_just_pressed("shoot") and not on_cooldown:
+		if sprite.animation == "run":
+			sprite.play("punch_run")
+		else:
+			sprite.play("punch")
 		var bullet_instance = BULLET.instantiate()
-		mech.get_parent().add_child(bullet_instance)
+		add_child(bullet_instance)
 		bullet_instance.global_position = shootpoint.global_position
 		bullet_instance.global_rotation = shootpoint.global_rotation
 		on_cooldown = true
@@ -101,8 +113,8 @@ func _physics_process(delta):
 		zoom *= 2
 	if Input.is_action_just_pressed("zoom_out") and is_on_floor():
 		zoom /= 2
-	zoom.x = clamp(zoom.x, 0.25, 4)
-	zoom.y = clamp(zoom.y, 0.25, 4)
+	zoom.x = clamp(zoom.x, 1, 4)
+	zoom.y = clamp(zoom.y, 1, 4)
 	camera.zoom = zoom
 	
 	# Debug NPC summoning
@@ -125,11 +137,18 @@ func _physics_process(delta):
 			sprite.flip_h = true
 			shootpoint.position.x = -24
 			shootpoint.rotation_degrees = 180
-		sprite.play("run")
+		if sprite.animation != "punch_run" and sprite.animation != "punch":
+			sprite.play("run")
+	else:
+		if sprite.animation != "punch":
+			sprite.play("default")
+			
+	if is_on_floor() and (aim_mode or minigame_mode):
+		velocity.x = 0 * SPEED
+	elif is_on_floor():
 		velocity.x = direction * SPEED
 	else:
-		sprite.play("default")
-		velocity.x = move_toward(velocity.x, last_platform_velocity.x, SPEED)
+		velocity.x = direction * SPEED + last_platform_velocity.x
 
 	move_and_slide()
 
@@ -184,3 +203,11 @@ func _on_jump_timeout():
 
 func _on_cooldown_timeout():
 	on_cooldown = false
+
+func _on_sprite_animation_finished() -> void:
+	if sprite.animation == "punch_run":
+		sprite.stop()
+		sprite.play("run")
+	if sprite.animation == "punch":
+		sprite.stop()
+		sprite.play("default")

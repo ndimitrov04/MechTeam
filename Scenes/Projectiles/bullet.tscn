@@ -70,3 +70,4 @@ one_shot = true
 [node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1359933576]
 stream = ExtResource("3_t1vox")
 autoplay = true
+bus = &"SFX"

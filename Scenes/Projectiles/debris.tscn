@@ -335,6 +335,7 @@ position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_1gh6w")
 
 [node name="Tilemap" type="TileMapLayer" parent="." unique_id=1596923558]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 16, 0, 0, 0)
 tile_set = SubResource("TileSet_dpmsg")
 use_kinematic_bodies = true
 

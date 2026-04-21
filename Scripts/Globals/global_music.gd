@@ -21,6 +21,7 @@ func queue_track(track_path, fade_duration : float) -> void:
 	if track_1.playing:
 		track_2.stream = load(track_path)
 		track_2.play()
+		@warning_ignore("confusable_local_declaration")
 		var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.parallel().tween_property(track_1, "volume_db", MIN_VOLUME, fade_duration)
 		tween.parallel().tween_property(track_2, "volume_db", 0.0, fade_duration)
@@ -30,6 +31,7 @@ func queue_track(track_path, fade_duration : float) -> void:
 	if track_2.playing:
 		track_1.stream = load(track_path)
 		track_1.play()
+		@warning_ignore("confusable_local_declaration")
 		var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.parallel().tween_property(track_2, "volume_db", MIN_VOLUME, fade_duration)
 		tween.parallel().tween_property(track_1, "volume_db", 0.0, fade_duration)

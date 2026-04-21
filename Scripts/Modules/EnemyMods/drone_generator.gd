@@ -79,7 +79,7 @@ func _input_event(_viewport, event, _shape_idx):
 func destroy():
 	# Spawn debris
 	var debris_instance = DEBRIS.instantiate()
-	main.add_child(debris_instance)
+	main.call_deferred("add_child", debris_instance)
 	debris_instance.global_position = global_position
 	
 	set_collision_layer_value(2, 0)
@@ -99,7 +99,7 @@ func destroy():
 	if controller:
 		controller.disarm()
 	
-	freeze = false
+	call_deferred("set_freeze_enabled", false)
 
 # Manual enemy spawn via action
 func engage():
@@ -109,6 +109,7 @@ func engage():
 	spawn_timer.start()
 
 func _on_body_entered(_body):
+	destroy()
 	var debris_instance = DEBRIS.instantiate()
 	main.call_deferred("add_child", debris_instance)
 	debris_instance.global_position = global_position

@@ -157,7 +157,7 @@ func update_decision_timer():
 
 func _on_action_decision_timeout():
 	var action = randi_range(1, 100)
-	const directions = [-1, 1]
+	const directions = [-1, 0, 0, 0, 1]
 	
 	if not ai:
 		direction = 0

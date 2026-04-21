@@ -18,6 +18,7 @@ func _unhandled_input(event):
 func _on_retry_pressed() -> void:
 	hide()
 	get_tree().paused = false
+	PlayerData.money -= 15
 	IndieBlueprintSceneTransitioner.transition_to(
 		get_tree().current_scene.scene_file_path, 
 		IndieBlueprintPremadeTransitions.Dissolve,
@@ -68,3 +69,16 @@ func _on_visibility_changed() -> void:
 	elif get_tree().current_scene.name == "PlanetSelector":
 		retry.hide()
 		abandon_planet.hide()
+		
+@onready var message: Label = $MenuPanel/Message
+func _on_retry_mouse_entered() -> void:
+	message.text = "NOTICE:\n\nRetrying a stage costs 15 money.\n\nYou can reset even\nif you don't have 15 money, but\nyou will go in-debt by doing this."
+	message.show()
+func _on_retry_mouse_exited() -> void:
+	message.hide()
+
+func _on_abandon_planet_mouse_entered() -> void:
+	message.text = "WARNING!\n\nAbandoning a planet will result in you escaping with your life, but failing your planet objective.\n\nYou will get to choose another planet to go to, however you will never be able to return to this planet and complete its stages. Furthermore, the game's difficulty will still rise as if you have beaten all stages on this planet. You will probably not have the funds to upgrade your mech to match the upcoming challenges.\n\nStill, anything is better than dying."
+	message.show()
+func _on_abandon_planet_mouse_exited() -> void:
+	message.hide()

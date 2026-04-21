@@ -46,11 +46,6 @@ tile_set = ExtResource("5_77hwg")
 [node name="WheelHitbox1" parent="." unique_id=1848788113 instance=ExtResource("6_kj4yj")]
 position = Vector2(-6, 292)
 
-[node name="WheelHitbox2" parent="." unique_id=1503815305 instance=ExtResource("6_kj4yj")]
-position = Vector2(290, 292)
-metadata/whitbox = NodePath("../WheelCollider2")
-metadata/wsprite = NodePath("../MovementSprites/Wheel2")
-
 [node name="WheelHitbox4" parent="." unique_id=1906344707 instance=ExtResource("6_kj4yj")]
 position = Vector2(1018, 292)
 metadata/whitbox = NodePath("../WheelCollider4")
@@ -59,9 +54,6 @@ metadata/wsprite = NodePath("../MovementSprites/Wheel4")
 [node name="WheelCollider1" parent="." unique_id=1824074158 instance=ExtResource("7_yj75c")]
 position = Vector2(-6, 282.5)
 
-[node name="WheelCollider2" parent="." unique_id=272045090 instance=ExtResource("7_yj75c")]
-position = Vector2(289.5, 282.25)
-
 [node name="WheelCollider4" parent="." unique_id=1069901066 instance=ExtResource("7_yj75c")]
 position = Vector2(1018, 282.5)
 
@@ -69,9 +61,6 @@ position = Vector2(1018, 282.5)
 
 [node name="Wheel1" parent="MovementSprites" unique_id=540767917 instance=ExtResource("8_it656")]
 position = Vector2(-8, 280)
-
-[node name="Wheel2" parent="MovementSprites" unique_id=142565738 instance=ExtResource("8_it656")]
-position = Vector2(288, 280)
 
 [node name="Wheel4" parent="MovementSprites" unique_id=680162239 instance=ExtResource("8_it656")]
 position = Vector2(1016, 280)

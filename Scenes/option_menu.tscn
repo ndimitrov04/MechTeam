@@ -1189,6 +1189,26 @@ offset_bottom = 508.0
 theme = ExtResource("2_h8r5p")
 theme_override_styles/panel = SubResource("StyleBoxFlat_hpc6h")
 
+[node name="Message" type="Label" parent="MenuPanel" unique_id=17661953]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.0890001
+anchor_right = -1.0890001
+offset_left = -0.12741089
+offset_right = 455.8726
+offset_bottom = 432.0
+text = "Restarting a stage costs 15 money."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel" type="Panel" parent="MenuPanel/Message" unique_id=2046435159]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 432.0
+
 [node name="Retry" type="Button" parent="MenuPanel" unique_id=2008919113]
 layout_mode = 1
 anchors_preset = -1
@@ -1496,7 +1516,11 @@ position = Vector2(-720, -664.00006)
 scale = Vector2(0.75, 0.75)
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="mouse_entered" from="MenuPanel/Retry" to="." method="_on_retry_mouse_entered"]
+[connection signal="mouse_exited" from="MenuPanel/Retry" to="." method="_on_retry_mouse_exited"]
 [connection signal="pressed" from="MenuPanel/Retry" to="." method="_on_retry_pressed"]
+[connection signal="mouse_entered" from="MenuPanel/AbandonPlanet" to="." method="_on_abandon_planet_mouse_entered"]
+[connection signal="mouse_exited" from="MenuPanel/AbandonPlanet" to="." method="_on_abandon_planet_mouse_exited"]
 [connection signal="pressed" from="MenuPanel/AbandonPlanet" to="." method="_on_abandon_planet_pressed"]
 [connection signal="toggled" from="MenuPanel/Options/ShowOptions" to="MenuPanel/Options" method="_on_show_options_toggled"]
 [connection signal="meta_clicked" from="MenuPanel/Credits/CreditPanel/RichTextLabel" to="MenuPanel/Credits" method="_on_rich_text_label_meta_clicked"]

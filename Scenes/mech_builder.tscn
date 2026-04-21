@@ -733,6 +733,10 @@ collision_enabled = false
 tile_set = ExtResource("5_us428")
 collision_enabled = false
 
+[node name="ClickCooldown" type="Timer" parent="." unique_id=119565970]
+wait_time = 0.3
+one_shot = true
+
 [node name="GUI" type="CanvasLayer" parent="." unique_id=1529633036]
 
 [node name="Control" type="Control" parent="GUI" unique_id=248782921]

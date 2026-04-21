@@ -119,6 +119,7 @@ func _ready() -> void:
 
 	color_rect.material = material
 	add_child(color_rect)
+	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	if _should_update():
 		visible = true
 	else:

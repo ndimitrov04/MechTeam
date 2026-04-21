@@ -96,7 +96,7 @@ func arm(module):
 	cooldown_time = module.cooldown_time
 	energy_cost = module.energy_cost
 	# Draw connector
-	connector.add_point(module.global_position - self.global_position + OFFSET)
+	connector.add_point(connector.to_local(module.global_position))
 	## Draw connector outline
 	#for dx in [-1, 1]:
 		#for dy in [-1, 1]:

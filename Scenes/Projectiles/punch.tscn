@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://blse43qjj8wf3"]
+
+[ext_resource type="Script" uid="uid://dl61hbb24xuft" path="res://Scripts/Projectiles/punch.gd" id="1_38htj"]
+[ext_resource type="AudioStream" uid="uid://3ym41o68s5hs" path="res://Audio/SFX/Misc/qubodupPunch02.ogg" id="3_yqtpg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12ur6"]
+size = Vector2(32, 34)
+
+[node name="Punch" type="Area2D" unique_id=218953133]
+z_index = 20
+z_as_relative = false
+collision_layer = 4104
+collision_mask = 4104
+script = ExtResource("1_38htj")
+metadata/speed = 0
+metadata/damage_value = 3
+metadata/knockback = 300
+metadata/impact = true
+metadata/lifetime = 0.1
+metadata/hitflash = false
+metadata/pierce_rate = 0
+metadata/melee = true
+
+[node name="Hurtbox" type="CollisionShape2D" parent="." unique_id=1205890646]
+shape = SubResource("RectangleShape2D_12ur6")
+debug_color = Color(0.9934619, 0, 0.24404812, 0.41960785)
+
+[node name="Timer" type="Timer" parent="." unique_id=1522506310]
+wait_time = 0.2
+one_shot = true
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1359933576]
+stream = ExtResource("3_yqtpg")
+pitch_scale = 0.64
+autoplay = true
+bus = &"SFX"

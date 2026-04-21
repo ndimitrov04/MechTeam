@@ -75,9 +75,6 @@ metadata/direction = 0
 metadata/labeltext = "Brake"
 metadata/enemy_mod = true
 
-[node name="MainGenerator" parent="Controllers" unique_id=834209248 instance=ExtResource("10_2qni5")]
-position = Vector2(880, 432)
-
 [node name="Modules" type="Node2D" parent="." unique_id=33090995]
 
 [node name="AirstrikeCaller" parent="Modules" unique_id=2038994526 instance=ExtResource("11_gx2i3")]
@@ -125,6 +122,9 @@ position = Vector2(48, 480)
 
 [node name="Laser" parent="Modules" unique_id=2124362399 instance=ExtResource("15_dg3n7")]
 position = Vector2(48, 224)
+
+[node name="MainGenerator" parent="Modules" unique_id=834209248 instance=ExtResource("10_2qni5")]
+position = Vector2(880, 432)
 
 [node name="Spawners" type="Node2D" parent="." unique_id=1122453186]
 script = ExtResource("14_objtt")

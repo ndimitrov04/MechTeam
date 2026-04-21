@@ -111,6 +111,7 @@ metadata/pinned_tile = Vector2i(0, 0)
 metadata/price = 25
 metadata/big_object = true
 metadata/airstrike_object = true
+metadata/mod = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
 material = SubResource("ShaderMaterial_hlkgw")
