@@ -13,4 +13,4 @@ collision_mask = 8193
 [node name="WallDetector" type="RayCast2D" parent="." unique_id=179272913]
 position = Vector2(0, 10)
 target_position = Vector2(25, 0)
-collision_mask = 8193
+collision_mask = 8203

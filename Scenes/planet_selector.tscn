@@ -12,6 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://b2541xcxi62t" path="res://Images/Planets/Space/asteroid-1.png" id="6_v86hd"]
 [ext_resource type="Texture2D" uid="uid://cmfxnhqo4sy2u" path="res://Images/Planets/terra.png" id="6_xmtju"]
 [ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="12_6fqms"]
+[ext_resource type="Shader" uid="uid://bicbljvf2w1qg" path="res://Shaders/godrays.gdshader" id="13_hedr5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1x2yn"]
+shader = ExtResource("13_hedr5")
+shader_parameter/light_pos = Vector2(0.245, 0.145)
+shader_parameter/exposure = 0.455
+shader_parameter/decay = 0.925
+shader_parameter/density = 0.15
+shader_parameter/weight = 0.41
+shader_parameter/samples = 49
+shader_parameter/threshold = -0.44
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_74qqg"]
 particle_flag_disable_z = true
@@ -155,6 +166,15 @@ follow_viewport = false
 position = Vector2(1560, 200)
 scale = Vector2(16, 16)
 texture = ExtResource("5_1x2yn")
+
+[node name="GodRays" type="ColorRect" parent="PlanetSelector" unique_id=932080607]
+material = SubResource("ShaderMaterial_1x2yn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Parallax2D5" type="Parallax2D" parent="PlanetSelector" unique_id=1138914174]
 scroll_scale = Vector2(0.45, 0.45)
