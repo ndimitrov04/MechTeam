@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqge4hvto3if1"]
+[gd_scene format=3 uid="uid://dqge4hvto3if1"]
 
 [ext_resource type="Script" uid="uid://cxpkcwsopcsr" path="res://Scripts/Behaviors/direct_aim.gd" id="1_s0dno"]
 
-[node name="DirectAim" type="Node2D"]
+[node name="DirectAim" type="Node2D" unique_id=532710464]
 script = ExtResource("1_s0dno")
+metadata/inverted = false

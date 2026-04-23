@@ -43,6 +43,7 @@ metadata/main_gamemode = true
 
 [node name="Mech" parent="." unique_id=389051570 instance=ExtResource("9_hibaj")]
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")
+angular_damp = 5.0
 
 [node name="Player" parent="." unique_id=1706264332 instance=ExtResource("14_k12tt")]
 z_index = 40

@@ -148,6 +148,7 @@ script = ExtResource("2_0qchd")
 metadata/is_movement = true
 metadata/price = 10
 metadata/big_object = true
+metadata/is_active = true
 
 [node name="Dummy" type="AnimatedSprite2D" parent="." unique_id=1342193076]
 

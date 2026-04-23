@@ -260,6 +260,9 @@ func _input(event):
 	if Input.is_action_just_pressed("debug_add_cash"):
 		PlayerData.money += 100
 		control.update_cash_panel()
+		
+	if Input.is_action_just_pressed("debug_new_object"):
+		print("no")
 	
 	# ON LMB RELEASE - stop spam
 	if event is InputEventMouseButton and build_ui_enabled:

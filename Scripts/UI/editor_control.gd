@@ -65,7 +65,7 @@ signal left_interacted_with()
 	In the action stage, you will be able to trigger the connected module
 	by pressing the interaction key while near the controller.",
 	
-	"COMBAT!"
+	"PREPARE FOR COMBAT!"
 ]
 
 
@@ -82,6 +82,7 @@ const AUTO_GUN = preload("uid://bhwduvjbtg6l5")
 const RAM = preload("uid://d2uuifeftj3yo")
 const LASER = preload("uid://boso7sg4n7kia")
 const PLASMA = preload("uid://c2estde02njs")
+const BOOSTER = preload("uid://ch2aqahhlaycp")
 # CONTROLLERS
 const AIM_CONTROL = preload("uid://bjychxdy31gx5")
 const JUMP_CONTROL = preload("uid://cqf1xuoccxt6k")
@@ -92,6 +93,7 @@ const WEAPON_CONTROL = preload("uid://byb23wa6gburr")
 const WHEEL_COLLIDER_1 = preload("uid://cuhp74yuarb08")
 # Sprites
 const WHEEL_1 = preload("uid://uxt82jfkcjx8")
+const WHEEL_1_PAS = preload("uid://cniaqjo3hwd8a")
 # NPCs
 const NPC = preload("uid://cmy4r8enqaty2")
 
@@ -174,6 +176,14 @@ func _ready():
 	ENGAGE control terminal to shoot.
 	Mech must have an AIM control 
 	terminal onboard for this weapon to be aimed.")
+	modules.set_item_tooltip(9, "Cost: 25
+	Boosts mech towards a point.
+	Needs 25 energy to use.
+	Must be connected to an 
+	ENGAGE control terminal to use.
+	Mech must have an AIM control 
+	terminal onboard for this booster to be aimed.
+	This module aims directly away from the crosshair.")
 	# Controllers
 	controllers.set_item_tooltip(0, "Cost: 10
 	This controller lets the player aim a mech's weapons.")
@@ -190,6 +200,9 @@ func _ready():
 	Can be controlled by movement controllers.
 	Can move to the left and right. 
 	Can jump. Can brake.")
+	movement.set_item_tooltip(1, "Cost: 10
+	Passive tracks.
+	Cannot be controlled.")
 	# NPCs
 	npc_list.set_item_tooltip(0, "Cost: 35 Wage: 5 Supply: 1\n 
 	Will move left and right 
@@ -280,6 +293,9 @@ func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 		8:
 			editor.chosen_object = PLASMA
 			editor.current_cost = 35
+		9:
+			editor.chosen_object = BOOSTER
+			editor.current_cost = 25
 
 func _on_controllers_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 2
@@ -319,6 +335,10 @@ func _on_item_list_item_clicked(index, _at_position, _mouse_button_index):
 		0:
 			editor.chosen_movement_collider = WHEEL_COLLIDER_1
 			editor.chosen_movement_sprite = WHEEL_1
+			editor.current_cost = 10
+		1:
+			editor.chosen_movement_collider = WHEEL_COLLIDER_1
+			editor.chosen_movement_sprite = WHEEL_1_PAS
 			editor.current_cost = 10
 
 func _on_npc_list_item_clicked(index, _at_position, _mouse_button_index):

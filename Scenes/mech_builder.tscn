@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://btiolr45ujjdh" path="res://Images/MechGuns/turret_02_mk1.png" id="24_ag1yu"]
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="24_ojmi2"]
 [ext_resource type="Texture2D" uid="uid://lo8478b4on5s" path="res://Images/MechGuns/turret_04_mk1.png" id="25_i5cyd"]
+[ext_resource type="Texture2D" uid="uid://b0nqwpuaqsv3s" path="res://Images/Circle.png" id="26_i5cyd"]
 [ext_resource type="PackedScene" uid="uid://b5x3br02hg6yg" path="res://Scenes/credits.tscn" id="34_8sja2"]
 [ext_resource type="Script" uid="uid://b4pkxc02tpeob" path="res://Scripts/SFX/builder_sfx.gd" id="35_8sja2"]
 [ext_resource type="AudioStream" uid="uid://bpd24j60vixve" path="res://Audio/SFX/UI/stone01.ogg" id="36_ag1yu"]
@@ -823,7 +824,7 @@ metadata/_tab_index = 1
 [node name="Modules" type="ItemList" parent="GUI/Control/TabContainer" unique_id=848252397]
 visible = false
 layout_mode = 2
-item_count = 9
+item_count = 10
 fixed_icon_size = Vector2i(32, 32)
 item_0/text = "M. Gun"
 item_0/icon = ExtResource("16_ojmi2")
@@ -853,6 +854,9 @@ item_7/selectable = false
 item_8/text = "Plasma"
 item_8/icon = ExtResource("25_i5cyd")
 item_8/selectable = false
+item_9/text = "Booster"
+item_9/icon = ExtResource("26_i5cyd")
+item_9/selectable = false
 metadata/_tab_index = 2
 
 [node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer" unique_id=288800539]
@@ -883,11 +887,14 @@ metadata/_tab_index = 3
 [node name="Movement" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1264730566]
 visible = false
 layout_mode = 2
-item_count = 1
+item_count = 2
 fixed_icon_size = Vector2i(32, 32)
-item_0/text = "Tracks"
+item_0/text = "Tracks (Active)"
 item_0/icon = ExtResource("22_70h1r")
 item_0/selectable = false
+item_1/text = "Tracks (Passive)"
+item_1/icon = ExtResource("22_70h1r")
+item_1/selectable = false
 metadata/_tab_index = 4
 
 [node name="NPCShop" type="Control" parent="GUI/Control" unique_id=748963607]

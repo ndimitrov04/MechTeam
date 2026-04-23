@@ -8,7 +8,8 @@ extends Node2D
 @onready var screen_border = $Foreground/Parallax1/ScreenBorder
 @onready var screen_limit = $Foreground/Parallax1/ScreenBorder/ScreenLimit
 
-const SPAWN_OFFSET = 750 # Next enemy offset in pixels
+@onready var first_enemy : RigidBody2D = $EnemyMech4
+var SPAWN_OFFSET = 750 # Next enemy offset in pixels
 @warning_ignore("narrowing_conversion")
 @onready var enemies_left : int = clamp(0.75 * PlayerData.current_stage, 2, 10)
 @onready var triggered : bool = false
@@ -72,8 +73,18 @@ func _ready():
 	add_child(current_background)
 	move_child(current_background, 0)
 	GlobalMusic.queue_track(soundtracks[stage_number], 2)
+	
+	# Debug terrain test
+	if PlayerData.terrain_test:
+		print("NOTICE: TERRAIN TEST IS ON.")
+		SPAWN_OFFSET = 99999
+		if first_enemy:
+			first_enemy.die()
 
 func _process(_delta):
+	if int(mech.global_position.x) % 500 == 0:
+		print("Current Mech Position: " + str(mech.global_position.x))
+	
 	if enemies_left <= 0 and not triggered:
 		GlobalMusic.queue_track("uid://bfjye4qxke0i", 0.5)
 		end_stage()

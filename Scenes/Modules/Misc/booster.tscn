@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://ch2aqahhlaycp"]
+
+[ext_resource type="Script" uid="uid://c6118o5mkdx5l" path="res://Scripts/Modules/Misc/booster.gd" id="1_rxoov"]
+[ext_resource type="Texture2D" uid="uid://l0br0i4oadx" path="res://Images/MechGuns/turret_01_mk1.png" id="3_14glo"]
+[ext_resource type="AudioStream" uid="uid://djr4818o3n14s" path="res://Audio/SFX/Misc/512815__mostyxs__good-jetpack-sound-loop.ogg" id="4_fyjm0"]
+[ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="4_rvuga"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_14glo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1ilt"]
+radius = 18.0
+height = 42.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fyjm0"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 9.8
+initial_velocity_min = 90.0
+initial_velocity_max = 90.0
+gravity = Vector3(0, 0, 0)
+
+[node name="Booster" type="RigidBody2D" unique_id=834209248]
+z_index = 10
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_rxoov")
+metadata/aim_speed = 2.0
+metadata/pinned_tile = Vector2i(0, 0)
+metadata/price = 25
+metadata/energy_cost = 25
+metadata/cooldown_time = 5.0
+metadata/power = 2500
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
+self_modulate = Color(0, 0.7309542, 2.242651, 1)
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_d1ilt")
+autoplay = "default"
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=196601224]
+position = Vector2(-1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_d1ilt")
+
+[node name="DirectAim" parent="." unique_id=1244187644 instance=ExtResource("4_rvuga")]
+metadata/inverted = true
+
+[node name="BoostPoint" type="Node2D" parent="." unique_id=670362176]
+position = Vector2(40, 0)
+
+[node name="BoostParticles" type="GPUParticles2D" parent="BoostPoint" unique_id=2141075823]
+position = Vector2(-8, 0)
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_fyjm0")
+
+[node name="SFX" type="Node2D" parent="." unique_id=280823543]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="SFX" unique_id=1383703712]
+stream = ExtResource("4_fyjm0")
+pitch_scale = 0.78
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=10055733]
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"
