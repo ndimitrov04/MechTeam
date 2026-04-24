@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cuhp74yuarb08"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_byj66"]
-radius = 31.5
-height = 130.0
+radius = 18.0
+height = 64.0
 
 [node name="WheelCollider1" type="CollisionShape2D" unique_id=1824074158]
 rotation = 1.5707964

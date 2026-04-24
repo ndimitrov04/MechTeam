@@ -8,7 +8,7 @@ const NPC = preload("uid://cmy4r8enqaty2")
 @onready var background = $Background
 @onready var frame : TileMapLayer = $Frame
 
-@onready var movement_sprites = $MovementSprites
+@onready var wheels = $Wheels
 @onready var controllers = $Controllers
 @onready var modules = $Modules
 @onready var npcs = $NPCs
@@ -51,7 +51,7 @@ func _ready():
 	# Calculate and set true weight/hp for mech
 	max_hp = frame.get_used_cells().size() / 4
 	hp = max_hp
-	weight = base_weight + max_hp / 4.0 + movement_sprites.get_child_count() * 0.2
+	weight = base_weight + max_hp / 4.0 + wheels.get_child_count() * 0.2
 	self.mass = weight
 	if has_meta("constant_weight"):
 		self.mass = get_meta("constant_weight")
@@ -63,7 +63,7 @@ func load_mech():
 			frame.set_cell(Vector2i(x,y), 0, MechData.blocks[x][y])
 			background.set_cell(Vector2i(x,y), 0, MechData.walls[x][y])
 	# Load mech objects
-	var hitbox_instance
+	#var hitbox_instance
 	for i in range(0, MechData.object_scenes.size()):
 		var object_scene = MechData.object_scenes[i]
 		var object_action = MechData.object_actions[i]
@@ -71,6 +71,7 @@ func load_mech():
 		var object_coords = MechData.object_coordinates[i]
 		
 		var object_instance = object_scene.instantiate()
+		object_instance.position = object_coords
 		match object_type:
 			MechData.ObjectType.MODULE:
 				modules.add_child(object_instance)
@@ -79,25 +80,24 @@ func load_mech():
 				if not object_instance.get_meta_list().is_empty():
 					object_instance.set_meta(object_instance.get_meta_list().front(), object_action)
 					print(object_instance.get_meta(object_instance.get_meta_list().front()))
-			MechData.ObjectType.COLLIDER:
-				add_child(object_instance)
-				# Add and setup hitbox for collider
-				hitbox_instance = WHEEL_HITBOX_1.instantiate()
-				add_child(hitbox_instance)
-				hitbox_instance.position = object_coords + Vector2(0, 16)
-				hitbox_instance.wheel_collider = object_instance
-				hitbox_instance.set_collision_layer_value(9, 1)
-				hitbox_instance.set_collision_mask_value(9, 1)
-				hitbox_instance.set_collision_layer_value(10, 0)
-				hitbox_instance.set_collision_mask_value(10, 0)
+			#MechData.ObjectType.COLLIDER:
+				#add_child(object_instance)
+				## Add and setup hitbox for collider
+				#hitbox_instance = WHEEL_HITBOX_1.instantiate()
+				#add_child(hitbox_instance)
+				#hitbox_instance.position = object_coords + Vector2(0, 16)
+				#hitbox_instance.wheel_collider = object_instance
+				#hitbox_instance.set_collision_layer_value(9, 1)
+				#hitbox_instance.set_collision_mask_value(9, 1)
+				#hitbox_instance.set_collision_layer_value(10, 0)
+				#hitbox_instance.set_collision_mask_value(10, 0)
 			MechData.ObjectType.SPRITE:
-				movement_sprites.add_child(object_instance)
-				hitbox_instance.wheel_sprite = object_instance
+				wheels.add_child(object_instance)
+				#hitbox_instance.wheel_sprite = object_instance
 			MechData.ObjectType.NPC:
 				npcs.add_child(object_instance)
 			_:
 				pass
-		object_instance.position = object_coords
 	# Load mech object connections
 	for i in range(0, MechData.control_pairs.size()):
 		# Check if controller should be connected to anything
@@ -105,6 +105,7 @@ func load_mech():
 			continue
 		# Connect controller to controlled module
 		controllers.get_child(i).arm(modules.get_child(MechData.control_pairs[i]))
+	print("done")
 
 func _physics_process(delta):
 	# Do not process physics while in editor
@@ -119,7 +120,7 @@ func _physics_process(delta):
 		linear_velocity += get_gravity() * delta
 
 	# Handle jump.
-	if jump and can_jump and movement_sprites.get_child_count() > 0:
+	if jump and can_jump and wheels.get_child_count() > 0:
 		linear_velocity.y = JUMP_linear_velocity
 		jump = false
 		can_jump = false
@@ -132,18 +133,17 @@ func _physics_process(delta):
 		else:
 			physics_material_override.friction = 0.1
 		# Apply movement force at wheels/tracks if they are touching the floor
-		for movement_object in movement_sprites.get_children():
+		for movement_object in wheels.get_children():
 			if movement_object.get_meta("is_active"):
 				if movement_object.floor_detector.is_colliding():
-					var push_point = movement_object.global_position - Vector2(0, 0)
-					self.apply_force(Vector2(direction, 0) * SPEED * 450, push_point)
+					movement_object.drive()
 		#linear_velocity.x = move_toward(linear_velocity.x, direction * SPEED, 1) 
 	else:
 		physics_material_override.friction = 0.9
 		#linear_velocity.x = move_toward(linear_velocity.x, 0, 0.2)
 
 	# Max/Top speed (horizontal) - Determined by number of movement objects
-	var max_speed = movement_sprites.get_child_count() * 45
+	var max_speed = wheels.get_child_count() * 45
 	if linear_velocity.x > max_speed:
 		linear_velocity.x = max_speed
 	if linear_velocity.x < -max_speed:
@@ -151,7 +151,7 @@ func _physics_process(delta):
 
 	# Handle wheel/track animations
 	if abs(linear_velocity.x) > 1:
-		for spr in movement_sprites.get_children():
+		for spr in wheels.get_children():
 			if not spr.is_playing():
 				spr.play("default")
 			if not spr.dust.emitting and spr.floor_detector.is_colliding():
@@ -164,7 +164,7 @@ func _physics_process(delta):
 					spr.start_dust.flip_h = false
 					spr.start_dust.offset.x = -35
 	else:
-		for spr in movement_sprites.get_children():
+		for spr in wheels.get_children():
 			spr.stop()
 			spr.dust.emitting = false
 	

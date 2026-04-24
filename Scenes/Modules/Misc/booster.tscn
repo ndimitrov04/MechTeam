@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ch2aqahhlaycp"]
 
 [ext_resource type="Script" uid="uid://c6118o5mkdx5l" path="res://Scripts/Modules/Misc/booster.gd" id="1_rxoov"]
-[ext_resource type="Texture2D" uid="uid://l0br0i4oadx" path="res://Images/MechGuns/turret_01_mk1.png" id="3_14glo"]
+[ext_resource type="Texture2D" uid="uid://cxl1nawaak5d7" path="res://Images/Objects/Booster/turret_03_mk1.png" id="2_fyjm0"]
 [ext_resource type="AudioStream" uid="uid://djr4818o3n14s" path="res://Audio/SFX/Misc/512815__mostyxs__good-jetpack-sound-loop.ogg" id="4_fyjm0"]
 [ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="4_rvuga"]
 
@@ -9,7 +9,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_14glo")
+"texture": ExtResource("2_fyjm0")
 }],
 "loop": true,
 "name": &"default",
@@ -24,9 +24,15 @@ height = 42.0
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 9.8
+spread = 10.714
 initial_velocity_min = 90.0
 initial_velocity_max = 90.0
 gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0.92615217, 0.5669064, 0.28840902, 1)
+hue_variation_min = -0.030000022
+hue_variation_max = 0.029999977
 
 [node name="Booster" type="RigidBody2D" unique_id=834209248]
 z_index = 10
@@ -47,7 +53,6 @@ metadata/cooldown_time = 5.0
 metadata/power = 2500
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
-self_modulate = Color(0, 0.7309542, 2.242651, 1)
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_d1ilt")
 autoplay = "default"
@@ -64,18 +69,18 @@ metadata/inverted = true
 position = Vector2(40, 0)
 
 [node name="BoostParticles" type="GPUParticles2D" parent="BoostPoint" unique_id=2141075823]
-position = Vector2(-8, 0)
+position = Vector2(-24, 0)
 emitting = false
-amount = 32
+amount = 48
 one_shot = true
-explosiveness = 0.8
+explosiveness = 0.81
 process_material = SubResource("ParticleProcessMaterial_fyjm0")
 
 [node name="SFX" type="Node2D" parent="." unique_id=280823543]
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="SFX" unique_id=1383703712]
 stream = ExtResource("4_fyjm0")
-pitch_scale = 0.78
+pitch_scale = 0.61
 max_distance = 1250.0
 max_polyphony = 10
 bus = &"SFX"

@@ -333,11 +333,9 @@ func _on_item_list_item_clicked(index, _at_position, _mouse_button_index):
 	update_info_panel(movement.get_item_icon(index), movement.get_item_text(index), movement.get_item_tooltip(index))
 	match index:
 		0:
-			editor.chosen_movement_collider = WHEEL_COLLIDER_1
 			editor.chosen_movement_sprite = WHEEL_1
 			editor.current_cost = 10
 		1:
-			editor.chosen_movement_collider = WHEEL_COLLIDER_1
 			editor.chosen_movement_sprite = WHEEL_1_PAS
 			editor.current_cost = 10
 

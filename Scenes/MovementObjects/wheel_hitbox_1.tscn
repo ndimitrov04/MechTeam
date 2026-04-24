@@ -10,8 +10,6 @@ collision_layer = 512
 collision_mask = 512
 script = ExtResource("1_bw5ws")
 metadata/prebuilt = true
-metadata/whitbox = NodePath("../WheelCollider1")
-metadata/wsprite = NodePath("../MovementSprites/Wheel1")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1730915833]
 shape = SubResource("RectangleShape2D_3pmx8")

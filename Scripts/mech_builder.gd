@@ -208,22 +208,25 @@ func _process(_delta):
 				click_cooldown.start(0.3)
 				# ADD COLLIDER
 				# Set object in editor
-				var object_instance = chosen_movement_collider.instantiate()
-				mech_prototype.add_child(object_instance)
-				object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
-				# Disable object processing
-				object_instance.set_process(false)
-				for child in object_instance.get_children():
-					child.set_process(false)
-				# Add to mech data global
-				MechData.set_object(chosen_movement_collider, chosen_action, MechData.ObjectType.COLLIDER, to_global(grid_pos*16-OBJECT_OFFSET))
+				#var object_instance = chosen_movement_collider.instantiate()
+				#mech_prototype.add_child(object_instance)
+				#object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
+				## Disable object processing
+				#object_instance.set_process(false)
+				#for child in object_instance.get_children():
+					#child.set_process(false)
+				## Add to mech data global
+				#MechData.set_object(chosen_movement_collider, chosen_action, MechData.ObjectType.COLLIDER, to_global(grid_pos*16-OBJECT_OFFSET))
 				# ADD SPRITE
 				# Set object in editor
-				object_instance = chosen_movement_sprite.instantiate()
+				var object_instance = chosen_movement_sprite.instantiate()
 				mech_prototype.add_child(object_instance)
 				object_instance.position = to_global(grid_pos*16+OBJECT_OFFSET)
 				# Disable object processing
 				object_instance.set_process(false)
+				object_instance.freeze = true
+				object_instance.wheel_collider.set_deferred("disabled", true)
+				object_instance.gravity_scale = 0
 				for child in object_instance.get_children():
 					child.set_process(false)
 				# Add to mech data global
@@ -343,9 +346,9 @@ func remove_generic_object(grid_pos):
 				else:
 					npc_capacity -= 1
 					update_capacity_ui()
-			elif child.has_meta("is_movement"):
-				remove_movement_object(grid_pos)
-				return
+			#elif child.has_meta("is_movement"):
+				#remove_movement_object(grid_pos)
+				#return
 			# Return cash
 			unbuy(child.get_meta("price"))
 			# Play sound
@@ -439,6 +442,11 @@ func load_prototype():
 		object_instance.position = MechData.object_coordinates[i] + Vector2(OBJECT_OFFSET*2)
 		# Disable object processing
 		object_instance.set_process(false)
+		if "freeze" in object_instance:
+			object_instance.freeze = true
+			object_instance.wheel_collider.set_deferred("disabled", true)
+		if "gravity_scale" in object_instance:
+			object_instance.gravity_scale = 0
 		for child in object_instance.get_children():
 			child.set_process(false)
 	

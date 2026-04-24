@@ -44,7 +44,7 @@ tile_set = ExtResource("4_kq1j2")
 use_kinematic_bodies = true
 script = ExtResource("5_0xx7q")
 
-[node name="MovementSprites" type="Node2D" parent="." unique_id=2035739966]
+[node name="Wheels" type="Node2D" parent="." unique_id=2035739966]
 
 [node name="Controllers" type="Node2D" parent="." unique_id=2086536356]
 

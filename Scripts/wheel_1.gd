@@ -1,19 +1,49 @@
-extends AnimatedSprite2D
+extends RigidBody2D
 
+@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var wheel_collider: CollisionShape2D = $WheelCollider
+@onready var wheel_hitbox: Area2D = $WheelHitbox
+@onready var dummy: AnimatedSprite2D = $Dummy
+@onready var marker: Sprite2D = $Marker
 @onready var floor_detector: ShapeCast2D = $FloorDetector
 @onready var dust: GPUParticles2D = $Dust
 @onready var start_dust: AnimatedSprite2D = $Dust/StartDust
 @onready var sfx: AudioStreamPlayer2D = $SFX
 
+@onready var suspension: Node2D = $Suspension
+@onready var spring_joint: DampedSpringJoint2D = $Suspension/SpringJoint
+
+
+const STIFFNESS = 900
+const DAMPING = 50
+const SPEED = 50
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	spring_joint.stiffness = STIFFNESS
+	spring_joint.damping = DAMPING
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if is_playing():
+	if sprite.is_playing():
 		if not sfx.playing:
 			sfx.play()
 	else:
 		if sfx.playing:
 			sfx.stop()
+
+const floor_stick_factor : float = 0.1
+func drive():
+	var normal = floor_detector.get_collision_normal(0)
+	var forward = Vector2.RIGHT	
+	var slope_dir = forward.lerp(forward.slide(normal), floor_stick_factor).normalized()
+	self.apply_central_force(slope_dir * SPEED * 1500)
+
+# Passthroughs to accomodate old central wheel control system
+func is_playing():
+	return sprite.is_playing()
+
+func stop():
+	sprite.stop()
+
+func play(anim_name):
+	sprite.play(anim_name)
