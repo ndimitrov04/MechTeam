@@ -18,10 +18,8 @@
 [ext_resource type="Script" uid="uid://bjgkfyj322xtr" path="res://Scripts/UI/static_ui.gd" id="13_s1sah"]
 [ext_resource type="Script" uid="uid://1i7x3yrfunn2" path="res://Scripts/aim_viewport.gd" id="14_7eamv"]
 [ext_resource type="Script" uid="uid://dy8gvg3wwqymn" path="res://Scripts/MechControllers/mov_control_x_axis.gd" id="14_7tyix"]
-[ext_resource type="PackedScene" uid="uid://gabbdsxamcdv" path="res://Scenes/MovementObjects/wheel_hitbox_1.tscn" id="14_7xkn6"]
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="15_hu101"]
 [ext_resource type="Texture2D" uid="uid://cmiucrejdoxwi" path="res://Images/Objects/Decor/monitor.png" id="15_l3bt2"]
-[ext_resource type="PackedScene" uid="uid://cuhp74yuarb08" path="res://Scenes/MovementObjects/wheel_collider_1.tscn" id="15_xyoo4"]
 [ext_resource type="Script" uid="uid://drkagrg0iq1mc" path="res://Scripts/mech_viewport.gd" id="16_kt6lo"]
 [ext_resource type="PackedScene" uid="uid://uxt82jfkcjx8" path="res://Scenes/MovementObjects/wheel_1.tscn" id="16_rsfja"]
 [ext_resource type="Texture2D" uid="uid://b1wt3rxhih26o" path="res://Images/Objects/Control1/Screen2.png" id="16_vglnl"]
@@ -818,7 +816,7 @@ collision_mask = 8192
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")
 script = ExtResource("9_5ajnu")
 metadata/prebuilt = true
-metadata/constant_weight = 850.0
+metadata/constant_weight = 400.0
 
 [node name="Background" type="TileMapLayer" parent="Mech" unique_id=796847977]
 z_index = -1
@@ -832,26 +830,12 @@ tile_set = ExtResource("12_xyoo4")
 use_kinematic_bodies = true
 script = ExtResource("13_rsfja")
 
-[node name="WheelHitbox1" parent="Mech" unique_id=1848788113 instance=ExtResource("14_7xkn6")]
+[node name="Wheels" type="Node2D" parent="Mech" unique_id=2035739966]
+
+[node name="Wheel1" parent="Mech/Wheels" unique_id=540767917 instance=ExtResource("16_rsfja")]
 position = Vector2(256, 344)
 
-[node name="WheelHitbox2" parent="Mech" unique_id=12770221 instance=ExtResource("14_7xkn6")]
-position = Vector2(784, 344)
-metadata/whitbox = NodePath("../WheelCollider2")
-metadata/wsprite = NodePath("../MovementSprites/Wheel2")
-
-[node name="WheelCollider1" parent="Mech" unique_id=1824074158 instance=ExtResource("15_xyoo4")]
-position = Vector2(256, 344)
-
-[node name="WheelCollider2" parent="Mech" unique_id=943247015 instance=ExtResource("15_xyoo4")]
-position = Vector2(784, 344)
-
-[node name="MovementSprites" type="Node2D" parent="Mech" unique_id=2035739966]
-
-[node name="Wheel1" parent="Mech/MovementSprites" unique_id=540767917 instance=ExtResource("16_rsfja")]
-position = Vector2(256, 344)
-
-[node name="Wheel2" parent="Mech/MovementSprites" unique_id=928198841 instance=ExtResource("16_rsfja")]
+[node name="Wheel2" parent="Mech/Wheels" unique_id=928198841 instance=ExtResource("16_rsfja")]
 position = Vector2(784, 344)
 
 [node name="Controllers" type="Node2D" parent="Mech" unique_id=2086536356]

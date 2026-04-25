@@ -444,6 +444,7 @@ func load_prototype():
 		object_instance.set_process(false)
 		if "freeze" in object_instance:
 			object_instance.freeze = true
+		if "wheel_collider" in object_instance:
 			object_instance.wheel_collider.set_deferred("disabled", true)
 		if "gravity_scale" in object_instance:
 			object_instance.gravity_scale = 0

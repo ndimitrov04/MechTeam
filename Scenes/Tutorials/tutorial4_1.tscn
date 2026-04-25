@@ -13,8 +13,6 @@
 [ext_resource type="Script" uid="uid://by3pf8nx5c5s3" path="res://Scripts/Misc/destructible_background.gd" id="11_vbye5"]
 [ext_resource type="TileSet" uid="uid://beya8mv7awxpa" path="res://CustomResources/frame_tileset.tres" id="12_ef61d"]
 [ext_resource type="Script" uid="uid://65apk4w16d4j" path="res://Scripts/Misc/destructible_frame.gd" id="13_w6r2e"]
-[ext_resource type="PackedScene" uid="uid://gabbdsxamcdv" path="res://Scenes/MovementObjects/wheel_hitbox_1.tscn" id="14_ang03"]
-[ext_resource type="PackedScene" uid="uid://cuhp74yuarb08" path="res://Scenes/MovementObjects/wheel_collider_1.tscn" id="15_7imj6"]
 [ext_resource type="AudioStream" uid="uid://dfgtuk70n5ubo" path="res://Audio/Music/07 high in the mountains.ogg" id="33_j38be"]
 [ext_resource type="Script" uid="uid://cfcgqox3nhdhw" path="res://Scripts/highlight.gd" id="42_agj4u"]
 [ext_resource type="AudioStream" uid="uid://c2rux4dr3pu54" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3" id="97_ygrk7"]
@@ -767,21 +765,7 @@ tile_set = ExtResource("12_ef61d")
 use_kinematic_bodies = true
 script = ExtResource("13_w6r2e")
 
-[node name="WheelHitbox1" parent="Mech" unique_id=1848788113 instance=ExtResource("14_ang03")]
-position = Vector2(256, 344)
-metadata/wsprite = NodePath("")
-
-[node name="WheelHitbox2" parent="Mech" unique_id=12770221 instance=ExtResource("14_ang03")]
-position = Vector2(784, 344)
-metadata/wsprite = NodePath("")
-
-[node name="WheelCollider1" parent="Mech" unique_id=1824074158 instance=ExtResource("15_7imj6")]
-position = Vector2(256, 344)
-
-[node name="WheelCollider2" parent="Mech" unique_id=943247015 instance=ExtResource("15_7imj6")]
-position = Vector2(784, 344)
-
-[node name="MovementSprites" type="Node2D" parent="Mech" unique_id=2035739966]
+[node name="Wheels" type="Node2D" parent="Mech" unique_id=2035739966]
 
 [node name="Controllers" type="Node2D" parent="Mech" unique_id=2086536356]
 

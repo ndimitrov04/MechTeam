@@ -22,7 +22,7 @@ region = Rect2(75, 60, 64, 37)
 atlas = ExtResource("1_rn7y4")
 region = Rect2(139, 60, 64, 37)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1w6v2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_go6qf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -47,7 +47,7 @@ gradient = SubResource("Gradient_rn7y4")
 width = 32
 height = 32
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qchd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_go6qf"]
 size = Vector2(54.61, 7.255)
 
 [sub_resource type="Gradient" id="Gradient_i8srh"]
@@ -158,9 +158,8 @@ metadata/is_active = true
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=540767917]
 self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_1w6v2")
+sprite_frames = SubResource("SpriteFrames_go6qf")
 autoplay = "default"
-frame_progress = 0.20177686
 metadata/is_movement = true
 metadata/price = 10
 metadata/big_object = true
@@ -199,7 +198,7 @@ texture = SubResource("GradientTexture2D_rn7y4")
 [node name="FloorDetector" type="ShapeCast2D" parent="." unique_id=1669275256]
 position = Vector2(0, 24)
 scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_0qchd")
+shape = SubResource("RectangleShape2D_go6qf")
 target_position = Vector2(0, 2.675)
 
 [node name="Dust" type="GPUParticles2D" parent="." unique_id=1182060644]

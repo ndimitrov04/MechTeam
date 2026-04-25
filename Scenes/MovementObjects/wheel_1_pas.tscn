@@ -3,7 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://cujqusmchfqck" path="res://Images/Placeholders/oll.png" id="1_yftpj"]
 [ext_resource type="Script" uid="uid://byn8nbt8vtu7n" path="res://Scripts/wheel_1.gd" id="2_2wmri"]
 [ext_resource type="Texture2D" uid="uid://dcl1l8c057iwg" path="res://Images/Placeholders/SmokeNDust P03 VFX 1.png" id="3_rydmw"]
+[ext_resource type="PackedScene" uid="uid://cuhp74yuarb08" path="res://Scenes/MovementObjects/wheel_collider_1.tscn" id="3_wcwvq"]
+[ext_resource type="PackedScene" uid="uid://gabbdsxamcdv" path="res://Scenes/MovementObjects/wheel_hitbox_1.tscn" id="4_j2d8w"]
 [ext_resource type="AudioStream" uid="uid://1683iijlo6r5" path="res://Audio/SFX/Modules/SpaceShip_Engine_Large_Loop_00.mp3" id="4_wcwvq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_go6qf"]
+friction = 0.05
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3pmx8"]
 atlas = ExtResource("1_yftpj")
@@ -138,34 +143,70 @@ animations = [{
 "speed": 18.0
 }]
 
-[node name="Wheel1" type="AnimatedSprite2D" unique_id=540767917]
-self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_1w6v2")
-autoplay = "default"
-frame_progress = 0.20177686
+[node name="Wheel" type="RigidBody2D" unique_id=2053751081]
+modulate = Color(0.796243, 0.796243, 0.796243, 1)
+collision_layer = 32768
+collision_mask = 32768
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_go6qf")
+lock_rotation = true
 script = ExtResource("2_2wmri")
 metadata/is_movement = true
 metadata/price = 10
 metadata/big_object = true
 metadata/is_active = false
 
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=540767917]
+self_modulate = Color(1.2760919, 1.5267867, 2.3367229, 1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1w6v2")
+autoplay = "default"
+frame_progress = 0.20177686
+metadata/is_movement = true
+metadata/price = 10
+metadata/big_object = true
+metadata/is_active = true
+
+[node name="WheelCollider" parent="." unique_id=1824074158 instance=ExtResource("3_wcwvq")]
+scale = Vector2(2, 2)
+
+[node name="WheelHitbox" parent="." unique_id=1848788113 instance=ExtResource("4_j2d8w")]
+metadata/whitbox = NodePath("../WheelCollider")
+metadata/wsprite = NodePath("../Sprite")
+
+[node name="Suspension" type="Node2D" parent="." unique_id=1378857324]
+
+[node name="GrooveJoint" type="GrooveJoint2D" parent="Suspension" unique_id=985478267]
+position = Vector2(0, -71)
+node_a = NodePath("../..")
+node_b = NodePath("../../../..")
+
+[node name="SpringJoint" type="DampedSpringJoint2D" parent="Suspension" unique_id=1617275316]
+position = Vector2(0, -71)
+node_a = NodePath("../..")
+node_b = NodePath("../../../..")
+rest_length = 25.0
+stiffness = 64.0
+damping = 16.0
+
 [node name="Dummy" type="AnimatedSprite2D" parent="." unique_id=1342193076]
+scale = Vector2(2, 2)
 
 [node name="Marker" type="Sprite2D" parent="." unique_id=1100198517]
 visible = false
-position = Vector2(2.3841858e-07, 2.3841858e-07)
-scale = Vector2(0.5, 0.5)
+position = Vector2(4.7683716e-07, 4.7683716e-07)
 texture = SubResource("GradientTexture2D_rn7y4")
 
 [node name="FloorDetector" type="ShapeCast2D" parent="." unique_id=1669275256]
-modulate = Color(0.40069774, 0.40069774, 0.40069768, 1)
-position = Vector2(0, 12)
+modulate = Color(0.21230483, 0.21230483, 0.21230483, 1)
+position = Vector2(0, 24)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_0qchd")
 target_position = Vector2(0, 2.675)
 
 [node name="Dust" type="GPUParticles2D" parent="." unique_id=1182060644]
-position = Vector2(0, 16)
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
 emitting = false
 amount = 32
 texture = SubResource("GradientTexture2D_i8srh")
@@ -180,6 +221,7 @@ frame_progress = 1.0
 offset = Vector2(-50, 0)
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=899716865]
+scale = Vector2(2, 2)
 stream = ExtResource("4_wcwvq")
 volume_db = -22.976
 bus = &"SFX"

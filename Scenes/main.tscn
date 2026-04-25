@@ -133,7 +133,7 @@ offset_bottom = 410.0
 theme_override_font_sizes/font_size = 16
 text = "Move with WASD
 Jump with SPACE
-CTRL to Shoot
+CTRL to Kick
 
 Use Jetpack with SPACE (in midair)
 Interact with F
@@ -142,7 +142,7 @@ PG-UP/PG-DOWN to Zoom IN/OUT
 
 ALT to SCAN
 
-ESC to Pause"
+ESC/P to Pause"
 autowrap_mode = 3
 
 [node name="StatusPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=221317803]

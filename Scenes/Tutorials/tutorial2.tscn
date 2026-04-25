@@ -13,8 +13,6 @@
 [ext_resource type="Script" uid="uid://by3pf8nx5c5s3" path="res://Scripts/Misc/destructible_background.gd" id="11_xtqct"]
 [ext_resource type="TileSet" uid="uid://beya8mv7awxpa" path="res://CustomResources/frame_tileset.tres" id="12_q0i6m"]
 [ext_resource type="Script" uid="uid://65apk4w16d4j" path="res://Scripts/Misc/destructible_frame.gd" id="13_4rygb"]
-[ext_resource type="PackedScene" uid="uid://gabbdsxamcdv" path="res://Scenes/MovementObjects/wheel_hitbox_1.tscn" id="14_cy52v"]
-[ext_resource type="PackedScene" uid="uid://cuhp74yuarb08" path="res://Scenes/MovementObjects/wheel_collider_1.tscn" id="15_b2ger"]
 [ext_resource type="PackedScene" uid="uid://uxt82jfkcjx8" path="res://Scenes/MovementObjects/wheel_1.tscn" id="16_fqqi5"]
 [ext_resource type="Script" uid="uid://cmydp1w8cg212" path="res://Scripts/MechControllers/aim_control.gd" id="17_j7tov"]
 [ext_resource type="Texture2D" uid="uid://bs7a05rx72oy7" path="res://Images/Objects/Control2/tile000.png" id="18_0wkly"]
@@ -1761,7 +1759,7 @@ collision_mask = 8192
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")
 script = ExtResource("9_mhtlr")
 metadata/prebuilt = true
-metadata/constant_weight = 850.0
+metadata/constant_weight = 400.0
 
 [node name="Background" type="TileMapLayer" parent="Mech" unique_id=796847977]
 z_index = -1
@@ -1775,26 +1773,12 @@ tile_set = ExtResource("12_q0i6m")
 use_kinematic_bodies = true
 script = ExtResource("13_4rygb")
 
-[node name="WheelHitbox1" parent="Mech" unique_id=1848788113 instance=ExtResource("14_cy52v")]
+[node name="Wheels" type="Node2D" parent="Mech" unique_id=2035739966]
+
+[node name="Wheel1" parent="Mech/Wheels" unique_id=540767917 instance=ExtResource("16_fqqi5")]
 position = Vector2(256, 344)
 
-[node name="WheelHitbox2" parent="Mech" unique_id=12770221 instance=ExtResource("14_cy52v")]
-position = Vector2(784, 344)
-metadata/whitbox = NodePath("../WheelCollider2")
-metadata/wsprite = NodePath("../MovementSprites/Wheel2")
-
-[node name="WheelCollider1" parent="Mech" unique_id=1824074158 instance=ExtResource("15_b2ger")]
-position = Vector2(256, 344)
-
-[node name="WheelCollider2" parent="Mech" unique_id=943247015 instance=ExtResource("15_b2ger")]
-position = Vector2(784, 344)
-
-[node name="MovementSprites" type="Node2D" parent="Mech" unique_id=2035739966]
-
-[node name="Wheel1" parent="Mech/MovementSprites" unique_id=540767917 instance=ExtResource("16_fqqi5")]
-position = Vector2(256, 344)
-
-[node name="Wheel2" parent="Mech/MovementSprites" unique_id=928198841 instance=ExtResource("16_fqqi5")]
+[node name="Wheel2" parent="Mech/Wheels" unique_id=928198841 instance=ExtResource("16_fqqi5")]
 position = Vector2(784, 344)
 
 [node name="Controllers" type="Node2D" parent="Mech" unique_id=2086536356]

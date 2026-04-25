@@ -34,7 +34,8 @@ You will be presented with two enemies in quick succession.
 Your tasks:
 1. Destroy the first one.
 2. Proceed forward.
-3. Destroy the second one."
+3. Destroy the second one.
+4. Press P to pause and quit to menu when finished."
 
 
 var instructions = [instruction_0]
@@ -120,7 +121,8 @@ func end_stage():
 	minigame_result.show()
 	await get_tree().create_timer(5).timeout
 	IndieBlueprintSceneTransitioner.transition_to(
-		"res://Scenes/Tutorials/tutorial4.tscn", 
+		#"res://Scenes/Tutorials/tutorial4.tscn",
+		"res://Scenes/menu.tscn",
 		IndieBlueprintPremadeTransitions.Dissolve,
 		IndieBlueprintPremadeTransitions.Dissolve,
 		{ 

@@ -19,7 +19,7 @@ const NPC = preload("uid://cmy4r8enqaty2")
 @onready var game_over
 
 const SPEED = 50.0
-const JUMP_linear_velocity = -600.0
+const JUMP = -450.0
 
 @onready var in_editor : bool = false
 
@@ -121,7 +121,7 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if jump and can_jump and wheels.get_child_count() > 0:
-		linear_velocity.y = JUMP_linear_velocity
+		linear_velocity.y = JUMP * wheels.get_child_count()
 		jump = false
 		can_jump = false
 		jump_timer.start()
@@ -152,6 +152,8 @@ func _physics_process(delta):
 	# Handle wheel/track animations
 	if abs(linear_velocity.x) > 1:
 		for spr in wheels.get_children():
+			if not spr.has_meta("is_movement"):
+				continue
 			if not spr.is_playing():
 				spr.play("default")
 			if not spr.dust.emitting and spr.floor_detector.is_colliding():
