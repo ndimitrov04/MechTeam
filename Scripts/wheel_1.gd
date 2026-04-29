@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 const floor_stick_factor : float = 0.1
 func drive():
 	var normal = floor_detector.get_collision_normal(0)
-	var forward = Vector2.RIGHT	
+	var forward = Vector2(get_parent().get_parent().direction, 0)	
 	var slope_dir = forward.lerp(forward.slide(normal), floor_stick_factor).normalized()
 	self.apply_central_force(slope_dir * SPEED * 1500)
 

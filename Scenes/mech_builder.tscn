@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://btiolr45ujjdh" path="res://Images/MechGuns/turret_02_mk1.png" id="24_ag1yu"]
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="24_ojmi2"]
 [ext_resource type="Texture2D" uid="uid://lo8478b4on5s" path="res://Images/MechGuns/turret_04_mk1.png" id="25_i5cyd"]
-[ext_resource type="Texture2D" uid="uid://b0nqwpuaqsv3s" path="res://Images/Circle.png" id="26_i5cyd"]
+[ext_resource type="Texture2D" uid="uid://cxl1nawaak5d7" path="res://Images/Objects/Booster/turret_03_mk1.png" id="26_i5cyd"]
 [ext_resource type="PackedScene" uid="uid://b5x3br02hg6yg" path="res://Scenes/credits.tscn" id="34_8sja2"]
 [ext_resource type="Script" uid="uid://b4pkxc02tpeob" path="res://Scripts/SFX/builder_sfx.gd" id="35_8sja2"]
 [ext_resource type="AudioStream" uid="uid://bpd24j60vixve" path="res://Audio/SFX/UI/stone01.ogg" id="36_ag1yu"]

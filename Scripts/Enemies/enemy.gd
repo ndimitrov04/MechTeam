@@ -142,12 +142,12 @@ func die():
 	frame.break_all_tiles()
 	set_collision_layer_value(3, 0)
 	main.enemies_left -= 1
+	main.advance()
 	print("Player has gained " + str(reward) + " coins!")
 	PlayerData.money += reward
 	main.rewards_collected += reward
 	await get_tree().create_timer(1.5).timeout
 	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
-	main.advance()
 	queue_free()
 
 func update_decision_timer():

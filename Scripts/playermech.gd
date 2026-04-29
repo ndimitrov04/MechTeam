@@ -167,8 +167,9 @@ func _physics_process(delta):
 					spr.start_dust.offset.x = -35
 	else:
 		for spr in wheels.get_children():
-			spr.stop()
-			spr.dust.emitting = false
+			if spr.has_method("stop"):
+				spr.stop()
+				spr.dust.emitting = false
 	
 	# Recalculate total mech energy
 	total_energy()
