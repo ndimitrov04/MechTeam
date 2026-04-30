@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://weln3g7a8oqn"]
+
+[ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="1_1mhem"]
+[ext_resource type="Texture2D" uid="uid://csv2fwl5fvrr3" path="res://!MediaMaterials/WebStages/build.png" id="2_gobmc"]
+
+[node name="Mockup1" type="Control" unique_id=1953746919]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1mhem")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=579821010]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gobmc")
+
+[node name="Panel" type="Panel" parent="." unique_id=950127005]
+layout_mode = 0
+offset_left = 1272.0
+offset_top = 536.0
+offset_right = 1888.0
+offset_bottom = 1056.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=199678639]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 32.0
+offset_right = 605.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 64
+text = "          STAGE 1
+Mech Construction
+
+- Build a mech Frame
+- Add modules like weapons,
+batteries, etc.
+- Hire Crew Members to help with mech control"
+autowrap_mode = 3

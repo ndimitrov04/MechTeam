@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://drju5s3gfnmuy"]
+
+[ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="1_x0ri3"]
+[ext_resource type="Texture2D" uid="uid://bu61f82q4femg" path="res://!MediaMaterials/WebStages/fight.png" id="2_x0ri3"]
+
+[node name="Mockup2" type="Control" unique_id=1953746919]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_x0ri3")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=579821010]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_x0ri3")
+
+[node name="Panel" type="Panel" parent="." unique_id=950127005]
+layout_mode = 0
+offset_left = 1272.0
+offset_top = 536.0
+offset_right = 1888.0
+offset_bottom = 1056.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=199678639]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 608.0
+offset_bottom = 500.0
+theme_override_font_sizes/font_size = 64
+text = "         STAGE 2
+Combat
+
+- Defeat all enemies in a stage. Enemy count increases with each passed stage
+- Traverse rough terrain
+- Collect money by destroying enemies"
+autowrap_mode = 3
