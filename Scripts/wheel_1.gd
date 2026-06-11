@@ -13,7 +13,6 @@ extends RigidBody2D
 @onready var suspension: Node2D = $Suspension
 @onready var spring_joint: DampedSpringJoint2D = $Suspension/SpringJoint
 
-
 const STIFFNESS = 900
 const DAMPING = 50
 const SPEED = 50

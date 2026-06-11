@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://by3pf8nx5c5s3" path="res://Scripts/Misc/destructible_background.gd" id="11_vbye5"]
 [ext_resource type="TileSet" uid="uid://beya8mv7awxpa" path="res://CustomResources/frame_tileset.tres" id="12_ef61d"]
 [ext_resource type="Script" uid="uid://65apk4w16d4j" path="res://Scripts/Misc/destructible_frame.gd" id="13_w6r2e"]
+[ext_resource type="PackedScene" uid="uid://c1hqhwr5yvny4" path="res://Scenes/post_fx.tscn" id="18_rx2xo"]
 [ext_resource type="AudioStream" uid="uid://dfgtuk70n5ubo" path="res://Audio/Music/07 high in the mountains.ogg" id="33_j38be"]
 [ext_resource type="Script" uid="uid://cfcgqox3nhdhw" path="res://Scripts/highlight.gd" id="42_agj4u"]
 [ext_resource type="AudioStream" uid="uid://c2rux4dr3pu54" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3" id="97_ygrk7"]
@@ -882,6 +883,8 @@ collision_mask = 65535
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax2/TextureRect/ScreenLimit" unique_id=1661217783]
 position = Vector2(-4, 0)
 shape = SubResource("WorldBoundaryShape2D_0i5x4")
+
+[node name="PostFX" parent="." unique_id=748460950 instance=ExtResource("18_rx2xo")]
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=64329098]
 

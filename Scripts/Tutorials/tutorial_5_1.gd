@@ -119,7 +119,7 @@ func end_stage():
 	# Go back to menu
 	await get_tree().create_timer(5).timeout
 	IndieBlueprintSceneTransitioner.transition_to(
-		"res://Scenes/menu.tscn", 
+		SceneCache.SCENES.get("menu"),
 		IndieBlueprintPremadeTransitions.Dissolve,
 		IndieBlueprintPremadeTransitions.Dissolve,
 		{ 

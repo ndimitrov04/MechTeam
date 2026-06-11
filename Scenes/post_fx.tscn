@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c1hqhwr5yvny4"]
 
 [ext_resource type="Shader" uid="uid://bicbljvf2w1qg" path="res://Shaders/godrays.gdshader" id="1_8gpb5"]
+[ext_resource type="Script" uid="uid://dpcte7citurl7" path="res://Scripts/post_fx.gd" id="1_hyrtn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hibaj"]
 shader = ExtResource("1_8gpb5")
@@ -13,6 +14,7 @@ shader_parameter/samples = 25
 shader_parameter/threshold = 0.106
 
 [node name="PostFX" type="CanvasLayer" unique_id=748460950]
+script = ExtResource("1_hyrtn")
 
 [node name="GodRays" type="ColorRect" parent="." unique_id=1884073122]
 material = SubResource("ShaderMaterial_hibaj")

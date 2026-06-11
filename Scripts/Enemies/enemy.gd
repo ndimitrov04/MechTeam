@@ -3,7 +3,7 @@ extends RigidBody2D
 @onready var main = $".."
 
 @onready var crosshair = $Crosshair
-@onready var movement_sprites = $MovementSprites
+@onready var wheels = $MovementSprites
 
 @onready var background = $Background
 @onready var frame = $Frame
@@ -76,7 +76,9 @@ func _physics_process(delta):
 	# Handle physics movement
 	if direction:
 		# Apply movement force at wheels/tracks if they are touching the floor
-		for movement_object in movement_sprites.get_children():
+		for movement_object in wheels.get_children():
+			if not movement_object.has_meta("is_movement"):
+				continue
 			if movement_object.floor_detector.is_colliding():
 				var push_point = movement_object.global_position - Vector2(0, center_of_mass.y + 150)
 				self.apply_force(Vector2(direction, 0) * SPEED * 450, push_point)
@@ -85,30 +87,33 @@ func _physics_process(delta):
 		linear_velocity.x = move_toward(linear_velocity.x, 0, 0.2)
 
 	# Max/Top speed (horizontal) - Determined by number of movement objects
-	var max_speed = movement_sprites.get_child_count() * 45
+	var max_speed = wheels.get_child_count() * 45
 	if linear_velocity.x > max_speed:
 		linear_velocity.x = max_speed
 	if linear_velocity.x < -max_speed:
 		linear_velocity.x = -max_speed
 
+	# Handle wheel/track animations
 	if abs(linear_velocity.x) > 1:
-		for spr in movement_sprites.get_children():
-			if not spr.is_playing():
-				spr.play("default")
-			if not spr.dust.emitting and spr.floor_detector.is_colliding():
-				spr.dust.emitting = true
-				spr.start_dust.play("default")
+		for obj in wheels.get_children():
+			if not obj.has_meta("is_movement"):
+				continue
+			if not obj.is_playing():
+				obj.play("default")
+			if not obj.dust.emitting and obj.floor_detector.is_colliding():
+				obj.dust.emitting = true
+				obj.start_dust.play("default")
 				if direction < 0:
-					spr.start_dust.flip_h = true
-					spr.start_dust.offset.x = +35
+					obj.start_dust.flip_h = true
+					obj.start_dust.offset.x = +35
 				else:
-					spr.start_dust.flip_h = false
-					spr.start_dust.offset.x = -35
-				spr.dust.emitting = true
+					obj.start_dust.flip_h = false
+					obj.start_dust.offset.x = -35
 	else:
-		for spr in movement_sprites.get_children():
-			spr.stop()
-			spr.dust.emitting = false
+		for obj in wheels.get_children():
+			if obj.has_method("stop") and obj.has_meta("is_movement"):
+				obj.stop()
+				obj.dust.emitting = false
 
 func take_damage(damage_value : int):
 	hp -= damage_value

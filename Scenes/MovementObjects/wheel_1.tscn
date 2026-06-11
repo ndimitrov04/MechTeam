@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dcl1l8c057iwg" path="res://Images/Placeholders/SmokeNDust P03 VFX 1.png" id="3_i8srh"]
 [ext_resource type="AudioStream" uid="uid://1683iijlo6r5" path="res://Audio/SFX/Modules/SpaceShip_Engine_Large_Loop_00.mp3" id="4_r4tlf"]
 [ext_resource type="PackedScene" uid="uid://cuhp74yuarb08" path="res://Scenes/MovementObjects/wheel_collider_1.tscn" id="5_go6qf"]
+[ext_resource type="Texture2D" uid="uid://2lx14tkb70qp" path="res://Images/Tiles/suspensionpart.png" id="5_qhptf"]
 [ext_resource type="PackedScene" uid="uid://gabbdsxamcdv" path="res://Scenes/MovementObjects/wheel_hitbox_1.tscn" id="6_qhptf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_go6qf"]
@@ -186,6 +187,14 @@ node_b = NodePath("../../../..")
 rest_length = 25.0
 stiffness = 64.0
 damping = 16.0
+
+[node name="SuspensionSprite" type="TextureRect" parent="Suspension" unique_id=1983631979]
+z_index = -1
+offset_left = -16.0
+offset_top = -80.0
+offset_right = 16.0
+texture = ExtResource("5_qhptf")
+stretch_mode = 1
 
 [node name="Dummy" type="AnimatedSprite2D" parent="." unique_id=1342193076]
 scale = Vector2(2, 2)

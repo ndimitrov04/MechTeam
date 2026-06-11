@@ -10,6 +10,8 @@ enum planets {NEOS, GAIA, TERRA, SELENE}
 @onready var planets_finished = []
 @onready var planets_lost = []
 
+@onready var post_fx_enabled = true
+
 @onready var terrain_test : bool = false
 
 # Called when the node enters the scene tree for the first time.

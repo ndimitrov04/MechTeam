@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://by3pf8nx5c5s3" path="res://Scripts/Misc/destructible_background.gd" id="11_m14vo"]
 [ext_resource type="TileSet" uid="uid://beya8mv7awxpa" path="res://CustomResources/frame_tileset.tres" id="12_ov0tm"]
 [ext_resource type="Script" uid="uid://65apk4w16d4j" path="res://Scripts/Misc/destructible_frame.gd" id="13_pytnf"]
+[ext_resource type="PackedScene" uid="uid://c1hqhwr5yvny4" path="res://Scenes/post_fx.tscn" id="19_akyyf"]
 [ext_resource type="AudioStream" uid="uid://byq36523c31uh" path="res://Audio/Music/10 running wild.ogg" id="27_kidca"]
 [ext_resource type="Script" uid="uid://cfcgqox3nhdhw" path="res://Scripts/highlight.gd" id="42_e4y7a"]
 [ext_resource type="AudioStream" uid="uid://c2rux4dr3pu54" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3" id="97_l10h1"]
@@ -1246,6 +1247,8 @@ collision_mask = 65535
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax2/TextureRect/ScreenLimit" unique_id=1992615021]
 position = Vector2(-4, 0)
 shape = SubResource("WorldBoundaryShape2D_c6che")
+
+[node name="PostFX" parent="." unique_id=748460950 instance=ExtResource("19_akyyf")]
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=64329098]
 

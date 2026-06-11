@@ -4,6 +4,7 @@ extends Control
 
 @onready var music_slider: HSlider = $OptionPanel/MusicSlider
 @onready var sfx_slider: HSlider = $OptionPanel/SFXSlider
+@onready var post_fx: Button = $OptionPanel/PostFX
 @onready var fullscreen: Button = $OptionPanel/Fullscreen
 @onready var clear_data: Button = $OptionPanel/ClearData
 
@@ -16,8 +17,17 @@ func _ready() -> void:
 	# Connect option signals
 	music_slider.value_changed.connect(_on_music_volume_changed)
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
+	post_fx.toggled.connect(_on_post_fx_toggled)
 	fullscreen.toggled.connect(_on_fullscreen_toggled)
 	clear_data.pressed.connect(_show_clear_confirm)
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		fullscreen.button_pressed = true
+	else:
+		fullscreen.button_pressed = false
+	if PlayerData.post_fx_enabled:
+		post_fx.button_pressed = true
+	else:
+		post_fx.button_pressed = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -37,9 +47,15 @@ func _on_sfx_volume_changed(value):
 	var bus_idx = AudioServer.get_bus_index(SFX_BUS_NAME)
 	AudioServer.set_bus_volume_db(bus_idx, sfx_slider.value)
 
+func _on_post_fx_toggled(is_enabled):
+	if is_enabled:
+		PlayerData.post_fx_enabled = true
+	else:
+		PlayerData.post_fx_enabled = false
+
 func _on_fullscreen_toggled(is_enabled):
 	if is_enabled:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		@warning_ignore("integer_division")

@@ -7,6 +7,7 @@
 [ext_resource type="TileSet" uid="uid://bfp0oqwmvtvs2" path="res://CustomResources/background_tileset.tres" id="5_y24p6"]
 [ext_resource type="TileSet" uid="uid://beya8mv7awxpa" path="res://CustomResources/frame_tileset.tres" id="6_28itn"]
 [ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="7_6x6kt"]
+[ext_resource type="PackedScene" uid="uid://c1hqhwr5yvny4" path="res://Scenes/post_fx.tscn" id="7_xrat6"]
 [ext_resource type="Script" uid="uid://sqeege6vntn4" path="res://Scripts/UI/editor_control.gd" id="8_bsnqu"]
 [ext_resource type="PackedScene" uid="uid://yjvcojipbr0l" path="res://Scenes/ver_num.tscn" id="9_ejpto"]
 [ext_resource type="Texture2D" uid="uid://cenobjevlni5" path="res://Images/Placeholders/right.png" id="10_6cj6t"]
@@ -735,6 +736,12 @@ collision_enabled = false
 [node name="Blocks" type="TileMapLayer" parent="MechPrototype" unique_id=879582177]
 tile_set = ExtResource("6_28itn")
 collision_enabled = false
+
+[node name="ClickCooldown" type="Timer" parent="." unique_id=2027506783]
+wait_time = 0.3
+one_shot = true
+
+[node name="PostFX" parent="." unique_id=748460950 instance=ExtResource("7_xrat6")]
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=1529633036]
 

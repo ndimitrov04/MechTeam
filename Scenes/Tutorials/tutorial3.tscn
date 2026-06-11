@@ -88,6 +88,7 @@
 [ext_resource type="PackedScene" uid="uid://7pvmbpigkpq1" path="res://Scenes/Projectiles/bullet.tscn" id="92_v0l8k"]
 [ext_resource type="Texture2D" uid="uid://l0br0i4oadx" path="res://Images/MechGuns/turret_01_mk1.png" id="93_0cnss"]
 [ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="94_7x1m8"]
+[ext_resource type="PackedScene" uid="uid://c1hqhwr5yvny4" path="res://Scenes/post_fx.tscn" id="94_kcvao"]
 [ext_resource type="AudioStream" uid="uid://mjrlfhuxnkmp" path="res://Audio/SFX/Modules/bang_04.ogg" id="95_n76yj"]
 [ext_resource type="AudioStream" uid="uid://c2rux4dr3pu54" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3" id="96_vadrq"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="97_7ruli"]
@@ -1503,6 +1504,8 @@ collision_mask = 65535
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax2/TextureRect/ScreenLimit" unique_id=1898728246]
 position = Vector2(-4, 0)
 shape = SubResource("WorldBoundaryShape2D_jc30k")
+
+[node name="PostFX" parent="." unique_id=748460950 instance=ExtResource("94_kcvao")]
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=64329098]
 

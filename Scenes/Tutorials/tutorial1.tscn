@@ -37,6 +37,7 @@
 [ext_resource type="AudioStream" uid="uid://bh1sj01j1b2mb" path="res://Audio/SFX/UI/retro_beep_03.ogg" id="22_lsdlm"]
 [ext_resource type="AudioStream" uid="uid://c2rux4dr3pu54" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3" id="22_misvp"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="23_5j3xf"]
+[ext_resource type="PackedScene" uid="uid://c1hqhwr5yvny4" path="res://Scenes/post_fx.tscn" id="26_pqprk"]
 [ext_resource type="AudioStream" uid="uid://dfgtuk70n5ubo" path="res://Audio/Music/07 high in the mountains.ogg" id="34_bxntj"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
@@ -1027,6 +1028,8 @@ collision_mask = 65535
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax2/TextureRect/ScreenLimit" unique_id=763774409]
 position = Vector2(-4, 0)
 shape = SubResource("WorldBoundaryShape2D_fpsxj")
+
+[node name="PostFX" parent="." unique_id=748460950 instance=ExtResource("26_pqprk")]
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=64329098]
 

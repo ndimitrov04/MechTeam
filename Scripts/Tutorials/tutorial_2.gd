@@ -181,8 +181,7 @@ func end_stage():
 	minigame_result.show()
 	await get_tree().create_timer(5).timeout
 	IndieBlueprintSceneTransitioner.transition_to(
-		#"res://Scenes/Tutorials/tutorial3.tscn",
-		"res://Scenes/menu.tscn",
+		"res://Scenes/Tutorials/tutorial3.tscn",
 		IndieBlueprintPremadeTransitions.Dissolve,
 		IndieBlueprintPremadeTransitions.Dissolve,
 		{ 

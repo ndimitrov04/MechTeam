@@ -93,7 +93,7 @@ func load_mech():
 				#hitbox_instance.set_collision_mask_value(10, 0)
 			MechData.ObjectType.SPRITE:
 				wheels.add_child(object_instance)
-				#hitbox_instance.wheel_sprite = object_instance
+				#hitbox_instance.wheel_objite = object_instance
 			MechData.ObjectType.NPC:
 				npcs.add_child(object_instance)
 			_:
@@ -134,6 +134,8 @@ func _physics_process(delta):
 			physics_material_override.friction = 0.1
 		# Apply movement force at wheels/tracks if they are touching the floor
 		for movement_object in wheels.get_children():
+			if not movement_object.has_meta("is_movement"):
+				continue
 			if movement_object.get_meta("is_active"):
 				if movement_object.floor_detector.is_colliding():
 					movement_object.drive()
@@ -151,25 +153,25 @@ func _physics_process(delta):
 
 	# Handle wheel/track animations
 	if abs(linear_velocity.x) > 1:
-		for spr in wheels.get_children():
-			if not spr.has_meta("is_movement"):
+		for obj in wheels.get_children():
+			if not obj.has_meta("is_movement"):
 				continue
-			if not spr.is_playing():
-				spr.play("default")
-			if not spr.dust.emitting and spr.floor_detector.is_colliding():
-				spr.dust.emitting = true
-				spr.start_dust.play("default")
+			if not obj.is_playing():
+				obj.play("default")
+			if not obj.dust.emitting and obj.floor_detector.is_colliding():
+				obj.dust.emitting = true
+				obj.start_dust.play("default")
 				if direction < 0:
-					spr.start_dust.flip_h = true
-					spr.start_dust.offset.x = +35
+					obj.start_dust.flip_h = true
+					obj.start_dust.offset.x = +35
 				else:
-					spr.start_dust.flip_h = false
-					spr.start_dust.offset.x = -35
+					obj.start_dust.flip_h = false
+					obj.start_dust.offset.x = -35
 	else:
-		for spr in wheels.get_children():
-			if spr.has_method("stop"):
-				spr.stop()
-				spr.dust.emitting = false
+		for obj in wheels.get_children():
+			if obj.has_method("stop") and obj.has_meta("is_movement"):
+				obj.stop()
+				obj.dust.emitting = false
 	
 	# Recalculate total mech energy
 	total_energy()

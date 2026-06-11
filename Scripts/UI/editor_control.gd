@@ -181,8 +181,6 @@ func _ready():
 	Needs 25 energy to use.
 	Must be connected to an 
 	ENGAGE control terminal to use.
-	Mech must have an AIM control 
-	terminal onboard for this booster to be aimed.
 	This module aims directly away from the crosshair.")
 	# Controllers
 	controllers.set_item_tooltip(0, "Cost: 10

@@ -113,6 +113,7 @@
 [ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="94_kxhne"]
 [ext_resource type="PackedScene" uid="uid://y84ad1x71nus" path="res://Scenes/Misc/smoke.tscn" id="95_50v2b"]
 [ext_resource type="AudioStream" uid="uid://mjrlfhuxnkmp" path="res://Audio/SFX/Modules/bang_04.ogg" id="95_s3rjo"]
+[ext_resource type="PackedScene" uid="uid://c1hqhwr5yvny4" path="res://Scenes/post_fx.tscn" id="102_dtx0r"]
 [ext_resource type="AudioStream" uid="uid://dfgtuk70n5ubo" path="res://Audio/Music/07 high in the mountains.ogg" id="115_dtx0r"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
@@ -2312,6 +2313,8 @@ collision_mask = 65535
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax2/TextureRect/ScreenLimit" unique_id=1153240747]
 position = Vector2(-4, 0)
 shape = SubResource("WorldBoundaryShape2D_hrlx4")
+
+[node name="PostFX" parent="." unique_id=748460950 instance=ExtResource("102_dtx0r")]
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=64329098]
 

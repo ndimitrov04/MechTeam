@@ -15,6 +15,8 @@ extends Control
 @onready var planet_picture: TextureRect = $PlanetInfo/Panel/PictureData/Picture
 @onready var status: Label = $PlanetInfo/Panel/StatusData/Status
 
+@onready var god_rays: ColorRect = $GodRays
+
 const planet_lores = [
 	"Dubbed as a planet of hope, Neos was the first bastion of the newly free world in a series of planets whose politics would be controlled by cold but fair steel - Scopos - a super AI whose only task was to optimize the quality of life of its people. Once created, Scopos' architecture would be completely unchangeable for even its own creators to prevent its manipulation by bad actors.\n\nFor close to a century this planet was an utopia and the home to a thriving human community. All of this was destroyed 10 years ago with the rise of a group known as Anima, who destroyed Scopos for an undisclosed reason.\n\nCurrently, this planet is being assaulted by unknown forces. The citizens need your help.\n\nNote: Starter enemy types; Steep terrain, small mechs preferable.",
 	"Gaia is a mining colony powered by its own ring, which consists of nuclear rock. Governed by shadow stakeholders, this place exists solely to generate profit for an unknown third party. It is full of paramillitary operators whose only job is to keep the mining operations going. This planet is uninhabited by civillians on paper, but our sources hint that there is an indigenous alien population which resides in a far corner of the planet.\n\nAn anonymous source has contacted us to warn of an impending attack by a rival group known as GEOS. If GEOS sets foot on Gaia, this will be the start of a resource war between them and the current government. Two corporate paramillitaries fighting is none of our concern, however, there are innocent souls on this planet who would be annihilated in the crossfire.\n\nStop GEOS at any cost!\n\nNote: Advanced enemy types. Harmful atmosphere! Do not leave mech!",
@@ -77,6 +79,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	camera_2d.set_position(get_global_mouse_position() * 0.2)
+	if not PlayerData.post_fx_enabled:
+		god_rays.hide()
 	
 func _on_neos_pressed() -> void:
 	PlayerData.current_planet = PlayerData.planets.NEOS

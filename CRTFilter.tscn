@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cl1yhfsjtpj"]
 
+[ext_resource type="Script" uid="uid://b18jjvimkcvp2" path="res://Scripts/crt_filter.gd" id="1_t4fyq"]
 [ext_resource type="Script" uid="uid://bghaddibpt6f1" path="res://addons/crt/crt.gd" id="1_t8x7l"]
 
 [node name="CrtFilter" type="CanvasLayer" unique_id=2080624151]
+script = ExtResource("1_t4fyq")
 
 [node name="CRT" type="CanvasLayer" parent="." unique_id=1392502146]
 script = ExtResource("1_t8x7l")
