@@ -6,11 +6,17 @@
 script = ExtResource("1_gcvhr")
 
 [node name="EdgeDetector" type="RayCast2D" parent="." unique_id=1120184694]
-position = Vector2(18, 16)
+position = Vector2(26, 16)
 target_position = Vector2(0, 12)
 collision_mask = 8193
+hit_from_inside = true
 
 [node name="WallDetector" type="RayCast2D" parent="." unique_id=179272913]
 position = Vector2(0, 10)
-target_position = Vector2(25, 0)
-collision_mask = 8203
+target_position = Vector2(22, 0)
+collision_mask = 8192
+hit_from_inside = true
+
+[node name="TurnaroundTimer" type="Timer" parent="." unique_id=852347428]
+wait_time = 0.1
+autostart = true
