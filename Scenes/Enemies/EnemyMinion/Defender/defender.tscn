@@ -137,7 +137,7 @@ z_index = 30
 collision_layer = 4106
 collision_mask = 4096
 script = ExtResource("1_bu6yp")
-metadata/friendly_npc = true
+metadata/friendly_npc = false
 
 [node name="ShootPoint" type="Node2D" parent="." unique_id=781324217]
 position = Vector2(15, -5)

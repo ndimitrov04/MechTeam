@@ -17,6 +17,8 @@ func _ready():
 		turnaround_timer = $TurnaroundTimer
 		turnaround_timer.timeout.connect(_on_turnaround_timer_timeout)
 		has_turnaround = true
+		if not get_parent().get_meta("friendly_npc"):
+			has_turnaround = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
