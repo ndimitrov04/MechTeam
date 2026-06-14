@@ -3,6 +3,8 @@ extends RigidBody2D
 const WHEEL_HITBOX_1 = preload("uid://gabbdsxamcdv")
 const NPC = preload("uid://cmy4r8enqaty2")
 
+@onready var player
+
 @onready var crosshair = $Crosshair
 
 @onready var background = $Background
@@ -21,6 +23,8 @@ const NPC = preload("uid://cmy4r8enqaty2")
 const SPEED = 50.0
 const JUMP = -450.0
 
+const IS_ENEMY : bool = false
+
 @onready var in_editor : bool = false
 
 @onready var mech_edit : bool = true
@@ -31,12 +35,14 @@ var jump : bool = false
 var can_jump : bool = true
 
 var max_hp : int = 200 # Default value
-var hp : int = max_hp # Default value
+var hp : float = max_hp # Default value
 var base_weight : float = 25 # Default value
 var weight : float = base_weight + max_hp / 4.0 # Default value
 var max_energy : int
 var energy : int
 var regen_rate : int = 1
+
+var destroyed : bool = false
 
 func _ready():
 	if get_parent().name == "Editor":
@@ -105,6 +111,7 @@ func load_mech():
 			continue
 		# Connect controller to controlled module
 		controllers.get_child(i).arm(modules.get_child(MechData.control_pairs[i]))
+		
 	print("done")
 
 func _physics_process(delta):
@@ -220,7 +227,7 @@ func drain_energy(amount : int) -> bool:
 		return true
 	return false
 
-func take_damage(damage_value : int):
+func take_damage(damage_value : float):
 	hp -= damage_value
 	# Godot 4.6 still has no fallthrough switches :/
 	if hp <= max_hp:
@@ -235,6 +242,11 @@ func take_damage(damage_value : int):
 		die()
 
 func die():
+	if destroyed:
+		return
+	
+	destroyed = true
+	
 	# Destroy wheels
 	for child in self.get_children():
 		if child.has_meta("whitbox"):

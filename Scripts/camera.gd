@@ -13,13 +13,15 @@ var noise_y = 0 #Value used to move through the noise
 var trauma := 0.0 #Current shake strength
 var trauma_pwr := 2 #Trauma exponent. Use [2,3]
 
+var bonus_impact = 0 # Manual override for extreme screenshake
+
 func _ready():
 	randomize()
 	noise.seed = randi()
 
 func add_trauma(amount : float):
 	trauma = min(trauma + amount, 1.0)
-	trauma = clampf(trauma, 0, 0.7)
+	trauma = clampf(trauma, 0, 0.7 + bonus_impact)
 
 func _process(delta):
 	if trauma:

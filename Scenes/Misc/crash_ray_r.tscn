@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://vd3m6mpynv1"]
+
+[ext_resource type="Script" uid="uid://duwixaopm8748" path="res://Scripts/Misc/crash_ray_r.gd" id="1_07itr"]
+
+[node name="CrashRayR" type="RayCast2D" unique_id=1051440115]
+target_position = Vector2(16, 4)
+collision_mask = 4
+script = ExtResource("1_07itr")

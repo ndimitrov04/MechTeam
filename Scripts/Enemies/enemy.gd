@@ -21,10 +21,12 @@ extends RigidBody2D
 const SPEED = 45.0
 const JUMP_linear_velocity = -400.0
 
+const IS_ENEMY : bool = true
+
 @onready var level_multiplier : float = 0.5 + (PlayerData.current_stage * 0.25)
 @onready var base_hp = get_meta("hp")
 var max_hp : int = 999 # Placeholder value (must be positive; non-null); Real value is set in _ready()
-var hp : int = max_hp # Default value
+var hp : float = max_hp # Default value
 var base_weight : float = 25 # Default value
 var weight : float = base_weight + max_hp / 4.0 # Default value
 var energy : int = 100
@@ -115,7 +117,7 @@ func _physics_process(delta):
 				obj.stop()
 				obj.dust.emitting = false
 
-func take_damage(damage_value : int):
+func take_damage(damage_value : float):
 	hp -= damage_value
 	# Godot 4.5 still has no fallthrough switches :/
 	if hp <= 75:
@@ -128,6 +130,9 @@ func take_damage(damage_value : int):
 		die()
 
 func die():
+	if destroyed:
+		return
+	
 	destroyed = true
 	
 	# Destroy wheels

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bm0de82knqhp4"]
+
+[ext_resource type="Script" uid="uid://ln70dagr8cxr" path="res://Scripts/Misc/crash_ray_l.gd" id="1_ugif3"]
+
+[node name="CrashRayL" type="RayCast2D" unique_id=2029299611]
+target_position = Vector2(-16, 0)
+script = ExtResource("1_ugif3")
