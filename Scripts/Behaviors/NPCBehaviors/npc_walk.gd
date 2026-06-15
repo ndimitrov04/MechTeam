@@ -13,7 +13,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if is_instance_valid(get_node("TurnaroundTimer")):
+	if has_node("TurnaroundTimer"):
 		turnaround_timer = $TurnaroundTimer
 		turnaround_timer.timeout.connect(_on_turnaround_timer_timeout)
 		has_turnaround = true

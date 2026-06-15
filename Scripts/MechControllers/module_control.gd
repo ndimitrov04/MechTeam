@@ -8,14 +8,21 @@ extends Area2D
 @onready var sprite = $Sprite
 @onready var interaction_label = $InteractionLabel
 
+@onready var proximity_penalty= $ProximityPenalty
+@onready var penalty_bar = $ProximityPenalty/PenaltyBar
+
 @onready var cooldown = $Cooldown
 @onready var cooldown_bar = $Cooldown/CooldownBar
 @onready var timer = $Cooldown/Timer
 
-@onready var sfx_connect: AudioStreamPlayer2D = $SFX/Connect
-@onready var sfx_disconnect: AudioStreamPlayer2D = $SFX/Disconnect
-@onready var engage: AudioStreamPlayer2D = $SFX/Engage
-@onready var disengage: AudioStreamPlayer2D = $SFX/Disengage
+@onready var sfx_connect = $SFX/Connect
+@onready var sfx_disconnect = $SFX/Disconnect
+@onready var engage = $SFX/Engage
+@onready var disengage = $SFX/Disengage
+
+# Penalty for cooldown if engage terminal is too close to others
+# Added to cooldown_time
+@onready var proximity_cooldown_penalty : float
 
 var controlled_module
 var controlled_module_index
@@ -43,7 +50,14 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	interaction_label.text = get_meta("labeltext")
+	proximity_cooldown_penalty = 0
 
+func set_proximity_penalty(distance):
+	# In seconds
+	var penalty = clamp(300 - (distance - 32), 0, 300) / 30
+	proximity_cooldown_penalty = clamp(penalty, 0, 10)
+	penalty_bar.value = proximity_cooldown_penalty * 10
+	
 func _process(_delta):
 	if Input.is_action_pressed("scan"):
 		interaction_label.show()
@@ -93,7 +107,7 @@ const OFFSET : Vector2 = Vector2(0, -15)
 func arm(module):
 	controlled_module = module
 	controlled_module_index = module.index
-	cooldown_time = module.cooldown_time
+	cooldown_time = module.cooldown_time + proximity_cooldown_penalty
 	energy_cost = module.energy_cost
 	# Draw connector
 	connector.add_point(connector.to_local(module.global_position))
@@ -143,6 +157,7 @@ func _on_cooldown_timeout():
 func start_cooldown():
 	on_cooldown = true
 	cooldown_bar.show()
+	print("CDTIME: " + str(cooldown_time))
 	timer.start(cooldown_time)
 
 func npc_engage():

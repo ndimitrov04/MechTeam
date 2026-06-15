@@ -192,7 +192,11 @@ func _ready():
 	controllers.set_item_tooltip(5, "Cost: 15\nThis controller must be 
 	connected to a MODULE to work.
 	When used, it makes the module 
-	it is connected to work.")
+	it is connected to work.
+	If this controller is too 
+	close to another controller,
+	it will recieve a cooldown penalty 
+	indicated by its side bar.")
 	# Movement
 	movement.set_item_tooltip(0, "Cost: 10
 	Can be controlled by movement controllers.

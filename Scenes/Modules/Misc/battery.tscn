@@ -152,6 +152,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="Charge" type="TextureProgressBar" parent="." unique_id=2046173361]
+z_index = 1
 material = SubResource("ShaderMaterial_g0kdv")
 offset_left = -26.0
 offset_top = -50.0

@@ -23,7 +23,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	hp_label.text = "Player Health: " + str(player.hp) + "\nMech Health: " + str(mech.hp)
+	hp_label.text = "Player Health: " + str(int(player.hp)) + "\nMech Health: " + str(int(mech.hp))
 	en_label.text = "Energy: " + str(mech.energy)
 
 func _unhandled_input(event):

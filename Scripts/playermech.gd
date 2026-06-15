@@ -18,6 +18,8 @@ const NPC = preload("uid://cmy4r8enqaty2")
 
 @onready var energy_regen = $EnergyRegen
 
+@onready var malfunction_timer = $MalfunctionTimer
+
 @onready var game_over
 
 const SPEED = 50.0
@@ -42,15 +44,20 @@ var max_energy : int
 var energy : int
 var regen_rate : int = 1
 
+@onready var malfunction_min : float = 1
+@onready var malfunction_max : float = 5
+
 var destroyed : bool = false
 
 func _ready():
 	if get_parent().name == "Editor":
 		in_editor = true
-	if not in_editor:
-		game_over = $"../GUI/Control/GameOver"
 	energy_regen.timeout.connect(_regenerate_energy)
 	jump_timer.timeout.connect(_jump_timeout)
+	malfunction_timer.timeout.connect(_malfunction)
+	if not in_editor:
+		game_over = $"../GUI/Control/GameOver"
+		malfunction_timer.start(randi_range(malfunction_min, malfunction_max))
 	if not get_meta("prebuilt"):
 		load_mech()
 	@warning_ignore("integer_division")
@@ -61,6 +68,19 @@ func _ready():
 	self.mass = weight
 	if has_meta("constant_weight"):
 		self.mass = get_meta("constant_weight")
+
+# Helper needed for controller proximity penalty calculations
+func get_closest_node_distance(target, nodes):
+	var best_dist = INF
+	var target_pos = target.global_position
+	for node in nodes:
+		if not node or node == target: 
+			continue
+		var node_pos = node.global_position
+		var dist = target_pos.distance_to(node_pos)
+		if dist < best_dist:
+			best_dist = dist
+	return best_dist
 
 func load_mech():
 	# Load mech frame and background
@@ -111,8 +131,14 @@ func load_mech():
 			continue
 		# Connect controller to controlled module
 		controllers.get_child(i).arm(modules.get_child(MechData.control_pairs[i]))
-		
-	print("done")
+	
+	# Set proximity penalties to applicable objects
+	var controller_array = controllers.get_children()
+	for controller in controllers.get_children():
+		if controller.has_method("set_proximity_penalty"):
+			controller.set_proximity_penalty(get_closest_node_distance(controller, controller_array))
+	
+	print("Mech loaded!")
 
 func _physics_process(delta):
 	# Do not process physics while in editor
@@ -240,6 +266,24 @@ func take_damage(damage_value : float):
 		background.break_random_tile()
 	if hp <= 0:
 		die()
+
+func _malfunction():
+	var frame_cells = frame.get_used_cells()
+	var background_cells = background.get_used_cells()
+	var malfunction_location = null
+	var from_frame = randi_range(0, 1)
+	if background_cells.is_empty():
+		from_frame = 1
+	if from_frame:
+		var cell = frame_cells.pick_random()
+		malfunction_location = frame.map_to_local(cell)
+	else:
+		var cell = background_cells.pick_random()
+		malfunction_location = background.map_to_local(cell)
+	if malfunction_location != null:
+		# Spawn malfunction
+		print("Spawning malfunction at: " + str(malfunction_location))
+	malfunction_timer.start(randi_range(malfunction_min, malfunction_max))
 
 func die():
 	if destroyed:

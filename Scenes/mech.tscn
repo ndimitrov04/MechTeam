@@ -111,3 +111,6 @@ autostart = true
 [node name="JumpTimer" type="Timer" parent="." unique_id=710872763]
 wait_time = 1.5
 one_shot = true
+
+[node name="MalfunctionTimer" type="Timer" parent="." unique_id=822684020]
+one_shot = true
