@@ -130,11 +130,12 @@ func arm(module):
 	sfx_connect.play()
 
 func disarm():
-	print("Module " + controlled_module.name + " has been destroyed!")
-	controlled_module = null
-	controlled_module_index = null
-	connector.clear_points()
-	connector.add_point(Vector2(0,0))
+	if controlled_module != null:
+		print("Module " + controlled_module.name + " has been destroyed!")
+		controlled_module = null
+		controlled_module_index = null
+		connector.clear_points()
+		connector.add_point(Vector2(0,0))
 
 func _on_body_entered(body):
 	if body.name == "Player":

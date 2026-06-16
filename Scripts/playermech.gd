@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const WHEEL_HITBOX_1 = preload("uid://gabbdsxamcdv")
+const MALFUNCTION = preload("uid://dmps7d80pkvbu")
 const NPC = preload("uid://cmy4r8enqaty2")
 
 @onready var player
@@ -18,7 +18,7 @@ const NPC = preload("uid://cmy4r8enqaty2")
 
 @onready var energy_regen = $EnergyRegen
 
-@onready var malfunction_timer = $MalfunctionTimer
+@onready var malfunction_timer
 
 @onready var game_over
 
@@ -54,10 +54,13 @@ func _ready():
 		in_editor = true
 	energy_regen.timeout.connect(_regenerate_energy)
 	jump_timer.timeout.connect(_jump_timeout)
-	malfunction_timer.timeout.connect(_malfunction)
+	if has_node("MalfunctionTimer"):
+		malfunction_timer = $MalfunctionTimer
+		malfunction_timer.timeout.connect(_malfunction)
 	if not in_editor:
 		game_over = $"../GUI/Control/GameOver"
-		malfunction_timer.start(randi_range(malfunction_min, malfunction_max))
+		if has_node("MalfunctionTimer"):
+			malfunction_timer.start(randi_range(malfunction_min, malfunction_max))
 	if not get_meta("prebuilt"):
 		load_mech()
 	@warning_ignore("integer_division")
@@ -276,13 +279,17 @@ func _malfunction():
 		from_frame = 1
 	if from_frame:
 		var cell = frame_cells.pick_random()
-		malfunction_location = frame.map_to_local(cell)
+		malfunction_location = to_global(frame.map_to_local(cell))
 	else:
 		var cell = background_cells.pick_random()
-		malfunction_location = background.map_to_local(cell)
+		malfunction_location = to_global(background.map_to_local(cell))
 	if malfunction_location != null:
 		# Spawn malfunction
 		print("Spawning malfunction at: " + str(malfunction_location))
+		var malfunction_instance = MALFUNCTION.instantiate()
+		add_child(malfunction_instance)
+		malfunction_instance.global_position = malfunction_location
+		
 	malfunction_timer.start(randi_range(malfunction_min, malfunction_max))
 
 func die():
