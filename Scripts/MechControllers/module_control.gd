@@ -57,6 +57,13 @@ func set_proximity_penalty(distance):
 	var penalty = clamp(300 - (distance - 32), 0, 300) / 30
 	proximity_cooldown_penalty = clamp(penalty, 0, 10)
 	penalty_bar.value = proximity_cooldown_penalty * 10
+	# Set gradient penalty color
+	var tex = penalty_bar.texture_progress as GradientTexture2D
+	var gradient = tex.gradient
+	var hue = lerp(0.33, 0.0, penalty_bar.value / penalty_bar.max_value)
+	var target_color = Color.from_hsv(hue, 1.0, 1.0)
+	gradient.set_color(0, target_color)
+	gradient.set_color(1, target_color)
 	
 func _process(_delta):
 	if Input.is_action_pressed("scan"):

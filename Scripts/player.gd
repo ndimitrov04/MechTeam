@@ -64,6 +64,8 @@ func _physics_process(delta):
 		jumping = true
 		jump_timer.start(0.1)
 	else:
+		if not floor_detector:
+			return
 		if floor_detector.is_colliding():
 			if floor_detector.get_collider().name == "Frame":
 				last_platform = floor_detector.get_collider().get_parent()

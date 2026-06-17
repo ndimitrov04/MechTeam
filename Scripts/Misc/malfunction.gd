@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var main = $"../.."
+@onready var main = $"../../.."
 
 @onready var interaction_label: Label = $InteractionLabel
 @onready var malfunction_timer: Timer = $MalfunctionTimer
@@ -13,6 +13,7 @@ extends Area2D
 @onready var appear_sfx: AudioStreamPlayer2D = $SFX/Appear
 @onready var fix_sfx: AudioStreamPlayer2D = $SFX/Fix
 @onready var critical_sfx: AudioStreamPlayer2D = $SFX/Critical
+@onready var malfunction_explosion: AudioStreamPlayer2D = $SFX/MalfunctionExplosion
 
 @onready var red_fade
 @onready var blinking: bool = true
@@ -66,13 +67,15 @@ func _malfunction_critical():
 		red_fade.kill()
 	blinking = false
 	malfunction_sprite.modulate = Color.RED
+	malfunction_sprite.visible = true
 	# Spawn debris
 	var debris_instance
 	debris_instance = DEBRIS.instantiate()
 	main.add_child(debris_instance)
 	debris_instance.global_position = global_position
-	get_parent().take_damage(damage)
+	get_parent().get_parent().take_damage(damage)
 	critical_sfx.play()
+	malfunction_explosion.play()
 	await get_tree().create_timer(1).timeout
 	queue_free()
 
@@ -84,7 +87,8 @@ func fix():
 		red_fade.kill()
 	blinking = false
 	malfunction_sprite.modulate = Color.GREEN
-	get_parent().hp += damage / 3
+	malfunction_sprite.visible = true
+	get_parent().get_parent().hp += damage / 3
 	fix_sfx.play()
 	await get_tree().create_timer(1).timeout
 	queue_free()

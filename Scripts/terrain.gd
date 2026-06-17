@@ -49,7 +49,7 @@ const FIRST_ENEMY = 2500 # First enemy X coordinate
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initialize_terrain_objects()
-	var terrain_points : PackedVector2Array = generate_terrain(25000)
+	var terrain_points : PackedVector2Array = generate_terrain(50000)
 	construct_terrain(terrain_points)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

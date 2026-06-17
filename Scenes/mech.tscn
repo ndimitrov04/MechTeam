@@ -52,6 +52,8 @@ script = ExtResource("5_0xx7q")
 
 [node name="NPCs" type="Node2D" parent="." unique_id=1283548531]
 
+[node name="Malfunctions" type="Node2D" parent="." unique_id=244949481]
+
 [node name="Ambience" type="Node2D" parent="." unique_id=993467780]
 position = Vector2(0, -104)
 

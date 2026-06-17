@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cmjfmaoieinog" path="res://Audio/SFX/Misc/retro_beep_01.ogg" id="4_mi1ql"]
 [ext_resource type="AudioStream" uid="uid://bkemvditohqh8" path="res://Audio/SFX/Misc/beep_03.ogg" id="5_ulvtu"]
 [ext_resource type="AudioStream" uid="uid://cptj8k4hgqpjx" path="res://Audio/SFX/Misc/terminal_09.ogg" id="6_66ck3"]
+[ext_resource type="AudioStream" uid="uid://w7445ct0jx4j" path="res://Audio/SFX/Misc/explosion01.wav" id="7_ulvtu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r4vb6"]
 size = Vector2(96, 96)
@@ -60,4 +61,9 @@ bus = &"SFX"
 
 [node name="Critical" type="AudioStreamPlayer2D" parent="SFX" unique_id=1297108668]
 stream = ExtResource("6_66ck3")
+bus = &"SFX"
+
+[node name="MalfunctionExplosion" type="AudioStreamPlayer2D" parent="SFX" unique_id=1464211419]
+stream = ExtResource("7_ulvtu")
+volume_db = 5.0
 bus = &"SFX"

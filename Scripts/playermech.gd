@@ -14,6 +14,7 @@ const NPC = preload("uid://cmy4r8enqaty2")
 @onready var controllers = $Controllers
 @onready var modules = $Modules
 @onready var npcs = $NPCs
+@onready var malfunctions = $Malfunctions
 @onready var jump_timer = $JumpTimer
 
 @onready var energy_regen = $EnergyRegen
@@ -44,8 +45,8 @@ var max_energy : int
 var energy : int
 var regen_rate : int = 1
 
-@onready var malfunction_min : float = 1
-@onready var malfunction_max : float = 5
+@onready var malfunction_min : float = 20
+@onready var malfunction_max : float = 30
 
 var destroyed : bool = false
 
@@ -60,6 +61,7 @@ func _ready():
 	if not in_editor:
 		game_over = $"../GUI/Control/GameOver"
 		if has_node("MalfunctionTimer"):
+			@warning_ignore("narrowing_conversion")
 			malfunction_timer.start(randi_range(malfunction_min, malfunction_max))
 	if not get_meta("prebuilt"):
 		load_mech()
@@ -287,9 +289,10 @@ func _malfunction():
 		# Spawn malfunction
 		print("Spawning malfunction at: " + str(malfunction_location))
 		var malfunction_instance = MALFUNCTION.instantiate()
-		add_child(malfunction_instance)
+		malfunctions.add_child(malfunction_instance)
 		malfunction_instance.global_position = malfunction_location
 		
+	@warning_ignore("narrowing_conversion")
 	malfunction_timer.start(randi_range(malfunction_min, malfunction_max))
 
 func die():

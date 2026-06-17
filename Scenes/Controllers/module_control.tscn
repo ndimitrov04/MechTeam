@@ -129,11 +129,12 @@ fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
 [sub_resource type="Gradient" id="Gradient_0tdtx"]
+resource_local_to_scene = true
 interpolation_color_space = 1
-offsets = PackedFloat32Array(0, 0.48557693, 1)
-colors = PackedColorArray(0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1)
+colors = PackedColorArray(0, 1, 0, 1, 1, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_o5f7k"]
+resource_local_to_scene = true
 gradient = SubResource("Gradient_0tdtx")
 width = 4
 height = 32
@@ -207,7 +208,6 @@ offset_left = 20.0
 offset_top = -16.0
 offset_right = 26.0
 offset_bottom = 18.0
-value = 100.0
 fill_mode = 3
 texture_under = SubResource("GradientTexture2D_l4cye")
 texture_progress = SubResource("GradientTexture2D_o5f7k")
