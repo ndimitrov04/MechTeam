@@ -14,9 +14,9 @@ extends RigidBody2D
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
 var energy_cost : int = 5
-var regen_value : int = 50 # Active regeneration value
-var regen_rate : int = 1 # Passive regeneration value
-var max_energy : int = 100
+var regen_value : int = 75 # Active regeneration value
+var regen_rate : int = 2 # Passive regeneration value
+var max_energy : int = 150
 var current_energy : int = max_energy
 var cooldown_time : float = 10
 

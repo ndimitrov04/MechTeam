@@ -126,13 +126,14 @@ func spawn_random_enemy():
 func end_stage():
 	await get_tree().create_timer(0.1).timeout
 	minigame_result.position.y -= 550
-	PlayerData.money -= (mech.max_hp - mech.hp) * 0.5
+	PlayerData.money -= (mech.max_hp - mech.hp) * 0.1
 	PlayerData.money -= npc_deaths * 10
+	PlayerData.money += rewards_collected
 	end_text = (
 			"YOU WIN!\n\n\n" +
 			"Rewards collected: " + str(rewards_collected) +
 			"\n\nMech Status" +
-			"\nDamage taken: " + str(mech.max_hp - mech.hp) + 
+			"\nDamage taken: " + str(int(mech.max_hp - mech.hp)) + 
 			"\n- Repair costs: " + str(int((mech.max_hp - mech.hp) * 0.5)) + 
 			"\n\nCrew Status" +
 			"\nCrew Wages: " + str(mech.npcs.get_child_count() * 5) +

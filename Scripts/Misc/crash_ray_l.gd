@@ -19,6 +19,8 @@ func _process(_delta: float) -> void:
 	if not can_collide:
 		return
 	if is_colliding():
+		if get_collider() == null:
+			return
 		if get_collider().get_parent() == null:
 			return
 		if not "IS_ENEMY" in get_collider().get_parent():

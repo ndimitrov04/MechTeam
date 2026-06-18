@@ -154,7 +154,6 @@ func die():
 	main.enemies_left -= 1
 	main.advance()
 	print("Player has gained " + str(reward) + " coins!")
-	PlayerData.money += reward
 	main.rewards_collected += reward
 	await get_tree().create_timer(1.5).timeout
 	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
@@ -203,6 +202,8 @@ func is_on_floor():
 
 # Call in airstrike
 func airstrike():
+	if randi_range(0, 1) == 0:
+		return
 	var can_airstrike : bool = false
 	for module in modules.get_children():
 		if module.has_meta("airstrike_object"):

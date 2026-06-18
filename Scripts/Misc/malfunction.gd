@@ -23,6 +23,8 @@ extends Area2D
 @onready var on_cooldown: bool = false
 @onready var controlled_module: bool = true
 
+@onready var fixed : bool = false
+
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
 # Called when the node enters the scene tree for the first time.
@@ -61,6 +63,8 @@ func _on_body_exited(body):
 		player_in_range = false
 
 func _malfunction_critical():
+	if fixed:
+		return
 	interaction_label.show()
 	interaction_label.text = "MALFUNCTION CRITICAL!"
 	if red_fade:
@@ -68,6 +72,8 @@ func _malfunction_critical():
 	blinking = false
 	malfunction_sprite.modulate = Color.RED
 	malfunction_sprite.visible = true
+	# Give final grace period of 2.5 sec
+	await get_tree().create_timer(2.5).timeout
 	# Spawn debris
 	var debris_instance
 	debris_instance = DEBRIS.instantiate()
@@ -76,10 +82,10 @@ func _malfunction_critical():
 	get_parent().get_parent().take_damage(damage)
 	critical_sfx.play()
 	malfunction_explosion.play()
-	await get_tree().create_timer(1).timeout
 	queue_free()
 
 func fix():
+	fixed = true
 	interaction_label.show()
 	interaction_label.text = "Malfunction Fixed :)"
 	interaction_label.label_settings.font_color = Color.GREEN

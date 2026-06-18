@@ -27,13 +27,14 @@ func _physics_process(delta):
 		_on_body_entered(collision.get_collider(), collision)
 
 func _on_body_entered(body, collision):
-	print("Hit " + body.name)
-	print(body.name + ": ")
-	print("Parent: " + body.get_parent().name)
+	#print("Hit " + body.name)
+	#print(body.name + ": ")
+	#print("Parent: " + body.get_parent().name)
 	if body.name == "Frame":
-		print("Damage Value: " + str(damage_value))
-		print("Collision:" + str(collision))
-		print("Knockback Force:" + str(knockback_force))
+		#print("Damage Value: " + str(damage_value))
+		#print("Collision:" + str(collision))
+		#print("Knockback Force:" + str(knockback_force))
+		pass
 	if body.get_parent().name == "Modules" or body.get_parent().name == "Weapons":
 		body.destroy()
 		#print("Destroying" + body.name)

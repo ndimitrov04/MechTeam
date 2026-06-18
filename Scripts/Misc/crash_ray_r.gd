@@ -4,7 +4,7 @@ extends RayCast2D
 
 @onready var can_collide = true
 
-@onready var damage_multiplier = 0.004
+@onready var damage_multiplier = 0.01
 
 func calculate_crash_damage(own_velocity, target_velocity):
 	var total_velocity = abs(own_velocity) + abs(target_velocity)
@@ -19,6 +19,8 @@ func _process(_delta: float) -> void:
 	if not can_collide:
 		return
 	if is_colliding():
+		if get_collider() == null:
+			return
 		if get_collider().get_parent() == null:
 			return
 		if not "IS_ENEMY" in get_collider().get_parent():
