@@ -64,7 +64,7 @@ autoplay = "default"
 frame_progress = 0.43615592
 
 [node name="Timer" type="Timer" parent="." unique_id=1522506310]
-wait_time = 3.0
+wait_time = 4.5
 one_shot = true
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1359933576]

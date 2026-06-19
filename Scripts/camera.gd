@@ -24,6 +24,8 @@ func add_trauma(amount : float):
 	trauma = clampf(trauma, 0, 0.7 + bonus_impact)
 
 func _process(delta):
+	if trauma > 1.4:
+		trauma = 1.4
 	if trauma:
 		trauma = max(trauma - decay * delta, 0)
 		shake()

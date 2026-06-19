@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://vlhrywjv8hr6"]
+[gd_scene format=3 uid="uid://vlhrywjv8hr6"]
 
 [ext_resource type="Script" uid="uid://b2o14ukpy0h2s" path="res://Scripts/Misc/explosion_particles.gd" id="1_a17l6"]
 
@@ -13,12 +13,13 @@ color = Color(1, 0.785777, 0, 1)
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
-[node name="ExplosionParticles" type="GPUParticles2D"]
+[node name="ExplosionParticles" type="GPUParticles2D" unique_id=517691675]
 emitting = false
 amount = 256
 one_shot = true
 explosiveness = 1.0
 randomness = 0.5
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ttjc1")
 script = ExtResource("1_a17l6")
 

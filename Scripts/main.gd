@@ -82,8 +82,8 @@ func _ready():
 			first_enemy.die()
 
 func _process(_delta):
-	if int(mech.global_position.x) % 500 == 0:
-		print("Current Mech Position: " + str(mech.global_position.x))
+	#if int(mech.global_position.x) % 500 == 0:
+		#print("Current Mech Position: " + str(mech.global_position.x))
 	
 	if enemies_left <= 0 and not triggered:
 		GlobalMusic.queue_track("uid://bfjye4qxke0i", 0.5)
@@ -126,15 +126,18 @@ func spawn_random_enemy():
 func end_stage():
 	await get_tree().create_timer(0.1).timeout
 	minigame_result.position.y -= 550
-	PlayerData.money -= (mech.max_hp - mech.hp) * 0.1
+	var repair_cost = clampf((mech.max_hp - mech.hp) * 0.1, 0, 999999)
+	@warning_ignore("narrowing_conversion")
+	PlayerData.money -= repair_cost
 	PlayerData.money -= npc_deaths * 10
 	PlayerData.money += rewards_collected
+	await get_tree().create_timer(0.1).timeout
 	end_text = (
 			"YOU WIN!\n\n\n" +
 			"Rewards collected: " + str(rewards_collected) +
 			"\n\nMech Status" +
 			"\nDamage taken: " + str(int(mech.max_hp - mech.hp)) + 
-			"\n- Repair costs: " + str(int((mech.max_hp - mech.hp) * 0.5)) + 
+			"\n- Repair costs: " + str(int(repair_cost)) + 
 			"\n\nCrew Status" +
 			"\nCrew Wages: " + str(mech.npcs.get_child_count() * 5) +
 			"\nCrew Injured: " + str(npc_deaths) + 

@@ -26,14 +26,15 @@ func _process(_delta: float) -> void:
 		if not "IS_ENEMY" in get_collider().get_parent():
 			return
 		if get_collider().get_parent().IS_ENEMY:
-			print("FRIENDLY CRASH!")
+			#print("FRIENDLY CRASH!")
 			var own_velocity = mech.linear_velocity
 			var target_velocity = get_collider().get_parent().linear_velocity
 			var dmg = calculate_crash_damage(own_velocity, target_velocity)
 			# Take knockback and stop mech movement, make sure mech doesn't jump a lot
 			mech.direction = 0
-			mech.get_parent().player.camera.bonus_impact = 3
-			mech.get_parent().player.camera.add_trauma(99999999)
+			#mech.get_parent().player.camera.bonus_impact = 3
+			#print("Player?: " + str(mech.get_parent().player.name))
+			mech.get_parent().player.camera.trauma = 1.5
 			mech.apply_central_impulse(Vector2(-10000, 0))
 			for object in mech.wheels.get_children():
 				if object.has_meta("is_movement"):
@@ -46,5 +47,5 @@ func _process(_delta: float) -> void:
 			# A bit of crash invincibility
 			can_collide = false
 			await get_tree().create_timer(1.5).timeout
-			mech.get_parent().player.camera.bonus_impact = 0
+			#mech.get_parent().player.camera.bonus_impact = 0
 			can_collide = true

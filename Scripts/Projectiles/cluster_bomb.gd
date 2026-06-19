@@ -38,6 +38,8 @@ func _on_body_entered(body, collision):
 	if body.get_parent().name == "Modules" or body.get_parent().name == "Weapons":
 		body.destroy()
 		#print("Destroying" + body.name)
+	if body.name == "Player":
+		body.take_damage(1)
 	if body.has_method("take_damage"):
 		body.take_damage(damage_value, collision, knockback_force)
 	if get_meta("hitflash"):

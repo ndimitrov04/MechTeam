@@ -65,6 +65,7 @@ func _on_body_exited(body):
 func _malfunction_critical():
 	if fixed:
 		return
+	interaction_label.label_settings.font_color = Color.RED
 	interaction_label.show()
 	interaction_label.text = "MALFUNCTION CRITICAL!"
 	if red_fade:
@@ -82,13 +83,17 @@ func _malfunction_critical():
 	get_parent().get_parent().take_damage(damage)
 	critical_sfx.play()
 	malfunction_explosion.play()
+	hide()
+	self.set_collision_mask_value(1, false)
+	main.player.camera.trauma = 0.8
+	await get_tree().create_timer(1).timeout
 	queue_free()
 
 func fix():
 	fixed = true
+	interaction_label.label_settings.font_color = Color.GREEN
 	interaction_label.show()
 	interaction_label.text = "Malfunction Fixed :)"
-	interaction_label.label_settings.font_color = Color.GREEN
 	if red_fade:
 		red_fade.kill()
 	blinking = false

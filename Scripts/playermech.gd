@@ -288,7 +288,7 @@ func _malfunction():
 		malfunction_location = to_global(background.map_to_local(cell))
 	if malfunction_location != null:
 		# Spawn malfunction
-		print("Spawning malfunction at: " + str(malfunction_location))
+		#print("Spawning malfunction at: " + str(malfunction_location))
 		var malfunction_instance = MALFUNCTION.instantiate()
 		malfunctions.add_child(malfunction_instance)
 		malfunction_instance.global_position = malfunction_location

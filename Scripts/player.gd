@@ -67,6 +67,8 @@ func _physics_process(delta):
 		if not floor_detector:
 			return
 		if floor_detector.is_colliding():
+			if floor_detector.get_collider() == null:
+				return
 			if floor_detector.get_collider().name == "Frame":
 				last_platform = floor_detector.get_collider().get_parent()
 				last_platform_velocity = last_platform.linear_velocity
