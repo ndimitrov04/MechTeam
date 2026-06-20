@@ -50,7 +50,8 @@ const FIRST_ENEMY = 2500 # First enemy X coordinate
 func _ready() -> void:
 	initialize_terrain_objects()
 	var terrain_points : PackedVector2Array = generate_terrain(50000)
-	construct_terrain(terrain_points)
+	var smoothed_terrain_points = smooth_terrain(terrain_points)
+	construct_terrain(smoothed_terrain_points)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -105,6 +106,31 @@ func generate_terrain(length : int) -> PackedVector2Array:
 	terrain_points.append(Vector2(-SPAWN_OFFSET, HEIGHT_RANGE[1] + 500))
 	
 	return terrain_points
+
+# Chaikin's corner-cutting algorithm
+func smooth_terrain(points: PackedVector2Array, iterations := 2) -> PackedVector2Array:
+	var current := points
+
+	for _i in range(iterations):
+		var next := PackedVector2Array()
+
+		next.append(current[0])
+
+		for j in range(current.size() - 1):
+			var p0 = current[j]
+			var p1 = current[j + 1]
+
+			var q = p0.lerp(p1, 0.25)
+			var r = p0.lerp(p1, 0.75)
+
+			next.append(q)
+			next.append(r)
+
+		next.append(current[-1])
+
+		current = next
+
+	return current
 
 ## Construct terrain object from terrain points
 ## Params: points - terrain_points generated via generate_terrain()

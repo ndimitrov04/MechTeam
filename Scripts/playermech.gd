@@ -182,6 +182,12 @@ func _physics_process(delta):
 	else:
 		physics_material_override.friction = 0.9
 		#linear_velocity.x = move_toward(linear_velocity.x, 0, 0.2)
+		for movement_object in wheels.get_children():
+			if not movement_object.has_meta("is_movement"):
+				continue
+			if movement_object.get_meta("is_active"):
+				if movement_object.floor_detector.is_colliding():
+					movement_object.brake()
 
 	# Max/Top speed (horizontal) - Determined by number of movement objects
 	var max_speed = wheels.get_child_count() * 45
