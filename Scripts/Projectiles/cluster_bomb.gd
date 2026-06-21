@@ -26,7 +26,7 @@ func _physics_process(delta):
 	if collision:
 		_on_body_entered(collision.get_collider(), collision)
 
-func _on_body_entered(body, collision):
+func _on_body_entered(body, collision = null):
 	#print("Hit " + body.name)
 	#print(body.name + ": ")
 	#print("Parent: " + body.get_parent().name)
@@ -39,7 +39,7 @@ func _on_body_entered(body, collision):
 		body.destroy()
 		#print("Destroying" + body.name)
 	if body.name == "Player":
-		body.take_damage(1)
+		body.take_damage(1, 0, 0)
 	if body.has_method("take_damage"):
 		body.take_damage(damage_value, collision, knockback_force)
 	if get_meta("hitflash"):

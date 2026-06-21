@@ -73,6 +73,7 @@ func _malfunction_critical():
 	blinking = false
 	malfunction_sprite.modulate = Color.RED
 	malfunction_sprite.visible = true
+	appear_sfx.stop()
 	# Give final grace period of 2.5 sec
 	await get_tree().create_timer(2.5).timeout
 	# Spawn debris
@@ -96,6 +97,7 @@ func fix():
 	interaction_label.text = "Malfunction Fixed :)"
 	if red_fade:
 		red_fade.kill()
+	appear_sfx.stop()
 	blinking = false
 	malfunction_sprite.modulate = Color.GREEN
 	malfunction_sprite.visible = true

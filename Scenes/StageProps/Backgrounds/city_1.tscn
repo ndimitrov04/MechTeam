@@ -601,7 +601,7 @@ z_index = -2
 [node name="Sky" type="Sprite2D" parent="." unique_id=151500712]
 position = Vector2(15860.426, 250.00066)
 rotation = 1.5707964
-scale = Vector2(20.243929, 39497.805)
+scale = Vector2(20.244, 80000)
 texture = SubResource("GradientTexture1D_8gbba")
 
 [node name="Parallax" type="Node2D" parent="." unique_id=1930316870]
@@ -610,7 +610,7 @@ scale = Vector2(2, 2)
 
 [node name="Parallax1" type="Parallax2D" parent="Parallax" unique_id=934669055]
 repeat_size = Vector2(2304, 0)
-repeat_times = 3
+repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax1" unique_id=1315367623]
 modulate = Color(1.1357135, 1.1357135, 1.1357135, 1)
@@ -625,7 +625,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Parallax2" type="Parallax2D" parent="Parallax" unique_id=286662755]
 scroll_scale = Vector2(1.05, 1.05)
 repeat_size = Vector2(2304, 0)
-repeat_times = 3
+repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax2" unique_id=1162558281]
 offset_left = -1120.0
@@ -638,7 +638,7 @@ stretch_mode = 1
 [node name="Parallax3" type="Parallax2D" parent="Parallax" unique_id=1396425584]
 scroll_scale = Vector2(1.07, 1.06)
 repeat_size = Vector2(2304, 0)
-repeat_times = 3
+repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax3" unique_id=1668786599]
 offset_left = -1120.0
@@ -651,7 +651,7 @@ stretch_mode = 1
 [node name="Parallax4" type="Parallax2D" parent="Parallax" unique_id=428915249]
 scroll_scale = Vector2(1.09, 1.07)
 repeat_size = Vector2(2304, 0)
-repeat_times = 3
+repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax4" unique_id=1356819236]
 offset_left = -1120.0
@@ -664,7 +664,7 @@ stretch_mode = 1
 [node name="Parallax5" type="Parallax2D" parent="Parallax" unique_id=1250544776]
 scroll_scale = Vector2(1.13, 1.08)
 repeat_size = Vector2(2304, 0)
-repeat_times = 3
+repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax5" unique_id=634747215]
 offset_left = -1120.0
@@ -677,7 +677,7 @@ stretch_mode = 1
 [node name="Parallax6" type="Parallax2D" parent="Parallax" unique_id=444698895]
 scroll_scale = Vector2(1.2, 1.09)
 repeat_size = Vector2(2304, 0)
-repeat_times = 3
+repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax6" unique_id=83401741]
 offset_left = -1120.0

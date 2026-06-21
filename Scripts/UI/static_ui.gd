@@ -51,13 +51,17 @@ func clear_status():
 func _on_status_timeout():
 	clear_status()
 
-func display_minigame_result(victory : bool):
+# Loss reason: 0 - Regular fail; 1 - Knocked off of controller
+func display_minigame_result(victory : bool, loss_reason = 0):
 	if victory:
 		minigame_result.text = "Minigame Success!!!"
 		minigame_result.add_theme_color_override("font_color", Color("green"))
 		win.play()
 	else:
-		minigame_result.text = "Minigame Failure..."
+		if loss_reason == 0:
+			minigame_result.text = "Minigame Failure..."
+		elif loss_reason == 1:
+			minigame_result.text = "Failure! Couldn't hold on!"
 		minigame_result.add_theme_color_override("font_color", Color("red"))
 		lose.play()
 	minigame_result.modulate = Color(1, 1, 1, 1)  # Make visible

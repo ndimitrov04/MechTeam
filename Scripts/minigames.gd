@@ -34,9 +34,12 @@ func end_minigame():
 	#get_child(0).queue_free()
 
 func win():
+	if not current_module:
+		lose(1)
+		return
 	print(current_module.name + " goes PEWPEW!!!")
 	current_module.engage()
 	main.static_ui.display_minigame_result(true)
 
-func lose():
-	main.static_ui.display_minigame_result(false)
+func lose(reason = 0):
+	main.static_ui.display_minigame_result(false, reason)

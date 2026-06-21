@@ -86,7 +86,8 @@ func _on_cooldown_timeout():
 		return
 	if mech.has_method("drain_energy"):
 		mech.drain_energy(energy_cost)
-	controlled_module.engage()
+	if controlled_module:
+		controlled_module.engage()
 
 func start_cooldown():
 	on_cooldown = true

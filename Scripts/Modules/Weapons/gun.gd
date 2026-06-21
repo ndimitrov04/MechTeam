@@ -6,7 +6,7 @@ extends RigidBody2D
 @onready var shoot_point = $ShootPoint
 @onready var shoot_sfx: AudioStreamPlayer2D = $SFX/Shoot
 @onready var drop_sfx: AudioStreamPlayer2D = $SFX/Drop
-@onready var smoke: GPUParticles2D = $ShootPoint/Smoke
+@onready var smoke = null
 
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
@@ -39,6 +39,8 @@ signal is_connected()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if get_node("ShootPoint/Smoke"):
+		smoke = $ShootPoint/Smoke
 	#if has_meta("pinned_tile"):
 		#pinned_frame_tile = get_meta("pinned_tile")
 	self.body_entered.connect(_on_body_entered)

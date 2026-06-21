@@ -67,6 +67,10 @@ func _physics_process(delta):
 	# Keep upright
 	clamp(rotation_degrees, -45, 45)
 	
+	if not destroyed:
+		if hp <= 0:
+			die()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		linear_velocity += get_gravity() * delta
@@ -131,6 +135,7 @@ func take_damage(damage_value : float):
 
 func die():
 	if destroyed:
+		print("Already dead.")
 		return
 	
 	destroyed = true

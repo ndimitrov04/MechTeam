@@ -110,8 +110,17 @@ func advance():
 			screen_border.position.x + SPAWN_OFFSET + 1800,
 			1.5 # duration in seconds
 		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		await get_tree().create_timer(1.5).timeout
 		spawn_random_enemy()
 		static_ui.display_advance_arrow()
+	else:
+		GlobalMusic.queue_track("uid://bfjye4qxke0i", 0.5)
+		triggered = true
+		end_stage()
+		minigame_result.modulate = Color(1,1,1,1)
+		minigame_result.text = end_text
+		minigame_result.add_theme_color_override("font_color", Color("green"))
+		minigame_result.show()
 
 func spawn_random_enemy():
 	#var enemy_instance = enemies.pick_random().instantiate()
@@ -124,6 +133,7 @@ func spawn_random_enemy():
 	enemy_instance.rotation = 0
 
 func end_stage():
+	screen_limit.global_position.x += 4000
 	await get_tree().create_timer(0.1).timeout
 	minigame_result.position.y -= 550
 	var repair_cost = clampf((mech.max_hp - mech.hp) * 0.1, 0, 999999)
