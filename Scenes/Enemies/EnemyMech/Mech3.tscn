@@ -35,8 +35,8 @@ collision_layer = 8192
 collision_mask = 8192
 physics_material_override = SubResource("PhysicsMaterial_a4e53")
 script = ExtResource("1_a4e53")
-metadata/hp = 45
-metadata/choice_ranges = PackedByteArray("N1Va")
+metadata/hp = 35
+metadata/choice_ranges = PackedByteArray("I1Va")
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_w70a5")]
 material = ExtResource("3_53oxl")

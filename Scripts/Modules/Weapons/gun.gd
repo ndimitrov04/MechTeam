@@ -39,7 +39,7 @@ signal is_connected()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if get_node("ShootPoint/Smoke"):
+	if has_node("ShootPoint/Smoke"):
 		smoke = $ShootPoint/Smoke
 	#if has_meta("pinned_tile"):
 		#pinned_frame_tile = get_meta("pinned_tile")

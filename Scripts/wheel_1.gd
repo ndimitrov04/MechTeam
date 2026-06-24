@@ -56,3 +56,6 @@ func brake():
 		0.15,
 		0.7
 	)
+	
+func destroy():
+	self.queue_free()

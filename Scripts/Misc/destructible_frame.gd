@@ -14,6 +14,8 @@ var collision_child_index_start
 
 var explosions : bool = true
 
+var total_cells_used : int = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#for child in get_parent().get_children():
@@ -25,6 +27,8 @@ func _ready():
 	collision_child_index_start = get_parent().get_child_count()
 	await get_tree().create_timer(0.2).timeout
 	regenerate_frame_collision() # Extremely expensive :(
+	total_cells_used = get_used_cells().size()
+	print("Frame used: " + str(total_cells_used))
 
 # Called every self. 'delta' is the elapsed time since the previous self.
 func _physics_process(_delta):
@@ -92,13 +96,30 @@ func _break_random_tile():
 	debris_instance.global_position = to_global(map_to_local(chosen_cell))
 	debris_instance.set_sprite(chosen_tile_atlas)
 
+# Remove tile instantly without explosion or debris
+func _remove_random_tile():
+	# Get random tile
+	var used_cells = get_used_cells()
+	var chosen_cell_index = randi_range(0, used_cells.size())
+	var chosen_cell = used_cells[chosen_cell_index]
+	# Check if cell still exists
+	if chosen_cell_index >= used_cells.size():
+		return
+	# Destroy collided tile at tilemap coords
+	self.set_cell(chosen_cell, -1)
+
 func break_all_tiles():
 	explosions = false
+	if not get_tree():
+		return
 	while get_used_cells().size() > 0:
 		await get_tree().process_frame
 		await get_tree().process_frame
-		await get_tree().process_frame
-		_break_random_tile()
+		@warning_ignore("integer_division")
+		if get_used_cells().size() % (total_cells_used / 64) == 0:
+			_break_random_tile()
+		else:
+			_remove_random_tile()
 
 ## Generates static hitboxes based on tile data.
 ## For use as a physics body's hitbox children. 

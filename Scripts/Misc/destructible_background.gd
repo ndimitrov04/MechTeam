@@ -7,14 +7,18 @@ const DEBRIS_NOEXPL = preload("uid://cnockwlnou78d")
 
 var explosions : bool = true
 
+var total_cells_used : int = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	total_cells_used = get_used_cells().size()
+	print("BG used: " + str(total_cells_used))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
+# Visually destroy tile
 func break_random_tile():
 	# Get random tile
 	var used_cells = get_used_cells()
@@ -36,9 +40,27 @@ func break_random_tile():
 	debris_instance.global_position = to_global(map_to_local(chosen_cell))
 	debris_instance.set_sprite(chosen_tile_atlas)
 
+# Remove tile instantly without explosion or debris
+func _remove_random_tile():
+	# Get random tile
+	var used_cells = get_used_cells()
+	var chosen_cell_index = randi_range(0, used_cells.size())
+	var chosen_cell = used_cells[chosen_cell_index]
+	# Check if cell still exists
+	if chosen_cell_index >= used_cells.size():
+		return
+	# Destroy collided tile at tilemap coords
+	self.set_cell(chosen_cell, -1)
+
 func break_all_tiles():
 	explosions = false
 	while get_used_cells().size() > 0:
-		if get_tree():
-			await get_tree().process_frame
+		if not get_tree():
+			return
+		await get_tree().process_frame
+		await get_tree().process_frame
+		@warning_ignore("integer_division")
+		if get_used_cells().size() % (total_cells_used / 64) == 0:
 			break_random_tile()
+		else:
+			_remove_random_tile()

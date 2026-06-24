@@ -39,8 +39,8 @@ animations = [{
 [node name="Bullet" type="RigidBody2D" unique_id=764556974]
 z_index = 20
 z_as_relative = false
-collision_layer = 16396
-collision_mask = 16396
+collision_layer = 16908
+collision_mask = 16908
 gravity_scale = 0.001
 continuous_cd = 1
 contact_monitor = true

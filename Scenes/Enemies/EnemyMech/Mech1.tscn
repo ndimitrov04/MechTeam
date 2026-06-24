@@ -29,8 +29,8 @@ animations = [{
 collision_layer = 8192
 collision_mask = 8192
 script = ExtResource("1_vfcbj")
-metadata/hp = 30
-metadata/choice_ranges = PackedByteArray("N0ZQ")
+metadata/hp = 25
+metadata/choice_ranges = PackedByteArray("QUtV")
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_gegrq")]
 material = ExtResource("3_pi20n")

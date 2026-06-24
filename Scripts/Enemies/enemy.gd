@@ -10,6 +10,7 @@ extends RigidBody2D
 @onready var npcs = $NPCs
 @onready var spawners = $Spawners
 @onready var controllers = $Controllers
+@onready var movement_sprites = $MovementSprites
 
 @onready var modules = $Modules
 
@@ -140,9 +141,13 @@ func die():
 	
 	destroyed = true
 	
+	main.enemies_left -= 1
+	main.advance()
+	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
+	
 	# Destroy wheels
-	for child in self.get_children():
-		if child.has_meta("whitbox"):
+	for child in movement_sprites:
+		if child.has_method("destroy"):
 			child.destroy()
 	# Hide controllers
 	controllers.hide()
@@ -156,12 +161,10 @@ func die():
 	frame.collision_enabled = false
 	frame.break_all_tiles()
 	set_collision_layer_value(3, 0)
-	main.enemies_left -= 1
-	main.advance()
 	print("Player has gained " + str(reward) + " coins!")
 	main.rewards_collected += reward
 	await get_tree().create_timer(1.5).timeout
-	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
+	print(name + " object freed.")
 	queue_free()
 
 func update_decision_timer():

@@ -107,6 +107,11 @@ func load_mech():
 		match object_type:
 			MechData.ObjectType.MODULE:
 				modules.add_child(object_instance)
+				if "wheel_hitbox" in object_instance:
+					object_instance.set_collision_layer_value(9, 1)
+					object_instance.set_collision_mask_value(9, 1)
+					object_instance.set_collision_layer_value(10, 0)
+					object_instance.set_collision_mask_value(10, 0)
 			MechData.ObjectType.CONTROLLER:
 				controllers.add_child(object_instance)
 				if not object_instance.get_meta_list().is_empty():
