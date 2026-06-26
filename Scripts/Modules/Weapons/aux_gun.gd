@@ -22,7 +22,7 @@ var repeat_rate : int = 5	# Number of bullets fired per volley
 var recoil : float = 0.15	# Recoil rotation of gun module per shot in radians
 
 var energy_cost : int = 10
-var cooldown_time : float = 10
+var cooldown_time : float = 7
 var aim_speed : float = 1.0
 var target_angle : float = 0
 var auto : bool = true

@@ -358,7 +358,7 @@ offset_top = 0.3199463
 offset_right = 263.35992
 offset_bottom = 96.31995
 theme_override_font_sizes/font_size = 32
-text = "Retry Fight"
+text = "Retry Fight (-30 Cash)"
 
 [node name="Menu" type="Button" parent="GUI/Control/GameOver" unique_id=943016623]
 layout_mode = 1

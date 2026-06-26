@@ -53,6 +53,7 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	var collided_tile_atlas = self.get_cell_atlas_coords(collided_tile_pos)
 	# Destroy collided tile at tilemap coords
 	self.set_cell(collided_tile_pos, -1)
+	destroy_frame_collision_cell(collided_tile_pos)
 	# Spawn debris
 	var debris_instance = DEBRIS.instantiate()
 	main.add_child(debris_instance)
@@ -69,7 +70,7 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	var predictable_knockback = true_knockback * Vector2(1, 0.1)  # Eliminate wild upward momentum
 	get_parent().apply_impulse(predictable_knockback, collision_pos_global)
 	# Regenerate physics body's hitboxes
-	regenerate_frame_collision()
+	# regenerate_frame_collision()
 
 # Helper function for death handling.
 # To be used only by break_all_tiles()
@@ -77,7 +78,9 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 func _break_random_tile():
 	# Get random tile
 	var used_cells = get_used_cells()
-	var chosen_cell_index = randi_range(0, used_cells.size())
+	if used_cells.is_empty():
+		return
+	var chosen_cell_index = randi_range(0, used_cells.size() - 1)
 	# Check if cell still exists
 	if chosen_cell_index >= used_cells.size():
 		return
@@ -100,7 +103,7 @@ func _break_random_tile():
 func _remove_random_tile():
 	# Get random tile
 	var used_cells = get_used_cells()
-	var chosen_cell_index = randi_range(0, used_cells.size())
+	var chosen_cell_index = randi_range(0, used_cells.size() - 1)
 	var chosen_cell = used_cells[chosen_cell_index]
 	# Check if cell still exists
 	if chosen_cell_index >= used_cells.size():
@@ -115,6 +118,9 @@ func break_all_tiles():
 	while get_used_cells().size() > 0:
 		await get_tree().process_frame
 		await get_tree().process_frame
+		if total_cells_used <= 0:
+			print_debug("No more cells left.")
+			return
 		@warning_ignore("integer_division")
 		if get_used_cells().size() % (total_cells_used / 64) == 0:
 			_break_random_tile()
@@ -135,6 +141,14 @@ func regenerate_frame_collision():
 		var collider_instance = PHYSICS_COLLIDER.instantiate()
 		get_parent().add_child(collider_instance)
 		collider_instance.position = self.map_to_local(cell_coord)
+		collider_instance.cell_coordinates = cell_coord
 	
 	# Regenerate loacl navmesh
 	#navigation_region.bake_navigation_polygon()
+
+func destroy_frame_collision_cell(cell_coords : Vector2i):
+	for i in range(collision_child_index_start, get_parent().get_child_count()):
+		var current_collider = get_parent().get_child(i)
+		if current_collider.cell_coordinates != cell_coords:
+			continue
+		current_collider.queue_free()

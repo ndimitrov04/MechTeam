@@ -39,7 +39,7 @@ metadata/bullet = ExtResource("2_cdlgu")
 metadata/repeat_rate = 5
 metadata/recoil = 0.25
 metadata/energy_cost = 40
-metadata/cooldown_time = 30.0
+metadata/cooldown_time = 13.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
 rotation = 1.5707964

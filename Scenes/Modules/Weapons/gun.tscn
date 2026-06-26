@@ -45,7 +45,7 @@ metadata/bullet = ExtResource("2_nm7d3")
 metadata/repeat_rate = 10
 metadata/recoil = 0.15
 metadata/energy_cost = 30
-metadata/cooldown_time = 20.0
+metadata/cooldown_time = 15.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
 rotation = 1.5707964

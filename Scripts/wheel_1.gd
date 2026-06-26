@@ -13,7 +13,7 @@ extends RigidBody2D
 @onready var suspension: Node2D = $Suspension
 @onready var spring_joint: DampedSpringJoint2D = $Suspension/SpringJoint
 
-const STIFFNESS = 2900
+const STIFFNESS = 1500
 const DAMPING = 50
 const SPEED = 100
 # Called when the node enters the scene tree for the first time.

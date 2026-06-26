@@ -24,7 +24,7 @@ const JUMP_linear_velocity = -400.0
 
 const IS_ENEMY : bool = true
 
-@onready var level_multiplier : float = 0.5 + (PlayerData.current_stage * 0.25)
+@onready var level_multiplier : float = 0.5 + (PlayerData.current_stage * 0.125)
 @onready var base_hp = get_meta("hp")
 var max_hp : int = 999 # Placeholder value (must be positive; non-null); Real value is set in _ready()
 var hp : float = max_hp # Default value
@@ -136,17 +136,17 @@ func take_damage(damage_value : float):
 
 func die():
 	if destroyed:
-		print("Already dead.")
+		#print("Already dead.")
 		return
 	
 	destroyed = true
 	
 	main.enemies_left -= 1
 	main.advance()
-	print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
+	#print(name + " has died. (Not really, it's a robot, but what else could I call this function?)")
 	
 	# Destroy wheels
-	for child in movement_sprites:
+	for child in movement_sprites.get_children():
 		if child.has_method("destroy"):
 			child.destroy()
 	# Hide controllers
@@ -161,10 +161,10 @@ func die():
 	frame.collision_enabled = false
 	frame.break_all_tiles()
 	set_collision_layer_value(3, 0)
-	print("Player has gained " + str(reward) + " coins!")
+	#print("Player has gained " + str(reward) + " coins!")
 	main.rewards_collected += reward
 	await get_tree().create_timer(1.5).timeout
-	print(name + " object freed.")
+	#print(name + " object freed.")
 	queue_free()
 
 func update_decision_timer():

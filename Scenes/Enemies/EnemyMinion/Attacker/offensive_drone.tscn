@@ -61,7 +61,7 @@ size = Vector2(25, 25)
 [node name="OffensiveDrone" type="CharacterBody2D" unique_id=1143559221]
 top_level = true
 material = SubResource("ShaderMaterial_gqv10")
-collision_layer = 4106
+collision_layer = 10
 collision_mask = 4096
 motion_mode = 1
 platform_on_leave = 2

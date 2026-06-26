@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://b30ljaxy0jhr1" path="res://Images/Backgrounds/ParallaxField1/tile_2.png" id="3_k8gxw"]
 [ext_resource type="Texture2D" uid="uid://b38a06ocxj4su" path="res://Images/Backgrounds/ParallaxField1/tile_3.png" id="4_h3lkm"]
 [ext_resource type="Texture2D" uid="uid://bo385qj8osw5w" path="res://Images/Backgrounds/ParallaxField1/tile_4.png" id="5_s1jbg"]
-[ext_resource type="Texture2D" uid="uid://8grjm55o3rrh" path="res://Images/Backgrounds/ParallaxCity1/6.png" id="6_s1jbg"]
 [ext_resource type="Texture2D" uid="uid://1l1vb5sintp3" path="res://Images/Tilesets/jungle tileset.png" id="7_0a3ug"]
 [ext_resource type="PackedScene" uid="uid://dl7xqntfpk5nv" path="res://Scenes/terrain.tscn" id="7_h3lkm"]
 [ext_resource type="Texture2D" uid="uid://deinkajit0i5w" path="res://Images/Tilesets/Buildings.png" id="7_mc8u1"]
@@ -981,9 +980,10 @@ repeat_times = 30
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax1" unique_id=1315367623]
 modulate = Color(2.1643846, 2.1643846, 2.1643846, 1)
 offset_left = -1120.0
-offset_top = -52.0
+offset_top = -368.0
 offset_right = 1440.0
-offset_bottom = 272.0
+offset_bottom = -44.0
+scale = Vector2(2, 2)
 texture = ExtResource("1_d71xf")
 stretch_mode = 1
 
@@ -994,9 +994,10 @@ repeat_times = 30
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax2" unique_id=1162558281]
 self_modulate = Color(0.86898494, 0.8689849, 0.8689849, 1)
 offset_left = -1120.0
-offset_top = -52.0
+offset_top = -380.0
 offset_right = 1440.0
-offset_bottom = 128.0
+offset_bottom = -200.0
+scale = Vector2(2, 2)
 texture = ExtResource("2_62cpv")
 stretch_mode = 1
 
@@ -1007,11 +1008,19 @@ repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax3" unique_id=1668786599]
 offset_left = -1120.0
-offset_top = -52.0
+offset_top = -372.0
 offset_right = 1440.0
-offset_bottom = 272.0
+offset_bottom = -48.0
+scale = Vector2(2, 2)
 texture = ExtResource("3_k8gxw")
 stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="Parallax/Parallax3" unique_id=1638813432]
+offset_left = -1120.0
+offset_top = -67.99997
+offset_right = 1440.0
+offset_bottom = 148.00003
+color = Color(0.26666668, 0.33333334, 0.57254905, 1)
 
 [node name="Parallax4" type="Parallax2D" parent="Parallax" unique_id=428915249]
 scroll_scale = Vector2(1.09, 1.07)
@@ -1020,11 +1029,19 @@ repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax4" unique_id=1356819236]
 offset_left = -1120.0
-offset_top = -52.0
+offset_top = -344.0
 offset_right = 1440.0
-offset_bottom = 272.0
+offset_bottom = -20.0
+scale = Vector2(2, 2)
 texture = ExtResource("4_h3lkm")
 stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="Parallax/Parallax4" unique_id=388396895]
+offset_left = -1120.0
+offset_top = -39.99997
+offset_right = 1440.0
+offset_bottom = 176.00003
+color = Color(0.14117648, 0.22745098, 0.34509805, 1)
 
 [node name="Parallax5" type="Parallax2D" parent="Parallax" unique_id=1250544776]
 scroll_scale = Vector2(1.13, 1.08)
@@ -1033,24 +1050,19 @@ repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax5" unique_id=634747215]
 offset_left = -1120.0
-offset_top = -52.0
+offset_top = -284.0
 offset_right = 1440.0
-offset_bottom = 272.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
 texture = ExtResource("5_s1jbg")
 stretch_mode = 1
 
-[node name="Parallax6" type="Parallax2D" parent="Parallax" unique_id=444698895]
-scroll_scale = Vector2(1.2, 1.09)
-repeat_size = Vector2(2560, 0)
-repeat_times = 30
-
-[node name="TextureRect" type="TextureRect" parent="Parallax/Parallax6" unique_id=83401741]
+[node name="ColorRect" type="ColorRect" parent="Parallax/Parallax5" unique_id=2068076878]
 offset_left = -1120.0
-offset_top = -52.0
+offset_top = 56.00003
 offset_right = 1440.0
-offset_bottom = 272.0
-texture = ExtResource("6_s1jbg")
-stretch_mode = 1
+offset_bottom = 236.00003
+color = Color(0.12156863, 0.19607843, 0.24705882, 1)
 
 [node name="Terrain" parent="." unique_id=769621585 instance=ExtResource("7_h3lkm")]
 COMBAT_ARENA_LENGTH = 150

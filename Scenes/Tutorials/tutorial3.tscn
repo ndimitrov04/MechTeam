@@ -192,6 +192,35 @@ shadow_size = 0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4r6d5"]
 size = Vector2(28, 13)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kcvao"]
+shader = ExtResource("65_e0s2h")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="Gradient" id="Gradient_awcoh"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_htqe0"]
+gradient = SubResource("Gradient_awcoh")
+width = 6
+height = 34
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_jc30k"]
+resource_local_to_scene = true
+interpolation_color_space = 1
+colors = PackedColorArray(0, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hx3hf"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_jc30k")
+width = 4
+height = 32
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wkly"]
 size = Vector2(34, 25)
 
@@ -532,6 +561,20 @@ mouse_filter = 1
 color = Color(1, 1, 1, 0.80784315)
 script = ExtResource("42_rajrc")
 
+[node name="ProximityPenalty" type="Node2D" parent="Mech/Controllers/Control1" unique_id=2126792911]
+
+[node name="PenaltyBar" type="TextureProgressBar" parent="Mech/Controllers/Control1/ProximityPenalty" unique_id=913835599]
+z_index = 1
+material = SubResource("ShaderMaterial_kcvao")
+offset_left = 20.0
+offset_top = -16.0
+offset_right = 26.0
+offset_bottom = 18.0
+fill_mode = 3
+texture_under = SubResource("GradientTexture2D_htqe0")
+texture_progress = SubResource("GradientTexture2D_hx3hf")
+texture_progress_offset = Vector2(1, 1)
+
 [node name="Control2" type="Area2D" parent="Mech/Controllers" unique_id=1393767290]
 position = Vector2(520, 112)
 script = ExtResource("43_jki1f")
@@ -653,6 +696,20 @@ size_flags_horizontal = 4
 mouse_filter = 1
 color = Color(1, 1, 1, 0.80784315)
 script = ExtResource("42_rajrc")
+
+[node name="ProximityPenalty" type="Node2D" parent="Mech/Controllers/Control2" unique_id=1788550708]
+
+[node name="PenaltyBar" type="TextureProgressBar" parent="Mech/Controllers/Control2/ProximityPenalty" unique_id=365309192]
+z_index = 1
+material = SubResource("ShaderMaterial_kcvao")
+offset_left = 20.0
+offset_top = -16.0
+offset_right = 26.0
+offset_bottom = 18.0
+fill_mode = 3
+texture_under = SubResource("GradientTexture2D_htqe0")
+texture_progress = SubResource("GradientTexture2D_hx3hf")
+texture_progress_offset = Vector2(1, 1)
 
 [node name="Control3" type="Area2D" parent="Mech/Controllers" unique_id=1487986479]
 position = Vector2(464, 112)
@@ -776,6 +833,20 @@ mouse_filter = 1
 color = Color(1, 1, 1, 0.80784315)
 script = ExtResource("42_rajrc")
 
+[node name="ProximityPenalty" type="Node2D" parent="Mech/Controllers/Control3" unique_id=875890604]
+
+[node name="PenaltyBar" type="TextureProgressBar" parent="Mech/Controllers/Control3/ProximityPenalty" unique_id=922367843]
+z_index = 1
+material = SubResource("ShaderMaterial_kcvao")
+offset_left = 20.0
+offset_top = -16.0
+offset_right = 26.0
+offset_bottom = 18.0
+fill_mode = 3
+texture_under = SubResource("GradientTexture2D_htqe0")
+texture_progress = SubResource("GradientTexture2D_hx3hf")
+texture_progress_offset = Vector2(1, 1)
+
 [node name="Control4" type="Area2D" parent="Mech/Controllers" unique_id=338465135]
 position = Vector2(408, 112)
 script = ExtResource("43_jki1f")
@@ -897,6 +968,20 @@ size_flags_horizontal = 4
 mouse_filter = 1
 color = Color(1, 1, 1, 0.80784315)
 script = ExtResource("42_rajrc")
+
+[node name="ProximityPenalty" type="Node2D" parent="Mech/Controllers/Control4" unique_id=1004501737]
+
+[node name="PenaltyBar" type="TextureProgressBar" parent="Mech/Controllers/Control4/ProximityPenalty" unique_id=2082360028]
+z_index = 1
+material = SubResource("ShaderMaterial_kcvao")
+offset_left = 20.0
+offset_top = -16.0
+offset_right = 26.0
+offset_bottom = 18.0
+fill_mode = 3
+texture_under = SubResource("GradientTexture2D_htqe0")
+texture_progress = SubResource("GradientTexture2D_hx3hf")
+texture_progress_offset = Vector2(1, 1)
 
 [node name="MovControlXAxis" parent="Mech/Controllers" unique_id=1670764635 instance=ExtResource("69_b281y")]
 position = Vector2(272, 288)
@@ -1460,8 +1545,6 @@ position = Vector2(1472, 232)
 [node name="Player" parent="." unique_id=1706264332 instance=ExtResource("98_447vn")]
 z_index = 40
 position = Vector2(368, 272)
-collision_layer = 16421
-collision_mask = 16421
 floor_stop_on_slope = true
 
 [node name="Foreground" type="Node2D" parent="." unique_id=1147806568]

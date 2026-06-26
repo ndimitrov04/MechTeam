@@ -50,7 +50,7 @@ metadata/pinned_tile = Vector2i(0, 0)
 metadata/price = 25
 metadata/energy_cost = 25
 metadata/cooldown_time = 5.0
-metadata/power = 2500
+metadata/power = 5000
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
 rotation = 1.5707964

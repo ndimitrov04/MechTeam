@@ -419,12 +419,12 @@ func load_prototype():
 	# Load workspace data
 	for i in range(0, MechData.blocks.size()):
 		for j in range(0, MechData.blocks[i].size()):
-			if blocks.get_cell_atlas_coords(Vector2i(i+2, j+2)) != MechData.EMPTY_CELL:
-				if i+2 % 2 == 0 and j+2 % 2 == 0:
-					PlayerData.money -= 1
-					PlayerData.mech_cost += 1
 			blocks.set_cell(Vector2i(i+2, j+2), 0 , MechData.blocks[i][j])
 			walls.set_cell(Vector2i(i+2, j+2), 0 , MechData.walls[i][j])
+			if blocks.get_cell_atlas_coords(Vector2i(i+2, j+2)) != MechData.EMPTY_CELL:
+				if (i+2) % 2 == 0 and (j+2) % 2 == 0:
+					PlayerData.money -= 1
+					PlayerData.mech_cost += 1
 	for i in range(0, MechData.object_scenes.size()):
 		# Set object in editor
 		var object_instance = MechData.object_scenes[i].instantiate()

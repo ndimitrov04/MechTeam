@@ -1,6 +1,7 @@
 extends Control
 
 func _on_retry_pressed():
+	PlayerData.money -= 30
 	IndieBlueprintSceneTransitioner.transition_to(
 		get_tree().current_scene.scene_file_path, 
 		IndieBlueprintPremadeTransitions.Dissolve,

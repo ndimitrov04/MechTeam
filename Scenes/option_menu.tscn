@@ -1519,7 +1519,7 @@ offset_bottom = 352.824
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_h8r5p")
 theme_override_font_sizes/font_size = 32
-text = "Quit to Menu"
+text = "Quit and Abandon Run"
 script = ExtResource("6_6ni7c")
 
 [node name="Logo" parent="MenuPanel" unique_id=1719326609 instance=ExtResource("7_sv1ki")]

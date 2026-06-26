@@ -126,8 +126,8 @@ func spawn_random_enemy():
 	#var enemy_instance = enemies.pick_random().instantiate()
 	var enemy_instance = planet_enemies[PlayerData.current_planet].pick_random().instantiate()
 	mech.add_sibling(enemy_instance)
-	print("Mech X:" + str(mech.global_position.x))
-	print("Enemy X:" + str(screen_limit.global_position.x - 950))
+	#print("Mech X:" + str(mech.global_position.x))
+	#print("Enemy X:" + str(screen_limit.global_position.x - 950))
 	enemy_instance.global_position.y = Y_SPAWN
 	enemy_instance.global_position.x = screen_limit.global_position.x - 950
 	enemy_instance.rotation = 0

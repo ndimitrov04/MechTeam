@@ -2,7 +2,7 @@ extends Area2D
 
 const SPEED : int = 0
 
-var damage_value : int = 7
+var damage_value : int = 25
 var collision : KinematicCollision2D = null
 var knockback_force : int = 300
 

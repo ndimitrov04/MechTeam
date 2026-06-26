@@ -189,10 +189,9 @@ func _ready():
 	controllers.set_item_tooltip(2, "Cost: 5\nThis controller moves a mech to the right.")
 	controllers.set_item_tooltip(3, "Cost: 5\nThis controller stops a mech from moving.")
 	controllers.set_item_tooltip(4, "Cost: 15\nThis controller makes a mech jump.")
-	controllers.set_item_tooltip(5, "Cost: 15\nThis controller must be 
-	connected to a MODULE to work.
-	When used, it makes the module 
-	it is connected to work.
+	controllers.set_item_tooltip(5, "Cost: 15\nCan be connected to a module.
+	When used, it engages the 
+	module it is connected to.
 	If this controller is too 
 	close to another controller,
 	it will recieve a cooldown penalty 

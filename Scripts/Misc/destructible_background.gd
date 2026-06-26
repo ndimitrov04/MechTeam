@@ -22,7 +22,9 @@ func _process(_delta):
 func break_random_tile():
 	# Get random tile
 	var used_cells = get_used_cells()
-	var chosen_cell_index = randi_range(0, used_cells.size())
+	if used_cells.is_empty():
+		return
+	var chosen_cell_index = randi_range(0, used_cells.size() - 1)
 	# Check if cell still exists
 	if chosen_cell_index >= used_cells.size():
 		return
@@ -44,7 +46,7 @@ func break_random_tile():
 func _remove_random_tile():
 	# Get random tile
 	var used_cells = get_used_cells()
-	var chosen_cell_index = randi_range(0, used_cells.size())
+	var chosen_cell_index = randi_range(0, used_cells.size() - 1)
 	var chosen_cell = used_cells[chosen_cell_index]
 	# Check if cell still exists
 	if chosen_cell_index >= used_cells.size():
@@ -59,6 +61,9 @@ func break_all_tiles():
 			return
 		await get_tree().process_frame
 		await get_tree().process_frame
+		if total_cells_used <= 0:
+			print_debug("No more cells left.")
+			return
 		@warning_ignore("integer_division")
 		if get_used_cells().size() % (total_cells_used / 64) == 0:
 			break_random_tile()
