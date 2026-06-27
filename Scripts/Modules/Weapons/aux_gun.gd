@@ -86,7 +86,6 @@ func engage():
 	for i in range(0, repeat_rate):
 		await get_tree().create_timer(0.15).timeout
 		var bullet_instance = bullet.instantiate()
-		main.add_child(bullet_instance)
 		shoot_sfx.pitch_scale = randf_range(1, 1.4)
 		shoot_sfx.play()
 		smoke.emitting = true
@@ -104,7 +103,6 @@ func engage():
 			bullet_instance.set_collision_mask_value(3, 1)
 			bullet_instance.set_collision_mask_value(4, 1)
 			bullet_instance.set_collision_mask_value(10, 1)
-			
 		else:
 			bullet_instance.set_collision_layer_value(1, 1)
 			bullet_instance.set_collision_layer_value(2, 1)
@@ -120,6 +118,7 @@ func engage():
 			bullet_instance.set_collision_mask_value(10, 0)
 		bullet_instance.global_rotation = self.global_rotation
 		bullet_instance.global_position = shoot_point.global_position
+		main.add_child(bullet_instance)
 		# Apply recoil per shot
 		self.rotate(randf_range(-recoil, recoil))
 		if get_parent().get_parent().name == "Mech":

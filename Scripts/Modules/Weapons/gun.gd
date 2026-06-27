@@ -86,7 +86,6 @@ func engage():
 		if smoke:
 			smoke.emitting = true
 		var bullet_instance = bullet.instantiate()
-		main.add_child(bullet_instance)
 		# Determine who the bullet will hurt
 		if is_friendly:
 			bullet_instance.set_collision_layer_value(1, 0)
@@ -101,7 +100,6 @@ func engage():
 			bullet_instance.set_collision_mask_value(3, 1)
 			bullet_instance.set_collision_mask_value(4, 1)
 			bullet_instance.set_collision_mask_value(10, 1)
-			
 		else:
 			bullet_instance.set_collision_layer_value(1, 1)
 			bullet_instance.set_collision_layer_value(2, 1)
@@ -117,6 +115,7 @@ func engage():
 			bullet_instance.set_collision_mask_value(10, 0)
 		bullet_instance.global_rotation = self.global_rotation
 		bullet_instance.global_position = shoot_point.global_position
+		main.add_child(bullet_instance)
 		# Apply recoil per shot
 		if recoil != 0:
 			self.rotate(randf_range(-recoil, recoil))

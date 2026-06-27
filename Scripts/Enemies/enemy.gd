@@ -187,6 +187,9 @@ func _on_action_decision_timeout():
 	elif action >= choice_ranges[0] and action < choice_ranges[1]:
 		direction = 0
 		crosshair.position += Vector2(randi_range(-35, 35), randi_range(-35, 35))
+		# 25% chance to aim perfectly at mech
+		if randi_range(0, 100) < 25:
+			crosshair.global_position = main.mech.global_position + Vector2(300, 300)
 	# Call in airstrike
 	elif action >= choice_ranges[1] and action < choice_ranges[2]:
 		airstrike()

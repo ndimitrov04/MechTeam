@@ -54,7 +54,7 @@ func brake():
 		physics_material_override,
 		"friction",
 		0.15,
-		0.7
+		0.9
 	)
 	
 func destroy():

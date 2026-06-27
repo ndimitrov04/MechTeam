@@ -10,10 +10,10 @@ extends RigidBody2D
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
 @onready var energy_cost : int = 50
-@onready var max_shield_hp : int = 100
-@onready var shield_hp : int = 50 # How much damage the shield takes before turning off
+@onready var max_shield_hp : int = 150
+@onready var shield_hp : int = 75 # How much damage the shield takes before turning off
 @onready var shield_regen_rate : int = 2 # Passive regeneration value
-@onready var shield_boost_rate : int = 25 # Active regeneration value
+@onready var shield_boost_rate : int = 50 # Active regeneration value
 @onready var energy_drain_rate : int = 5 # Passive energy drain value
 @onready var cooldown_time : float = 25
 @onready var force_disabled : bool = true
