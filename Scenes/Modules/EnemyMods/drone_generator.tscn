@@ -125,6 +125,7 @@ shape = SubResource("RectangleShape2D_m5l7g")
 [node name="InteractionLabel" type="Label" parent="." unique_id=229509319]
 visible = false
 self_modulate = Color(1, 0, 0, 1)
+z_index = 50
 offset_left = -48.0
 offset_right = 45.0
 offset_bottom = 33.0

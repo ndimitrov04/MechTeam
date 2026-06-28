@@ -136,6 +136,7 @@ autoplay = "default"
 
 [node name="InteractionLabel" type="Label" parent="." unique_id=67324950]
 visible = false
+z_index = 50
 offset_left = -43.0
 offset_top = -47.0
 offset_right = 42.0
@@ -148,6 +149,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ModLabel" type="Label" parent="." unique_id=688231698]
 visible = false
+z_index = 50
 offset_left = -43.0
 offset_top = 25.0
 offset_right = 42.0

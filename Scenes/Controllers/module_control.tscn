@@ -189,6 +189,7 @@ frame_progress = 0.26021188
 
 [node name="InteractionLabel" type="Label" parent="." unique_id=111943964]
 visible = false
+z_index = 50
 offset_left = -43.0
 offset_top = -32.0
 offset_right = 42.0
@@ -200,6 +201,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ProximityPenalty" type="Node2D" parent="." unique_id=1935465775]
+z_index = 5
 
 [node name="PenaltyBar" type="TextureProgressBar" parent="ProximityPenalty" unique_id=1624501778]
 z_index = 1

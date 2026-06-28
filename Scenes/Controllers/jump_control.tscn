@@ -88,6 +88,7 @@ autoplay = "default"
 
 [node name="InteractionLabel" type="Label" parent="." unique_id=311977985]
 visible = false
+z_index = 50
 offset_left = -43.0
 offset_top = -47.0
 offset_right = 42.0

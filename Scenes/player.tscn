@@ -188,6 +188,7 @@ fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
 
 [node name="Player" type="CharacterBody2D" unique_id=1706264332]
+z_index = 1000
 collision_layer = 16421
 collision_mask = 16421
 floor_stop_on_slope = false

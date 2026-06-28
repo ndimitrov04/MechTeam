@@ -170,7 +170,7 @@ func die():
 func update_decision_timer():
 	var crew_capacity = spawners.get_child_count()
 	var crew_count = clamp(0, crew_capacity, npcs.get_child_count())
-	action_decision.wait_time = clampf((crew_capacity / 4.0) - ((crew_count - 1) / 4.0), 0.4, 5.0)
+	action_decision.wait_time = clampf((crew_capacity / 1.0) - ((crew_count - 1.0) / 4.0), 0.9, 7.0)
 
 func _on_action_decision_timeout():
 	var action = randi_range(1, 100)

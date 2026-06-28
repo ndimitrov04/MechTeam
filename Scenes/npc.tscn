@@ -52,3 +52,4 @@ debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
 [node name="NPCEngage" parent="." unique_id=911372698 instance=ExtResource("5_2xkex")]
 
 [node name="NPCCooldown" parent="." unique_id=331200671 instance=ExtResource("6_8gudg")]
+position = Vector2(0, -32)

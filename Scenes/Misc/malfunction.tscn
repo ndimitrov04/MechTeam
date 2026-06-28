@@ -20,7 +20,7 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
 [node name="Malfunction" type="Area2D" unique_id=1225148462]
-z_index = 5
+z_index = 999
 script = ExtResource("1_tq5y0")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=35296803]

@@ -13,6 +13,7 @@ shader_parameter/center_distance_cap = 1
 load_path = "res://.godot/imported/Circle.png-c6367644dfe9e873ba9cd21dc651e9f9.ctex"
 
 [node name="NPCCooldown" type="Node2D" unique_id=331200671]
+z_index = 15
 script = ExtResource("1_belml")
 
 [node name="CooldownBar" type="TextureProgressBar" parent="." unique_id=1711692983]
