@@ -65,6 +65,7 @@ const planet_pictures = [
 func _ready() -> void:
 	GlobalMusic.queue_track("res://Audio/Music/Lost signal main theme.mp3", 2)
 	for planet in planets.get_children():
+		planet.material.set_shader_parameter("color", Color.WHITE)
 		if PlayerData.planets_finished.has(planet.get_meta("planet_number")):
 			planet.set_meta("finished", true)
 			planet.modulate = Color.GREEN

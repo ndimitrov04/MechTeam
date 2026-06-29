@@ -65,6 +65,8 @@ func _show_clear_confirm():
 	DirAccess.remove_absolute("user://mechteam_save.tres")
 	MechData.load_from_file()
 	MechData.mechs.clear()
+	PlayerData.reset()
+	PlayerData.save_run()
 	print("Game data cleared.")
 
 func _clear_game_data():

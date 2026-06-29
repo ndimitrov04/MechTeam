@@ -25,13 +25,41 @@ func _process(_delta):
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_terrain_test"):
 		do_terrain_test()
-		
 
-func save_data():
-	pass
+func save_run():
+	var run_data : Dictionary = {
+		"max_hp" : max_hp,
+		"money" : money,
+		"mech_cost" : mech_cost,
+		"current_stage" : current_stage,
+		"current_planet" : current_planet,
+		"planets_finished" : planets_finished,
+		"planets_lost" : planets_lost
+	}
+	var run_persistence_path = "user://mechteam_run.tres"
+	var run_persistence_file = FileAccess.open(run_persistence_path, FileAccess.WRITE)
+	run_persistence_file.store_var(run_data)
+	run_persistence_file.close()
+	print("Run has been saved.")
 
-func load_data():
-	pass
+func load_run():
+	var run_persistence_path = "user://mechteam_run.tres"
+	var run_persistence_file = FileAccess.open(run_persistence_path, FileAccess.READ)
+	if not run_persistence_file:
+		print("No saved run found!")
+		return
+	var run_data : Dictionary = run_persistence_file.get_var()
+	if run_data:
+		max_hp = run_data.get("max_hp")
+		money = run_data.get("money")
+		mech_cost = run_data.get("mech_cost")
+		current_stage = run_data.get("current_stage")
+		current_planet = run_data.get("current_planet")
+		planets_finished = run_data.get("planets_finished")
+		planets_lost = run_data.get("planets_lost")
+		print("Run has been loaded.")
+	else:
+		print("No saved run found!")
 
 func reset():
 	max_hp = 5

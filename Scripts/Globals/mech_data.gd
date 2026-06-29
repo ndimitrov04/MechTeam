@@ -120,6 +120,7 @@ func save_to_file():
 	ResourceSaver.save(container, "user://mechteam_save.tres")
 
 func load_from_file():
-	var container := ResourceLoader.load("user://mechteam_save.tres") as MechsContainer
-	if container:
-		mechs = container.mechs
+	if FileAccess.file_exists("user://mechteam_save.tres"):
+		var container := ResourceLoader.load("user://mechteam_save.tres") as MechsContainer
+		if container:
+			mechs = container.mechs

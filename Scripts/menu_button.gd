@@ -1,7 +1,11 @@
 extends Button
 
 func _on_pressed() -> void:
+	DirAccess.remove_absolute("user://mechteam_save.tres")
+	MechData.load_from_file()
+	MechData.mechs.clear()
 	PlayerData.reset()
+	PlayerData.save_run()
 	get_parent().get_parent().hide()
 	get_tree().paused = false
 	IndieBlueprintSceneTransitioner.transition_to(

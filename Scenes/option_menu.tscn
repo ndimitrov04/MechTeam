@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://rw3jqyo4erwa" path="res://04b19.ttf" id="4_tjg1g"]
 [ext_resource type="Script" uid="uid://py5etfplmy7y" path="res://Scripts/credits.gd" id="5_ikvg2"]
 [ext_resource type="Script" uid="uid://d4lpuucmeksjx" path="res://Scripts/menu_button.gd" id="6_6ni7c"]
+[ext_resource type="Script" uid="uid://c188uinacu1ue" path="res://Scenes/quit_save_button.gd" id="7_h8r5p"]
 [ext_resource type="PackedScene" uid="uid://dwdxe5skik7we" path="res://logo.tscn" id="7_sv1ki"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aeafk"]
@@ -1506,6 +1507,7 @@ text = "Credits"
 icon_alignment = 2
 
 [node name="Main Menu" type="Button" parent="MenuPanel" unique_id=1201554435]
+self_modulate = Color(2.9741428, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.125
@@ -1513,14 +1515,32 @@ anchor_top = 0.11100001
 anchor_right = 0.125
 anchor_bottom = 0.11100001
 offset_left = -6.1035156e-05
-offset_top = 273.824
-offset_right = 335.99994
-offset_bottom = 352.824
+offset_top = 274.048
+offset_right = 167.99994
+offset_bottom = 354.048
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_h8r5p")
 theme_override_font_sizes/font_size = 32
-text = "Quit and Abandon Run"
+text = "Abandon
+Run"
 script = ExtResource("6_6ni7c")
+
+[node name="Quit Save" type="Button" parent="MenuPanel" unique_id=208680230]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.11100001
+anchor_right = 0.125
+anchor_bottom = 0.11100001
+offset_left = 175.99994
+offset_top = 274.048
+offset_right = 335.99994
+offset_bottom = 354.048
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_h8r5p")
+theme_override_font_sizes/font_size = 32
+text = "Save & Quit"
+script = ExtResource("7_h8r5p")
 
 [node name="Logo" parent="MenuPanel" unique_id=1719326609 instance=ExtResource("7_sv1ki")]
 z_index = 400
@@ -1538,3 +1558,4 @@ scale = Vector2(0.75, 0.75)
 [connection signal="meta_clicked" from="MenuPanel/Credits/CreditPanel/RichTextLabel" to="MenuPanel/Credits" method="_on_rich_text_label_meta_clicked"]
 [connection signal="toggled" from="MenuPanel/Credits/ShowCredits" to="MenuPanel/Credits" method="_on_show_credits_toggled"]
 [connection signal="pressed" from="MenuPanel/Main Menu" to="MenuPanel/Main Menu" method="_on_pressed"]
+[connection signal="pressed" from="MenuPanel/Quit Save" to="MenuPanel/Quit Save" method="_on_pressed"]
