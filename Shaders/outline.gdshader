@@ -32,7 +32,7 @@ bool has_neighbor(vec2 uv, vec2 texture_pixel_size, sampler2D sprite_texture) {
 void fragment() {
 	
 	if (COLOR.a == .0 && has_neighbor(UV, TEXTURE_PIXEL_SIZE, TEXTURE)) {
-		COLOR = color;
+		COLOR = vec4(color.rgb, color.a * 0.5);
 	}
 	
 }

@@ -204,6 +204,7 @@ metadata/_edit_use_anchors_ = true
 z_index = 5
 
 [node name="PenaltyBar" type="TextureProgressBar" parent="ProximityPenalty" unique_id=1624501778]
+modulate = Color(1, 1, 1, 0.5019608)
 z_index = 1
 material = SubResource("ShaderMaterial_du88j")
 offset_left = 20.0

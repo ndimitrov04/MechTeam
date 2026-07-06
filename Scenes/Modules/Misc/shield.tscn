@@ -89,6 +89,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="Charge" type="TextureProgressBar" parent="." unique_id=2046173361]
+modulate = Color(1, 1, 1, 0.5019608)
 material = SubResource("ShaderMaterial_vmqwx")
 offset_left = -66.0
 offset_top = -34.0

@@ -122,7 +122,7 @@ func break_all_tiles():
 			print_debug("No more cells left.")
 			return
 		@warning_ignore("integer_division")
-		if get_used_cells().size() % (total_cells_used / 64) == 0:
+		if get_used_cells().size() % (max(1, total_cells_used / 64)) == 0:
 			_break_random_tile()
 		else:
 			_remove_random_tile()

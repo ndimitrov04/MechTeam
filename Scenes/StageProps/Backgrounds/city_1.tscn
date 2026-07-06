@@ -1,8 +1,12 @@
 [gd_scene format=4 uid="uid://di1e18fc8a085"]
 
 [ext_resource type="Texture2D" uid="uid://b25huwibpat5x" path="res://Images/Backgrounds/ParallaxCity1/1.png" id="1_mw21c"]
+[ext_resource type="Texture2D" uid="uid://bhed5be0pn2t5" path="res://Images/Placeholders/Car/Right/3.png" id="1_pvdla"]
 [ext_resource type="Texture2D" uid="uid://cdn0h3a501tek" path="res://Images/Backgrounds/ParallaxCity1/2.png" id="2_d0sgx"]
+[ext_resource type="Texture2D" uid="uid://c1ao8hdst63pv" path="res://Images/Placeholders/Car/Right/4.png" id="2_g7l4c"]
 [ext_resource type="Texture2D" uid="uid://ht6p888huxy4" path="res://Images/Backgrounds/ParallaxCity1/3.png" id="3_7tqy4"]
+[ext_resource type="Texture2D" uid="uid://nhnw5s3cdw00" path="res://Images/Placeholders/Car/Right/5.png" id="3_qqg0r"]
+[ext_resource type="Texture2D" uid="uid://bcvts3x07evh2" path="res://Images/Placeholders/Car/Right/6.png" id="4_6s5cq"]
 [ext_resource type="Texture2D" uid="uid://b87n8o2ssf2x1" path="res://Images/Backgrounds/ParallaxCity1/4.png" id="4_a04h6"]
 [ext_resource type="Texture2D" uid="uid://d3ibo6ra12o3s" path="res://Images/Backgrounds/ParallaxCity1/5.png" id="5_21t4n"]
 [ext_resource type="Texture2D" uid="uid://8grjm55o3rrh" path="res://Images/Backgrounds/ParallaxCity1/6.png" id="6_r6yst"]
@@ -18,6 +22,126 @@ colors = PackedColorArray(0.9137255, 0.6392157, 0.8235294, 1, 0.99215686, 0.7254
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8gbba"]
 gradient = SubResource("Gradient_hibaj")
 width = 512
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_kx71y"]
+frames = 4
+speed_scale = 12.0
+frame_0/texture = ExtResource("1_pvdla")
+frame_1/texture = ExtResource("2_g7l4c")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_qqg0r")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_6s5cq")
+frame_3/duration = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6jecs"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 150, 1)
+spread = 0.0
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_max = 0.5
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 2.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_pvdla"]
+frames = 4
+speed_scale = 12.0
+frame_0/texture = ExtResource("1_pvdla")
+frame_1/texture = ExtResource("2_g7l4c")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_qqg0r")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_6s5cq")
+frame_3/duration = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g7l4c"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 150, 1)
+spread = 0.0
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_max = 0.29999998
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 2.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_qqg0r"]
+frames = 4
+speed_scale = 12.0
+frame_0/texture = ExtResource("1_pvdla")
+frame_1/texture = ExtResource("2_g7l4c")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_qqg0r")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_6s5cq")
+frame_3/duration = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6s5cq"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 150, 1)
+spread = 0.0
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.39999998
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 2.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_6jecs"]
+frames = 4
+speed_scale = 12.0
+frame_0/texture = ExtResource("1_pvdla")
+frame_1/texture = ExtResource("2_g7l4c")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_qqg0r")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_6s5cq")
+frame_3/duration = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lcvdj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 150, 1)
+spread = 0.0
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.39999998
+scale_max = 0.45
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 2.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_yfe00"]
+frames = 4
+speed_scale = 12.0
+frame_0/texture = ExtResource("1_pvdla")
+frame_1/texture = ExtResource("2_g7l4c")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_qqg0r")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_6s5cq")
+frame_3/duration = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5wqnk"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 150, 1)
+spread = 0.0
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.45
+scale_max = 0.5
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 2.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gt3je"]
 texture = ExtResource("7_k7d2b")
@@ -598,6 +722,9 @@ sources/2 = SubResource("TileSetAtlasSource_gt3je")
 [node name="Background" type="Node2D" unique_id=1437686219]
 z_index = -2
 
+[node name="Sun" type="DirectionalLight2D" parent="." unique_id=1528785038]
+energy = 0.1
+
 [node name="Sky" type="Sprite2D" parent="." unique_id=151500712]
 position = Vector2(15860.426, 250.00066)
 rotation = 1.5707964
@@ -609,81 +736,128 @@ position = Vector2(639.99994, 383.99994)
 scale = Vector2(2, 2)
 
 [node name="Parallax1" type="Parallax2D" parent="Parallax" unique_id=934669055]
+scroll_scale = Vector2(0.2, 0.7)
 repeat_size = Vector2(2304, 0)
 repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax1" unique_id=1315367623]
 modulate = Color(1.1357135, 1.1357135, 1.1357135, 1)
 offset_left = -1120.0
-offset_top = -208.0
+offset_top = -126.5
 offset_right = 1184.0
-offset_bottom = 116.0
+offset_bottom = 197.5
 texture = ExtResource("1_mw21c")
 stretch_mode = 1
-metadata/_edit_use_anchors_ = true
+
+[node name="Cars" type="GPUParticles2D" parent="Parallax/Parallax1" unique_id=95651080]
+modulate = Color(1, 0.52758753, 0.8688008, 1)
+position = Vector2(-344, -192)
+amount = 16
+amount_ratio = 0.25
+texture = SubResource("AnimatedTexture_kx71y")
+lifetime = 24.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_6jecs")
 
 [node name="Parallax2" type="Parallax2D" parent="Parallax" unique_id=286662755]
-scroll_scale = Vector2(1.05, 1.05)
+scroll_scale = Vector2(0.7, 0.86)
 repeat_size = Vector2(2304, 0)
 repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax2" unique_id=1162558281]
 offset_left = -1120.0
-offset_top = -208.0
+offset_top = -152.0
 offset_right = 1184.0
-offset_bottom = -168.0
+offset_bottom = 172.0
 texture = ExtResource("2_d0sgx")
 stretch_mode = 1
 
+[node name="Cars" type="GPUParticles2D" parent="Parallax/Parallax2" unique_id=998332838]
+modulate = Color(1, 0.52758753, 0.8688008, 1)
+position = Vector2(-344, -196)
+amount_ratio = 0.25
+texture = SubResource("AnimatedTexture_pvdla")
+lifetime = 24.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_g7l4c")
+
 [node name="Parallax3" type="Parallax2D" parent="Parallax" unique_id=1396425584]
-scroll_scale = Vector2(1.07, 1.06)
+scroll_scale = Vector2(0.8, 0.89)
 repeat_size = Vector2(2304, 0)
 repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax3" unique_id=1668786599]
 offset_left = -1120.0
-offset_top = -208.0
+offset_top = -188.0
 offset_right = 1184.0
-offset_bottom = 116.0
+offset_bottom = 136.0
 texture = ExtResource("3_7tqy4")
 stretch_mode = 1
 
+[node name="Cars" type="GPUParticles2D" parent="Parallax/Parallax3" unique_id=1547392923]
+modulate = Color(1, 0.52758753, 0.8688008, 1)
+position = Vector2(-344, -200)
+amount_ratio = 0.25
+texture = SubResource("AnimatedTexture_qqg0r")
+lifetime = 24.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_6s5cq")
+
 [node name="Parallax4" type="Parallax2D" parent="Parallax" unique_id=428915249]
-scroll_scale = Vector2(1.09, 1.07)
+scroll_scale = Vector2(0.85, 0.93)
 repeat_size = Vector2(2304, 0)
 repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax4" unique_id=1356819236]
 offset_left = -1120.0
-offset_top = -208.0
+offset_top = -160.0
 offset_right = 1184.0
-offset_bottom = 116.0
+offset_bottom = 164.0
 texture = ExtResource("4_a04h6")
 stretch_mode = 1
 
+[node name="Cars" type="GPUParticles2D" parent="Parallax/Parallax4" unique_id=439968753]
+modulate = Color(1, 0.52758753, 0.8688008, 1)
+position = Vector2(-344, -200)
+amount_ratio = 0.25
+texture = SubResource("AnimatedTexture_6jecs")
+lifetime = 24.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_lcvdj")
+
 [node name="Parallax5" type="Parallax2D" parent="Parallax" unique_id=1250544776]
-scroll_scale = Vector2(1.13, 1.08)
+scroll_scale = Vector2(0.9, 0.95)
+scroll_offset = Vector2(0, -32)
 repeat_size = Vector2(2304, 0)
 repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax5" unique_id=634747215]
 offset_left = -1120.0
-offset_top = -208.0
+offset_top = -160.0
 offset_right = 1184.0
-offset_bottom = 116.0
+offset_bottom = 164.0
 texture = ExtResource("5_21t4n")
 stretch_mode = 1
 
+[node name="Cars" type="GPUParticles2D" parent="Parallax/Parallax5" unique_id=1906558776]
+modulate = Color(1, 0.52758753, 0.8688008, 1)
+position = Vector2(-344, -200)
+amount_ratio = 0.25
+texture = SubResource("AnimatedTexture_yfe00")
+lifetime = 24.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_5wqnk")
+
 [node name="Parallax6" type="Parallax2D" parent="Parallax" unique_id=444698895]
-scroll_scale = Vector2(1.2, 1.09)
+scroll_scale = Vector2(0.95, 0.98)
 repeat_size = Vector2(2304, 0)
 repeat_times = 30
 
 [node name="TextureRect" type="TextureRect" parent="Parallax/Parallax6" unique_id=83401741]
 offset_left = -1120.0
-offset_top = -208.0
+offset_top = -200.0
 offset_right = 1184.0
-offset_bottom = 116.0
+offset_bottom = 124.0
 texture = ExtResource("6_r6yst")
 stretch_mode = 1
 

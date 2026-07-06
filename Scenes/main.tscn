@@ -98,6 +98,13 @@ shape = SubResource("WorldBoundaryShape2D_3pmx8")
 rebake_period = 0.5
 
 [node name="PostFX" parent="." unique_id=748460950 instance=ExtResource("6_fevyy")]
+light_pos = null
+exposure = null
+decay = null
+density = null
+weight = null
+samples = null
+threshold = null
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=64329098]
 layer = 2

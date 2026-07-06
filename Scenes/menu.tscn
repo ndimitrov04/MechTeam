@@ -1581,13 +1581,6 @@ fill_from = Vector2(0.012237762, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nijow"]
 shader = ExtResource("102_61u4v")
-shader_parameter/light_pos = Vector2(0.14, 0.035)
-shader_parameter/exposure = 0.11
-shader_parameter/decay = 0.915
-shader_parameter/density = 0.3
-shader_parameter/weight = 0.35
-shader_parameter/samples = 25
-shader_parameter/threshold = 0.106
 
 [sub_resource type="Gradient" id="Gradient_gjkiu"]
 interpolation_mode = 2
@@ -2771,6 +2764,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Background" type="Node2D" parent="." unique_id=1205403904]
 z_index = -2
 position = Vector2(0, 304)
+metadata/default_postf = true
+
+[node name="Sun" type="DirectionalLight2D" parent="Background" unique_id=908845255]
+energy = 0.1
 
 [node name="Sky" type="Sprite2D" parent="Background" unique_id=156557677]
 position = Vector2(1981.2057, 250.00006)
@@ -4720,9 +4717,23 @@ flip_h = true
 
 [node name="PostFX" type="CanvasLayer" parent="." unique_id=748460950]
 script = ExtResource("103_nijow")
+light_pos = Vector2(0.14, 0.035)
+exposure = 0.32
+decay = 0.845
+density = 0.405
+weight = 0.435
+samples = 64
+threshold = 0.695
 
 [node name="GodRays" type="ColorRect" parent="PostFX" unique_id=1884073122]
 material = SubResource("ShaderMaterial_nijow")
+instance_shader_parameters/decay = 0.845
+instance_shader_parameters/density = 0.405
+instance_shader_parameters/exposure = 0.32
+instance_shader_parameters/light_pos = Vector2(0.14, 0.035)
+instance_shader_parameters/samples = 64
+instance_shader_parameters/threshold = 0.695
+instance_shader_parameters/weight = 0.435
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

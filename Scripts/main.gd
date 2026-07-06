@@ -70,7 +70,7 @@ func _ready():
 		Y_SPAWN = 0 # Stage with BG3 is a cave, accomodate for low celling
 	#stage_number = 0  # debug stage lock
 	var current_background = backgrounds[stage_number].instantiate()
-	add_child(current_background)
+	add_child(current_background, true)
 	move_child(current_background, 0)
 	GlobalMusic.queue_track(soundtracks[stage_number], 2)
 	

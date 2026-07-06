@@ -3,15 +3,15 @@ render_mode blend_add;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
-uniform vec2 light_pos = vec2(0.5, 0.3);
+instance uniform vec2 light_pos = vec2(0.5, 0.3);
 
-uniform float exposure = 0.7;
-uniform float decay = 0.96;
-uniform float density = 0.9;
-uniform float weight = 0.6;
-uniform int samples = 64;
+instance uniform float exposure = 0.7;
+instance uniform float decay = 0.96;
+instance uniform float density = 0.9;
+instance uniform float weight = 0.6;
+instance uniform int samples = 64;
 
-uniform float threshold = 0.7; // brightness cutoff
+instance uniform float threshold = 0.7; // brightness cutoff
 
 float luminance(vec3 c) {
     return dot(c, vec3(0.299, 0.587, 0.114));

@@ -16,13 +16,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1x2yn"]
 shader = ExtResource("13_hedr5")
-shader_parameter/light_pos = Vector2(0.245, 0.145)
-shader_parameter/exposure = 0.455
-shader_parameter/decay = 0.925
-shader_parameter/density = 0.15
-shader_parameter/weight = 0.41
-shader_parameter/samples = 49
-shader_parameter/threshold = -0.44
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_74qqg"]
 particle_flag_disable_z = true
@@ -169,6 +162,13 @@ texture = ExtResource("5_1x2yn")
 
 [node name="GodRays" type="ColorRect" parent="PlanetSelector" unique_id=932080607]
 material = SubResource("ShaderMaterial_1x2yn")
+instance_shader_parameters/decay = 0.925
+instance_shader_parameters/density = 0.15
+instance_shader_parameters/exposure = 0.455
+instance_shader_parameters/light_pos = Vector2(0.245, 0.145)
+instance_shader_parameters/samples = 49
+instance_shader_parameters/threshold = -0.44
+instance_shader_parameters/weight = 0.41
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

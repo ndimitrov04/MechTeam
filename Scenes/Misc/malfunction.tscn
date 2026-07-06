@@ -28,6 +28,7 @@ shape = SubResource("RectangleShape2D_r4vb6")
 debug_color = Color(0.67861766, 0.30142456, 1, 0.41960785)
 
 [node name="MalfunctionSprite" type="Sprite2D" parent="." unique_id=325629865]
+modulate = Color(1, 1, 1, 0.5019608)
 scale = Vector2(10, 10)
 texture = ExtResource("2_4mvu1")
 
