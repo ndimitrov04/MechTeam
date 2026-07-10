@@ -2621,6 +2621,28 @@ theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 128
 text = "GO! --->"
 
+[node name="Instruction2" type="Label" parent="GUI/Control/StaticUI" unique_id=760750714]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104
+anchor_right = 0.104
+offset_left = -4.16
+offset_top = 258.0
+offset_right = 115.84
+offset_bottom = 368.0
+theme_override_font_sizes/font_size = 16
+text = "Move - WASD
+Jump - SPACE
+Kick - CTRL
+Interact - F
+Jetpack - SPACE
+(while in mid-air)
+Scan - ALT
+
+Zoom - PG-UP/DOWN
+Pause - P"
+autowrap_mode = 3
+
 [node name="Minigames" type="Control" parent="GUI/Control" unique_id=446542502]
 layout_mode = 1
 anchor_left = 0.025

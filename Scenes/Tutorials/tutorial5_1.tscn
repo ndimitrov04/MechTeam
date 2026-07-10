@@ -1203,8 +1203,6 @@ position = Vector2(1472, 232)
 [node name="Player" parent="." unique_id=1706264332 instance=ExtResource("100_kqvgk")]
 z_index = 40
 position = Vector2(368, 272)
-collision_layer = 16421
-collision_mask = 16421
 floor_stop_on_slope = true
 
 [node name="Foreground" type="Node2D" parent="." unique_id=963206049]
@@ -1497,6 +1495,28 @@ offset_bottom = 1056.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 128
 text = "GO! --->"
+
+[node name="Instruction2" type="Label" parent="GUI/Control/StaticUI" unique_id=1535813218]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104
+anchor_right = 0.104
+offset_left = -4.16
+offset_top = 290.0
+offset_right = 115.84
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 16
+text = "Move - WASD
+Jump - SPACE
+Kick - CTRL
+Interact - F
+Jetpack - SPACE
+(while in mid-air)
+Scan - ALT
+
+Zoom - PG-UP/DOWN
+Pause - P"
+autowrap_mode = 3
 
 [node name="Minigames" type="Control" parent="GUI/Control" unique_id=446542502]
 layout_mode = 1

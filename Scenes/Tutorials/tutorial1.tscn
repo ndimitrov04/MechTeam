@@ -981,8 +981,6 @@ one_shot = true
 [node name="Player" parent="." unique_id=1706264332 instance=ExtResource("11_2guds")]
 z_index = 40
 position = Vector2(368, 272)
-collision_layer = 16421
-collision_mask = 16421
 floor_stop_on_slope = true
 
 [node name="StageEnd" type="VisibleOnScreenNotifier2D" parent="." unique_id=598083299]
@@ -1043,6 +1041,28 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("12_grm53")
 metadata/_edit_use_anchors_ = true
+
+[node name="Instruction" type="Label" parent="GUI/Control" unique_id=583603012]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104
+anchor_right = 0.104
+offset_left = -196.16
+offset_top = 290.0
+offset_right = -76.15999
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 16
+text = "Move - WASD
+Jump - SPACE
+Kick - CTRL
+Interact - F
+Jetpack - SPACE
+(while in mid-air)
+Scan - ALT
+
+Zoom - PG-UP/DOWN
+Pause - P"
+autowrap_mode = 3
 
 [node name="StaticUI" type="Control" parent="GUI/Control" unique_id=1764068031]
 anchors_preset = 0

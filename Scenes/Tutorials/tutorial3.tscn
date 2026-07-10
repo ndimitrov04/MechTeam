@@ -1930,6 +1930,28 @@ volume_db = -4.0
 max_polyphony = 3
 bus = &"SFX"
 
+[node name="Instruction" type="Label" parent="GUI/Control" unique_id=547789545]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104
+anchor_right = 0.104
+offset_left = -196.16
+offset_top = 290.0
+offset_right = -76.15999
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 16
+text = "Move - WASD
+Jump - SPACE
+Kick - CTRL
+Interact - F
+Jetpack - SPACE
+(while in mid-air)
+Scan - ALT
+
+Zoom - PG-UP/DOWN
+Pause - P"
+autowrap_mode = 3
+
 [node name="TutorialUI" type="CanvasLayer" parent="." unique_id=989382100]
 script = ExtResource("114_waqqi")
 

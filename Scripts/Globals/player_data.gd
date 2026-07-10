@@ -36,6 +36,9 @@ func save_run():
 		"planets_finished" : planets_finished,
 		"planets_lost" : planets_lost
 	}
+	if money >= 6000:
+		print("Cannot save invalid game-state or tutorial run.")
+		return
 	var run_persistence_path = "user://mechteam_run.tres"
 	var run_persistence_file = FileAccess.open(run_persistence_path, FileAccess.WRITE)
 	run_persistence_file.store_var(run_data)
