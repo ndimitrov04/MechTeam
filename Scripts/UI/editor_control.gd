@@ -113,8 +113,10 @@ func _ready():
 		mech_index = 0
 		MechData.load_mech(mech_index)
 		editor.load_prototype()
+	hide_panel(previous_stage, SlideDirection.DOWN)
 	update_mech_scroll()
 	update_instruction(build_stage)
+	_on_block_list_item_clicked(0, null, null)
 	
 	# Item tooltips
 	# Blocks
@@ -124,6 +126,7 @@ func _ready():
 	walls.set_item_tooltip(0, "Basic decorative wall.")
 	walls.set_item_tooltip(1, "Basic decorative wall.")
 	walls.set_item_tooltip(2, "Basic decorative wall.")
+	walls.set_item_tooltip(3, "Basic decoraitve window.")
 	# Modules
 	modules.set_item_tooltip(0, "Cost: 10
 	Shoots 10 bullets per volley. 
@@ -261,6 +264,9 @@ func _on_wall_list_item_clicked(index, _at_position, _mouse_button_index):
 		2:
 			editor.chosen_block = Vector2i(6,5)
 			editor.current_cost = 0
+		3:
+			editor.chosen_block = Vector2i(9,0)
+			editor.current_cost = 0
 
 func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 2
@@ -349,17 +355,46 @@ func _on_npc_list_item_clicked(index, _at_position, _mouse_button_index):
 			editor.chosen_object = NPC
 			editor.current_cost = 35
 
+enum SlideDirection {
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN
+}
+
+func hide_panel(panel: Control, direction: SlideDirection):
+	var target = panel.position
+	match direction:
+		SlideDirection.LEFT:
+			target.x -= panel.size.x * panel.scale.x
+		SlideDirection.RIGHT:
+			target.x += panel.size.x * panel.scale.x
+		SlideDirection.UP:
+			target.y -= panel.size.y * panel.scale.y
+		SlideDirection.DOWN:
+			target.y += panel.size.y * panel.scale.y
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(panel, "position", target, 1.0)
+
+
+func show_panel(panel: Control, initial_position: Vector2):
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(panel, "position", initial_position, 1.0)
 
 func _on_next_stage_pressed():
 	match build_stage:
 		0:
 			_on_save_mech_pressed()
-			tab_container.hide()
-			npc_shop.hide()
+			hide_panel(tab_container, SlideDirection.LEFT)
+			hide_panel(npc_shop, SlideDirection.LEFT)
 			info_panel.hide()
 			editor.load_mech()
 			previous_stage.text = "Building Stage"
-			previous_stage.show()
+			show_panel(previous_stage, Vector2(23, 992))
 			current_stage.text = "Wiring Stage"
 			next_stage.text = "Combat Stage #" + str(PlayerData.current_stage)
 			next_mech.disabled = true
@@ -389,9 +424,10 @@ func _on_previous_stage_pressed():
 			pass
 		1:
 			_on_save_mech_pressed()
-			tab_container.show()
-			npc_shop.show()
-			previous_stage.hide()
+			show_panel(tab_container, Vector2(12, 112))
+			show_panel(npc_shop, Vector2(0, 640))
+			previous_stage.show()
+			hide_panel(previous_stage, SlideDirection.DOWN)
 			current_stage.text = "Building Stage"
 			next_stage.text = "Wiring Stage"
 			editor.unload_mech()

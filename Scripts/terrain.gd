@@ -49,7 +49,24 @@ const FIRST_ENEMY = 2500 # First enemy X coordinate
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initialize_terrain_objects()
-	var terrain_points : PackedVector2Array = generate_terrain(50000)
+	var terrain_points : PackedVector2Array
+	if has_meta("predefined_points"):
+		await get_tree().create_timer(0.3).timeout
+		terrain_points = get_meta("predefined_points")
+		if has_meta("is_river"):
+			if get_meta("is_river"):
+				const WATER = preload("uid://cp05al3yxuufv")
+				underground.material = WATER
+		if has_meta("is_perspective"):
+			if get_meta("is_perspective"):
+				const PERSPECTIVE = preload("uid://doi88s51b5qi3")
+				underground.material = PERSPECTIVE		
+	else:
+		terrain_points = generate_terrain(50000)
+		if has_node("TerrainBackground"):
+			get_node("TerrainBackground").set_meta("predefined_points", terrain_points)
+		if has_node("TerrainForeground"):
+			get_node("TerrainForeground").set_meta("predefined_points", terrain_points)
 	var smoothed_terrain_points = smooth_terrain(terrain_points)
 	construct_terrain(smoothed_terrain_points)
 

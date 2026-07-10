@@ -7,6 +7,7 @@
 [ext_resource type="TileSet" uid="uid://beya8mv7awxpa" path="res://CustomResources/frame_tileset.tres" id="4_kq1j2"]
 [ext_resource type="Script" uid="uid://65apk4w16d4j" path="res://Scripts/Misc/destructible_frame.gd" id="5_0xx7q"]
 [ext_resource type="AudioStream" uid="uid://c2rux4dr3pu54" path="res://Audio/SFX/Misc/Loop_SciFi Pack Vol 1_Ship Interior Muffled_v2.mp3" id="7_0xx7q"]
+[ext_resource type="AudioStream" uid="uid://bcc4fwidtash6" path="res://Audio/SFX/Misc/518178__cmart94__motorcycle-engine_50kmh.mp3" id="8_gre3s"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="11_07nox"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kq1j2"]
@@ -98,6 +99,12 @@ bus = &"SFX"
 parameters/looping = true
 
 [node name="SFX" type="Node2D" parent="." unique_id=280501906]
+
+[node name="EngineSFX" type="AudioStreamPlayer2D" parent="SFX" unique_id=2030275944]
+position = Vector2(512, 328)
+stream = ExtResource("8_gre3s")
+volume_db = 2.0
+bus = &"SFX_Nocomp"
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="." unique_id=816728952]
 z_index = 300

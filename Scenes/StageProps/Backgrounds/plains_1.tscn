@@ -17,7 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://b0ssfumq0m8jq" path="res://Images/Tiles/plains1_floor.png" id="8_s1jbg"]
 [ext_resource type="Texture2D" uid="uid://drs1ede0w8g2w" path="res://Images/Placeholders/Bird/7.png" id="9_kshih"]
 [ext_resource type="Texture2D" uid="uid://c66e1ca4cpsuk" path="res://Images/Tiles/plains1_ground.png" id="9_mc8u1"]
-[ext_resource type="Shader" uid="uid://b4w2si845350q" path="res://Shaders/water.gdshader" id="18_ww3iv"]
+[ext_resource type="Material" uid="uid://cp05al3yxuufv" path="res://Shaders/water.tres" id="18_skjrl"]
+[ext_resource type="AudioStream" uid="uid://benkf045gbqip" path="res://Audio/SFX/Ambience/818307__klankbeeld__city-park-winterday-zuiderpark-s-hertogenbosch-netherlands-127-pm-241217_0960.mp3" id="19_g1gol"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
 offsets = PackedFloat32Array(0, 0.38292682)
@@ -1005,36 +1006,6 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_ee4r6")
 sources/2 = SubResource("TileSetAtlasSource_gt3je")
 sources/0 = SubResource("TileSetAtlasSource_uopgh")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_jxifg"]
-frequency = 0.0254
-metadata/_preview_in_3d_space_ = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_klhbn"]
-noise = SubResource("FastNoiseLite_jxifg")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_8ryrb"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qf7o7"]
-noise = SubResource("FastNoiseLite_8ryrb")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_243gq"]
-shader = ExtResource("18_ww3iv")
-shader_parameter/offSet = 0.0
-shader_parameter/YDistortion = 1.0
-shader_parameter/waterNoise = SubResource("NoiseTexture2D_qf7o7")
-shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_klhbn")
-shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
-shader_parameter/colorCorection = 0.06999999843536
-shader_parameter/distortionForce = 0.00800000038
-shader_parameter/WDBrightness = 1.05000001564626
-shader_parameter/WDFreq = 0.60000000894071
-shader_parameter/WDSize = 0.90000002831222
-shader_parameter/WDSpeed = 1.0
-shader_parameter/tiling = Vector2(1, 1)
-shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
-shader_parameter/backGroundDirX = -0.01299999735762
-shader_parameter/backGroundDirY = 0.01
-
 [sub_resource type="CanvasTexture" id="CanvasTexture_sie6e"]
 
 [node name="Background" type="Node2D" unique_id=1437686219]
@@ -1156,7 +1127,7 @@ offset_right = 1436.0
 offset_bottom = 292.0
 color = Color(0.12156863, 0.19607843, 0.24705882, 1)
 
-[node name="Terrain" parent="." unique_id=769621585 instance=ExtResource("7_h3lkm")]
+[node name="Terrain" parent="." unique_id=871619776 instance=ExtResource("7_h3lkm")]
 COMBAT_ARENA_LENGTH = 150
 SMOOTHNESS = 64
 ROUGHNESS = 150
@@ -1170,7 +1141,13 @@ tile_set = SubResource("TileSet_jjvhh")
 
 [node name="Water" type="Sprite2D" parent="." unique_id=699675008]
 z_index = 999
-material = SubResource("ShaderMaterial_243gq")
+material = ExtResource("18_skjrl")
 position = Vector2(35898.633, 1167.875)
 scale = Vector2(73002.734, 1056.2499)
 texture = SubResource("CanvasTexture_sie6e")
+
+[node name="CitySFX" type="AudioStreamPlayer" parent="." unique_id=2069205]
+stream = ExtResource("19_g1gol")
+volume_db = 3.437
+autoplay = true
+bus = &"SFX_Nocomp"

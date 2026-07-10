@@ -3,6 +3,9 @@ extends Control
 @onready var mech = $"../../../Mech"
 @onready var player = $"../../../Player"
 
+@onready var player_hp: AnimatedSprite2D = $StatusPanel/PlayerHP
+@onready var hp_bar: TextureProgressBar = $StatusPanel/HPBar
+@onready var en_bar: TextureProgressBar = $StatusPanel/ENBar
 @onready var hp_label = $StatusPanel/HPLabel
 @onready var en_label = $StatusPanel/ENLabel
 @onready var status = $StatusPanel/Status
@@ -19,25 +22,36 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await get_tree().create_timer(0.1).timeout
 	status_timeout.timeout.connect(_on_status_timeout)
+	if has_meta("bars"):
+		hp_bar.max_value = mech.max_hp
+		en_bar.max_value = mech.energy
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	hp_label.text = "Player Health: " + str(int(player.hp)) + "\nMech Health: " + str(int(mech.hp))
-	en_label.text = "Energy: " + str(mech.energy)
+	if has_meta("bars"):
+		player_hp.frame = player.hp
+		hp_label.text = "HP " + str(int(mech.hp))
+		hp_bar.value = mech.hp
+		en_label.text = "EN " + str(int(mech.energy))
+		en_bar.value = mech.energy
+	else:
+		hp_label.text = "Player Health: " + str(int(player.hp)) + "\nMech Health: " + str(int(mech.hp))
+		en_label.text = "Energy: " + str(mech.energy)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("show_cameras"):
 		if camera_panel.position.y <= initial_camera_panel_position.y:
 			# Slide panel off screen (down)
 			var tween = create_tween()
-			tween.set_trans(Tween.TRANS_BACK)
+			tween.set_trans(Tween.TRANS_SINE)
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(camera_panel, "position:y", initial_camera_panel_position.y + camera_panel.size.y, 1)
 		else:
 			# Slide panel from off screen (up) to initial position
 			var tween = create_tween()
-			tween.set_trans(Tween.TRANS_BACK)
+			tween.set_trans(Tween.TRANS_SINE)
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(camera_panel, "position:y", initial_camera_panel_position.y, 1)
 

@@ -16,6 +16,7 @@ const NPC = preload("uid://cmy4r8enqaty2")
 @onready var npcs = $NPCs
 @onready var malfunctions = $Malfunctions
 @onready var jump_timer = $JumpTimer
+@onready var engine_sfx = $SFX/EngineSFX
 
 @onready var energy_regen = $EnergyRegen
 
@@ -171,7 +172,15 @@ func _physics_process(delta):
 		jump_timer.start()
 
 	# Handle physics movement
+	if direction == 0:
+		if has_node("SFX/EngineSFX"):
+			engine_sfx.stop()
 	if direction:
+		if has_node("SFX/EngineSFX"):
+			if direction == 0:
+				engine_sfx.stop()
+			elif not engine_sfx.playing and direction != 0:
+				engine_sfx.play()
 		if get_meta("prebuilt"):
 			physics_material_override.friction = 0.0
 		else:
@@ -249,6 +258,7 @@ func total_energy():
 	for child in modules.get_children():
 		if "current_energy" in child:
 			energy += child.current_energy
+	return energy
 
 func _regenerate_energy():
 	return # dont regen passively for now (debug!!!)

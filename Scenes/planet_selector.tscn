@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cmfxnhqo4sy2u" path="res://Images/Planets/terra.png" id="6_xmtju"]
 [ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="12_6fqms"]
 [ext_resource type="Shader" uid="uid://bicbljvf2w1qg" path="res://Shaders/godrays.gdshader" id="13_hedr5"]
+[ext_resource type="Material" uid="uid://diktkc206mtjg" path="res://Shaders/circuit.tres" id="14_ulvfm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1x2yn"]
 shader = ExtResource("13_hedr5")
@@ -71,6 +72,9 @@ scale_min = 3.0
 scale_max = 6.0
 hue_variation_min = -0.010000022
 hue_variation_max = 0.019999977
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x2yn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="PlanetSelector" type="CanvasLayer" unique_id=291066862]
 layer = 0
@@ -289,6 +293,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("12_6fqms")
 metadata/_edit_use_anchors_ = true
+
+[node name="Circuit" type="Panel" parent="PlanetSelector/PlanetInfo" unique_id=1730922785]
+z_index = 1
+material = ExtResource("14_ulvfm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = -24.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1x2yn")
 
 [node name="Panel" type="Panel" parent="PlanetSelector/PlanetInfo" unique_id=1730044452]
 layout_mode = 1
