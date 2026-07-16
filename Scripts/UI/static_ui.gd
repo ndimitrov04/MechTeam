@@ -31,7 +31,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if has_meta("bars"):
-		player_hp.frame = player.hp
+		if player.hp <= 5:
+			player_hp.frame = player.hp
 		hp_label.text = "HP " + str(int(mech.hp))
 		hp_bar.value = mech.hp
 		en_label.text = "EN " + str(int(mech.energy))

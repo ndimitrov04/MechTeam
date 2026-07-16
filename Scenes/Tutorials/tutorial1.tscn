@@ -817,7 +817,8 @@ collision_mask = 8192
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")
 script = ExtResource("9_5ajnu")
 metadata/prebuilt = true
-metadata/constant_weight = 400.0
+metadata/constant_weight = 350.0
+metadata/custom_hp = 950
 
 [node name="Background" type="TileMapLayer" parent="Mech" unique_id=796847977]
 z_index = -1

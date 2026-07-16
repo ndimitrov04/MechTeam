@@ -44,6 +44,14 @@ const MECH_9 = preload("uid://dh2noacyx7w6x")
 	# SELENE
 	[
 		MECH_1, MECH_2, MECH_3, MECH_4, MECH_5, MECH_6, MECH_7, MECH_8, MECH_9
+	],
+	# DURANTE
+	[
+		MECH_1,
+	],
+	# TUTORIAL
+	[
+		MECH_1,
 	]
 ]
 @onready var Y_SPAWN = -650 # Y-Level at which mechs will spawn
@@ -52,19 +60,23 @@ var end_text : String = ""
 
 # Stage props
 # Backgrounds
+@onready var BG_T = null
 @onready var BG_1 = preload("uid://di1e18fc8a085")
 @onready var BG_2 = preload("uid://d14axc4abnp8l")
 @onready var BG_3 = preload("uid://ebasi4gf18tp")
 @onready var BG_4 = preload("uid://b6puxakxfkx2h")
-@onready var backgrounds = [BG_1, BG_2, BG_3, BG_4]
+@onready var BG_5 = null
+@onready var backgrounds = [BG_1, BG_2, BG_3, BG_4, BG_5, BG_T]
 # Soundtracks
+const OST_T = null
 const OST_1 = "uid://6xm4gvdu3qsl"
 const OST_2 = "uid://ce4508tlmtnyx"
 const OST_3 = "uid://m8uma6bexyvi"
 const OST_4 = "uid://byq36523c31uh"
-@onready var soundtracks = [OST_1, OST_2, OST_3, OST_4]
+const OST_5 = null
+@onready var soundtracks = [OST_1, OST_2, OST_3, OST_4, OST_5, OST_T]
 func _ready():
-	# Stage Number:  0 = NEOS, 1 = GAIA, 2 = TERRA, 3 = SELENA
+	# Stage Number:  0 = NEOS, 1 = GAIA, 2 = TERRA, 3 = SELENE, 4 = DURANTE, 5 = TUTORIAL
 	var stage_number = PlayerData.current_planet
 	if stage_number == 2:
 		Y_SPAWN = 0 # Stage with BG3 is a cave, accomodate for low celling

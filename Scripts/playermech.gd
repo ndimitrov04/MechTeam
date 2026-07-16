@@ -70,6 +70,9 @@ func _ready():
 	# Calculate and set true weight/hp for mech
 	max_hp = frame.get_used_cells().size() / 2
 	hp = max_hp
+	if has_meta("custom_hp"):
+		max_hp = get_meta("custom_hp")
+		hp = max_hp
 	@warning_ignore("integer_division")
 	weight = base_weight + frame.get_used_cells().size() / 8 + wheels.get_child_count() * 0.2
 	self.mass = weight
