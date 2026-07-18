@@ -1522,6 +1522,7 @@ collision_enabled = false
 [node name="HighlightGridGun" type="TileMapLayer" parent="." unique_id=146073590]
 visible = false
 self_modulate = Color(0, 1, 0, 1)
+z_index = 1
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAXAAQAAAAAAAAAAAAYAAgAAAAAAAAAAAAXAAoAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lbgnq")
@@ -1530,6 +1531,7 @@ collision_enabled = false
 [node name="HighlightGridBattery" type="TileMapLayer" parent="." unique_id=1373443273]
 visible = false
 self_modulate = Color(0, 1, 0, 1)
+z_index = 1
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAHAAkAAAAAAAAAAAAIAAkAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lbgnq")
@@ -1538,6 +1540,7 @@ collision_enabled = false
 [node name="HighlightGridSupply" type="TileMapLayer" parent="." unique_id=1634269919]
 visible = false
 self_modulate = Color(0, 1, 0, 1)
+z_index = 1
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAJAAUAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lbgnq")
@@ -1546,6 +1549,7 @@ collision_enabled = false
 [node name="HighlightGridAim" type="TileMapLayer" parent="." unique_id=286718514]
 visible = false
 self_modulate = Color(0, 1, 0, 1)
+z_index = 1
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAWAAcAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lbgnq")
@@ -1554,6 +1558,7 @@ collision_enabled = false
 [node name="HighlightGridMove" type="TileMapLayer" parent="." unique_id=672223516]
 visible = false
 self_modulate = Color(0, 1, 0, 1)
+z_index = 1
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAUAAkAAAAAAAAAAAASAAkAAAAAAAAAAAAQAAkAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lbgnq")
@@ -1562,6 +1567,7 @@ collision_enabled = false
 [node name="HighlightGridEngage" type="TileMapLayer" parent="." unique_id=335167050]
 visible = false
 self_modulate = Color(0, 1, 0, 1)
+z_index = 1
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAANAAkAAAAAAAAAAAAKAAkAAAAAAAAAAAAJAAIAAAAAAAAAAAAWAAIAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lbgnq")
@@ -1570,6 +1576,7 @@ collision_enabled = false
 [node name="HighlightGridWheels" type="TileMapLayer" parent="." unique_id=1635943344]
 visible = false
 self_modulate = Color(0, 1, 0, 1)
+z_index = 1
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAGAAwAAAAAAAAAAAAWAAwAAAAAAAAAAAASAAwAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lbgnq")
@@ -1670,6 +1677,7 @@ tile_map_data = PackedByteArray("AAB3AAAAAAAFAAAAAAB3AAEAAAAFAAEAAAB3AAIAAAAFAAE
 tile_set = SubResource("TileSet_ywrel")
 
 [node name="Instruction" type="Label" parent="GUI/Control" unique_id=1839141614]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.104
@@ -1717,6 +1725,7 @@ theme_override_icons/increment_highlight = ExtResource("24_iagrm")
 theme_override_icons/decrement = ExtResource("25_qfsmx")
 theme_override_icons/decrement_highlight = ExtResource("25_qfsmx")
 current_tab = 0
+tab_focus_mode = 0
 
 [node name="TextureUI" type="TileMapLayer" parent="GUI/Control/TabContainer" unique_id=372377446]
 z_index = -1
@@ -2070,6 +2079,8 @@ offset_left = 172.0
 offset_top = 110.0
 offset_right = 193.0
 offset_bottom = 142.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("25_qfsmx")
 ignore_texture_size = true
 
@@ -2080,6 +2091,8 @@ offset_left = 193.0
 offset_top = 110.0
 offset_right = 213.0
 offset_bottom = 142.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("24_iagrm")
 ignore_texture_size = true
 
@@ -2402,6 +2415,26 @@ mouse_filter = 2
 color = Color(0, 1, 0, 1)
 script = ExtResource("53_l8c3h")
 
+[node name="HighlightNPC" type="ColorRect" parent="GUI/Control" unique_id=134475207]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.21400002
+anchor_right = 0.05
+anchor_bottom = 0.21400002
+offset_left = -79.0
+offset_top = 462.88
+offset_right = 175.0
+offset_bottom = 536.44
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+color = Color(0, 1, 0, 1)
+script = ExtResource("53_l8c3h")
+
 [node name="Credits" parent="GUI" unique_id=2100209309 instance=ExtResource("53_q5vd1")]
 visible = false
 
@@ -2471,20 +2504,23 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -360.0
+offset_left = -325.0
 offset_top = 16.0
 offset_right = -16.0
-offset_bottom = 396.0
+offset_bottom = 790.0
 
 [node name="Instruction" type="Label" parent="TutorialUI/Control/Panel" unique_id=2109099255]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 21.0
 offset_top = 16.0
-offset_right = 336.0
-offset_bottom = 360.0
+offset_right = 296.0
+offset_bottom = 740.0
 text = "Welcome to mechbuilding training!"
+horizontal_alignment = 2
 autowrap_mode = 3
 
+[connection signal="placed_object" from="." to="." method="_on_placed_object"]
+[connection signal="tab_changed" from="GUI/Control/TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Blocks" to="GUI/Control" method="_on_block_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Walls" to="GUI/Control" method="_on_wall_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Modules" to="GUI/Control" method="_on_weapons_item_clicked"]
@@ -2494,6 +2530,7 @@ autowrap_mode = 3
 [connection signal="pressed" from="GUI/Control/Left" to="GUI/Control" method="_on_left_pressed"]
 [connection signal="pressed" from="GUI/Control/Right" to="GUI/Control" method="_on_right_pressed"]
 [connection signal="pressed" from="GUI/Control/PreviousStage" to="GUI/Control" method="_on_previous_stage_pressed"]
+[connection signal="pressed" from="GUI/Control/NextStage" to="." method="_on_next_stage_pressed"]
 [connection signal="pressed" from="GUI/Control/NextStage" to="GUI/Control" method="_on_next_stage_pressed"]
 [connection signal="pressed" from="GUI/Control/NextMech" to="GUI/Control" method="_on_next_mech_pressed"]
 [connection signal="pressed" from="GUI/Control/PreviousMech" to="GUI/Control" method="_on_previous_mech_pressed"]

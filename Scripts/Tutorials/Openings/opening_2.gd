@@ -92,7 +92,8 @@ func is_connected_to_frame(grid_coords : Vector2i) -> bool:
 		if walls.get_cell_atlas_coords(cell_coords + Vector2i.ONE) != MechData.EMPTY_CELL:
 			return true
 	return false
-	
+
+signal placed_object
 @onready var click_cooldown: Timer = $ClickCooldown
 func _process(_delta):
 	
@@ -123,6 +124,7 @@ func _process(_delta):
 			print(ERR)
 			control.show_error(ERR)
 			return
+		emit_signal("placed_object")
 		# Block spawning tiles on top
 		# of eachother
 		if edit_layer == EditLayer.BLOCKS:
@@ -620,10 +622,10 @@ func unbuy(price : int):
 
 var instruction_0 : String = "Welcome to mechbuilding training! 
 Here, you will learn how to build a mech like the one that got trashed in the previous battle.
-This tutorial will hold your hand through the entire process, but you don't have to build
-exactly what you're being told to. 
+This tutorial will hold your hand through the entire process.
 
 Press space when you're ready to start."
+
 var instruction_1 : String = "Select the basic block from the build menu on the left.
 
 Place down blocks by left clicking, remove them by right clicking.
@@ -631,14 +633,17 @@ Create your mech's frame using that block. Try to match the grid shown on-screen
 Each two blocks on your mech add 1 HP and some weight to your mech.
 
 Press the right arrow on the build menu when you've built a frame."
+
 var instruction_2 : String = "From the walls submenu, you can add decorative background walls.
 This is just cosmetic. Walls do not add HP or weight to your mech.
 
 Press the right arrow on the build menu when you're done adding walls."
+
 var instruction_3 : String = "This is the module menu. 
 From here you need to add 3 machineguns to your mech.
 
 Press space when you're done adding machineguns."
+
 var instruction_4 : String = "Guns and other modules require energy to function.
 From the module menu, add two batteries where shown. 
 The basic machinegun costs 10 energy to fire. 
@@ -646,18 +651,22 @@ Each battery holds 150 energy
 and regenerates 2 energy per second.
 
 Press space when you're done adding machineguns."
+
 var instruction_5 : String = "Build one batch of supply crates where shown.
 Buidling supply crates increases your crew capacity by 1.
 
 Press the right arrow on the build menu when you're done adding supply crates."
+
 var instruction_6 : String = "Now you need a way to control where you're aiming. 
 Select the AIM terminal from the build menu and place it down where shown.
 
 Press space when done."
+
 var instruction_7 : String = "Controlling your mech's movement also requires control terminals.
 Select and place the MOVE RIGHT, MOVE LEFT and BRAKE terminals and place them where shown.
 
 Press space to continue."
+
 var instruction_8 : String = "To control modules like guns, batteries and shields, you need
 ENGAGE terminals. ENGAGE terminals cannot be close to one-another and to other controls, otherwise
 they will receive a cooldown penalty. The closer an ENGAGE terminal to other terminals, the 
@@ -666,28 +675,33 @@ longer its cooldown will be as indicated by the vertical bars near the terminal.
 Select the ENGAGE terminal, place a bunch as shown on the grid.
 
 Press the right arrow on the build menu to continue."
-var instruction_9 : String = "Finally, for your mech to go anywhere, you'll need to add a movement mechanism.
+
+var instruction_9 : String = "For your mech to go anywhere, you'll need to add a movement mechanism.
 Choose the basic tracks from the menu and place 3 as shown.
 
-Congratulations, you've created your mech's blueprint.
+Press space when ready."
+
+var instruction_10 : String = "Finally, if you want to hire any crew members, you'll need to
+select an operator from the hiring menu (provided you have supplies built) and then
+click inside of the ship to hire a crew member.
+
+Congratulations, you've created your first mech blueprint!
 
 Press the next stage button to continue."
 
-# ==========================
-# ADD CREW HIRING PART HERE
-# ==========================
-
-var instruction_10 : String = "Welcome to the module connection stage.
+var instruction_11 : String = "Welcome to the module connection stage.
 You can connect your ENGAGE terminals to your modules here. 
-Connect 2 of them to guns and 1 to a battery.
+Connect 2 of them to guns and 1 to a battery. 
+(You can do this by clicking on them like in the first tutorial)
 
 When you're ready, press next stage to jump into combat and test your new mech!"
-var instruction_11 : String = "FIGHT!"
+var instruction_12 : String = "FIGHT!"
 
 var instructions = [instruction_0, instruction_1, instruction_2,
 					instruction_3, instruction_4, instruction_5,
 					instruction_6, instruction_7, instruction_8,
-					instruction_9, instruction_10, instruction_11,]
+					instruction_9, instruction_10, instruction_11,
+					instruction_12]
 
 # Tutorial objects
 @onready var highlight_item_1: ColorRect = $GUI/Control/HighlightItem1
@@ -698,6 +712,29 @@ var instructions = [instruction_0, instruction_1, instruction_2,
 @onready var highlight_item_6: ColorRect = $GUI/Control/HighlightItem6
 @onready var highlight_right: ColorRect = $GUI/Control/HighlightRight
 @onready var highlight_stage: ColorRect = $GUI/Control/HighlightStage
+@onready var highlight_npc: ColorRect = $GUI/Control/HighlightNPC
+
+@onready var highlight_grid_block: TileMapLayer = $HighlightGridBlock
+@onready var highlight_grid_wall: TileMapLayer = $HighlightGridWall
+@onready var highlight_grid_gun: TileMapLayer = $HighlightGridGun
+@onready var highlight_grid_battery: TileMapLayer = $HighlightGridBattery
+@onready var highlight_grid_supply: TileMapLayer = $HighlightGridSupply
+@onready var highlight_grid_aim: TileMapLayer = $HighlightGridAim
+@onready var highlight_grid_move: TileMapLayer = $HighlightGridMove
+@onready var highlight_grid_engage: TileMapLayer = $HighlightGridEngage
+@onready var highlight_grid_wheels: TileMapLayer = $HighlightGridWheels
+@onready var _layers: Array[TileMapLayer] = [
+		highlight_grid_block,
+		highlight_grid_wall,
+		highlight_grid_gun,
+		highlight_grid_battery,
+		highlight_grid_supply,
+		highlight_grid_aim,
+		highlight_grid_move,
+		highlight_grid_engage,
+		highlight_grid_wheels
+	]
+
 
 # Specific tutorial instructions and triggers
 
@@ -728,90 +765,37 @@ func tutorial_script():
 	if Input.is_action_just_pressed("jump"):
 		print(current_instruction)
 		print(current_trigger)
-	
-	if not triggers[0]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[0] = true
-		if triggers[0]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
 
-	if not triggers[1]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[1] = true
-		if triggers[1]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
-
-	if not triggers[2]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[2] = true
-		if triggers[2]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
-
-	if not triggers[3]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[3] = true
-		if triggers[3]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
-
-	if not triggers[4]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[4] = true
-		if triggers[4]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
-
-	if not triggers[5]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[5] = true
-		if triggers[5]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
-
-	if not triggers[6]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[6] = true
-		if triggers[6]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
-
-	if not triggers[7]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[7] = true
-		if triggers[7]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
-
-	if not triggers[8]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[8] = true
-		if triggers[8]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
-
-	if not triggers[9]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[9] = true
-		if triggers[9]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
-			
-	if not triggers[10]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[10] = true
-		if triggers[10]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
-
-	if not triggers[11]:
-		if Input.is_action_just_pressed("jump"):
-			triggers[11] = true
-		if triggers[11]:
-			trigger_engaged = true
-			await get_tree().create_timer(0.2).timeout
+		match current_trigger:
+			0: 
+				advance_trigger()
+				highlight_item_1.show()
+			3: 
+				advance_trigger()
+				highlight_item_1.hide()
+				highlight_item_2.show()
+			4: 
+				advance_trigger()
+				highlight_item_2.hide()
+				highlight_item_3.show()
+			6: 
+				advance_trigger()
+				highlight_item_1.hide()
+				highlight_item_2.show()
+				highlight_item_3.show()
+				highlight_item_4.show()
+			7: 
+				advance_trigger()
+				highlight_item_2.hide()
+				highlight_item_3.hide()
+				highlight_item_4.hide()
+				highlight_item_6.show()
+			9:
+				advance_trigger()
+				highlight_item_1.hide()
+				highlight_npc.show()
+			_: 
+				pass
 			
 	if trigger_engaged:
 		update_trigger()
@@ -820,8 +804,60 @@ func update_trigger():
 	current_instruction += 1
 	current_trigger += 1
 	tutorial_ui.load_instruction(instructions[current_instruction])
+	
+func show_layer(layer_index: int) -> void:
+	for i in range(_layers.size()):
+		_layers[i].visible = (i == layer_index)
 
 # External trigger engage mechanism
 func advance_trigger():
 	triggers[current_trigger] = true
 	update_trigger()
+	show_layer(current_trigger-1)
+
+enum TABS {Blocks, Walls, Modules, Controllers, Movement}
+func _on_tab_container_tab_changed(tab: int) -> void:
+	if not triggers[1] and triggers[0]:
+		if tab == TABS.Walls:
+			advance_trigger()
+			highlight_item_1.hide()
+			highlight_right.hide()
+	if not triggers[2] and triggers[1]:
+		if tab == TABS.Modules:
+			advance_trigger()
+			highlight_item_1.show()
+			highlight_right.hide()
+	if not triggers[5] and triggers[4]:
+		if tab == TABS.Controllers:
+			advance_trigger()
+			highlight_item_3.hide()
+			highlight_item_1.show()
+			highlight_right.hide()
+	if not triggers[8] and triggers[7]:
+		if tab == TABS.Movement:
+			advance_trigger()
+			highlight_item_6.hide()
+			highlight_item_1.show()
+			highlight_right.hide()
+
+func _on_next_stage_pressed() -> void:
+	advance_trigger()
+	highlight_npc.hide()
+	highlight_stage.show()
+
+func _on_placed_object() -> void:
+	match current_trigger:
+		1:
+			highlight_item_1.hide()
+			highlight_right.show()
+		2:
+			highlight_right.show()
+		5:
+			highlight_item_3.hide()
+			highlight_right.show()
+		8:
+			highlight_item_6.hide()
+			highlight_right.show()
+		9:
+			highlight_item_1.hide()
+			highlight_stage.show()
