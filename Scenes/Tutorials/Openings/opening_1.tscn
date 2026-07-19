@@ -137,6 +137,7 @@
 [ext_resource type="AudioStream" uid="uid://rf8mda10gl8x" path="res://Audio/SFX/UI/retro_beep_02.ogg" id="135_dx4wm"]
 [ext_resource type="AudioStream" uid="uid://bh1sj01j1b2mb" path="res://Audio/SFX/UI/retro_beep_03.ogg" id="136_nwp4j"]
 [ext_resource type="Script" uid="uid://gdydsl2c347d" path="res://Scripts/Tutorials/tutorial_ui.gd" id="137_jlbk0"]
+[ext_resource type="Texture2D" uid="uid://5grsa3780ohn" path="res://Images/Characters/Portraits/Sarge.png" id="138_hl3dw"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
 offsets = PackedFloat32Array(0.47333333, 0.5)
@@ -3465,9 +3466,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 88.0
-offset_top = -8.0
+offset_top = -16.0
 offset_right = 88.0
-offset_bottom = -8.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -3574,9 +3575,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -440.0
+offset_left = -624.0
 offset_top = 16.0
-offset_right = -16.0
+offset_right = -200.0
 offset_bottom = 280.0
 
 [node name="Instruction" type="Label" parent="TutorialUI/Control/Panel" unique_id=1733473309]
@@ -3589,6 +3590,14 @@ text = "Welcome to basic movement training!
 
 Use WASD to move."
 autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="TutorialUI/Control/Panel" unique_id=870154714]
+layout_mode = 0
+offset_left = 416.0
+offset_right = 616.0
+offset_bottom = 264.0
+texture = ExtResource("138_hl3dw")
+expand_mode = 1
 
 [node name="GUICooldown" type="Timer" parent="TutorialUI" unique_id=1824407848]
 one_shot = true

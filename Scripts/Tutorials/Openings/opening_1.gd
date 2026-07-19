@@ -20,18 +20,18 @@ var end_text : String = ""
 
 # Instruction strings for current tutorial stage
 
-var instruction_0 : String = "Alright, let's see if you've still got this.\n\nMove with WASD. Climb onto your ship. Jump with SPACE to do so."
+var instruction_0 : String = "HEADS UP! PLANET'S GETTING RAIDED! THOUSANDS OF UNIDENTIFIED ENEMY SHIPS HAVE HIT US... And this was supposed to be a quick stop to get patched up! Nevermind...\nHey, you still alive? I'll try to get you out of there, follow my lead!\n\nMove with WASD. Climb onto your ship. Jump with SPACE to do so."
 var instruction_1 : String = "Outside of your jump, you have a jetpack as well. Press and hold SPACE while in mid-air to engage it."
 var instruction_2 : String = "Good to see you aren't paralyzed. Now - go to the mech's AIM terminal and press F to interact with it.\n\nAim your mech's weapons at the wall by moving your crosshair with WASD. Press F once you've aimed."
 var instruction_3 : String = "All right. Now, you have to connect your ENGAGE terminal to a weapon so that you can control that weapon.\n\nLeft click on the ENGAGE terminal with your mouse."
 var instruction_4 : String = "Now click on your weapon."
-var instruction_5 : String = "Well done. After years of combat experience you've managed to not mess the absolute basics up.\n\nInteract with the ENGAGE terminal with F. Then complete the quicktime event minigame to actually shoot."
+var instruction_5 : String = "Well done. You've managed to not mess the absolute basics up, that's more than most could say on this job...\n\nInteract with the ENGAGE terminal with F. Then complete the quicktime event minigame to actually shoot."
 var instruction_6 : String = "Terminals have cooldowns and most modules use energy. Batteries regenerate energy passively. You can also ENGAGE any battery via an ENGAGE terminal to give it a recharge boost.\n\nDestroy the wall to continue."
 var instruction_7 : String = "Continue to the next mech and destroy it. Try not to crash into it, it'll hurt you more than it hurts it.\n\nUse F to interact with the GO RIGHT module."
 var instruction_8 : String = "Enemy mechs have different control modules and things you can break by shooting them. Hold ALT to scan all of the control modules on the screen to see what they do."
 var instruction_9 : String = "You can attack enemy mechs on foot. You can punch by pressing CTRL. Destroying enemy controls will cripple the systems of enemy mechs. Killing enemy mech operators will make enemy mechs act way slower than usual."
-var instruction_10 : String = "The next mech will be way too tough to destroy with a basic machinegun.\n\nPark near it, abandon your mech and then destroy its main generator to blow the entire mech up from the inside out."
-var instruction_11 : String = "Congratulations! You've passed basic combat training."
+var instruction_10 : String = "The next mech IS HUGE!!! It will be way too tough to destroy with a basic machinegun!\n\nPark near it, abandon your mech and then infiltrate it to destroy its main generator and blow the entire thing up from the inside out!"
+var instruction_11 : String = "I'm reading your mech's data and there is a pretty big technical malfunction. You can't fight in that thing. Come to the coordinates I'm sending you, we'll get you a new mech!"
 
 
 var instructions = [instruction_0, instruction_1, instruction_2,
@@ -149,6 +149,7 @@ func _ready():
 	enemy_mech_8.max_hp = 999
 	enemy_mech_8.hp = 999
 	player.hp = 100
+	GlobalMusic.queue_track("res://Audio/Music/Bogart VGM - Scifi Concentration (looped).mp3", 2)
 
 func _process(_delta):
 	if enemies_left <= 0 and not triggered:
@@ -156,6 +157,7 @@ func _process(_delta):
 		#music.play()
 		end_stage()
 		triggered = true
+		
 	
 	if enemies_left <= 0:
 		minigame_result.modulate = Color(1,1,1,1)
@@ -168,7 +170,7 @@ func _process(_delta):
 # Edited MAIN functions
 
 func advance():
-	if enemies_left > 0:
+	if enemies_left >= 0:
 		player.camera.limit_right += SPAWN_OFFSET + 1500
 		screen_border.position.x += SPAWN_OFFSET + 1500
 		static_ui.display_advance_arrow()
@@ -178,24 +180,16 @@ func end_stage():
 	await get_tree().create_timer(0.1).timeout
 	minigame_result.position.y -= 550
 	end_text =  (
-			"YOU WIN!\n\n\n" +
-			"Rewards collected: " + str(rewards_collected) +
-			"\n\nMech Status" +
-			"\nDamage taken: " + str(int(mech.max_hp - mech.hp)) + 
-			"\n- Repair costs: " + str(int((mech.max_hp - mech.hp) * 0.5)) + 
-			"\n\nCrew Status" +
-			"\nCrew Wages: " + str(mech.npcs.get_child_count() * 5) +
-			"\nCrew Injured: " + str(npc_deaths) + 
-			"\n- Medical fees: " + str(npc_deaths * 10) +
-			"\n\nTotal cash: " + str("Can't recieve cash in tutorial.") +
-			"\n\n\nGoing to next stage in 5 seconds..."
+			"You Survived!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+			"Your mech is wrecked! 
+			You have to build a new one!\nContinuing in 5 seconds..."
 		)
 	minigame_result.text = end_text
 	minigame_result.add_theme_color_override("font_color", Color("green"))
 	minigame_result.show()
 	await get_tree().create_timer(5).timeout
 	IndieBlueprintSceneTransitioner.transition_to(
-		"res://Scenes/Tutorials/tutorial3.tscn",
+		"res://Scenes/Tutorials/Openings/opening_2.tscn",
 		IndieBlueprintPremadeTransitions.Dissolve,
 		IndieBlueprintPremadeTransitions.Dissolve,
 		{ 

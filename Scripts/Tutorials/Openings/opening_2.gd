@@ -64,7 +64,7 @@ var npc_count : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GlobalMusic.queue_track("res://Audio/Music/rbl.mp3", 1.0)
+	GlobalMusic.queue_track("res://Audio/Music/03 ship interior.ogg", 1.0)
 	if get_parent().name == "Editor":
 		in_editor = true
 	update_capacity_ui()
@@ -565,7 +565,7 @@ func finish_mech():
 				MechData.control_pairs.append(controller.controlled_module_index)
 	await get_tree().process_frame
 	IndieBlueprintSceneTransitioner.transition_to(
-		SceneCache.SCENES.get("main"), 
+		"res://Scenes/Tutorials/Openings/opening_3.tscn",
 		IndieBlueprintPremadeTransitions.Dissolve,
 		IndieBlueprintPremadeTransitions.Dissolve,
 		{ 
@@ -620,9 +620,9 @@ func unbuy(price : int):
 
 # Instruction strings for current tutorial stage
 
-var instruction_0 : String = "Welcome to mechbuilding training! 
-Here, you will learn how to build a mech like the one that got trashed in the previous battle.
-This tutorial will hold your hand through the entire process.
+var instruction_0 : String = "
+Time for you to learn how to build a mech.
+I'll hold your hand through the entire process this time, so listen carefully!
 
 Press space when you're ready to start."
 
@@ -694,7 +694,8 @@ You can connect your ENGAGE terminals to your modules here.
 Connect 2 of them to guns and 1 to a battery. 
 (You can do this by clicking on them like in the first tutorial)
 
-When you're ready, press next stage to jump into combat and test your new mech!"
+When you're ready, press the next stage button to exit mechbuilding mode.
+When you go outside, keep in mind: we have to make a break for our spaceship, this planet is screwed, no point in fighting here and dying!"
 var instruction_12 : String = "FIGHT!"
 
 var instructions = [instruction_0, instruction_1, instruction_2,
@@ -844,7 +845,8 @@ func _on_next_stage_pressed() -> void:
 	advance_trigger()
 	highlight_npc.hide()
 	highlight_stage.show()
-
+	
+@onready var next_stage: Button = $GUI/Control/NextStage
 func _on_placed_object() -> void:
 	match current_trigger:
 		1:
@@ -860,4 +862,6 @@ func _on_placed_object() -> void:
 			highlight_right.show()
 		9:
 			highlight_item_1.hide()
+		10: 
 			highlight_stage.show()
+			next_stage.disabled = false

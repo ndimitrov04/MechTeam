@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://citaltxjjqa0b"
+path="res://.godot/imported/Bogart VGM - Scifi Concentration (looped).mp3-3865282e967c2c228d0535ae00f68013.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Bogart VGM - Scifi Concentration (looped).mp3"
+dest_files=["res://.godot/imported/Bogart VGM - Scifi Concentration (looped).mp3-3865282e967c2c228d0535ae00f68013.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

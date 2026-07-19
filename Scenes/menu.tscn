@@ -5182,14 +5182,15 @@ anchor_left = 0.125
 anchor_top = 0.11100001
 anchor_right = 0.125
 anchor_bottom = 0.11100001
-offset_top = -15.936008
+offset_top = 65.832
 offset_right = 168.0
-offset_bottom = 24.447994
+offset_bottom = 101.832
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_158mb")
 theme_override_font_sizes/font_size = 16
-text = "Play"
+text = "Skip Opening
+(Advanced Players)"
 icon = ExtResource("109_vhmv4")
 icon_alignment = 2
 
@@ -5200,15 +5201,15 @@ anchor_left = 0.125
 anchor_top = 0.11100001
 anchor_right = 0.125
 anchor_bottom = 0.11100001
-offset_top = 88.063995
+offset_top = -21.168003
 offset_right = 167.5
-offset_bottom = 135.948
+offset_bottom = 14.331997
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_158mb")
 theme_override_font_sizes/font_size = 16
-text = "Play Tutorial
-(Highly Recommended)"
+text = "Play Opening
+(+25 Cash)"
 icon = ExtResource("110_qqmte")
 icon_alignment = 2
 
@@ -5321,10 +5322,10 @@ text = "Clear Data"
 
 [node name="ShowOptions" type="Button" parent="Menu/MenuPanel/Options" unique_id=748843868]
 layout_mode = 0
-offset_left = 1608.0
-offset_top = 864.0
-offset_right = 1775.5
-offset_bottom = 892.5
+offset_left = 1609.0
+offset_top = 825.0
+offset_right = 1776.5
+offset_bottom = 860.5
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_158mb")
@@ -5464,9 +5465,9 @@ selection_enabled = true
 [node name="ShowCredits" type="Button" parent="Menu/MenuPanel/Credits" unique_id=1703909957]
 layout_mode = 0
 offset_left = 1609.0
-offset_top = 936.0
+offset_top = 912.0
 offset_right = 1776.5
-offset_bottom = 964.5
+offset_bottom = 948.0
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_158mb")
@@ -5484,9 +5485,9 @@ anchor_left = 0.125
 anchor_top = 0.11100001
 anchor_right = 0.125
 anchor_bottom = 0.11100001
-offset_top = 336.064
+offset_top = 329.832
 offset_right = 168.0
-offset_bottom = 364.948
+offset_bottom = 365.832
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_158mb")

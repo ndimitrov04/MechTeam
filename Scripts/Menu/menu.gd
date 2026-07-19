@@ -41,7 +41,7 @@ func _on_play_pressed() -> void:
 func _on_play_tutorial_pressed() -> void:
 	GlobalMusic.stop()
 	IndieBlueprintSceneTransitioner.transition_to(
-		preload("res://Scenes/Tutorials/tutorial1.tscn"), 
+		SceneCache.SCENES.get("opening"), 
 		IndieBlueprintPremadeTransitions.Dissolve,
 		IndieBlueprintPremadeTransitions.Dissolve,
 		{ 

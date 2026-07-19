@@ -16,6 +16,7 @@
 [ext_resource type="Shader" uid="uid://bicbljvf2w1qg" path="res://Shaders/godrays.gdshader" id="14_wadbt"]
 [ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="15_mp8b3"]
 [ext_resource type="Script" uid="uid://sqeege6vntn4" path="res://Scripts/UI/editor_control.gd" id="16_y618l"]
+[ext_resource type="Texture2D" uid="uid://fqbfxf42ns6c" path="res://Images/Characters/Portraits/Sarge2.png" id="17_k78mp"]
 [ext_resource type="Texture2D" uid="uid://ddi68venqqn30" path="res://Images/UI/Cyberpunk/9 Other/1 Decor/1.png" id="17_tbrkp"]
 [ext_resource type="Texture2D" uid="uid://bjha2fo0bmymb" path="res://Images/UI/Cyberpunk/9 Other/1 Decor/8.png" id="18_awys5"]
 [ext_resource type="Texture2D" uid="uid://b2n1a1m217ym8" path="res://Images/UI/Cyberpunk/9 Other/1 Decor/2.png" id="19_c0y1g"]
@@ -1639,6 +1640,16 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="TextureRect" type="TextureRect" parent="GUI/Control/Decor" unique_id=1731182774]
+z_index = -7
+layout_mode = 0
+offset_left = 1707.0
+offset_top = 643.0
+offset_right = 1907.0
+offset_bottom = 907.0
+texture = ExtResource("17_k78mp")
+expand_mode = 1
+
 [node name="ConnectingWire" type="TextureRect" parent="GUI/Control/Decor" unique_id=1130959020]
 z_index = -1
 layout_mode = 0
@@ -2140,6 +2151,7 @@ offset_right = 1747.0
 offset_bottom = 1032.0
 scale = Vector2(2, 2)
 theme_override_fonts/font = ExtResource("10_nh6kp")
+disabled = true
 text = "Wiring Stage"
 icon = ExtResource("24_iagrm")
 icon_alignment = 2
@@ -2507,14 +2519,14 @@ anchor_right = 1.0
 offset_left = -325.0
 offset_top = 16.0
 offset_right = -16.0
-offset_bottom = 790.0
+offset_bottom = 645.0
 
 [node name="Instruction" type="Label" parent="TutorialUI/Control/Panel" unique_id=2109099255]
 layout_mode = 0
 offset_left = 21.0
 offset_top = 16.0
 offset_right = 296.0
-offset_bottom = 740.0
+offset_bottom = 605.0
 text = "Welcome to mechbuilding training!"
 horizontal_alignment = 2
 autowrap_mode = 3
