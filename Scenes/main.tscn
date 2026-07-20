@@ -8,10 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://b00kogx5v5wwb" path="res://Images/UI/Cyberpunk/1 Frames/FrameMap.png" id="9_b3802"]
 [ext_resource type="Texture2D" uid="uid://b2n1a1m217ym8" path="res://Images/UI/Cyberpunk/9 Other/1 Decor/2.png" id="9_gt3je"]
 [ext_resource type="PackedScene" uid="uid://bg0x4kcl3emfw" path="res://Scenes/mech.tscn" id="9_hibaj"]
+[ext_resource type="Script" uid="uid://cbapke0y8odnr" path="res://Scripts/UI/windshield.gd" id="9_neg2b"]
 [ext_resource type="Texture2D" uid="uid://c0lb5w8cq03fd" path="res://Images/UI/Cyberpunk/9 Other/1 Decor/3.png" id="10_3pmx8"]
 [ext_resource type="PackedScene" uid="uid://tkpp4uaa018x" path="res://Scenes/navigation_region.tscn" id="12_7k868"]
 [ext_resource type="Texture2D" uid="uid://bxadjrgsbsvuh" path="res://Images/UI/Cyberpunk/9 Other/1 Decor/5.png" id="13_cbgmd"]
 [ext_resource type="Texture2D" uid="uid://c1qggbcuugel0" path="res://Images/UI/Cyberpunk/9 Other/1 Decor/6.png" id="13_u50mg"]
+[ext_resource type="Shader" uid="uid://cu7i4i6ahne2c" path="res://Shaders/rain_glass.gdshader" id="14_e08e2"]
 [ext_resource type="PackedScene" uid="uid://bqikqykbsljjl" path="res://Scenes/player.tscn" id="14_k12tt"]
 [ext_resource type="Script" uid="uid://b6bs5bi7wy45h" path="res://Scripts/minigames.gd" id="14_wsu2k"]
 [ext_resource type="Material" uid="uid://diktkc206mtjg" path="res://Shaders/circuit.tres" id="15_u50mg"]
@@ -51,6 +53,15 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3pmx8"]
 normal = Vector2(1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_neg2b"]
+shader = ExtResource("14_e08e2")
+shader_parameter/slant_factor = -0.12799998232999998
+shader_parameter/distortion_strength = 0.0650000030875
+shader_parameter/blur_amount = 0.0
+shader_parameter/droplet_density = 0.35
+shader_parameter/base_rain_speed = 2.0
+shader_parameter/reflection_color = Color(0.42352942, 0.4392157, 0.44313726, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3pmx8"]
 texture = ExtResource("9_b3802")
@@ -493,6 +504,17 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Windshield" type="ColorRect" parent="GUI/Control/Decor" unique_id=1309065854]
+material = SubResource("ShaderMaterial_neg2b")
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1904.0
+offset_bottom = 1072.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("9_neg2b")
 
 [node name="SideWire2" type="Sprite2D" parent="GUI/Control/Decor" unique_id=2101513900]
 position = Vector2(1888, 1040)

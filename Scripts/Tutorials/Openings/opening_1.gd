@@ -20,7 +20,7 @@ var end_text : String = ""
 
 # Instruction strings for current tutorial stage
 
-var instruction_0 : String = "HEADS UP! PLANET'S GETTING RAIDED! THOUSANDS OF UNIDENTIFIED ENEMY SHIPS HAVE HIT US... And this was supposed to be a quick stop to get patched up! Nevermind...\nHey, you still alive? I'll try to get you out of there, follow my lead!\n\nMove with WASD. Climb onto your ship. Jump with SPACE to do so."
+var instruction_0 : String = "HEADS UP! PLANET'S GETTING RAIDED! THOUSANDS OF UNIDENTIFIED ENEMY SHIPS HAVE HIT US... \nHey, you still alive? I'll try to get you out of there, follow my lead!\n\nMove with WASD. Climb onto your ship. Jump with SPACE to do so."
 var instruction_1 : String = "Outside of your jump, you have a jetpack as well. Press and hold SPACE while in mid-air to engage it."
 var instruction_2 : String = "Good to see you aren't paralyzed. Now - go to the mech's AIM terminal and press F to interact with it.\n\nAim your mech's weapons at the wall by moving your crosshair with WASD. Press F once you've aimed."
 var instruction_3 : String = "All right. Now, you have to connect your ENGAGE terminal to a weapon so that you can control that weapon.\n\nLeft click on the ENGAGE terminal with your mouse."
