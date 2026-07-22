@@ -61,7 +61,7 @@ func _ready():
 	self.mass = weight
 	if has_meta("constant_weight"):
 		self.mass = get_meta("constant_weight")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1).timeout
 	update_decision_timer()
 
 func _physics_process(delta):
@@ -171,6 +171,7 @@ func update_decision_timer():
 	var crew_capacity = spawners.get_child_count()
 	var crew_count = clamp(0, crew_capacity, npcs.get_child_count())
 	action_decision.wait_time = (min(6, crew_capacity)/min(6,crew_count + 1)) * 1.5 - (PlayerData.current_stage * 0.05)
+	print((min(6, crew_capacity)/min(6,crew_count + 1)) * 1.5 - (PlayerData.current_stage * 0.05))
 
 func _on_action_decision_timeout():
 	var action = randi_range(1, 100)
