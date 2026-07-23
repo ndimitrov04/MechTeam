@@ -41,7 +41,7 @@ func _on_play_pressed() -> void:
 func _on_play_tutorial_pressed() -> void:
 	GlobalMusic.stop()
 	IndieBlueprintSceneTransitioner.transition_to(
-		SceneCache.SCENES.get("opening"), 
+		SceneCache.SCENES.get("comic_1"), 
 		IndieBlueprintPremadeTransitions.Dissolve,
 		IndieBlueprintPremadeTransitions.Dissolve,
 		{ 

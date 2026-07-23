@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcjdlo1lhyg5g"
-path="res://.godot/imported/hm.png-6e9977b50452d2d0d37ffd99ce86f960.ctex"
+uid="uid://b2w8uo5nmpbn1"
+path="res://.godot/imported/Tile_48.png-40ae67bf08f0264b466a400837095f34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Planets/hm.png"
-dest_files=["res://.godot/imported/hm.png-6e9977b50452d2d0d37ffd99ce86f960.ctex"]
+source_file="res://Images/ComicAssets/Environments/Power-Station-Free-Tileset-Pixel-Art/1 Tiles/Tile_48.png"
+dest_files=["res://.godot/imported/Tile_48.png-40ae67bf08f0264b466a400837095f34.ctex"]
 
 [params]
 

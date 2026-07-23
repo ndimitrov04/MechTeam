@@ -61,6 +61,13 @@ const planet_pictures = [
 	preload("res://Images/Planets/selene.png")
 ]
 
+const planet_sprites = [
+	preload("res://CustomResources/sprite_frames/neos.tres"),
+	preload("res://CustomResources/sprite_frames/gaia.tres"),
+	preload("res://CustomResources/sprite_frames/terra.tres"),
+	preload("res://CustomResources/sprite_frames/selene.tres")
+]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalMusic.queue_track("res://Audio/Music/Lost signal main theme.mp3", 2)
@@ -130,12 +137,15 @@ func _on_selene_pressed() -> void:
 			"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("55648C")}
 		}
 	)
-
+	
+@onready var planet_sprite: AnimatedSprite2D = $PlanetInfo/Panel/PictureData/Sprite
 func load_planet_data(planet_enum):
 	planet_name.text = planet_names[planet_enum]
 	planet_stats.text = planet_data[planet_enum]
 	planet_lore.text = planet_lores[planet_enum]
 	planet_picture.texture = planet_pictures[planet_enum]
+	planet_sprite.sprite_frames = planet_sprites[planet_enum]
+	planet_sprite.play("default")
 	status.text = "UNSAFE"
 	status.modulate = Color.ORANGE
 	if planets.get_child(planet_enum).get_meta("finished"):

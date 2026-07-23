@@ -4,16 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://b814oamf67pee" path="res://Images/Planets/Space/blue-back.png" id="2_6fqms"]
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="2_k84k0"]
 [ext_resource type="Texture2D" uid="uid://cgngb0jxk5ama" path="res://Images/Planets/Space/blue-stars.png" id="3_hedr5"]
-[ext_resource type="Texture2D" uid="uid://matif25e7nks" path="res://Images/Planets/neos.png" id="3_vuyeq"]
-[ext_resource type="Texture2D" uid="uid://jh1ycglc5bd" path="res://Images/Planets/selene.png" id="4_p4sl1"]
 [ext_resource type="Texture2D" uid="uid://dbplatpxta6dq" path="res://Images/Planets/Space/prop-planet-small.png" id="4_ulvfm"]
 [ext_resource type="Texture2D" uid="uid://biu3m3awq7hs8" path="res://Images/Planets/Space/prop-planet-big.png" id="5_1x2yn"]
-[ext_resource type="Texture2D" uid="uid://bf4vw1r7bt43s" path="res://Images/Planets/gaia.png" id="5_sxs7l"]
 [ext_resource type="Texture2D" uid="uid://b2541xcxi62t" path="res://Images/Planets/Space/asteroid-1.png" id="6_v86hd"]
-[ext_resource type="Texture2D" uid="uid://cmfxnhqo4sy2u" path="res://Images/Planets/terra.png" id="6_xmtju"]
+[ext_resource type="SpriteFrames" uid="uid://d0tqnpkavco40" path="res://CustomResources/sprite_frames/neos.tres" id="9_1x2yn"]
+[ext_resource type="SpriteFrames" uid="uid://ca2wtie5lj814" path="res://CustomResources/sprite_frames/gaia.tres" id="10_v86hd"]
+[ext_resource type="SpriteFrames" uid="uid://b4dk1axj6j2ca" path="res://CustomResources/sprite_frames/terra.tres" id="11_dubf6"]
 [ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="12_6fqms"]
+[ext_resource type="SpriteFrames" uid="uid://cw2wn7hoi16n6" path="res://CustomResources/sprite_frames/selene.tres" id="12_qcb8y"]
 [ext_resource type="Shader" uid="uid://bicbljvf2w1qg" path="res://Shaders/godrays.gdshader" id="13_hedr5"]
 [ext_resource type="Material" uid="uid://diktkc206mtjg" path="res://Shaders/circuit.tres" id="14_ulvfm"]
+[ext_resource type="Texture2D" uid="uid://jh1ycglc5bd" path="res://Images/Planets/Old/selene.png" id="15_1x2yn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1x2yn"]
 shader = ExtResource("13_hedr5")
@@ -37,6 +38,12 @@ shader = ExtResource("2_k84k0")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/pixels_to_check = 3
 shader_parameter/center_distance_cap = 15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v86hd"]
+shader = ExtResource("2_k84k0")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hedr5"]
 shader = ExtResource("2_k84k0")
@@ -219,12 +226,19 @@ offset_top = 224.0
 offset_right = 1072.0001
 offset_bottom = 424.00006
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("3_vuyeq")
 ignore_texture_size = true
 stretch_mode = 3
 metadata/planet_number = 0
 metadata/finished = false
 metadata/lost = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="PlanetSelector/Parallax2D55/Planets/Neos" unique_id=537755081]
+material = SubResource("ShaderMaterial_v86hd")
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("9_1x2yn")
+autoplay = "default"
+frame_progress = 0.5650171
+offset = Vector2(50, 50)
 
 [node name="Gaia" type="TextureButton" parent="PlanetSelector/Parallax2D55/Planets" unique_id=1574860272]
 material = SubResource("ShaderMaterial_hedr5")
@@ -234,12 +248,19 @@ offset_top = 368.0
 offset_right = 463.99988
 offset_bottom = 568.0001
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("5_sxs7l")
 ignore_texture_size = true
 stretch_mode = 3
 metadata/planet_number = 1
 metadata/finished = false
 metadata/lost = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="PlanetSelector/Parallax2D55/Planets/Gaia" unique_id=1223820965]
+material = SubResource("ShaderMaterial_v86hd")
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("10_v86hd")
+autoplay = "default"
+frame_progress = 0.1766149
+offset = Vector2(50, 50)
 
 [node name="Terra" type="TextureButton" parent="PlanetSelector/Parallax2D55/Planets" unique_id=669344021]
 material = SubResource("ShaderMaterial_ulvfm")
@@ -249,12 +270,19 @@ offset_top = 800.0
 offset_right = 847.9999
 offset_bottom = 1000.0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("6_xmtju")
 ignore_texture_size = true
 stretch_mode = 3
 metadata/planet_number = 2
 metadata/finished = false
 metadata/lost = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="PlanetSelector/Parallax2D55/Planets/Terra" unique_id=1402947949]
+material = SubResource("ShaderMaterial_v86hd")
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("11_dubf6")
+autoplay = "default"
+frame_progress = 0.64728475
+offset = Vector2(50, 50)
 
 [node name="Selene" type="TextureButton" parent="PlanetSelector/Parallax2D55/Planets" unique_id=312419100]
 material = SubResource("ShaderMaterial_6fqms")
@@ -264,12 +292,19 @@ offset_top = 480.0
 offset_right = 1392.0
 offset_bottom = 680.0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("4_p4sl1")
 ignore_texture_size = true
 stretch_mode = 3
 metadata/planet_number = 3
 metadata/finished = false
 metadata/lost = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="PlanetSelector/Parallax2D55/Planets/Selene" unique_id=99113935]
+material = SubResource("ShaderMaterial_v86hd")
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("12_qcb8y")
+autoplay = "default"
+frame_progress = 0.36502326
+offset = Vector2(50, 50)
 
 [node name="Parallax2D7" type="Parallax2D" parent="PlanetSelector" unique_id=484702279]
 scroll_scale = Vector2(0.65, 0.65)
@@ -359,14 +394,23 @@ offset_left = -3.0517578e-05
 metadata/_edit_use_anchors_ = true
 
 [node name="Picture" type="TextureRect" parent="PlanetSelector/PlanetInfo/Panel/PictureData" unique_id=1220376407]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0110937
 anchor_bottom = 0.99965245
-texture = ExtResource("4_p4sl1")
+texture = ExtResource("15_1x2yn")
 expand_mode = 2
 stretch_mode = 3
 metadata/_edit_use_anchors_ = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="PlanetSelector/PlanetInfo/Panel/PictureData" unique_id=374526264]
+position = Vector2(20, 17)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("12_qcb8y")
+autoplay = "default"
+frame_progress = 0.18164119
+offset = Vector2(50, 50)
 
 [node name="StatsData" type="Panel" parent="PlanetSelector/PlanetInfo/Panel" unique_id=1321872687]
 layout_mode = 1
