@@ -6,7 +6,7 @@ extends Node
 
 enum planets {NEOS, GAIA, TERRA, SELENE}
 @onready var current_stage : int = 1
-@onready var current_planet = planets.NEOS
+@onready var current_planet = null
 @onready var planets_finished = []
 @onready var planets_lost = []
 
@@ -69,7 +69,7 @@ func reset():
 	money = 200
 	mech_cost = 0
 	current_stage = 1
-	current_planet = planets.NEOS
+	current_planet = null
 	planets_finished.clear()
 	planets_lost.clear()
 

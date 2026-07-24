@@ -15,6 +15,10 @@
 [ext_resource type="Shader" uid="uid://bicbljvf2w1qg" path="res://Shaders/godrays.gdshader" id="13_hedr5"]
 [ext_resource type="Material" uid="uid://diktkc206mtjg" path="res://Shaders/circuit.tres" id="14_ulvfm"]
 [ext_resource type="Texture2D" uid="uid://jh1ycglc5bd" path="res://Images/Planets/Old/selene.png" id="15_1x2yn"]
+[ext_resource type="Texture2D" uid="uid://blr3usxlytn43" path="res://Images/Characters/Portraits/NeosProtector.png" id="16_v86hd"]
+[ext_resource type="Texture2D" uid="uid://djjq8u5wb62r2" path="res://Images/UI/Cyberpunk/9 Other/3 Skill icons/Skillicon7_10.png" id="17_qcb8y"]
+[ext_resource type="Texture2D" uid="uid://4yuy86r2e3he" path="res://Images/UI/Cyberpunk/9 Other/3 Skill icons/Skillicon7_06.png" id="18_mib25"]
+[ext_resource type="Texture2D" uid="uid://b0nqwpuaqsv3s" path="res://Images/Circle.png" id="19_mib25"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1x2yn"]
 shader = ExtResource("13_hedr5")
@@ -330,7 +334,6 @@ theme = ExtResource("12_6fqms")
 metadata/_edit_use_anchors_ = true
 
 [node name="Circuit" type="Panel" parent="PlanetSelector/PlanetInfo" unique_id=1730922785]
-z_index = 1
 material = ExtResource("14_ulvfm")
 layout_mode = 1
 anchors_preset = 15
@@ -522,6 +525,216 @@ autowrap_mode = 3
 text_overrun_behavior = 5
 metadata/_edit_use_anchors_ = true
 
+[node name="Comms" type="Control" parent="PlanetSelector" unique_id=1484990325]
+visible = false
+layout_mode = 1
+anchor_left = 0.029166667
+anchor_right = 0.6791667
+anchor_bottom = 1.0
+theme = ExtResource("12_6fqms")
+metadata/_edit_use_anchors_ = true
+
+[node name="Circuit" type="Panel" parent="PlanetSelector/Comms" unique_id=185473523]
+material = ExtResource("14_ulvfm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = -24.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1x2yn")
+
+[node name="Panel" type="Panel" parent="PlanetSelector/Comms" unique_id=1217505233]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.052631654
+anchor_top = 0.05925926
+anchor_right = 0.9605264
+anchor_bottom = 0.94814813
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MainData" type="Panel" parent="PlanetSelector/Comms/Panel" unique_id=1890636809]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.014716066
+anchor_top = 0.058333334
+anchor_right = 0.57041985
+anchor_bottom = 0.21666667
+metadata/_edit_use_anchors_ = true
+
+[node name="NameLabel" type="Label" parent="PlanetSelector/Comms/Panel/MainData" unique_id=689432776]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07248824
+anchor_top = 0.36842105
+anchor_right = 0.8983549
+anchor_bottom = 0.65789473
+theme_override_font_sizes/font_size = 64
+text = "Incoming Connection..."
+metadata/_edit_use_anchors_ = true
+
+[node name="PictureData" type="Panel" parent="PlanetSelector/Comms/Panel" unique_id=1592159208]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.58454096
+anchor_top = 0.058333334
+anchor_right = 0.9806095
+anchor_bottom = 0.84166664
+offset_left = -3.0517578e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="PersonName" type="Label" parent="PlanetSelector/Comms/Panel/PictureData" unique_id=1792893376]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.053346846
+anchor_top = 0.08340235
+anchor_right = 0.92665344
+anchor_bottom = 0.14540236
+offset_left = 0.0597229
+offset_top = -3.8080063
+offset_right = 0.14898682
+offset_bottom = -3.9519806
+theme_override_font_sizes/font_size = 64
+text = "Draven Korthak"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Picture" type="TextureRect" parent="PlanetSelector/Comms/Panel/PictureData" unique_id=881259030]
+modulate = Color(1, 1, 1, 0.79607844)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04679494
+anchor_top = 0.20828353
+anchor_right = 0.92698544
+anchor_bottom = 0.9148936
+texture = ExtResource("16_v86hd")
+expand_mode = 1
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="MessageData" type="Panel" parent="PlanetSelector/Comms/Panel" unique_id=1962415451]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017388385
+anchor_top = 0.23333333
+anchor_right = 0.56335926
+anchor_bottom = 0.65
+offset_left = -3.0517578e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="NameLabel" type="Label" parent="PlanetSelector/Comms/Panel/MessageData" unique_id=632980333]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.096366696
+anchor_top = 0.060000017
+anchor_right = 0.59927326
+anchor_bottom = 0.16972667
+offset_right = 0.013244629
+offset_bottom = 0.10934067
+theme_override_font_sizes/font_size = 64
+text = "Message:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Message" type="RichTextLabel" parent="PlanetSelector/Comms/Panel/MessageData" unique_id=513355048]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04455632
+anchor_top = 0.22
+anchor_right = 0.95521367
+anchor_bottom = 0.9433962
+text = "Salutations gentlemen. I am Oryx Talanthir, the ruler of planet Neos. Our home is being assaulted by unknown, unmarked foes. Years ago, this planet used to be an utopia ruled by a super-AI, but a paramillitary group known as Anima attacked us and destroyed it. Now we are left without protection and must fight our enemies with people, not drones. We have sustained heavy casualties and are in desperate need of support. Your mission is to take down the base of operations of our foes."
+metadata/_edit_use_anchors_ = true
+
+[node name="ReceivedData" type="Panel" parent="PlanetSelector/Comms/Panel" unique_id=371855961]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0147160655
+anchor_top = 0.675
+anchor_right = 0.56335926
+anchor_bottom = 0.84166664
+offset_left = 2.2888184e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="NameLabel" type="Label" parent="PlanetSelector/Comms/Panel/ReceivedData" unique_id=1577263921]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10306593
+anchor_top = 0.100000024
+anchor_right = 0.633
+anchor_bottom = 0.37500003
+offset_left = -2.4284668
+offset_right = 0.14245605
+theme_override_font_sizes/font_size = 64
+text = "Received Data"
+metadata/_edit_use_anchors_ = true
+
+[node name="Data" type="RichTextLabel" parent="PlanetSelector/Comms/Panel/ReceivedData" unique_id=1211889330]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04455632
+anchor_top = 0.5500001
+anchor_right = 0.95521367
+anchor_bottom = 0.9433962
+text = "NULL"
+metadata/_edit_use_anchors_ = true
+
+[node name="AcceptStatus" type="Panel" parent="PlanetSelector/Comms/Panel" unique_id=1824607691]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4786324
+anchor_top = 0.86041665
+anchor_right = 0.9658119
+anchor_bottom = 0.96666664
+offset_left = 2.2888184e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="Accept" type="Button" parent="PlanetSelector/Comms/Panel/AcceptStatus" unique_id=1660830311]
+layout_mode = 0
+offset_left = 24.641602
+offset_top = 14.0
+offset_right = 264.531
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 48
+text = "Accept"
+icon = ExtResource("17_qcb8y")
+
+[node name="Deny" type="Button" parent="PlanetSelector/Comms/Panel/AcceptStatus" unique_id=472488551]
+layout_mode = 0
+offset_left = 288.6416
+offset_top = 14.0
+offset_right = 528.531
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 48
+text = "Deny
+"
+icon = ExtResource("18_mib25")
+
+[node name="CloseBox" type="Panel" parent="PlanetSelector/Comms/Panel" unique_id=1002937129]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.019695152
+anchor_top = 0.86041665
+anchor_right = 0.2738758
+anchor_bottom = 0.96666664
+offset_left = 2.2888184e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="Close" type="Button" parent="PlanetSelector/Comms/Panel/CloseBox" unique_id=150249594]
+layout_mode = 0
+offset_left = 24.641602
+offset_top = 14.0
+offset_right = 264.531
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 48
+text = "Close"
+icon = ExtResource("19_mib25")
+
 [connection signal="mouse_entered" from="PlanetSelector/Parallax2D55/Planets/Neos" to="PlanetSelector" method="_on_neos_mouse_entered"]
 [connection signal="mouse_exited" from="PlanetSelector/Parallax2D55/Planets/Neos" to="PlanetSelector" method="_on_neos_mouse_exited"]
 [connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Neos" to="PlanetSelector" method="_on_neos_pressed"]
@@ -534,3 +747,6 @@ metadata/_edit_use_anchors_ = true
 [connection signal="mouse_entered" from="PlanetSelector/Parallax2D55/Planets/Selene" to="PlanetSelector" method="_on_selene_mouse_entered"]
 [connection signal="mouse_exited" from="PlanetSelector/Parallax2D55/Planets/Selene" to="PlanetSelector" method="_on_selene_mouse_exited"]
 [connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Selene" to="PlanetSelector" method="_on_selene_pressed"]
+[connection signal="pressed" from="PlanetSelector/Comms/Panel/AcceptStatus/Accept" to="PlanetSelector" method="_on_accept_pressed"]
+[connection signal="pressed" from="PlanetSelector/Comms/Panel/AcceptStatus/Deny" to="PlanetSelector" method="_on_deny_pressed"]
+[connection signal="pressed" from="PlanetSelector/Comms/Panel/CloseBox/Close" to="PlanetSelector" method="_on_close_pressed"]
