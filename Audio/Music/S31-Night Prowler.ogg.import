@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cptbceepcjudj"
+path="res://.godot/imported/S31-Night Prowler.ogg-8c2b73f68198c2c82e99aec7470ff05e.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/S31-Night Prowler.ogg"
+dest_files=["res://.godot/imported/S31-Night Prowler.ogg-8c2b73f68198c2c82e99aec7470ff05e.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

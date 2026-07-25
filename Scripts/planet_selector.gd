@@ -22,6 +22,16 @@ extends Control
 @onready var message_field: RichTextLabel = $Comms/Panel/MessageData/Message
 @onready var data_field: RichTextLabel = $Comms/Panel/ReceivedData/Data
 
+@onready var datalog_menu: Control = $DatalogMenu
+@onready var datalog_button: Button = $DatalogButton
+
+@onready var log_panel: Panel = $DatalogMenu/Panel/LogPanel
+@onready var log_name: Label = $DatalogMenu/Panel/LogPanel/LogName
+@onready var log_contents: RichTextLabel = $DatalogMenu/Panel/LogPanel/LogContents
+@onready var log_list: ItemList = $DatalogMenu/Panel/LogSelector/LogList
+@onready var log_close: Button = $DatalogMenu/Panel/CloseBox/Close
+
+
 @onready var god_rays: ColorRect = $GodRays
 
 @onready var selected_planet 
@@ -79,6 +89,7 @@ const planet_sprites = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PlayerData.unlock_datalog(8)
 	GlobalMusic.queue_track("res://Audio/Music/Lost signal main theme.mp3", 2)
 	for planet in planets.get_children():
 		planet.material.set_shader_parameter("color", Color.WHITE)
@@ -112,7 +123,7 @@ func _ready() -> void:
 						"Recieved 1 datalog: Story: 2188-2195",
 						true
 					)
-					unlock_datalog(0)
+					PlayerData.unlock_datalog(5)
 				PlayerData.planets.SELENE:
 					load_message_data(
 						"Calyx (?)",
@@ -121,26 +132,27 @@ func _ready() -> void:
 						"Received 1 datalog: Story: 2165-2184",
 						true
 					)
-					unlock_datalog(0)
+					PlayerData.unlock_datalog(3)
 				PlayerData.planets.GAIA:
 					load_message_data(
 						"Sarge2 (needs name)",
 						preload("res://Images/Characters/Portraits/Sarge2.png"),
 						"They destroyed the entire planet! There is nothing left... I - I can't believe this... Who were these people and what could they possibly have gotten out of the annihilation of an entire planet? I... I feel sick, I'm taking a few days off, you know how to use the mechbuilding systems if you need to...",
-						"NULL",
+						"Received 1 datalog from unknown origin: Story 2200",
 						true
 					)
-		else:
+					PlayerData.unlock_datalog(6)
+		elif PlayerData.current_planet in PlayerData.planets_finished:
 			match PlayerData.current_planet:
 				PlayerData.planets.NEOS:
 					load_message_data(
 						"Oryx Talanthir",
 						preload("res://Images/Characters/Portraits/NeosProtector.png"),
 						"You have successfuly completed your mission. The citizens of Neos thank you greatly. We might not have survived without your help. Your compensation is waiting for you. If you ever need any assistance with anything, we will be ready to lend you a hand.",
-						"Found 1 data log in enemy wreckage: Story: 2112 - 2127 - 2165",
+						"Found 1 data log in enemy wreckage: Story: 2112 - 2165",
 						true
 					)
-					unlock_datalog(0)
+					PlayerData.unlock_datalog(2)
 				PlayerData.planets.TERRA:
 					load_message_data(
 						"Draven Korthak",
@@ -149,7 +161,8 @@ func _ready() -> void:
 						"Recieved 2 datalogs: Story: 2080-2112; Story: 2188 - 2195",
 						true
 					)
-					unlock_datalog(0)
+					PlayerData.unlock_datalog(1)
+					PlayerData.unlock_datalog(5)
 				PlayerData.planets.SELENE:
 					load_message_data(
 						"Calyx (?)",
@@ -158,7 +171,7 @@ func _ready() -> void:
 						"Received 1 datalog: Story: 2184-2188",
 						true
 					)
-					unlock_datalog(0)
+					PlayerData.unlock_datalog(4)
 				PlayerData.planets.GAIA:
 					load_message_data(
 						"Sarge2 (needs name)",
@@ -167,16 +180,15 @@ func _ready() -> void:
 						"Received 1 datalog: Story: 2070-2080",
 						true
 					)
-					unlock_datalog(0)
+					PlayerData.unlock_datalog(0)
+		else:
+			comms.hide()
 					
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	camera_2d.set_position(get_global_mouse_position() * 0.2)
 	if not PlayerData.post_fx_enabled:
 		god_rays.hide()
-
-func unlock_datalog(number):
-	pass
 
 @onready var accept_status: Panel = $Comms/Panel/AcceptStatus
 func load_message_data(protector_name, picture, message, data, hide_accept = false) -> void:
@@ -229,6 +241,7 @@ func _on_selene_pressed() -> void:
 	
 @onready var planet_sprite: AnimatedSprite2D = $PlanetInfo/Panel/PictureData/Sprite
 func load_planet_data(planet_enum):
+	datalog_button.button_pressed = false
 	planet_name.text = planet_names[planet_enum]
 	planet_stats.text = planet_data[planet_enum]
 	planet_lore.text = planet_lores[planet_enum]
@@ -310,3 +323,23 @@ func _on_close_pressed() -> void:
 
 func _on_deny_pressed() -> void:
 	comms.hide()
+
+func _on_datalog_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		comms.hide()
+		planet_info.hide()
+		# Data loading
+		log_list.clear()
+		for log in PlayerData.collected_logs:
+			log_list.add_item(log[0])
+		datalog_menu.show()
+	else:
+		datalog_menu.hide()
+
+func _on_datalog_close_pressed() -> void:
+	datalog_button.button_pressed = false
+
+func _on_log_list_item_selected(index: int) -> void:
+	log_name.text = PlayerData.collected_logs[index][0]
+	log_contents.text = PlayerData.collected_logs[index][1]
+	log_panel.show()

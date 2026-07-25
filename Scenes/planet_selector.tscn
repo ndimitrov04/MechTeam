@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://djjq8u5wb62r2" path="res://Images/UI/Cyberpunk/9 Other/3 Skill icons/Skillicon7_10.png" id="17_qcb8y"]
 [ext_resource type="Texture2D" uid="uid://4yuy86r2e3he" path="res://Images/UI/Cyberpunk/9 Other/3 Skill icons/Skillicon7_06.png" id="18_mib25"]
 [ext_resource type="Texture2D" uid="uid://b0nqwpuaqsv3s" path="res://Images/Circle.png" id="19_mib25"]
+[ext_resource type="Texture2D" uid="uid://dhlh1ck5mkulo" path="res://Images/UI/Cyberpunk/9 Other/3 Skill icons/Skillicon7_20.png" id="20_fag7t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1x2yn"]
 shader = ExtResource("13_hedr5")
@@ -735,6 +736,137 @@ theme_override_font_sizes/font_size = 48
 text = "Close"
 icon = ExtResource("19_mib25")
 
+[node name="DatalogMenu" type="Control" parent="PlanetSelector" unique_id=991995651]
+visible = false
+layout_mode = 1
+anchor_left = 0.029166667
+anchor_right = 0.6791667
+anchor_bottom = 1.0
+theme = ExtResource("12_6fqms")
+metadata/_edit_use_anchors_ = true
+
+[node name="Circuit" type="Panel" parent="PlanetSelector/DatalogMenu" unique_id=1706018178]
+material = ExtResource("14_ulvfm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = -24.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1x2yn")
+
+[node name="Panel" type="Panel" parent="PlanetSelector/DatalogMenu" unique_id=148484848]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.052631654
+anchor_top = 0.05925926
+anchor_right = 0.96153843
+anchor_bottom = 0.94814813
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LogPanel" type="Panel" parent="PlanetSelector/DatalogMenu/Panel" unique_id=1988615179]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017388385
+anchor_top = 0.075
+anchor_right = 0.56335926
+anchor_bottom = 0.84166664
+offset_left = -3.0517578e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="LogName" type="Label" parent="PlanetSelector/DatalogMenu/Panel/LogPanel" unique_id=1358287881]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04302162
+anchor_top = 0.054347824
+anchor_right = 0.66165495
+anchor_bottom = 0.10869565
+offset_right = 0.30490112
+offset_bottom = 4.0000076
+theme_override_font_sizes/font_size = 64
+text = "Log: 2080-2070"
+metadata/_edit_use_anchors_ = true
+
+[node name="LogContents" type="RichTextLabel" parent="PlanetSelector/DatalogMenu/Panel/LogPanel" unique_id=852101273]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04455632
+anchor_top = 0.22
+anchor_right = 0.95521367
+anchor_bottom = 0.9433962
+text = "The third world war ended in 2070. Its winner was no sovereign nation. It was a medicine-manufacturing company known as Rediankh. They had managed to create technologies which could dispel radioactive energy, cure radiation poisoning and either physically condition people to paritally resist radiation or genetically modify embryos to create fully radiation immune humans. In the 1940s, humans had figured out a way to eradicate all life, 120 years later they had figured out how to resist annihilation. All sovereign nations tried to recreate Rediankh's technologies with no success. It seemed as the researchers working there had capabilities far beyond human. Rediankh - controlled by a small private group of scientists - started broadcasting signals that they were giving out free aid to anyone affected by the nuclear war, as long as they could make their way to a Revival Point - one of the company's many outposts created in any countries which wished to be put on a list of Rediankh \"allies\". Every nation was promised access to Rediankh's tech, but none got it. It was all merely a front for creating a wide network of points all of which would be used to recruit people into the ranks of the company. Slowly, all nations withered, diminishing in size, while the company grew larger and larger. How couldn't it, when joining was such a good deal for the average person? A shelter, food, life-saving medication. Being a so called Lifeforce Unit was an utopia when the alternatives were all certain death. When the few sovereign nations left realised the truth, it was already too late. They stopped fighting and turned on Rediankh, forming an alliance against them. But it was too little, too late. Rediankh had a population higher than that of the entire alliance and their Lifeforce troops were superhumans. As the last nation fell, so did the concept of politics with it. "
+metadata/_edit_use_anchors_ = true
+
+[node name="LogSelector" type="Panel" parent="PlanetSelector/DatalogMenu/Panel" unique_id=1018275632]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.59160155
+anchor_top = 0.075
+anchor_right = 0.97287244
+anchor_bottom = 0.84166664
+offset_left = -3.0517578e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="NameLabel" type="Label" parent="PlanetSelector/DatalogMenu/Panel/LogSelector" unique_id=681953667]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25724283
+anchor_top = 0.06521739
+anchor_right = 0.7290206
+anchor_bottom = 0.13086958
+offset_right = 0.19198608
+offset_bottom = -4.3199997
+theme_override_font_sizes/font_size = 64
+text = "Datalogs"
+metadata/_edit_use_anchors_ = true
+
+[node name="LogList" type="ItemList" parent="PlanetSelector/DatalogMenu/Panel/LogSelector" unique_id=600145376]
+layout_mode = 0
+anchor_left = 0.072263904
+anchor_top = 0.22826087
+anchor_right = 0.9231672
+anchor_bottom = 0.9456522
+metadata/_edit_use_anchors_ = true
+
+[node name="CloseBox" type="Panel" parent="PlanetSelector/DatalogMenu/Panel" unique_id=901056614]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.019695152
+anchor_top = 0.86041665
+anchor_right = 0.2738758
+anchor_bottom = 0.96666664
+offset_left = 2.2888184e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="Close" type="Button" parent="PlanetSelector/DatalogMenu/Panel/CloseBox" unique_id=1256550046]
+layout_mode = 0
+offset_left = 24.641602
+offset_top = 14.0
+offset_right = 264.531
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 48
+text = "Close"
+icon = ExtResource("19_mib25")
+
+[node name="DatalogButton" type="Button" parent="PlanetSelector" unique_id=844199938]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 1032.0
+offset_right = 224.0
+offset_bottom = 1066.0
+theme = ExtResource("12_6fqms")
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+text = "Datalogs"
+icon = ExtResource("20_fag7t")
+
 [connection signal="mouse_entered" from="PlanetSelector/Parallax2D55/Planets/Neos" to="PlanetSelector" method="_on_neos_mouse_entered"]
 [connection signal="mouse_exited" from="PlanetSelector/Parallax2D55/Planets/Neos" to="PlanetSelector" method="_on_neos_mouse_exited"]
 [connection signal="pressed" from="PlanetSelector/Parallax2D55/Planets/Neos" to="PlanetSelector" method="_on_neos_pressed"]
@@ -750,3 +882,6 @@ icon = ExtResource("19_mib25")
 [connection signal="pressed" from="PlanetSelector/Comms/Panel/AcceptStatus/Accept" to="PlanetSelector" method="_on_accept_pressed"]
 [connection signal="pressed" from="PlanetSelector/Comms/Panel/AcceptStatus/Deny" to="PlanetSelector" method="_on_deny_pressed"]
 [connection signal="pressed" from="PlanetSelector/Comms/Panel/CloseBox/Close" to="PlanetSelector" method="_on_close_pressed"]
+[connection signal="item_selected" from="PlanetSelector/DatalogMenu/Panel/LogSelector/LogList" to="PlanetSelector" method="_on_log_list_item_selected"]
+[connection signal="pressed" from="PlanetSelector/DatalogMenu/Panel/CloseBox/Close" to="PlanetSelector" method="_on_datalog_close_pressed"]
+[connection signal="toggled" from="PlanetSelector/DatalogButton" to="PlanetSelector" method="_on_datalog_button_toggled"]

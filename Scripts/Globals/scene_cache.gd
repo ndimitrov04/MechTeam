@@ -5,6 +5,7 @@ const PATHS := {
 	"menu": "res://Scenes/menu.tscn",
 	"main": "res://Scenes/main.tscn",
 	"comic_1" : "res://Scenes/Story/comic_1.tscn",
+	"comic_2" : "res://Scenes/Story/comic_2.tscn",
 	"opening": "res://Scenes/Tutorials/Openings/opening_1.tscn",
 	"mech_builder": "res://Scenes/mech_builder.tscn",
 	"planet_selector": "res://Scenes/planet_selector.tscn"

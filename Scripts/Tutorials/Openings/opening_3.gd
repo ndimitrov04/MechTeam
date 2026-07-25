@@ -174,7 +174,7 @@ func end_stage():
 	print("Game data cleared.")
 	await get_tree().create_timer(5).timeout
 	IndieBlueprintSceneTransitioner.transition_to(
-		SceneCache.SCENES.get("planet_selector"),
+		SceneCache.SCENES.get("comic_2"),
 		IndieBlueprintPremadeTransitions.Dissolve,
 		IndieBlueprintPremadeTransitions.Dissolve,
 		{ 

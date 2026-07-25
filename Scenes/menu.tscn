@@ -117,6 +117,7 @@
 [ext_resource type="Texture2D" uid="uid://b00kogx5v5wwb" path="res://Images/UI/Cyberpunk/1 Frames/FrameMap.png" id="108_5ej1k"]
 [ext_resource type="Material" uid="uid://diktkc206mtjg" path="res://Shaders/circuit.tres" id="108_qqmte"]
 [ext_resource type="Texture2D" uid="uid://bxpih7hp41jc0" path="res://Images/UI/Cyberpunk/3 Icons/Icons/Icon_34.png" id="109_vhmv4"]
+[ext_resource type="Texture2D" uid="uid://c8xiob8trco8b" path="res://Images/UI/Cyberpunk/3 Icons/Icons/Icon_18.png" id="110_l72qv"]
 [ext_resource type="Texture2D" uid="uid://fhnlvka1ra1q" path="res://Images/UI/Cyberpunk/3 Icons/Icons/Icon_25.png" id="110_qqmte"]
 [ext_resource type="Texture2D" uid="uid://dqocckkqxjox4" path="res://Images/UI/Cyberpunk/3 Icons/Icons/Icon_07.png" id="112_l72qv"]
 [ext_resource type="Texture2D" uid="uid://b1pg3jqmn0gg7" path="res://Images/UI/Cyberpunk/3 Icons/Icons/Icon_21.png" id="114_wbcki"]
@@ -1613,7 +1614,13 @@ corner_detail = 16
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l72qv"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+content_margin_left = 3.0
+content_margin_top = 2.0
+content_margin_right = 3.0
+content_margin_bottom = 0.0
+bg_color = Color(0.21568628, 0.26666668, 0.43137255, 0)
+corner_detail = 16
+anti_aliasing = false
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0c7gy"]
 texture = ExtResource("108_5ej1k")
@@ -5182,15 +5189,33 @@ anchor_left = 0.125
 anchor_top = 0.11100001
 anchor_right = 0.125
 anchor_bottom = 0.11100001
-offset_top = 65.832
+offset_top = 145.832
 offset_right = 168.0
-offset_bottom = 101.832
+offset_bottom = 181.832
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_158mb")
 theme_override_font_sizes/font_size = 16
 text = "Skip Opening
 (Advanced Players)"
+icon = ExtResource("110_l72qv")
+icon_alignment = 2
+
+[node name="ContinueRun" type="Button" parent="Menu/MenuPanel" unique_id=86493294]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.11100001
+anchor_right = 0.125
+anchor_bottom = 0.11100001
+offset_top = -30.168003
+offset_right = 168.0
+offset_bottom = 5.831997
+scale = Vector2(2, 2)
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_158mb")
+theme_override_font_sizes/font_size = 16
+text = "Continue Run"
 icon = ExtResource("109_vhmv4")
 icon_alignment = 2
 
@@ -5201,14 +5226,14 @@ anchor_left = 0.125
 anchor_top = 0.11100001
 anchor_right = 0.125
 anchor_bottom = 0.11100001
-offset_top = -21.168003
+offset_top = 58.831997
 offset_right = 167.5
-offset_bottom = 14.331997
+offset_bottom = 94.332
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_158mb")
 theme_override_font_sizes/font_size = 16
-text = "Play Opening
+text = "Start from Opening
 (+25 Cash)"
 icon = ExtResource("110_qqmte")
 icon_alignment = 2
@@ -5323,9 +5348,9 @@ text = "Clear Data"
 [node name="ShowOptions" type="Button" parent="Menu/MenuPanel/Options" unique_id=748843868]
 layout_mode = 0
 offset_left = 1609.0
-offset_top = 825.0
+offset_top = 905.0
 offset_right = 1776.5
-offset_bottom = 860.5
+offset_bottom = 928.5
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_158mb")
@@ -5465,9 +5490,9 @@ selection_enabled = true
 [node name="ShowCredits" type="Button" parent="Menu/MenuPanel/Credits" unique_id=1703909957]
 layout_mode = 0
 offset_left = 1609.0
-offset_top = 912.0
+offset_top = 968.0
 offset_right = 1776.5
-offset_bottom = 948.0
+offset_bottom = 992.0
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_158mb")
@@ -5485,9 +5510,9 @@ anchor_left = 0.125
 anchor_top = 0.11100001
 anchor_right = 0.125
 anchor_bottom = 0.11100001
-offset_top = 329.832
+offset_top = 361.832
 offset_right = 168.0
-offset_bottom = 365.832
+offset_bottom = 385.832
 scale = Vector2(2, 2)
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_158mb")
@@ -5525,6 +5550,7 @@ stream = ExtResource("104_i3jot")
 bus = &"SFX"
 
 [connection signal="pressed" from="Menu/MenuPanel/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/MenuPanel/ContinueRun" to="." method="_on_continue_run_pressed"]
 [connection signal="pressed" from="Menu/MenuPanel/PlayTutorial" to="." method="_on_play_tutorial_pressed"]
 [connection signal="toggled" from="Menu/MenuPanel/Options/ShowOptions" to="Menu/MenuPanel/Options" method="_on_show_options_toggled"]
 [connection signal="meta_clicked" from="Menu/MenuPanel/Credits/CreditPanel/RichTextLabel" to="Menu/MenuPanel/Credits" method="_on_rich_text_label_meta_clicked"]
