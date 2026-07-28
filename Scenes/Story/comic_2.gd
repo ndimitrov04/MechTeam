@@ -22,12 +22,14 @@ extends Node2D
 
 @onready var current_anim = 0
 @onready var space_cd: Timer = $SpaceCD
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalMusic.stop()
 	GlobalMusic.queue_track("res://Audio/Music/S31-Night Prowler.ogg", 2)
 	space_cd.start()
+	animation_player.play("FlyIn")
 
 func advance():
 	space_cd.start()

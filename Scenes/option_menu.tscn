@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://rw3jqyo4erwa" path="res://04b19.ttf" id="4_tjg1g"]
 [ext_resource type="Script" uid="uid://py5etfplmy7y" path="res://Scripts/credits.gd" id="5_ikvg2"]
 [ext_resource type="Script" uid="uid://d4lpuucmeksjx" path="res://Scripts/menu_button.gd" id="6_6ni7c"]
-[ext_resource type="Script" uid="uid://c188uinacu1ue" path="res://Scenes/quit_save_button.gd" id="7_h8r5p"]
+[ext_resource type="Script" uid="uid://c188uinacu1ue" path="res://Scripts/quit_save_button.gd" id="7_h8r5p"]
 [ext_resource type="PackedScene" uid="uid://dwdxe5skik7we" path="res://logo.tscn" id="7_sv1ki"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aeafk"]

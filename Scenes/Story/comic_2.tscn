@@ -27,7 +27,7 @@
 
 [sub_resource type="Animation" id="Animation_fgts1"]
 resource_name = "FlyIn"
-length = 1.5333333
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,10 +35,10 @@ tracks/0/path = NodePath("Panel1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1.5333333, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-1000, 0), Vector2(0, 0)]
+"values": [Vector2(-1000, 0), Vector2(100, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_sr4mj"]
@@ -1262,13 +1262,12 @@ font = ExtResource("3_yu2mw")
 shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sr4mj"]
-lifetime_randomness = 0.37
 emission_shape = 3
 emission_box_extents = Vector3(7, 312, 1)
 direction = Vector3(-1, 0, 0)
 spread = 0.0
-initial_velocity_min = 250.0
-initial_velocity_max = 250.0
+initial_velocity_min = 500.0
+initial_velocity_max = 650.0
 gravity = Vector3(0, 0, 0)
 scale_min = 4.0
 scale_max = 4.0
@@ -1320,14 +1319,14 @@ use_kinematic_bodies = true
 [node name="Jetpack" type="GPUParticles2D" parent="Panel1" unique_id=533083943]
 position = Vector2(148, 94.5)
 amount = 312
-lifetime = 1.5999999999999999
+lifetime = 1.6
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_fgts1")
 
 [node name="Jetpack2" type="GPUParticles2D" parent="Panel1" unique_id=1665952469]
 position = Vector2(148, 351.5)
 amount = 312
-lifetime = 1.5999999999999999
+lifetime = 1.6
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_fgts1")
 
@@ -1481,7 +1480,7 @@ autowrap_mode = 2
 script = ExtResource("4_wi23r")
 
 [node name="Jetpack3" type="GPUParticles2D" parent="." unique_id=1175621470]
-position = Vector2(1068, 267.5)
+position = Vector2(2328, 268)
 amount = 16
 lifetime = 10.0
 randomness = 0.5

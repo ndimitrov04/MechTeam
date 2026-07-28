@@ -82,7 +82,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		#last_platform_velocity = get_platform_velocity()
 		velocity.y += JUMP_VELOCITY
-		velocity.x = last_platform_velocity.x
+		velocity.x += last_platform_velocity.x
 
 	# Handle jetpack
 	if Input.is_action_pressed("jump") and not is_on_floor() and jetpack_energy > 0:

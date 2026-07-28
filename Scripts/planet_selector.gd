@@ -38,7 +38,7 @@ extends Control
 
 const planet_lores = [
 	"Dubbed as a planet of hope, Neos was the first bastion of the newly free world in a series of planets whose politics would be controlled by cold but fair steel - Scopos - a super AI whose only task was to optimize the quality of life of its people. Once created, Scopos' architecture would be completely unchangeable for even its own creators to prevent its manipulation by bad actors.\n\nFor close to a century this planet was an utopia and the home to a thriving human community. All of this was destroyed 10 years ago with the rise of a group known as Anima, who destroyed Scopos for an undisclosed reason.\n\nCurrently, this planet is being assaulted by unknown forces. The citizens need your help.\n\nNote: Starter enemy types; Steep terrain, small mechs preferable.",
-	"???",
+	"This hermit spaceship planet has never been landed on by foreign lifeforms. We know almost nothing about it, except that it arrived in Gitil around 100 years ago and that it sometimes sends gifts to neighbouring planets, but never communicates. Powerful forcefields have prevented anyone from reaching it up until now. Note: Advanced enemy types; Fair terrain.",
 	"Terra is a fortress planet, home to billions of people and governed by an organization known as 'Liberty'. \n\nThis planet is currently under assault by the Anima group. Liberty has contacted us and are requesting backup at the underground checkpoint of AX13C - the third most inhabited city of the planet.\n\nAs always, Anima's motives are unknown. Nevertheless, one thing is clear: They have already destroyed one thriving planet, stop them from destroying another! \n\nNote: Only tough enemy types; Flat terrain; Take advantage of enemy self destruct buttons!",
 	"Selene's existence is not well known outside of this solar system, its terrain is extremely rough and there is nothing of value on the planet. This is why it was an unoccupied haven of nature for up until 5 years ago. It is currently being colonized by GEOS for unknown reasons.\n\nGEOS is performing massive excavations at seemingly random locations on the planet. 2 weeks ago, spy satelites managed to capture pictures of the biggest excavation site. To the surprise of everyone, the planet's inner structure seemed to be biological! With its mantle being only an outer shell.\n\nA shadow client, presenting themselves as a magnanimous interplanetary nature preserver, wants us to stop GEOS from digging any deeper. We are one of many independent millitias who were hired for the job. Our task is to assault 3 strategic points, putting an end to all GEOS activity there.\n\nExpect extreme resistance and very rough terrain. Good luck!\n\nNote: All enemy types; Extreme terrain"
 ]
@@ -87,10 +87,15 @@ const planet_sprites = [
 	preload("res://CustomResources/sprite_frames/selene.tres")
 ]
 
+@onready var durante: TextureButton = $Parallax2D55/Planets/Durante
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	PlayerData.unlock_datalog(8)
 	GlobalMusic.queue_track("res://Audio/Music/Lost signal main theme.mp3", 2)
+	if PlayerData.planets_finished.size() == 4:
+		GlobalMusic.queue_track("res://Audio/SFX/Ambience/dungeon_ambient_1.ogg", 0.1)
+		durante.show()
+		durante.disabled = false
 	for planet in planets.get_children():
 		planet.material.set_shader_parameter("color", Color.WHITE)
 		if PlayerData.planets_finished.has(planet.get_meta("planet_number")):
@@ -191,6 +196,8 @@ func _process(_delta: float) -> void:
 		god_rays.hide()
 
 @onready var accept_status: Panel = $Comms/Panel/AcceptStatus
+@onready var accept: Button = $Comms/Panel/AcceptStatus/Accept
+@onready var deny: Button = $Comms/Panel/AcceptStatus/Deny
 func load_message_data(protector_name, picture, message, data, hide_accept = false) -> void:
 	comms.show()
 	if hide_accept:
@@ -237,6 +244,53 @@ func _on_selene_pressed() -> void:
 		"Who I am is of no concern to you. Just call me Calyx. I need you to terminate the lives of a bunch of colonizers in the Gitil solar system. A space pirate company known as GEOS started digging for something on a seemingly uninhabited planet 15 years ago. It turned out that this planet - Selene - is a living creature. Not only that, on it, there is apparently a small indigenous alien population there as well. I want the planet not destroyed, the aliens alive and anyone from GEOS dead. It is none of your concern why. The less questions you ask, the higher the chance you'll live to see tommorow. You will be rewarded shortly after completing your mission. Do not disappoint me.",
 		"NULL"
 	)
+	
+@onready var death_rect: ColorRect = $DeathRect
+@onready var close: Button = $Comms/Panel/CloseBox/Close
+func _on_durante_pressed() -> void:
+	selected_planet = PlayerData.planets.DURANTE
+	accept_status.hide()
+	if PlayerData.planets_lost.size() == 4:
+		load_message_data(
+			"???",
+			preload("res://Images/Characters/Portraits/Aaron.png"),
+			"You play this game like a beginner. Prepare.\n\nDEMO OVER: BAD END 1 (Thanks for playing ^^)",
+			"FATAL ERROR; ALL SYSTEMS SHUTDOWN; MECH CONSTRUCTION UNAVAILABLE; SELF-DESTRUCTION IMMINENT"
+		)
+		#GlobalMusic.queue_track("res://Audio/Music/bad_end.mp3", 0.1)
+		planet_name.text = "END?"
+		planet_lore.text = "SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD "
+		planet_stats.text = "SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD"
+		close.text = "SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD "
+		datalog_button.text = "SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD "
+		datalog_button.disabled = true
+		accept_status.hide()
+		close.disabled = true
+		planet_info.show()
+		death_rect.show()
+	elif PlayerData.planets_lost.is_empty():
+		load_message_data(
+			"Aaron Glaucio",
+			preload("res://Images/Characters/Portraits/Aaron.png"),
+			"You have most of the pieces of the puzzle, but are still missing some. Let me give you the entire picture. My name is Aaron Gláucio. I am the leader of the Anima group. Our journey ends here, and so does yours. We will be waiting for you on Durante - you will find coordinates attached to this message. We will not come for you. We know that you will meet us at your own discretion, on your own terms. There is no need to bring weapons, the fate of our kind as humans has already been decided, but if you do decide to fight, make sure to bring your biggest ones. Not to win mind you. To feel like you've done your best and died glouriously for your cause. In any case, you have my full respect. You have proven to be a great and honorable leader.\n\nDEMO OVER: Road to good ending. (Thanks for playing ^^)",
+			"Data received: Anima History (2070-Present)"
+		)
+		datalog_button.disabled = false
+		accept_status.hide()
+		planet_info.hide()
+		PlayerData.unlock_datalog(9)
+	else:
+		load_message_data(
+			"???",
+			preload("res://Images/Characters/Portraits/Aaron.png"),
+			"Whatever you do, we will win. This realm will be cleansed of any and all AI overlords. Starting with NEOS, we destroyed the original Aqualis overlord. Terra's old counter AI Scopos was never destroyed by Kuwat. He failed to eradicate it. For years it has been working to become a singularity in the shadows. Gaia was a cyber-planet with no living creatures on it. It was a parasite, malware, designed to destroy the solar system. Anima has finally completed its mission.\n\nDEMO OVER: BAD END 2 (Thanks for playing ^^)",
+			"ERROR CO?NE?TED: D? NOT T??S? A????; A???A IS D??D; L??S; A???L?S ?? ???VE; L?ES"
+		)
+		datalog_button.disabled = true
+		accept_status.hide()
+		close.disabled = true
+		close.hide()
+		planet_info.hide()
 
 	
 @onready var planet_sprite: AnimatedSprite2D = $PlanetInfo/Panel/PictureData/Sprite
