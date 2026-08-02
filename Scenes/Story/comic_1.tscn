@@ -1935,7 +1935,7 @@ tile_set = SubResource("TileSet_x3fjc")
 use_kinematic_bodies = true
 
 [node name="SpaceCD" type="Timer" parent="." unique_id=1924764877]
-wait_time = 0.75
+wait_time = 0.15
 one_shot = true
 
 [node name="Label1" type="Label" parent="." unique_id=1244275675]

@@ -14,6 +14,7 @@ const MECH_PB = preload("uid://dimm11yjnr7ef")
 @onready var control = $GUI/Control
 @onready var capacity_label = $GUI/Control/NPCShop/CapacityLabel
 
+
 @onready var sfx = $GUI/SFX
 
 # These two overlap the grid, so grid_positions = blocks positions, etc.

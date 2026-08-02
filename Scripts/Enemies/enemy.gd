@@ -163,7 +163,7 @@ func die():
 	set_collision_layer_value(3, 0)
 	#print("Player has gained " + str(reward) + " coins!")
 	main.rewards_collected += reward
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(2.5).timeout
 	#print(name + " object freed.")
 	queue_free()
 

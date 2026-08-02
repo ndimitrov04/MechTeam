@@ -7,6 +7,7 @@ extends Node2D
 @onready var minigame_result = $GUI/Control/StaticUI/MinigameResult
 @onready var screen_border = $Foreground/Parallax1/ScreenBorder
 @onready var screen_limit = $Foreground/Parallax1/ScreenBorder/ScreenLimit
+@onready var action_camera = $GUI/Control/StaticUI/ActionPanel/ActionCamera
 
 @onready var first_enemy : RigidBody2D = $EnemyMech4
 var SPAWN_OFFSET = 750 # Next enemy offset in pixels

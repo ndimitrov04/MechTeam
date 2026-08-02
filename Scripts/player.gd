@@ -117,8 +117,8 @@ func _physics_process(delta):
 		zoom *= 2
 	if Input.is_action_just_pressed("zoom_out") and is_on_floor():
 		zoom /= 2
-	zoom.x = clamp(zoom.x, 1, 4)
-	zoom.y = clamp(zoom.y, 1, 4)
+	zoom.x = clamp(zoom.x, 0.5, 4)
+	zoom.y = clamp(zoom.y, 0.5, 4)
 	camera.zoom = zoom
 	
 	# Debug NPC summoning
@@ -158,15 +158,15 @@ func _physics_process(delta):
 
 func start_minigame(mname : String, controlled_module):
 	print("Player: " + controlled_module.name)
-	minigame_mode = true
+	#minigame_mode = true
 	minigames.start_minigame(mname, controlled_module)
-	last_zoom = zoom
-	zoom = Vector2(1, 1)
+	#last_zoom = zoom
+	#zoom = Vector2(1, 1)
 
 func end_minigame():
-	minigame_mode = false
+	#minigame_mode = false
 	minigames.end_minigame()
-	zoom = last_zoom
+	#zoom = last_zoom
 
 func screenshake(shake_position : Vector2, amount : int):
 	var distance = self.global_position.distance_to(shake_position)

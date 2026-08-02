@@ -7,6 +7,7 @@ extends Node2D
 @onready var static_ui = $GUI/Control/StaticUI
 @onready var minigame_result = $GUI/Control/StaticUI/MinigameResult
 @onready var screen_border = $Foreground/Parallax1/ScreenBorder
+@onready var action_camera = $GUI/Control/StaticUI/ActionPanel/ActionCamera
 
 const SPAWN_OFFSET = 1000
 @onready var enemies_left : int = 2

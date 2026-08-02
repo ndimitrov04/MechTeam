@@ -221,10 +221,22 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Menu/MenuPanel/FullscreenQ:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_si6xj"]
 resource_name = "intro"
-length = 4.0
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -232,7 +244,7 @@ tracks/0/path = NodePath("Overlay/StartupOverlay:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.5),
+"times": PackedFloat32Array(-0.100000024, 2.0333333, 2.5333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1920, 0)]
@@ -244,7 +256,7 @@ tracks/1/path = NodePath("Menu/MenuPanel:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3.2166667, 3.7166667),
+"times": PackedFloat32Array(4.25, 4.75),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(2700, 536), Vector2(1368, 536)]
@@ -256,7 +268,7 @@ tracks/2/path = NodePath("Camera:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.5333333, 2.65),
+"times": PackedFloat32Array(2.5666666, 3.6833334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(3000, 540), Vector2(960, 540)]
@@ -268,7 +280,7 @@ tracks/3/path = NodePath("Menu/MenuPanel:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2.733333, 2.9533334),
+"times": PackedFloat32Array(3.7666664, 3.9866667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -280,7 +292,7 @@ tracks/4/path = NodePath("Camera:shake_intensity")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(2.6333332, 2.6500335, 3.733333, 3.7833333),
+"times": PackedFloat32Array(3.6666665, 3.6833668, 4.7666664, 4.8166666),
 "transitions": PackedFloat32Array(1, 1, 1, 1.035265),
 "update": 0,
 "values": [0.0, 15.0, 0.0, 30.0]
@@ -292,7 +304,7 @@ tracks/5/path = NodePath("SFX/Hit1:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(2.6500335),
+"times": PackedFloat32Array(3.6833668),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -304,7 +316,7 @@ tracks/6/path = NodePath("SFX/Hit2:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(3.7166667),
+"times": PackedFloat32Array(4.75),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -316,10 +328,22 @@ tracks/7/path = NodePath("SFX/Wind:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(1.3833333, 2.6500335),
+"times": PackedFloat32Array(2.4166665, 3.6833668),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Menu/MenuPanel/FullscreenQ:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.0009999999, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3jot"]
@@ -5067,7 +5091,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -0.00390625
+offset_right = -0.0048828125
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_158mb")
@@ -5156,7 +5180,7 @@ anchor_right = 0.712
 anchor_bottom = 0.5
 offset_left = 0.95996094
 offset_top = -4.0
-offset_right = 448.96045
+offset_right = 448.95947
 offset_bottom = 484.0
 theme = ExtResource("1_158mb")
 theme_override_styles/panel = SubResource("StyleBoxFlat_q3rjx")
@@ -5238,6 +5262,17 @@ text = "Start from Opening
 icon = ExtResource("110_qqmte")
 icon_alignment = 2
 
+[node name="FullscreenQ" type="CheckButton" parent="Menu/MenuPanel" unique_id=1782593354]
+top_level = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 980.0
+offset_right = 232.0
+offset_bottom = 1064.0
+theme_override_font_sizes/font_size = 32
+text = "Fullscreen"
+alignment = 1
+
 [node name="Options" type="Control" parent="Menu/MenuPanel" unique_id=1799976853]
 anchors_preset = 0
 offset_left = -1552.0
@@ -5313,28 +5348,29 @@ min_value = -48.0
 max_value = 12.0
 value = 4.0
 
-[node name="PostFX" type="Button" parent="Menu/MenuPanel/Options/OptionPanel" unique_id=1109590257]
+[node name="PostFX" type="CheckButton" parent="Menu/MenuPanel/Options/OptionPanel" unique_id=475645502]
 layout_mode = 0
 offset_left = 264.0
 offset_top = 504.0
 offset_right = 480.0
 offset_bottom = 588.0
 theme_override_font_sizes/font_size = 32
-toggle_mode = true
 button_pressed = true
 text = "PostFX
-(big performance 
-impact)"
+(Big perf. 
+impact)
+"
+alignment = 1
 
-[node name="Fullscreen" type="Button" parent="Menu/MenuPanel/Options/OptionPanel" unique_id=1069635090]
+[node name="Fullscreen" type="CheckButton" parent="Menu/MenuPanel/Options/OptionPanel" unique_id=102216704]
 layout_mode = 0
 offset_left = 264.0
 offset_top = 608.0
 offset_right = 480.0
 offset_bottom = 692.0
 theme_override_font_sizes/font_size = 32
-toggle_mode = true
 text = "Fullscreen"
+alignment = 1
 
 [node name="ClearData" type="Button" parent="Menu/MenuPanel/Options/OptionPanel" unique_id=2119028387]
 layout_mode = 0
@@ -5597,6 +5633,7 @@ bus = &"SFX"
 [connection signal="pressed" from="Menu/MenuPanel/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/MenuPanel/ContinueRun" to="." method="_on_continue_run_pressed"]
 [connection signal="pressed" from="Menu/MenuPanel/PlayTutorial" to="." method="_on_play_tutorial_pressed"]
+[connection signal="toggled" from="Menu/MenuPanel/FullscreenQ" to="Menu/MenuPanel/Options" method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="Menu/MenuPanel/Options/ShowOptions" to="Menu/MenuPanel/Options" method="_on_show_options_toggled"]
 [connection signal="meta_clicked" from="Menu/MenuPanel/Credits/CreditPanel/RichTextLabel" to="Menu/MenuPanel/Credits" method="_on_rich_text_label_meta_clicked"]
 [connection signal="toggled" from="Menu/MenuPanel/Credits/ShowCredits" to="Menu/MenuPanel/Credits" method="_on_show_credits_toggled"]

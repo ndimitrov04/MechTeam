@@ -21,6 +21,9 @@ func start_minigame(mname : String, controlled_module):
 	print("Minigames: " + controlled_module.name)
 	current_module = controlled_module
 	print("current_module: " + current_module.name)
+	win()
+	return
+	# Do not play minigames.
 	match mname:
 		"quicktime_arrow":
 			spawn_minigame(quicktime_arrow)
@@ -34,9 +37,9 @@ func end_minigame():
 	#get_child(0).queue_free()
 
 func win():
-	if not current_module:
-		lose(1)
-		return
+	#if not current_module:
+		#lose(1)
+		#return
 	print(current_module.name + " goes PEWPEW!!!")
 	current_module.engage()
 	main.static_ui.display_minigame_result(true)

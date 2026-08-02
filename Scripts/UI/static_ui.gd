@@ -69,7 +69,7 @@ func _on_status_timeout():
 # Loss reason: 0 - Regular fail; 1 - Knocked off of controller
 func display_minigame_result(victory : bool, loss_reason = 0):
 	if victory:
-		minigame_result.text = "Minigame Success!!!"
+		minigame_result.text = "Engaging Module!"
 		minigame_result.add_theme_color_override("font_color", Color("green"))
 		win.play()
 	else:

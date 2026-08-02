@@ -114,7 +114,7 @@ func _ready() -> void:
 			match PlayerData.current_planet:
 				PlayerData.planets.NEOS:
 					load_message_data(
-						"Sarge1 (needs name)",
+						"Mercer",
 						preload("res://Images/Characters/Portraits/Sarge.png"),
 						"Damn it, we failed! The unknown foes killed Talanthir and then left the planet. It appears the attack was not against the planet, but against him specifically? Still, this was a massive failure! Many Neos soldiers and civillians died in the attacks. We must exercise extreme caution when planning future missions. Failure is NOT an option when so many lives are at stake!",
 						"NULL",
@@ -140,7 +140,7 @@ func _ready() -> void:
 					PlayerData.unlock_datalog(3)
 				PlayerData.planets.GAIA:
 					load_message_data(
-						"Sarge2 (needs name)",
+						"Nyx",
 						preload("res://Images/Characters/Portraits/Sarge2.png"),
 						"They destroyed the entire planet! There is nothing left... I - I can't believe this... Who were these people and what could they possibly have gotten out of the annihilation of an entire planet? I... I feel sick, I'm taking a few days off, you know how to use the mechbuilding systems if you need to...",
 						"Received 1 datalog from unknown origin: Story 2200",
@@ -179,7 +179,7 @@ func _ready() -> void:
 					PlayerData.unlock_datalog(4)
 				PlayerData.planets.GAIA:
 					load_message_data(
-						"Sarge2 (needs name)",
+						"Nyx",
 						preload("res://Images/Characters/Portraits/Sarge2.png"),
 						"We recieved no word from Vesper, but guess what just arrived? A space probe loaded with an enormous amount of digital currency and a strange datalog with data about a planet named Earth from around 200 years ago.",
 						"Received 1 datalog: Story: 2070-2080",
@@ -384,8 +384,8 @@ func _on_datalog_button_toggled(toggled_on: bool) -> void:
 		planet_info.hide()
 		# Data loading
 		log_list.clear()
-		for log in PlayerData.collected_logs:
-			log_list.add_item(log[0])
+		for logg in PlayerData.collected_logs:
+			log_list.add_item(logg[0])
 		datalog_menu.show()
 	else:
 		datalog_menu.hide()

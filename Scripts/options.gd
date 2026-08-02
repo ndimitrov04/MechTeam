@@ -6,6 +6,7 @@ extends Control
 @onready var sfx_slider: HSlider = $OptionPanel/SFXSlider
 @onready var post_fx: Button = $OptionPanel/PostFX
 @onready var fullscreen: Button = $OptionPanel/Fullscreen
+@onready var fullscreen_q: CheckButton = $"../FullscreenQ"
 @onready var clear_data: Button = $OptionPanel/ClearData
 
 const SAVE_PATH = "user://game_options.cfg"
@@ -20,10 +21,7 @@ func _ready() -> void:
 	post_fx.toggled.connect(_on_post_fx_toggled)
 	fullscreen.toggled.connect(_on_fullscreen_toggled)
 	clear_data.pressed.connect(_show_clear_confirm)
-	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
-		fullscreen.button_pressed = true
-	else:
-		fullscreen.button_pressed = false
+	update_fullscreen_switches()
 	if PlayerData.post_fx_enabled:
 		post_fx.button_pressed = true
 	else:
@@ -32,6 +30,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
+func update_fullscreen_switches():
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		fullscreen.button_pressed = true
+		fullscreen_q.button_pressed = true
+	else:
+		fullscreen.button_pressed = false
+		fullscreen_q.button_pressed = false
 
 func _on_show_options_toggled(toggled_on: bool) -> void:
 	if toggled_on:
@@ -60,6 +66,7 @@ func _on_fullscreen_toggled(is_enabled):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		@warning_ignore("integer_division")
 		DisplayServer.window_set_size(Vector2i(1920/2, 1080/2))
+	update_fullscreen_switches()
 
 func _show_clear_confirm():
 	DirAccess.remove_absolute("user://mechteam_save.tres")

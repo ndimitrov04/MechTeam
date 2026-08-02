@@ -88,28 +88,28 @@ func _process(_delta: float) -> void:
 				advance()
 			2:
 				for i in range(3):
-					await get_tree().create_timer(0.3).timeout
+					await get_tree().create_timer(0.1).timeout
 					advance()
 			5:
 				for i in range(2):
-					await get_tree().create_timer(0.3).timeout
+					await get_tree().create_timer(0.1).timeout
 					advance()
 			7:
 				for i in range(2):
-					await get_tree().create_timer(0.3).timeout
+					await get_tree().create_timer(0.1).timeout
 					advance()
 			9:
 				for i in range(2):
-					await get_tree().create_timer(0.3).timeout
+					await get_tree().create_timer(0.1).timeout
 					advance()
 			12:
 				for i in range(3):
 					background.started = true
-					await get_tree().create_timer(0.3).timeout
+					await get_tree().create_timer(0.1).timeout
 					advance()
 			15:
 				for i in range(9):
-					await get_tree().create_timer(0.3).timeout
+					await get_tree().create_timer(0.1).timeout
 					advance()
 			24:
 				IndieBlueprintSceneTransitioner.transition_to(

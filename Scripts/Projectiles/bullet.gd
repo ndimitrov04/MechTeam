@@ -37,12 +37,18 @@ func _on_body_entered(body, collision):
 	if body.get_parent().name == "Modules" or body.get_parent().name == "Weapons":
 		body.destroy()
 		#print("Destroying" + body.name)
+		# Set GUI action cam
+		if self.get_collision_layer_value(3):
+			get_parent().action_camera.show_action(global_position, damage_value)
 	if body.has_method("take_damage"):
 		body.take_damage(damage_value, collision, knockback_force)
+		# Set GUI action cam
+		if self.get_collision_layer_value(3):
+			get_parent().action_camera.show_action(global_position, damage_value)
 	if get_meta("hitflash"):
 		flash_collisions()
 	if get_meta("impact"):
-		get_parent().player.screenshake(self.global_position, knockback_force)
+		get_parent().player.screenshake(global_position, knockback_force)
 	if pierce_rate == 0:
 		queue_free()
 	else:

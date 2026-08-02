@@ -648,7 +648,7 @@ position = Vector2(639.99994, 383.99994)
 scale = Vector2(2, 2)
 
 [node name="Parallax1" type="Parallax2D" parent="Parallax" unique_id=1603935388]
-scroll_scale = Vector2(0.105, 1)
+scroll_scale = Vector2(0.502, 1)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -662,7 +662,7 @@ texture = ExtResource("1_4rf75")
 stretch_mode = 1
 
 [node name="Parallax2" type="Parallax2D" parent="Parallax" unique_id=1237846499]
-scroll_scale = Vector2(0.115, 1)
+scroll_scale = Vector2(0.53, 1)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -676,7 +676,7 @@ texture = ExtResource("2_nxj8q")
 stretch_mode = 1
 
 [node name="Parallax3" type="Parallax2D" parent="Parallax" unique_id=337921423]
-scroll_scale = Vector2(0.14, 1)
+scroll_scale = Vector2(0.64, 1)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -690,7 +690,7 @@ texture = ExtResource("3_bol5v")
 stretch_mode = 1
 
 [node name="Parallax4" type="Parallax2D" parent="Parallax" unique_id=1705720509]
-scroll_scale = Vector2(0.12, 1)
+scroll_scale = Vector2(0.62, 1)
 repeat_size = Vector2(2304, 0)
 autoscroll = Vector2(-4, 0)
 repeat_times = 3
@@ -705,7 +705,7 @@ texture = ExtResource("4_nr57c")
 stretch_mode = 1
 
 [node name="Parallax5" type="Parallax2D" parent="Parallax" unique_id=445416783]
-scroll_scale = Vector2(0.13, 1)
+scroll_scale = Vector2(0.63, 1)
 repeat_size = Vector2(2304, 0)
 autoscroll = Vector2(5, 0)
 repeat_times = 3
@@ -720,7 +720,7 @@ texture = ExtResource("5_7oan6")
 stretch_mode = 1
 
 [node name="Parallax6" type="Parallax2D" parent="Parallax" unique_id=1186379237]
-scroll_scale = Vector2(0.225, 1)
+scroll_scale = Vector2(0.725, 1)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -734,7 +734,7 @@ texture = ExtResource("6_k2g27")
 stretch_mode = 1
 
 [node name="Parallax7" type="Parallax2D" parent="Parallax" unique_id=885886518]
-scroll_scale = Vector2(0.235, 1)
+scroll_scale = Vector2(0.735, 1)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -749,7 +749,7 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Parallax8" type="Parallax2D" parent="Parallax" unique_id=1423938555]
-scroll_scale = Vector2(0.245, 1)
+scroll_scale = Vector2(0.745, 1)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -764,7 +764,7 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Parallax9" type="Parallax2D" parent="Parallax" unique_id=1767695384]
-scroll_scale = Vector2(0.25, 1)
+scroll_scale = Vector2(0.75, 1)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -779,7 +779,7 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Parallax10" type="Parallax2D" parent="Parallax" unique_id=244506452]
-scroll_scale = Vector2(0.25, 1)
+scroll_scale = Vector2(0.75, 1)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -794,7 +794,7 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Parallax11" type="Parallax2D" parent="Parallax" unique_id=1498256963]
-scroll_scale = Vector2(0.26, 1)
+scroll_scale = Vector2(0.76, 1)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
@@ -809,7 +809,7 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Parallax12" type="Parallax2D" parent="Parallax" unique_id=752199239]
-scroll_scale = Vector2(0.275, 1)
+scroll_scale = Vector2(0.775, 1)
 repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
