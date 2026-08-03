@@ -1543,12 +1543,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_f04jf"]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_qelbs"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwjd0"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f04jf"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j286u"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hwjd0"]
 texture = ExtResource("114_yqw7g")
 0:0/0 = 0
 1:0/0 = 0
@@ -1846,8 +1846,8 @@ texture = ExtResource("114_yqw7g")
 16:17/0 = 0
 17:17/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_2wpf8"]
-sources/0 = SubResource("TileSetAtlasSource_j286u")
+[sub_resource type="TileSet" id="TileSet_j286u"]
+sources/0 = SubResource("TileSetAtlasSource_hwjd0")
 
 [node name="Main" type="Node2D" unique_id=105152583]
 script = ExtResource("1_2wpf8")
@@ -2760,10 +2760,13 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.104
 anchor_right = 0.104
-offset_left = 3.8400002
+offset_left = 51.84
 offset_top = 290.0
-offset_right = 123.84
+offset_right = 171.84
 offset_bottom = 400.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 16
 text = "Move - WASD
 Jump - SPACE
@@ -2773,7 +2776,7 @@ Jetpack - SPACE
 (while in mid-air)
 Scan - ALT
 
-Zoom - PG-UP/DOWN
+Zoom - ScrollWheel
 Pause - P"
 autowrap_mode = 3
 
@@ -2824,6 +2827,9 @@ offset_top = 93.0
 offset_right = 91.0
 offset_bottom = 115.0
 rotation = 4.712389
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = -2
 theme_override_constants/outline_size = 3
 text = "Player"
 
@@ -2892,6 +2898,9 @@ offset_left = 11.0
 offset_top = 128.0
 offset_right = 232.0
 offset_bottom = 232.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
 text = "Status
 "
 horizontal_alignment = 1
@@ -2942,10 +2951,13 @@ offset_bottom = -3.0
 
 [node name="ShowHidePanel" type="Label" parent="GUI/Control/StaticUI/CameraPanel/InstructionPanel" unique_id=606410687]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 278.0
-offset_bottom = 31.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 198.0
+offset_bottom = 30.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
 text = "Z to Show/Hide"
 
 [node name="AimCamera" type="SubViewportContainer" parent="GUI/Control/StaticUI/CameraPanel" unique_id=1094126902]
@@ -2985,6 +2997,7 @@ scale = Vector2(3, 3)
 zoom = Vector2(0.75, 0.75)
 
 [node name="AimCameraLabel" type="Label" parent="GUI/Control/StaticUI/CameraPanel" unique_id=1353640094]
+z_index = 1
 layout_mode = 0
 offset_left = 55.0
 offset_top = 17.0
@@ -3054,15 +3067,15 @@ size_flags_horizontal = 4
 color = Color(1, 0, 0, 0.80784315)
 script = ExtResource("40_x0ldt")
 
-[node name="ActionPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=726636258]
-modulate = Color(1, 1, 1, 0.78431374)
+[node name="ActionPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=328669261]
 layout_mode = 0
 offset_left = 1290.0
 offset_right = 1917.0
 offset_bottom = 1088.0
-theme_override_styles/panel = SubResource("StyleBoxLine_f04jf")
+theme_override_styles/panel = SubResource("StyleBoxLine_qelbs")
 
-[node name="Circuit" type="Panel" parent="GUI/Control/StaticUI/ActionPanel" unique_id=803671212]
+[node name="Circuit" type="Panel" parent="GUI/Control/StaticUI/ActionPanel" unique_id=1566775956]
+z_index = -1
 material = ExtResource("119_xeu62")
 layout_mode = 1
 anchors_preset = 15
@@ -3074,12 +3087,14 @@ offset_right = -10.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hwjd0")
+theme_override_styles/panel = SubResource("StyleBoxFlat_f04jf")
 
-[node name="TextureUI" type="TileMapLayer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=1140434308]
-tile_set = SubResource("TileSet_2wpf8")
+[node name="TextureUI" type="TileMapLayer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=2056010258]
+tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAQAAAABAAQAAAAAAAQAAAABAAUAAAAAAAQAAAABAAYAAAAAAAQAAAABAAcAAAAAAAQAAAABAAgAAAAAAAQAAAABAAkAAAAAAAQAAAABAAoAAAAAAAQAAAABAAsAAAAAAAQAAAABAAwAAAAAAAQAAAABAA0AAAAAAAQAAAABAA4AAAAAAAQAAAABAA8AAAAAAAQAAAABABAAAAAAAAQAAAABABEAAAAAAAQAAAABABIAAAAAAAQAAAABABMAAAAAAAQAAAABABQAAAAAAAQAAAABABUAAAAAAAQAAAABABYAAAAAAAQAAAABABcAAAAAAAQAAAABABgAAAAAAAQAAAABABkAAAAAAAQAAAABABoAAAAAAAQAAAABABsAAAAAAAQAAAABABwAAAAAAAQAAAABAB0AAAAAAAQAAAABAB4AAAAAAAQAAAABAB8AAAAAAAQAAAABACAAAAAAAAQAAAABACEAAAAAAAQAAAABACIAAAAAAAQAAAABACMAAAAAAAQAAAABACQAAAAAAAQAAAABACUAAAAAAAQAAAABACYAAAAAAAQAAAABACcAAAAAAAQAAAABACgAAAAAAAQAAAABACkAAAAAAAQAAAABACoAAAAAAAQAAAABACsAAAAAAAQAAAABACwAAAAAAAQAAAABAC0AAAAAAAQAAAABAC4AAAAAAAQAAAABAC8AAAAAAAQAAAABADAAAAAAAAQAAAABADEAAAAAAAQAAAABADIAAAAAAAQAAAABADMAAAAAAAQAAAABADQAAAAAAAQAAAABADUAAAAAAAQAAAABADYAAAAAAAQAAAABADcAAAAAAAQAAAABADgAAAAAAAQAAAABADkAAAAAAAQAAAABADoAAAAAAAQAAAABADsAAAAAAAQAAAABADwAAAAAAAQAAAABAD0AAAAAAAQAAAABAD4AAAAAAAQAAAABAD8AAAAAAAQAAAABAEAAAAAAAAQAAAABAEEAAAAAAAQAAAABAEIAAAAAAAQAAAABAEMAAAAAAAUAAAACAEMAAAABAAUAAAADAEMAAAACAAUAAAAEAEMAAAADAAUAAAAFAEMAAAAEAAUAAAAGAEMAAAABAAUAAAAHAEMAAAACAAUAAAAIAEMAAAADAAUAAAAJAEMAAAAEAAUAAAAKAEMAAAABAAUAAAALAEMAAAACAAUAAAAMAEMAAAADAAUAAAANAEMAAAAEAAUAAAAOAEMAAAABAAUAAAAPAEMAAAACAAUAAAAQAEMAAAADAAUAAAARAEMAAAAEAAUAAAASAEMAAAABAAUAAAATAEMAAAACAAUAAAAUAEMAAAADAAUAAAAVAEMAAAAEAAUAAAAWAEMAAAABAAUAAAAXAEMAAAACAAUAAAAYAEMAAAADAAUAAAAZAEMAAAAEAAUAAAAaAEMAAAABAAUAAAAbAEMAAAACAAUAAAAcAEMAAAADAAUAAAAdAEMAAAAEAAUAAAAeAEMAAAABAAUAAAAfAEMAAAACAAUAAAAgAEMAAAADAAUAAAAhAEMAAAAEAAUAAAAiAEMAAAABAAUAAAAjAEMAAAACAAUAAAAkAEMAAAADAAUAAAAlAEMAAAAEAAUAAAAmAEMAAAABAAUAAAAnAEMAAAACAAUAAAAoAEMAAAADAAUAAAApAEMAAAAEAAUAAAABAAAAAAAAAAAAAAACAAAAAAABAAAAAAADAAAAAAACAAAAAAAEAAAAAAADAAAAAAAFAAAAAAAEAAAAAAAGAAAAAAABAAAAAAAHAAAAAAACAAAAAAAIAAAAAAADAAAAAAAJAAAAAAAEAAAAAAAKAAAAAAABAAAAAAALAAAAAAACAAAAAAAMAAAAAAADAAAAAAANAAAAAAAEAAAAAAAOAAAAAAABAAAAAAAPAAAAAAACAAAAAAAQAAAAAAADAAAAAAARAAAAAAAEAAAAAAASAAAAAAABAAAAAAATAAAAAAACAAAAAAAUAAAAAAADAAAAAAAVAAAAAAAEAAAAAAAWAAAAAAABAAAAAAAXAAAAAAACAAAAAAAYAAAAAAADAAAAAAAZAAAAAAAEAAAAAAAaAAAAAAABAAAAAAAbAAAAAAACAAAAAAAcAAAAAAADAAAAAAAdAAAAAAAEAAAAAAAeAAAAAAABAAAAAAAfAAAAAAACAAAAAAAgAAAAAAADAAAAAAAhAAAAAAAEAAAAAAAiAAAAAAABAAAAAAAjAAAAAAACAAAAAAAkAAAAAAADAAAAAAAlAAAAAAABAAAAAAAmAAAAAAACAAAAAAAnAAAAAAADAAAAAAAoAAAAAAAEAAAAAAA=")
+tile_set = SubResource("TileSet_j286u")
 
-[node name="ActionCamera" type="SubViewportContainer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=676191665]
+[node name="ActionCamera" type="SubViewportContainer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=110559012]
+z_index = -1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.21408452
@@ -3092,7 +3107,7 @@ offset_right = -7537.831
 offset_bottom = -19801.602
 script = ExtResource("125_qelbs")
 
-[node name="SubViewport" type="SubViewport" parent="GUI/Control/StaticUI/ActionPanel/ActionCamera" unique_id=2142267070]
+[node name="SubViewport" type="SubViewport" parent="GUI/Control/StaticUI/ActionPanel/ActionCamera" unique_id=1255879737]
 disable_3d = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
@@ -3102,17 +3117,17 @@ oversampling = false
 size = Vector2i(600, 1080)
 render_target_update_mode = 4
 
-[node name="ActionCamera" type="Camera2D" parent="GUI/Control/StaticUI/ActionPanel/ActionCamera/SubViewport" unique_id=1714645750]
+[node name="ActionCamera" type="Camera2D" parent="GUI/Control/StaticUI/ActionPanel/ActionCamera/SubViewport" unique_id=1855531148]
 top_level = true
 position = Vector2(888, 336)
 scale = Vector2(3, 3)
 limit_bottom = 700
 
-[node name="ActionTimeout" type="Timer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=105358003]
+[node name="ActionTimeout" type="Timer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=631442425]
 wait_time = 3.0
 one_shot = true
 
-[node name="DamageDealt" type="Label" parent="GUI/Control/StaticUI/ActionPanel" unique_id=2064379278]
+[node name="DamageDealt" type="Label" parent="GUI/Control/StaticUI/ActionPanel" unique_id=1227412420]
 layout_mode = 0
 offset_left = 55.0
 offset_top = 969.0

@@ -428,12 +428,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_3mwmk"]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_61csc"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew2j1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mwmk"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_adf0e"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ew2j1"]
 texture = ExtResource("114_aa2nc")
 0:0/0 = 0
 1:0/0 = 0
@@ -731,8 +731,8 @@ texture = ExtResource("114_aa2nc")
 16:17/0 = 0
 17:17/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_de5jk"]
-sources/0 = SubResource("TileSetAtlasSource_adf0e")
+[sub_resource type="TileSet" id="TileSet_adf0e"]
+sources/0 = SubResource("TileSetAtlasSource_ew2j1")
 
 [node name="Main" type="Node2D" unique_id=105152583]
 script = ExtResource("1_a6ph8")
@@ -927,15 +927,18 @@ offset_bottom = 40.0
 script = ExtResource("118_wy8o2")
 metadata/bars = false
 
-[node name="Instruction" type="Label" parent="GUI/Control/StaticUI" unique_id=2110115710]
+[node name="Instruction" type="Label" parent="GUI/Control/StaticUI" unique_id=1341767331]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.104
 anchor_right = 0.104
-offset_left = 3.8400002
+offset_left = 51.84
 offset_top = 290.0
-offset_right = 123.84
+offset_right = 171.84
 offset_bottom = 400.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 16
 text = "Move - WASD
 Jump - SPACE
@@ -945,7 +948,7 @@ Jetpack - SPACE
 (while in mid-air)
 Scan - ALT
 
-Zoom - PG-UP/DOWN
+Zoom - ScrollWheel
 Pause - P"
 autowrap_mode = 3
 
@@ -1157,6 +1160,7 @@ scale = Vector2(3, 3)
 zoom = Vector2(0.75, 0.75)
 
 [node name="AimCameraLabel" type="Label" parent="GUI/Control/StaticUI/CameraPanel" unique_id=1353640094]
+z_index = 1
 layout_mode = 0
 offset_left = 55.0
 offset_top = 17.0
@@ -1226,15 +1230,15 @@ size_flags_horizontal = 4
 color = Color(1, 0, 0, 0.80784315)
 script = ExtResource("40_syhtb")
 
-[node name="ActionPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=520406112]
-modulate = Color(1, 1, 1, 0.78431374)
+[node name="ActionPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=233365421]
 layout_mode = 0
 offset_left = 1290.0
 offset_right = 1917.0
 offset_bottom = 1088.0
-theme_override_styles/panel = SubResource("StyleBoxLine_3mwmk")
+theme_override_styles/panel = SubResource("StyleBoxLine_61csc")
 
-[node name="Circuit" type="Panel" parent="GUI/Control/StaticUI/ActionPanel" unique_id=130904664]
+[node name="Circuit" type="Panel" parent="GUI/Control/StaticUI/ActionPanel" unique_id=679660281]
+z_index = -1
 material = ExtResource("119_gy2yy")
 layout_mode = 1
 anchors_preset = 15
@@ -1246,12 +1250,14 @@ offset_right = -10.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ew2j1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3mwmk")
 
-[node name="TextureUI" type="TileMapLayer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=1964491059]
-tile_set = SubResource("TileSet_de5jk")
+[node name="TextureUI" type="TileMapLayer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=1430130274]
+tile_map_data = PackedByteArray("AAABAAEAAAAAAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAQAAAABAAQAAAAAAAQAAAABAAUAAAAAAAQAAAABAAYAAAAAAAQAAAABAAcAAAAAAAQAAAABAAgAAAAAAAQAAAABAAkAAAAAAAQAAAABAAoAAAAAAAQAAAABAAsAAAAAAAQAAAABAAwAAAAAAAQAAAABAA0AAAAAAAQAAAABAA4AAAAAAAQAAAABAA8AAAAAAAQAAAABABAAAAAAAAQAAAABABEAAAAAAAQAAAABABIAAAAAAAQAAAABABMAAAAAAAQAAAABABQAAAAAAAQAAAABABUAAAAAAAQAAAABABYAAAAAAAQAAAABABcAAAAAAAQAAAABABgAAAAAAAQAAAABABkAAAAAAAQAAAABABoAAAAAAAQAAAABABsAAAAAAAQAAAABABwAAAAAAAQAAAABAB0AAAAAAAQAAAABAB4AAAAAAAQAAAABAB8AAAAAAAQAAAABACAAAAAAAAQAAAABACEAAAAAAAQAAAABACIAAAAAAAQAAAABACMAAAAAAAQAAAABACQAAAAAAAQAAAABACUAAAAAAAQAAAABACYAAAAAAAQAAAABACcAAAAAAAQAAAABACgAAAAAAAQAAAABACkAAAAAAAQAAAABACoAAAAAAAQAAAABACsAAAAAAAQAAAABACwAAAAAAAQAAAABAC0AAAAAAAQAAAABAC4AAAAAAAQAAAABAC8AAAAAAAQAAAABADAAAAAAAAQAAAABADEAAAAAAAQAAAABADIAAAAAAAQAAAABADMAAAAAAAQAAAABADQAAAAAAAQAAAABADUAAAAAAAQAAAABADYAAAAAAAQAAAABADcAAAAAAAQAAAABADgAAAAAAAQAAAABADkAAAAAAAQAAAABADoAAAAAAAQAAAABADsAAAAAAAQAAAABADwAAAAAAAQAAAABAD0AAAAAAAQAAAABAD4AAAAAAAQAAAABAD8AAAAAAAQAAAABAEAAAAAAAAQAAAABAEEAAAAAAAQAAAABAEIAAAAAAAQAAAABAEMAAAAAAAUAAAACAEMAAAABAAUAAAADAEMAAAACAAUAAAAEAEMAAAADAAUAAAAFAEMAAAAEAAUAAAAGAEMAAAABAAUAAAAHAEMAAAACAAUAAAAIAEMAAAADAAUAAAAJAEMAAAAEAAUAAAAKAEMAAAABAAUAAAALAEMAAAACAAUAAAAMAEMAAAADAAUAAAANAEMAAAAEAAUAAAAOAEMAAAABAAUAAAAPAEMAAAACAAUAAAAQAEMAAAADAAUAAAARAEMAAAAEAAUAAAASAEMAAAABAAUAAAATAEMAAAACAAUAAAAUAEMAAAADAAUAAAAVAEMAAAAEAAUAAAAWAEMAAAABAAUAAAAXAEMAAAACAAUAAAAYAEMAAAADAAUAAAAZAEMAAAAEAAUAAAAaAEMAAAABAAUAAAAbAEMAAAACAAUAAAAcAEMAAAADAAUAAAAdAEMAAAAEAAUAAAAeAEMAAAABAAUAAAAfAEMAAAACAAUAAAAgAEMAAAADAAUAAAAhAEMAAAAEAAUAAAAiAEMAAAABAAUAAAAjAEMAAAACAAUAAAAkAEMAAAADAAUAAAAlAEMAAAAEAAUAAAAmAEMAAAABAAUAAAAnAEMAAAACAAUAAAAoAEMAAAADAAUAAAApAEMAAAAEAAUAAAABAAAAAAAAAAAAAAACAAAAAAABAAAAAAADAAAAAAACAAAAAAAEAAAAAAADAAAAAAAFAAAAAAAEAAAAAAAGAAAAAAABAAAAAAAHAAAAAAACAAAAAAAIAAAAAAADAAAAAAAJAAAAAAAEAAAAAAAKAAAAAAABAAAAAAALAAAAAAACAAAAAAAMAAAAAAADAAAAAAANAAAAAAAEAAAAAAAOAAAAAAABAAAAAAAPAAAAAAACAAAAAAAQAAAAAAADAAAAAAARAAAAAAAEAAAAAAASAAAAAAABAAAAAAATAAAAAAACAAAAAAAUAAAAAAADAAAAAAAVAAAAAAAEAAAAAAAWAAAAAAABAAAAAAAXAAAAAAACAAAAAAAYAAAAAAADAAAAAAAZAAAAAAAEAAAAAAAaAAAAAAABAAAAAAAbAAAAAAACAAAAAAAcAAAAAAADAAAAAAAdAAAAAAAEAAAAAAAeAAAAAAABAAAAAAAfAAAAAAACAAAAAAAgAAAAAAADAAAAAAAhAAAAAAAEAAAAAAAiAAAAAAABAAAAAAAjAAAAAAACAAAAAAAkAAAAAAADAAAAAAAlAAAAAAABAAAAAAAmAAAAAAACAAAAAAAnAAAAAAADAAAAAAAoAAAAAAAEAAAAAAA=")
+tile_set = SubResource("TileSet_adf0e")
 
-[node name="ActionCamera" type="SubViewportContainer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=491705565]
+[node name="ActionCamera" type="SubViewportContainer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=623860026]
+z_index = -1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.21408452
@@ -1264,7 +1270,7 @@ offset_right = -7537.831
 offset_bottom = -19801.602
 script = ExtResource("38_61csc")
 
-[node name="SubViewport" type="SubViewport" parent="GUI/Control/StaticUI/ActionPanel/ActionCamera" unique_id=675200815]
+[node name="SubViewport" type="SubViewport" parent="GUI/Control/StaticUI/ActionPanel/ActionCamera" unique_id=65708227]
 disable_3d = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
@@ -1274,17 +1280,17 @@ oversampling = false
 size = Vector2i(600, 1080)
 render_target_update_mode = 4
 
-[node name="ActionCamera" type="Camera2D" parent="GUI/Control/StaticUI/ActionPanel/ActionCamera/SubViewport" unique_id=2123388249]
+[node name="ActionCamera" type="Camera2D" parent="GUI/Control/StaticUI/ActionPanel/ActionCamera/SubViewport" unique_id=786440489]
 top_level = true
 position = Vector2(888, 336)
 scale = Vector2(3, 3)
 limit_bottom = 700
 
-[node name="ActionTimeout" type="Timer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=1435136810]
+[node name="ActionTimeout" type="Timer" parent="GUI/Control/StaticUI/ActionPanel" unique_id=1805609946]
 wait_time = 3.0
 one_shot = true
 
-[node name="DamageDealt" type="Label" parent="GUI/Control/StaticUI/ActionPanel" unique_id=47292716]
+[node name="DamageDealt" type="Label" parent="GUI/Control/StaticUI/ActionPanel" unique_id=276694795]
 layout_mode = 0
 offset_left = 55.0
 offset_top = 969.0

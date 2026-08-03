@@ -28,8 +28,14 @@ func _on_body_entered(body):
 	if body.get_parent().name == "Modules" or body.get_parent().name == "Weapons":
 		body.destroy()
 		print("Destroying" + body.name)
+		# Set GUI action cam
+		if self.get_collision_layer_value(3):
+			get_parent().action_camera.show_action(global_position, damage_value)
 	if body.has_method("take_damage"):
 		body.take_damage(damage_value, null, 0)
+		# Set GUI action cam
+		if self.get_collision_layer_value(3):
+			get_parent().action_camera.show_action(global_position, damage_value)
 
 func _on_finished():
 	await get_tree().create_timer(0.1).timeout

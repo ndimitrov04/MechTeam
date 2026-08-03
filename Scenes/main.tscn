@@ -859,15 +859,18 @@ offset_bottom = 40.0
 script = ExtResource("25_cbgmd")
 metadata/bars = false
 
-[node name="Instruction" type="Label" parent="GUI/Control/StaticUI" unique_id=2110115710]
+[node name="Instruction" type="Label" parent="GUI/Control/StaticUI" unique_id=1689954027]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.104
 anchor_right = 0.104
-offset_left = 3.8400002
+offset_left = 51.84
 offset_top = 290.0
-offset_right = 123.84
+offset_right = 171.84
 offset_bottom = 400.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 16
 text = "Move - WASD
 Jump - SPACE
@@ -877,7 +880,7 @@ Jetpack - SPACE
 (while in mid-air)
 Scan - ALT
 
-Zoom - PG-UP/DOWN
+Zoom - ScrollWheel
 Pause - P"
 autowrap_mode = 3
 
@@ -1026,9 +1029,12 @@ offset_bottom = -3.0
 [node name="ShowHidePanel" type="Label" parent="GUI/Control/StaticUI/CameraPanel/InstructionPanel" unique_id=606410687]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 8.0
-offset_right = 278.0
-offset_bottom = 31.0
+offset_top = 7.0
+offset_right = 190.0
+offset_bottom = 30.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
 text = "Z to Show/Hide"
 
 [node name="AimCamera" type="SubViewportContainer" parent="GUI/Control/StaticUI/CameraPanel" unique_id=1094126902]
