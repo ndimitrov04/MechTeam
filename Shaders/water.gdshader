@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+global uniform bool shaders_enabled;
+
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, repeat_enable, filter_nearest;
 
 group_uniforms reflection;
@@ -44,45 +46,49 @@ void vertex() {
 }
 
 void fragment() {
-	vec2 uv = SCREEN_UV;
-
-	uv.y -= screen_baseY;
-	uv.y /= (screen_bottomY - screen_baseY);
-	uv.y = uv.y * 2.0 - 1.0;
-	uv.y *= YDistortion;
-	uv.y = uv.y / 2.0 + 0.5;
-	uv.y -= 0.5 - YDistortion / 2.0;
-	uv.y *= (screen_bottomY - screen_baseY);
-	uv.y += screen_baseY;
-
-
-	vec4 color = vec4(waterColor.rgb , 1);
-
-
-	vec2 reflected_uv = vec2(uv.x, (screen_baseY * 2.0 - (uv.y - offSet)));
-	vec2 noiseUV = UV * tiling + offSetSpeed * TIME;
-	float noiseValue = texture(waterDistortionNoise, noiseUV).r;
-	reflected_uv = reflected_uv + noiseValue * distortionForce;
-
-	vec2 waterUV = UV * tiling;
-	waterUV.x += offSetSpeed.x * TIME;
-	waterUV.y += cos(TIME * min(1., offSetSpeed.y)) * 0.01;
-	waterUV = waterUV + noiseValue * distortionForce * WDSpeed;
-
-
-	vec4 noiseColor = texture(waterNoise, waterUV);
-	float intensity = smoothstep(WDFreq, WDSize, noiseColor.r);
-	color.rgb += intensity * vec3(WDBrightness);
-	
-	vec2 backGroundUV = SCREEN_UV;
-	backGroundUV.x += noiseValue * backGroundDirX;
-	backGroundUV.y += noiseValue * backGroundDirY;
-
-
-	color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 0.2);
-	if (reflected_uv.y > 0.0) {
-		color = mix(texture(SCREEN_TEXTURE, reflected_uv), color,0.5);
+	if (!shaders_enabled) {
+		discard;
 	}
-	COLOR = mix(color, waterColor, colorCorection);
+	else {
+		vec2 uv = SCREEN_UV;
 
+		uv.y -= screen_baseY;
+		uv.y /= (screen_bottomY - screen_baseY);
+		uv.y = uv.y * 2.0 - 1.0;
+		uv.y *= YDistortion;
+		uv.y = uv.y / 2.0 + 0.5;
+		uv.y -= 0.5 - YDistortion / 2.0;
+		uv.y *= (screen_bottomY - screen_baseY);
+		uv.y += screen_baseY;
+
+
+		vec4 color = vec4(waterColor.rgb , 1);
+
+
+		vec2 reflected_uv = vec2(uv.x, (screen_baseY * 2.0 - (uv.y - offSet)));
+		vec2 noiseUV = UV * tiling + offSetSpeed * TIME;
+		float noiseValue = texture(waterDistortionNoise, noiseUV).r;
+		reflected_uv = reflected_uv + noiseValue * distortionForce;
+
+		vec2 waterUV = UV * tiling;
+		waterUV.x += offSetSpeed.x * TIME;
+		waterUV.y += cos(TIME * min(1., offSetSpeed.y)) * 0.01;
+		waterUV = waterUV + noiseValue * distortionForce * WDSpeed;
+
+
+		vec4 noiseColor = texture(waterNoise, waterUV);
+		float intensity = smoothstep(WDFreq, WDSize, noiseColor.r);
+		color.rgb += intensity * vec3(WDBrightness);
+		
+		vec2 backGroundUV = SCREEN_UV;
+		backGroundUV.x += noiseValue * backGroundDirX;
+		backGroundUV.y += noiseValue * backGroundDirY;
+
+
+		color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 0.2);
+		if (reflected_uv.y > 0.0) {
+			color = mix(texture(SCREEN_TEXTURE, reflected_uv), color,0.5);
+		}
+		COLOR = mix(color, waterColor, colorCorection);
+	}
 }

@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+global uniform bool shaders_enabled;
+
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 uniform float slant_factor : hint_range(-0.5, 0.5) = 0.12;
@@ -48,28 +50,34 @@ vec3 rain_layer(vec2 uv, float scale) {
 }
 
 void fragment() {
-    // 1. 倾斜修正
-    vec2 uv = -UV;
-    uv.x -= uv.y * slant_factor;
+	
+	if (!shaders_enabled) {
+		discard;
+	}
+	else {
+	    // 1. 倾斜修正
+	    vec2 uv = -UV;
+	    uv.x -= uv.y * slant_factor;
 
-    // 2. 混合两层雨滴
-	vec3 layer1 = rain_layer(uv, 4.5);
-	vec3 layer2 = rain_layer(uv + vec2(0.35), 5.5) * 0.35;
-    vec3 final_effect = layer1 + layer2;
+	    // 2. 混合两层雨滴
+		vec3 layer1 = rain_layer(uv, 4.5);
+		vec3 layer2 = rain_layer(uv + vec2(0.35), 5.5) * 0.35;
+	    vec3 final_effect = layer1 + layer2;
 
-    // 3. 屏幕采样：在亮部和暗部之间产生偏移
-    vec2 refraction_uv = SCREEN_UV + final_effect.xy;
-    vec4 col = textureLod(SCREEN_TEXTURE, refraction_uv, blur_amount);
-    
-    // 4. 环境色彩增强 (核心优化)
-    // 只有在雨滴遮罩区域，才叠加一层淡淡的紫色高光
-    // final_effect.z 是我们合并的 mask
-    float highlight = smoothstep(0.1, 0.5, final_effect.z);
-    col.rgb += highlight * reflection_color.rgb * 0.03;
-    
-    // 5. 模拟边缘闪烁
-    // 让雨滴边缘有一点点亮色，模拟玻璃表面的反射
-    col.rgb += (layer1.z + layer2.z) * 0.1 * reflection_color.rgb;
+	    // 3. 屏幕采样：在亮部和暗部之间产生偏移
+	    vec2 refraction_uv = SCREEN_UV + final_effect.xy;
+	    vec4 col = textureLod(SCREEN_TEXTURE, refraction_uv, blur_amount);
+	    
+	    // 4. 环境色彩增强 (核心优化)
+	    // 只有在雨滴遮罩区域，才叠加一层淡淡的紫色高光
+	    // final_effect.z 是我们合并的 mask
+	    float highlight = smoothstep(0.1, 0.5, final_effect.z);
+	    col.rgb += highlight * reflection_color.rgb * 0.03;
+	    
+	    // 5. 模拟边缘闪烁
+	    // 让雨滴边缘有一点点亮色，模拟玻璃表面的反射
+	    col.rgb += (layer1.z + layer2.z) * 0.1 * reflection_color.rgb;
 
-    COLOR = col;
+	    COLOR = col;
+	}
 }

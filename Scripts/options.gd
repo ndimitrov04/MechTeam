@@ -5,9 +5,12 @@ extends Control
 @onready var music_slider: HSlider = $OptionPanel/MusicSlider
 @onready var sfx_slider: HSlider = $OptionPanel/SFXSlider
 @onready var post_fx: Button = $OptionPanel/PostFX
-@onready var fullscreen: Button = $OptionPanel/Fullscreen
-@onready var fullscreen_q: CheckButton = $"../FullscreenQ"
+@onready var fullscreen: CheckButton = $OptionPanel/Fullscreen
 @onready var clear_data: Button = $OptionPanel/ClearData
+@onready var shaders: CheckButton = $OptionPanel/Shaders
+
+@onready var credit_panel: Panel = $"../Credits/CreditPanel"
+@onready var show_credits: Button = $"../Credits/ShowCredits"
 
 const SAVE_PATH = "user://game_options.cfg"
 const MUSIC_BUS_NAME = "Music"
@@ -20,28 +23,41 @@ func _ready() -> void:
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
 	post_fx.toggled.connect(_on_post_fx_toggled)
 	fullscreen.toggled.connect(_on_fullscreen_toggled)
+	shaders.toggled.connect(_on_shaders_toggled)
 	clear_data.pressed.connect(_show_clear_confirm)
 	update_fullscreen_switches()
 	if PlayerData.post_fx_enabled:
-		post_fx.button_pressed = true
+		post_fx.set_pressed_no_signal(true)
 	else:
-		post_fx.button_pressed = false
+		post_fx.set_pressed_no_signal(false)
+	if PlayerData.shaders_enabled:
+		shaders.set_pressed_no_signal(true)
+	else:
+		shaders.set_pressed_no_signal(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if PlayerData.post_fx_enabled:
+		post_fx.set_pressed_no_signal(true)
+	else:
+		post_fx.set_pressed_no_signal(false)
+	if PlayerData.shaders_enabled:
+		shaders.set_pressed_no_signal(true)
+	else:
+		shaders.set_pressed_no_signal(false)
+
 
 func update_fullscreen_switches():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
-		fullscreen.button_pressed = true
-		fullscreen_q.button_pressed = true
+		fullscreen.set_pressed_no_signal(true)
 	else:
-		fullscreen.button_pressed = false
-		fullscreen_q.button_pressed = false
+		fullscreen.set_pressed_no_signal(false)
 
 func _on_show_options_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		option_panel.show()
+		credit_panel.hide()
+		show_credits.button_pressed = false
 	else:
 		option_panel.hide()
 
@@ -58,6 +74,12 @@ func _on_post_fx_toggled(is_enabled):
 		PlayerData.post_fx_enabled = true
 	else:
 		PlayerData.post_fx_enabled = false
+
+func _on_shaders_toggled(is_enabled):
+	if is_enabled:
+		PlayerData.shaders_enabled = true
+	else:
+		PlayerData.shaders_enabled = false
 
 func _on_fullscreen_toggled(is_enabled):
 	if is_enabled:

@@ -78,6 +78,7 @@ func _unhandled_input(event):
 	if player_in_range and not on_cooldown and controlled_module != null:
 		if event.is_action_pressed("interact"):
 			if mech.energy < energy_cost:
+				player.static_ui.display_minigame_result(false)
 				print("INSUFFICIENT ENERGY")
 				return
 			if not player.minigame_mode:

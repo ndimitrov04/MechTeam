@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://d14axc4abnp8l"]
 
+[ext_resource type="Script" uid="uid://cs3pfc5kgh3bi" path="res://Scripts/Backgrounds/city_2.gd" id="1_d2chk"]
 [ext_resource type="Texture2D" uid="uid://chuecmausjkkh" path="res://Images/Backgrounds/ParallaxCity3/1.png" id="1_koiqx"]
 [ext_resource type="Texture2D" uid="uid://cjamtv3eu6f85" path="res://Images/Backgrounds/ParallaxCity3/2.png" id="2_cgl5p"]
 [ext_resource type="Texture2D" uid="uid://bhed5be0pn2t5" path="res://Images/Placeholders/Car/Right/3.png" id="3_2iji0"]
@@ -735,6 +736,7 @@ shader_parameter/backGroundDirY = 0.01
 
 [node name="Background" type="Node2D" unique_id=1437686219]
 z_index = -2
+script = ExtResource("1_d2chk")
 metadata/custom_postfx = PackedFloat32Array(0.5, 0.3, 0.97, 0.95, 0.24, 0.575, 32, 0.68)
 
 [node name="Sky" type="Sprite2D" parent="." unique_id=151500712]

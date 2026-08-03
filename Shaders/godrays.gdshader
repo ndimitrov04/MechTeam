@@ -1,6 +1,8 @@
 shader_type canvas_item;
 render_mode blend_add;
 
+global uniform bool shaders_enabled;
+
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 instance uniform vec2 light_pos = vec2(0.5, 0.3);
@@ -36,29 +38,35 @@ float local_brightness(vec2 uv) {
 }
 
 void fragment() {
-    vec2 uv = SCREEN_UV;
-    vec2 delta = (uv - light_pos) * density / float(samples);
+	if (!shaders_enabled) {
+		discard;
+	}
+	else {
+	
+	    vec2 uv = SCREEN_UV;
+	    vec2 delta = (uv - light_pos) * density / float(samples);
 
-    vec3 color = vec3(0.0);
-    float illumination = 1.0;
-    vec2 coord = uv;
+	    vec3 color = vec3(0.0);
+	    float illumination = 1.0;
+	    vec2 coord = uv;
 
-    for (int i = 0; i < samples; i++) {
-        coord -= delta;
+	    for (int i = 0; i < samples; i++) {
+	        coord -= delta;
 
-        vec3 sample_col = texture(SCREEN_TEXTURE, coord).rgb;
+	        vec3 sample_col = texture(SCREEN_TEXTURE, coord).rgb;
 
-        // only keep bright areas
-        float lum = local_brightness(coord);
-        float mask = smoothstep(threshold, 1.0, lum);
-        sample_col *= mask;
+	        // only keep bright areas
+	        float lum = local_brightness(coord);
+	        float mask = smoothstep(threshold, 1.0, lum);
+	        sample_col *= mask;
 
-        sample_col *= illumination * weight;
-        color += sample_col;
+	        sample_col *= illumination * weight;
+	        color += sample_col;
 
-        illumination *= decay;
-    }
+	        illumination *= decay;
+	    }
 
-    COLOR.rgb = color * exposure;
-    COLOR.a = 1.0;
+	    COLOR.rgb = color * exposure;
+	    COLOR.a = 1.0;
+	}
 }

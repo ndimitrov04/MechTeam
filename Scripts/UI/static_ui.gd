@@ -74,7 +74,7 @@ func display_minigame_result(victory : bool, loss_reason = 0):
 		win.play()
 	else:
 		if loss_reason == 0:
-			minigame_result.text = "Minigame Failure..."
+			minigame_result.text = "Insufficient Energy!"
 		elif loss_reason == 1:
 			minigame_result.text = "Failure! Couldn't hold on!"
 		minigame_result.add_theme_color_override("font_color", Color("red"))

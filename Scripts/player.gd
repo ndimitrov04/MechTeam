@@ -19,6 +19,7 @@ extends CharacterBody2D
 
 @onready var mech = $"../Mech"
 @onready var game_over = $"../GUI/Control/GameOver"
+@onready var static_ui = $"../GUI/Control/StaticUI"
 
 @onready var minigames = $"../GUI/Control/Minigames"
 
@@ -109,6 +110,9 @@ func _physics_process(delta):
 		add_child(bullet_instance)
 		bullet_instance.global_position = shootpoint.global_position
 		bullet_instance.global_rotation = shootpoint.global_rotation
+		if sprite.flip_h:
+			bullet_instance.sprite.flip_h = true
+			bullet_instance.sprite.flip_v = true
 		on_cooldown = true
 		gun_cooldown.start()
 

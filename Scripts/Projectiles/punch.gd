@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var timer: Timer = $Timer
 @onready var hurtbox: CollisionShape2D = $Hurtbox
+@onready var sprite: AnimatedSprite2D = $Sprite
 
 @onready var SPEED : int = get_meta("speed")
 
@@ -17,6 +18,7 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	timer.timeout.connect(_on_timeout)
 	timer.start(lifetime)
+	sprite.play("miss")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -37,6 +39,7 @@ func _on_body_entered(body):
 		#print("Destroying" + body.name)
 	elif body.has_method("take_damage"):
 		body.take_damage(damage_value, null, 0)
+		sprite.play("hit")
 		
 
 func flash_collisions():

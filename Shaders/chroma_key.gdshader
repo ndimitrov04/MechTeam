@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+global uniform bool shaders_enabled;
+
 uniform vec4 key_color = vec4(0,1,0,1);
 uniform float similarity : hint_range(0.0,1.0) = 0.4;
 uniform float smoothness : hint_range(0.00,1.0) = 0.08;
@@ -29,5 +31,5 @@ vec4 ProcessChromaKey(sampler2D tex,vec2 texCoord) {
 }
 
 void fragment() {
-  COLOR = ProcessChromaKey(TEXTURE, UV);
+	COLOR = ProcessChromaKey(TEXTURE, UV);
 }

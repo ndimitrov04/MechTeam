@@ -116,7 +116,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"punch",
-"speed": 16.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -130,7 +130,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"punch_run",
-"speed": 16.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -211,6 +211,7 @@ shape = SubResource("RectangleShape2D_ynf5e")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=495108632]
 material = SubResource("ShaderMaterial_3smsa")
 sprite_frames = SubResource("SpriteFrames_hibaj")
+animation = &"punch"
 autoplay = "default"
 
 [node name="Listener" type="AudioListener2D" parent="." unique_id=1278853592]

@@ -135,6 +135,7 @@ enum planets {NEOS, GAIA, TERRA, SELENE, DURANTE}
 @onready var collected_logs = []
 
 @onready var post_fx_enabled = true
+@onready var shaders_enabled = true
 
 @onready var terrain_test : bool = false
 
@@ -144,7 +145,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	ProjectSettings.set_setting("shader_globals/shaders_enabled", shaders_enabled)
+	RenderingServer.global_shader_parameter_set("shaders_enabled", shaders_enabled)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_terrain_test"):
