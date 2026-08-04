@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="MechTeam"
-config/version="0.501"
+config/version="0.51"
 run/main_scene="uid://m4q4cm7li360"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/use_filter=false
@@ -26,6 +26,7 @@ config/windows_native_icon="res://CustomResources/meta/mr.ico"
 [audio]
 
 buses/default_bus_layout="uid://qhe3qgmosvnd"
+driver/output_latency=80
 
 [autoload]
 
@@ -194,7 +195,8 @@ debug_new_object={
 
 [physics]
 
-2d/solver/solver_iterations=24
+2d/run_on_separate_thread=true
+3d/physics_engine="Dummy"
 
 [rendering]
 
