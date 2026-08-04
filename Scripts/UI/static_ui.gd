@@ -40,7 +40,9 @@ func _process(_delta):
 	else:
 		hp_label.text = "Player Health: " + str(int(player.hp)) + "\nMech Health: " + str(int(mech.hp))
 		en_label.text = "Energy: " + str(mech.energy)
-
+		
+@onready var aim_camera: SubViewportContainer = $CameraPanel/AimCamera
+@onready var mech_camera: SubViewportContainer = $CameraPanel/MechCamera
 func _unhandled_input(event):
 	if event.is_action_pressed("show_cameras"):
 		if camera_panel.position.y <= initial_camera_panel_position.y:
@@ -49,12 +51,18 @@ func _unhandled_input(event):
 			tween.set_trans(Tween.TRANS_SINE)
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(camera_panel, "position:y", initial_camera_panel_position.y + camera_panel.size.y, 1)
+			tween.finished.connect(func():
+				aim_camera.hide()
+				mech_camera.hide()
+			)
 		else:
 			# Slide panel from off screen (up) to initial position
 			var tween = create_tween()
 			tween.set_trans(Tween.TRANS_SINE)
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(camera_panel, "position:y", initial_camera_panel_position.y, 1)
+			aim_camera.show()
+			mech_camera.show()
 
 func set_status(message : String):
 	status.text = "Status\n" + message
