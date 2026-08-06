@@ -17,20 +17,19 @@ func spawn_minigame(game_object):
 	add_child(game_scene)
 	game_scene.start()
 
-func start_minigame(mname : String, controlled_module):
+func start_minigame(_mname : String, controlled_module):
 	print("Minigames: " + controlled_module.name)
 	current_module = controlled_module
 	print("current_module: " + current_module.name)
 	win()
-	return
 	# Do not play minigames.
-	match mname:
-		"quicktime_arrow":
-			spawn_minigame(quicktime_arrow)
-		"precission_target":
-			spawn_minigame(precission_target)
-		_:
-			print("No such minigame exists.")
+	#match mname:
+		#"quicktime_arrow":
+			#spawn_minigame(quicktime_arrow)
+		#"precission_target":
+			#spawn_minigame(precission_target)
+		#_:
+			#print("No such minigame exists.")
 
 func end_minigame():
 	current_module = null

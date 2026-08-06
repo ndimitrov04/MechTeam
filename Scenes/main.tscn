@@ -779,6 +779,7 @@ position = Vector2(-4, 0)
 shape = SubResource("WorldBoundaryShape2D_3pmx8")
 
 [node name="NavigationRegion" parent="." unique_id=831838858 instance=ExtResource("12_7k868")]
+position = Vector2(0, -592)
 rebake_period = 0.5
 
 [node name="PostFX" parent="." unique_id=748460950 instance=ExtResource("6_fevyy")]

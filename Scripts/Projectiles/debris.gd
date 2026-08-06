@@ -28,7 +28,6 @@ var explosion_sounds = [EXPLOSION_01,EXPLOSION_02,EXPLOSION_03,EXPLOSION_04,
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	body_entered.connect(_on_body_entered)
 	timer.timeout.connect(_on_timeout)
 	explosion = explosions.pick_random().instantiate()
 	add_sibling(explosion)
@@ -36,15 +35,11 @@ func _ready():
 	explosion.global_position = self.global_position
 	sfx.stream = explosion_sounds.pick_random()
 	sfx.play()
+	timer.start(2.5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	pass
-
-func _on_body_entered(_body):
-	sfx.play()
-	if timer.is_stopped():
-		timer.start(1.5)
 
 func _on_timeout():
 	queue_free()

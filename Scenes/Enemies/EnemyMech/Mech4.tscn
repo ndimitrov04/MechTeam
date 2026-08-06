@@ -26,6 +26,7 @@ animations = [{
 [node name="EnemyMech4" type="RigidBody2D" unique_id=133330300]
 collision_layer = 8192
 collision_mask = 8192
+max_contacts_reported = 6
 script = ExtResource("1_gddkl")
 metadata/hp = 20
 metadata/choice_ranges = PackedByteArray("TVVa")

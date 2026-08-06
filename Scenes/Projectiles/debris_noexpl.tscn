@@ -323,9 +323,7 @@ sources/0 = SubResource("TileSetAtlasSource_uvv40")
 [node name="DebrisNoexpl" type="RigidBody2D" unique_id=1164508640]
 z_index = 24
 collision_layer = 16
-collision_mask = 16
-continuous_cd = 1
-contact_monitor = true
+collision_mask = 0
 max_contacts_reported = 1
 constant_torque = 400.0
 script = ExtResource("1_oxv8c")

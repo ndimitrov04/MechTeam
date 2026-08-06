@@ -16,6 +16,8 @@ var explosions : bool = true
 
 var total_cells_used : int = 1
 
+@onready var tilemap_max_x : int = 99999
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#for child in get_parent().get_children():
@@ -26,7 +28,8 @@ func _ready():
 	await get_tree().create_timer(0.2).timeout
 	collision_child_index_start = get_parent().get_child_count()
 	await get_tree().create_timer(0.2).timeout
-	regenerate_frame_collision() # Extremely expensive :(
+	tilemap_shortened()
+	regenerate_frame_collision()
 	total_cells_used = get_used_cells().size()
 	print("Frame used: " + str(total_cells_used))
 
@@ -53,7 +56,7 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	var collided_tile_atlas = self.get_cell_atlas_coords(collided_tile_pos)
 	# Destroy collided tile at tilemap coords
 	self.set_cell(collided_tile_pos, -1)
-	destroy_frame_collision_cell(collided_tile_pos)
+	#destroy_frame_collision_cell(collided_tile_pos)
 	# Spawn debris
 	var debris_instance = DEBRIS.instantiate()
 	main.add_child(debris_instance)
@@ -70,7 +73,8 @@ func take_damage(damage_value : int, collision : KinematicCollision2D, knockback
 	var predictable_knockback = true_knockback * Vector2(1, 0.1)  # Eliminate wild upward momentum
 	get_parent().apply_impulse(predictable_knockback, collision_pos_global)
 	# Regenerate physics body's hitboxes
-	# regenerate_frame_collision()
+	if tilemap_shortened():
+		regenerate_frame_collision()
 
 # Helper function for death handling.
 # To be used only by break_all_tiles()
@@ -127,24 +131,23 @@ func break_all_tiles():
 		else:
 			_remove_random_tile()
 
-## Generates static hitboxes based on tile data.
-## For use as a physics body's hitbox children. 
-## Extremely expensive :(
 func regenerate_frame_collision():
-	# Clear physics collision shapes
 	for i in range(collision_child_index_start, get_parent().get_child_count()):
 		get_parent().get_child(i).queue_free()
-	
-	# Generate physics collision shapes
-	var cells = self.get_used_cells()
-	for cell_coord in cells:
-		var collider_instance = PHYSICS_COLLIDER.instantiate()
-		get_parent().add_child(collider_instance)
-		collider_instance.position = self.map_to_local(cell_coord)
-		collider_instance.cell_coordinates = cell_coord
-	
-	# Regenerate loacl navmesh
-	#navigation_region.bake_navigation_polygon()
+
+	var rect = get_used_rect()
+	if rect == Rect2i():
+		return
+
+	var tile_size = tile_set.tile_size
+	var shape = CollisionShape2D.new()
+	var box = RectangleShape2D.new()
+
+	box.size = Vector2(rect.size.x * tile_size.x, rect.size.y * tile_size.y)
+	shape.shape = box
+	shape.debug_color = Color(1.0, 0.5, 0.0, 0.35)
+	shape.position = map_to_local(rect.get_center())
+	get_parent().add_child(shape)
 
 func destroy_frame_collision_cell(cell_coords : Vector2i):
 	for i in range(collision_child_index_start, get_parent().get_child_count()):
@@ -152,3 +155,11 @@ func destroy_frame_collision_cell(cell_coords : Vector2i):
 		if current_collider.cell_coordinates != cell_coords:
 			continue
 		current_collider.queue_free()
+
+func tilemap_shortened():
+	var rect = self.get_used_rect()
+	var rightmost_x = rect.position.x + rect.size.x - 1
+	if rightmost_x < tilemap_max_x:
+		tilemap_max_x = rightmost_x
+		return true
+	return false

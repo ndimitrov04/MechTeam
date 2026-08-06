@@ -51,10 +51,9 @@ func _ready():
 	# Load choice ranges of current mech
 	if has_meta("choice_ranges"):
 		choice_ranges = get_meta("choice_ranges")
-	
 	action_decision.timeout.connect(_on_action_decision_timeout)
+	body_entered.connect(_on_body_entered)
 	await get_tree().create_timer(0.1).timeout
-	
 	max_hp = base_hp * level_multiplier
 	hp = max_hp
 	weight = base_weight + frame.get_used_cells().size() / 16
@@ -237,3 +236,15 @@ func airstrike():
 # Permanent brake
 func _on_mov_control_x_axis_interacted_with() -> void:
 	perma_brake = true
+
+@onready var can_collide : bool = true
+func _on_body_entered(body):
+	if not can_collide:
+		return
+	#print("ENEMY CRASHED INTO: " + str(body.name))
+	if body.name == "Mech":
+		self.apply_central_impulse(Vector2(15000, 0))
+		self.take_damage(5)
+		can_collide = false
+		await get_tree().create_timer(0.5).timeout
+		can_collide = true

@@ -17,7 +17,7 @@ func _ready() -> void:
 	sub_viewport.world_2d = get_viewport().world_2d
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func show_action(target_position : Vector2, damage_dealt : int = 0):

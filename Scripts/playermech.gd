@@ -56,6 +56,7 @@ func _ready():
 		in_editor = true
 	energy_regen.timeout.connect(_regenerate_energy)
 	jump_timer.timeout.connect(_jump_timeout)
+	body_entered.connect(_on_body_entered)
 	if has_node("MalfunctionTimer"):
 		malfunction_timer = $MalfunctionTimer
 		malfunction_timer.timeout.connect(_malfunction)
@@ -319,6 +320,32 @@ func _malfunction():
 		
 	@warning_ignore("narrowing_conversion")
 	malfunction_timer.start(randi_range(malfunction_min, malfunction_max))
+
+@onready var can_collide : bool = true
+func _on_body_entered(body):
+	if not can_collide:
+		return
+	#print("PLAYER CRASHED INTO: " + str(body.name))
+	if "IS_ENEMY" in body:
+		print(str(body.name) + " has IS_ENEMY")
+		if body.IS_ENEMY:
+			print(str(body.name) + " IS_ENEMY true")
+			# Take knockback and stop mech movement, make sure mech doesn't jump a lot
+			self.direction = 0
+			self.get_parent().player.camera.trauma = 1.5
+			# Take central body knockback
+			self.apply_central_impulse(Vector2(-150000, 0))
+			self.take_damage(35)
+			# Take wheel knockback
+			for object in self.wheels.get_children():
+				if object.has_meta("is_movement"):
+					object.physics_material_override.friction = 0.0
+					object.apply_central_impulse(Vector2(-50000, 0))
+					await get_tree().create_timer(0.1).timeout
+					object.physics_material_override.friction = 0.15
+			can_collide = false
+			await get_tree().create_timer(0.5).timeout
+			can_collide = true
 
 func die():
 	if destroyed:
