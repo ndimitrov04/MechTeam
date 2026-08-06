@@ -48,9 +48,7 @@ func _unhandled_input(event):
 			mech.direction = direction
 			engage.play()
 			# Tutorial functionality
-			if first_interaction:
-				interacted_with.emit()
-				first_interaction = false
+			interacted_with.emit()
 
 func _on_body_entered(body):
 	if body.name == "Player":
@@ -58,10 +56,13 @@ func _on_body_entered(body):
 		match direction:
 			0:
 				interaction_label.text = "Brake"
+				show_interaction_prompt(true, "Press F to Brake")
 			-1:
 				interaction_label.text = "Go Left"
+				show_interaction_prompt(true, "Press F to Go Left")
 			1:
 				interaction_label.text = "Go Right"
+				show_interaction_prompt(true, "Press F to Go Right")
 		interaction_label.visible = true
 		player_in_range = true
 
@@ -69,3 +70,21 @@ func _on_body_exited(body):
 	if body.name == "Player":
 		interaction_label.visible = false
 		player_in_range = false
+		var direction = get_meta("direction")
+		match direction:
+			0:
+				show_interaction_prompt(false, "Press F to Brake")
+			-1:
+				show_interaction_prompt(false, "Press F to Go Left")
+			1:
+				show_interaction_prompt(false, "Press F to Go Right")
+
+func show_interaction_prompt(shown : bool, interaction_prompt : String):
+	if shown:
+		mech.get_parent().minigame_result.modulate = Color(1,1,1,1)
+		mech.get_parent().minigame_result.add_theme_color_override("font_color", Color("6a7cb4ff"))
+		mech.get_parent().minigame_result.text = interaction_prompt
+		mech.get_parent().minigame_result.show()
+	else:
+		if mech.get_parent().minigame_result.text == interaction_prompt:
+			mech.get_parent().minigame_result.hide()

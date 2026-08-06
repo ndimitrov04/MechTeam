@@ -36,8 +36,20 @@ func _on_body_entered(body):
 	if body.name == "Player":
 		interaction_label.visible = true
 		player_in_range = true
+		show_interaction_prompt(true, "Press F to Jump")
 
 func _on_body_exited(body):
 	if body.name == "Player":
 		interaction_label.visible = false
 		player_in_range = false
+		show_interaction_prompt(false, "Press F to Jump")
+
+func show_interaction_prompt(shown : bool, interaction_prompt : String):
+	if shown:
+		mech.get_parent().minigame_result.modulate = Color(1,1,1,1)
+		mech.get_parent().minigame_result.add_theme_color_override("font_color", Color("6a7cb4ff"))
+		mech.get_parent().minigame_result.text = interaction_prompt
+		mech.get_parent().minigame_result.show()
+	else:
+		if mech.get_parent().minigame_result.text == interaction_prompt:
+			mech.get_parent().minigame_result.hide()

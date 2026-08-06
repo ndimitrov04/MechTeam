@@ -25,6 +25,21 @@ func _ready() -> void:
 	fullscreen.toggled.connect(_on_fullscreen_toggled)
 	shaders.toggled.connect(_on_shaders_toggled)
 	clear_data.pressed.connect(_show_clear_confirm)
+	
+	match OS.get_name():
+		"Windows":
+			print("Running on Windows...")
+			if RenderingServer.get_video_adapter_type() == RenderingDevice.DEVICE_TYPE_DISCRETE_GPU:
+				PlayerData.post_fx_enabled = true
+			else:
+				PlayerData.post_fx_enabled = false
+			PlayerData.shaders_enabled = true
+		"Web":
+			print("Running on Web...")
+			PlayerData.post_fx_enabled = false
+			PlayerData.shaders_enabled = false
+			
+	
 	update_fullscreen_switches()
 	if PlayerData.post_fx_enabled:
 		post_fx.set_pressed_no_signal(true)
@@ -88,7 +103,7 @@ func _on_fullscreen_toggled(is_enabled):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		@warning_ignore("integer_division")
 		DisplayServer.window_set_size(Vector2i(1920/2, 1080/2))
-	update_fullscreen_switches()
+	#update_fullscreen_switches()
 
 func _show_clear_confirm():
 	DirAccess.remove_absolute("user://mechteam_save.tres")

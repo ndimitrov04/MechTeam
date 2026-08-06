@@ -132,7 +132,7 @@ enum planets {NEOS, GAIA, TERRA, SELENE, DURANTE}
 	... and 15 years later, your story began."]
 ]
 
-@onready var collected_logs = []
+@onready var collected_logs : Array = []
 
 @onready var post_fx_enabled = true
 @onready var shaders_enabled = true

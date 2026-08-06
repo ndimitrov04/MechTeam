@@ -40,17 +40,23 @@ func _unhandled_input(event):
 				last_zoom = player.zoom
 				player.zoom = Vector2(1,1)
 				engage.play()
+				show_interaction_prompt(true, "Press F to Confirm Target")
 			else:
 				player.aim_mode = false
 				player.zoom = last_zoom
 				aim_set.emit()
 				disengage.play()
+				show_interaction_prompt(true, "Press F to Aim")
 
 func _on_body_entered(body):
 	if body.name == "Player":
 		interaction_label.visible = true
 		player_in_range = true
 		player = body
+		if not player.aim_mode:
+			show_interaction_prompt(true, "Press F to Aim")
+		else:
+			show_interaction_prompt(true, "Press F to Confirm Target")
 
 func _on_body_exited(body):
 	if body.name == "Player":
@@ -60,3 +66,15 @@ func _on_body_exited(body):
 			player.zoom = last_zoom
 		player_in_range = false
 		player = null
+		show_interaction_prompt(false, "Press F to Aim")
+		show_interaction_prompt(false, "Press F to Confirm Target")
+
+func show_interaction_prompt(shown : bool, interaction_prompt : String):
+	if shown:
+		mech.get_parent().minigame_result.modulate = Color(1,1,1,1)
+		mech.get_parent().minigame_result.add_theme_color_override("font_color", Color("6a7cb4ff"))
+		mech.get_parent().minigame_result.text = interaction_prompt
+		mech.get_parent().minigame_result.show()
+	else:
+		if mech.get_parent().minigame_result.text == interaction_prompt:
+			mech.get_parent().minigame_result.hide()

@@ -149,16 +149,20 @@ func _ready():
 	enemy_mech_8.ai = false
 	enemy_mech_8.max_hp = 999
 	enemy_mech_8.hp = 999
-	player.hp = 100
 	GlobalMusic.queue_track("res://Audio/Music/Bogart VGM - Scifi Concentration (looped).mp3", 2)
 
 func _process(_delta):
+	if player.hp < 3:
+		player.hp = 2
+	
+	if mech.hp < 41:
+		mech.hp = 40
+	
 	if enemies_left <= 0 and not triggered:
 		#music.stream = preload("uid://bfjye4qxke0i")
 		#music.play()
 		end_stage()
 		triggered = true
-		
 	
 	if enemies_left <= 0:
 		minigame_result.modulate = Color(1,1,1,1)

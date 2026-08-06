@@ -1861,10 +1861,12 @@ position = Vector2(416, 0)
 collision_layer = 8192
 collision_mask = 8192
 physics_material_override = SubResource("PhysicsMaterial_dju3d")
+contact_monitor = true
+max_contacts_reported = 3
 script = ExtResource("9_c4ito")
 metadata/prebuilt = true
 metadata/constant_weight = 250.0
-metadata/custom_hp = 950
+metadata/custom_hp = 200
 
 [node name="Background" type="TileMapLayer" parent="Mech" unique_id=151788606]
 z_index = -1
@@ -3278,6 +3280,7 @@ max_polyphony = 3
 bus = &"SFX"
 
 [node name="TutorialUI" type="CanvasLayer" parent="." unique_id=816512826]
+layer = 2
 script = ExtResource("137_jlbk0")
 
 [node name="Control" type="Control" parent="TutorialUI" unique_id=573836056]

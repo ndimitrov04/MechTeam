@@ -1295,6 +1295,7 @@ positional_shadow_atlas_quad_2 = 0
 positional_shadow_atlas_quad_3 = 0
 oversampling = false
 size = Vector2i(600, 1080)
+render_target_update_mode = 4
 
 [node name="ActionCamera" type="Camera2D" parent="GUI/Control/StaticUI/ActionPanel/ActionCamera/SubViewport" unique_id=786440489]
 top_level = true
@@ -1440,6 +1441,7 @@ max_polyphony = 3
 bus = &"SFX"
 
 [node name="TutorialUI" type="CanvasLayer" parent="." unique_id=1535545884]
+layer = 2
 script = ExtResource("137_gsu8y")
 
 [node name="Control" type="Control" parent="TutorialUI" unique_id=1513145920]
