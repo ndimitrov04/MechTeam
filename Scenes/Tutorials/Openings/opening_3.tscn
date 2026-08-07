@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://uxt82jfkcjx8" path="res://Scenes/MovementObjects/wheel_1.tscn" id="14_ue4vi"]
 [ext_resource type="Script" uid="uid://rxymwn878m5s" path="res://Scripts/action_viewport.gd" id="38_61csc"]
 [ext_resource type="Script" uid="uid://cfcgqox3nhdhw" path="res://Scripts/highlight.gd" id="40_syhtb"]
+[ext_resource type="Texture2D" uid="uid://cftwij6cytqli" path="res://Images/UI/TutorialClips/0.png" id="47_3mwmk"]
 [ext_resource type="Texture2D" uid="uid://5grsa3780ohn" path="res://Images/Characters/Portraits/Sarge.png" id="51_dqo7s"]
 [ext_resource type="PackedScene" uid="uid://dkk6dac4fqg53" path="res://Scenes/Controllers/mov_control_x_axis.tscn" id="69_twwr2"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="99_o0vq3"]
@@ -74,7 +75,7 @@ normal = Vector2(-1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3pmx8"]
 normal = Vector2(1, 0)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3pmx8"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_adf0e"]
 texture = ExtResource("114_aa2nc")
 0:0/0 = 0
 1:0/0 = 0
@@ -373,7 +374,7 @@ texture = ExtResource("114_aa2nc")
 17:17/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_hibaj"]
-sources/0 = SubResource("TileSetAtlasSource_3pmx8")
+sources/0 = SubResource("TileSetAtlasSource_adf0e")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbgmd"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -1483,6 +1484,24 @@ offset_right = 616.0
 offset_bottom = 264.0
 texture = ExtResource("51_dqo7s")
 expand_mode = 1
+
+[node name="Clip1" type="TextureRect" parent="TutorialUI/Control" unique_id=1424971791]
+visible = false
+layout_mode = 0
+offset_left = 1295.0
+offset_top = 280.0
+offset_right = 1603.0
+offset_bottom = 534.0
+texture = ExtResource("47_3mwmk")
+
+[node name="Clip2" type="TextureRect" parent="TutorialUI/Control" unique_id=223014565]
+visible = false
+layout_mode = 0
+offset_left = 1600.0
+offset_top = 280.0
+offset_right = 1908.0
+offset_bottom = 534.0
+texture = ExtResource("47_3mwmk")
 
 [node name="GUICooldown" type="Timer" parent="TutorialUI" unique_id=547574285]
 one_shot = true

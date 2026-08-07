@@ -128,6 +128,7 @@
 [ext_resource type="Script" uid="uid://b6bs5bi7wy45h" path="res://Scripts/minigames.gd" id="131_nw712"]
 [ext_resource type="Script" uid="uid://d37dfj32lv50m" path="res://Scripts/game_over.gd" id="132_juouw"]
 [ext_resource type="PackedScene" uid="uid://yjvcojipbr0l" path="res://Scenes/ver_num.tscn" id="133_3mkf7"]
+[ext_resource type="Texture2D" uid="uid://cftwij6cytqli" path="res://Images/UI/TutorialClips/0.png" id="134_f04jf"]
 [ext_resource type="AudioStream" uid="uid://cx6vcki7yrvo5" path="res://Audio/SFX/UI/retro_beep_04.ogg" id="134_jricm"]
 [ext_resource type="AudioStream" uid="uid://rf8mda10gl8x" path="res://Audio/SFX/UI/retro_beep_02.ogg" id="135_dx4wm"]
 [ext_resource type="AudioStream" uid="uid://bh1sj01j1b2mb" path="res://Audio/SFX/UI/retro_beep_03.ogg" id="136_nwp4j"]
@@ -3322,6 +3323,24 @@ offset_right = 616.0
 offset_bottom = 264.0
 texture = ExtResource("138_hl3dw")
 expand_mode = 1
+
+[node name="Clip1" type="TextureRect" parent="TutorialUI/Control" unique_id=1067899112]
+visible = false
+layout_mode = 0
+offset_left = 1295.0
+offset_top = 280.0
+offset_right = 1603.0
+offset_bottom = 534.0
+texture = ExtResource("134_f04jf")
+
+[node name="Clip2" type="TextureRect" parent="TutorialUI/Control" unique_id=1657192950]
+visible = false
+layout_mode = 0
+offset_left = 1600.0
+offset_top = 280.0
+offset_right = 1908.0
+offset_bottom = 534.0
+texture = ExtResource("134_f04jf")
 
 [node name="GUICooldown" type="Timer" parent="TutorialUI" unique_id=1824407848]
 one_shot = true

@@ -169,9 +169,9 @@ func die():
 func update_decision_timer():
 	var crew_capacity = spawners.get_child_count()
 	var crew_count = clamp(0, crew_capacity, npcs.get_child_count())
-	print((float(min(6, crew_capacity))/float(min(6,crew_count + 1))) * 1.5 - (PlayerData.current_stage * 0.05))
-	if (float(min(6, crew_capacity))/float(min(6,crew_count + 1))) * 1.5 - (PlayerData.current_stage * 0.05) <= 0:
-		breakpoint
+	#print((float(min(6, crew_capacity))/float(min(6,crew_count + 1))) * 1.5 - (PlayerData.current_stage * 0.05))
+	#if (float(min(6, crew_capacity))/float(min(6,crew_count + 1))) * 1.5 - (PlayerData.current_stage * 0.05) <= 0:
+		#breakpoint
 	action_decision.wait_time = (float(min(6, crew_capacity))/float(min(6,crew_count + 1))) * 1.5 - (PlayerData.current_stage * 0.05)
 
 func _on_action_decision_timeout():

@@ -39,6 +39,10 @@ extends Control
 @onready var name_label = $InfoPanel/NameLabel
 @onready var desc_label = $InfoPanel/DescLabel
 
+@onready var camera = $"../../Camera"
+@onready var prebuilt_label: Label = $PrebuiltLabel
+@onready var prebuilts: TabContainer = $Prebuilts
+
 # Tutorial hook
 signal left_interacted_with()
 
@@ -117,6 +121,15 @@ func _ready():
 	update_mech_scroll()
 	update_instruction(build_stage)
 	_on_block_list_item_clicked(0, null, null)
+	info_panel.hide()
+	if PlayerData.current_stage == 1:
+		camera.position = Vector2(696, 324)
+		prebuilts.show()
+		prebuilt_label.show()
+	else:
+		camera.position = Vector2(580, 324)
+		prebuilts.hide()
+		prebuilt_label.hide()
 	
 	# Item tooltips
 	# Blocks
@@ -440,7 +453,7 @@ func _on_previous_stage_pressed():
 			#previous_mech.show()
 			clear_field.show()
 			#new_mech.show()
-			debug_mech.show()
+			#debug_mech.show()
 		2:
 			pass
 	build_stage -= 1
