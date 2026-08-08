@@ -54,6 +54,7 @@
 [ext_resource type="AudioStream" uid="uid://dh3ys63gh4ql6" path="res://Audio/SFX/UI/gravel.ogg" id="56_x2lnl"]
 [ext_resource type="AudioStream" uid="uid://2oqih8e4pms6" path="res://Audio/SFX/UI/metal_button_press1.wav" id="57_qki06"]
 [ext_resource type="AudioStream" uid="uid://hrxvo08tjfs7" path="res://Audio/SFX/UI/metal_swing1.wav" id="58_dev7e"]
+[ext_resource type="Script" uid="uid://d4g2acixqky06" path="res://Scripts/skip_tutorial.gd" id="59_3jej2"]
 [ext_resource type="AudioStream" uid="uid://dkbxm1b82vxc3" path="res://Audio/SFX/UI/mouseclick1.wav" id="59_h3exv"]
 [ext_resource type="AudioStream" uid="uid://bgyn152peon2x" path="res://Audio/SFX/UI/unit_ready.ogg" id="60_d5u76"]
 [ext_resource type="AudioStream" uid="uid://c0xkx2vswbwu4" path="res://Audio/SFX/UI/unit_canceled.ogg" id="61_jlgim"]
@@ -709,6 +710,7 @@ tags = {
 
 [node name="Editor" type="Node2D" unique_id=337926572]
 script = ExtResource("1_8678q")
+metadata/is_opening = true
 
 [node name="Background" parent="." unique_id=1645842300 instance=ExtResource("2_5r7fn")]
 
@@ -1775,6 +1777,18 @@ text = "Welcome to mechbuilding training!"
 horizontal_alignment = 2
 autowrap_mode = 3
 
+[node name="SkipTutorial" type="Button" parent="TutorialUI" unique_id=645449936]
+offset_left = 743.0
+offset_top = 33.0
+offset_right = 1024.0
+offset_bottom = 88.0
+tooltip_text = "You don't have to build mechs if you don't want to, 
+there are prebuilt mechs you can buy."
+theme = ExtResource("15_mp8b3")
+theme_override_font_sizes/font_size = 32
+text = "Skip Tutorial"
+script = ExtResource("59_3jej2")
+
 [connection signal="placed_object" from="." to="." method="_on_placed_object"]
 [connection signal="tab_changed" from="GUI/Control/TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Blocks" to="GUI/Control" method="_on_block_list_item_clicked"]
@@ -1794,3 +1808,4 @@ autowrap_mode = 3
 [connection signal="pressed" from="GUI/Control/NewMech" to="GUI/Control" method="_on_new_mech_pressed"]
 [connection signal="pressed" from="GUI/Control/ClearField" to="GUI/Control" method="_on_clear_field_pressed"]
 [connection signal="pressed" from="GUI/Control/DebugMech" to="GUI/Control/DebugMech" method="_on_pressed"]
+[connection signal="pressed" from="TutorialUI/SkipTutorial" to="TutorialUI/SkipTutorial" method="_on_pressed"]

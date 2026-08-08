@@ -97,6 +97,7 @@
 [ext_resource type="Script" uid="uid://blpdd1g7y67gh" path="res://Scripts/Enemies/enemy.gd" id="101_speox"]
 [ext_resource type="PackedScene" uid="uid://bxxxinj6ti4h2" path="res://Scenes/Misc/destructible_background.tscn" id="102_rwxl3"]
 [ext_resource type="PackedScene" uid="uid://d24cenbiacnj3" path="res://Scenes/Misc/destructible_frame.tscn" id="103_1sgso"]
+[ext_resource type="Script" uid="uid://d3qfmbwkexqqe" path="res://Scripts/Misc/player_detector.gd" id="103_hwjd0"]
 [ext_resource type="Script" uid="uid://c65hpvf8mn4fl" path="res://Scripts/Behaviors/preset_enemy_spawning.gd" id="104_2200v"]
 [ext_resource type="Material" uid="uid://coh3po53fjlnr" path="res://CustomResources/mech_bg_windowed.tres" id="105_8cxk7"]
 [ext_resource type="TileSet" uid="uid://cidmnbvfhbfkd" path="res://CustomResources/enemy_frame_tileset.tres" id="106_ve3b0"]
@@ -1155,6 +1156,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j286u"]
+size = Vector2(1744, 984)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_u50mg"]
 animations = [{
 "frames": [{
@@ -1186,6 +1190,9 @@ colors = PackedColorArray(0, 0, 0, 0, 0.39308554, 0.3930855, 0.39308548, 0.87450
 gradient = SubResource("Gradient_fevyy")
 width = 256
 fill_from = Vector2(0.012237762, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f04jf"]
+size = Vector2(264, 8368)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3pmx8"]
 normal = Vector2(1, 0)
@@ -2556,6 +2563,13 @@ position = Vector2(48, 192)
 
 [node name="NPCs" type="Node2D" parent="EnemyMech4" unique_id=1123477044]
 
+[node name="PlayerDetector" type="Area2D" parent="EnemyMech4" unique_id=951004802]
+script = ExtResource("103_hwjd0")
+
+[node name="DetectionArea" type="CollisionShape2D" parent="EnemyMech4/PlayerDetector" unique_id=537600850]
+position = Vector2(-472, -116)
+shape = SubResource("RectangleShape2D_j286u")
+
 [node name="Crosshair" type="AnimatedSprite2D" parent="EnemyMech4" unique_id=746365311]
 modulate = Color(0.5294118, 1, 1, 1)
 z_index = 20
@@ -2648,6 +2662,14 @@ position = Vector2(560, -296)
 
 [node name="NPCs" type="Node2D" parent="EnemyMech8" unique_id=331077803]
 
+[node name="PlayerDetector" type="Area2D" parent="EnemyMech8" unique_id=1110312628]
+position = Vector2(448, 0)
+script = ExtResource("103_hwjd0")
+
+[node name="DetectionArea" type="CollisionShape2D" parent="EnemyMech8/PlayerDetector" unique_id=833148318]
+position = Vector2(-472, -116)
+shape = SubResource("RectangleShape2D_j286u")
+
 [node name="Crosshair" type="AnimatedSprite2D" parent="EnemyMech8" unique_id=1446669923]
 modulate = Color(0.5294118, 1, 1, 1)
 z_index = 20
@@ -2662,6 +2684,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="Foreground" type="Node2D" parent="." unique_id=1645455696]
+visible = false
 z_index = 999
 z_as_relative = false
 
@@ -2673,6 +2696,15 @@ offset_top = -4385.0
 offset_right = 6178.0
 offset_bottom = 1530.0
 texture = SubResource("GradientTexture2D_h1bgf")
+
+[node name="ScreenLimit" type="StaticBody2D" parent="Foreground/Parallax1/ScreenBorder" unique_id=518146638]
+position = Vector2(3744, 9314)
+collision_layer = 65535
+collision_mask = 65535
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax1/ScreenBorder/ScreenLimit" unique_id=271934725]
+position = Vector2(-2820, -5577)
+shape = SubResource("RectangleShape2D_f04jf")
 
 [node name="Parallax2" type="Parallax2D" parent="Foreground" unique_id=1076754031]
 
@@ -3351,6 +3383,8 @@ one_shot = true
 [connection signal="interacted_with" from="Mech/Controllers/Control3" to="." method="_on_control_3_interacted_with"]
 [connection signal="is_connected" from="Mech/Modules/Gun" to="." method="_on_gun_is_connected"]
 [connection signal="interacted_with" from="EnemyMech4/Controllers/MovControlXAxis" to="EnemyMech4" method="_on_mov_control_x_axis_interacted_with"]
+[connection signal="body_entered" from="EnemyMech4/PlayerDetector" to="EnemyMech4/PlayerDetector" method="_on_body_entered"]
+[connection signal="body_entered" from="EnemyMech8/PlayerDetector" to="EnemyMech8/PlayerDetector" method="_on_body_entered"]
 [connection signal="timeout" from="GUI/Control/StaticUI/ActionPanel/ActionTimeout" to="GUI/Control/StaticUI/ActionPanel/ActionCamera" method="_on_action_timeout_timeout"]
 [connection signal="visibility_changed" from="GUI/Control/GameOver" to="GUI/Control/GameOver" method="_on_visibility_changed"]
 [connection signal="pressed" from="GUI/Control/GameOver/Retry" to="GUI/Control/GameOver" method="_on_retry_pressed"]

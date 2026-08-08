@@ -63,8 +63,10 @@
 [ext_resource type="AudioStream" uid="uid://c0xkx2vswbwu4" path="res://Audio/SFX/UI/unit_canceled.ogg" id="42_fnvon"]
 [ext_resource type="Script" uid="uid://cmcr6odswnbo2" path="res://Scripts/Misc/PrebuiltMechs/prebuilt_button_1.gd" id="53_inyxq"]
 [ext_resource type="Texture2D" uid="uid://bn1vr45u70hyc" path="res://Images/UI/Prebuilts/prebuilt1.png" id="53_tx251"]
-[ext_resource type="Script" uid="uid://dj20eyw3s4cvg" path="res://Scenes/prebuilt_button_2.gd" id="54_54u4h"]
+[ext_resource type="Script" uid="uid://dj20eyw3s4cvg" path="res://Scripts/Misc/PrebuiltMechs/prebuilt_button_2.gd" id="54_54u4h"]
 [ext_resource type="Texture2D" uid="uid://dc10mrmrqwqdg" path="res://Images/UI/Prebuilts/prebuilt2.png" id="55_xfugj"]
+[ext_resource type="Texture2D" uid="uid://dyqupiq4e05rp" path="res://Images/UI/Prebuilts/prebuilt3.png" id="57_55u6w"]
+[ext_resource type="Script" uid="uid://c4dx5judyhyod" path="res://Scripts/Misc/PrebuiltMechs/prebuilt_button_3.gd" id="57_xfugj"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqcuy"]
 particle_flag_disable_z = true
@@ -2193,7 +2195,7 @@ tab_alignment = 2
 current_tab = 0
 tab_0/title = "   Edge   "
 tab_1/title = "Caladros"
-tab_2/title = "   ???   "
+tab_2/title = " Wedge "
 
 [node name="TabBar" type="TabBar" parent="GUI/Control/Prebuilts" unique_id=637283462]
 layout_mode = 2
@@ -2250,9 +2252,9 @@ texture = ExtResource("55_xfugj")
 
 [node name="Prebuilt2" type="Button" parent="GUI/Control/Prebuilts/TabBar2" unique_id=1748614399]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 21.0
 offset_top = 291.0
-offset_right = 162.5
+offset_right = 161.0
 offset_bottom = 335.0
 scale = Vector2(2, 2)
 theme_override_fonts/font = ExtResource("9_tgtas")
@@ -2282,23 +2284,25 @@ autowrap_mode = 3
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
-metadata/_tab_name = "   ???   "
+metadata/_tab_name = " Wedge "
 
 [node name="PrebuiltIMG" type="Sprite2D" parent="GUI/Control/Prebuilts/TabBar3" unique_id=232020693]
 position = Vector2(257, 147)
 scale = Vector2(0.43186492, 0.43186495)
+texture = ExtResource("57_55u6w")
 
 [node name="Prebuilt3" type="Button" parent="GUI/Control/Prebuilts/TabBar3" unique_id=1723799777]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 21.0
 offset_top = 291.0
-offset_right = 162.5
+offset_right = 161.0
 offset_bottom = 335.0
 scale = Vector2(2, 2)
 theme_override_fonts/font = ExtResource("9_tgtas")
-text = "Buy ???"
+text = "Buy Wedge"
 autowrap_mode = 3
 icon_alignment = 2
+script = ExtResource("57_xfugj")
 
 [node name="Data" type="Label" parent="GUI/Control/Prebuilts/TabBar3" unique_id=110591089]
 layout_mode = 1
@@ -2311,9 +2315,9 @@ offset_right = 399.32004
 offset_bottom = 401.0
 theme_override_fonts/font = ExtResource("9_tgtas")
 theme_override_font_sizes/font_size = 32
-text = "Cost: ???
-HP: ???
-EN: ???
+text = "Cost: 200
+HP: 110
+EN: 300
 
 "
 autowrap_mode = 3
@@ -2386,3 +2390,4 @@ bus = &"SFX"
 [connection signal="pressed" from="GUI/Control/DebugMech" to="GUI/Control/DebugMech" method="_on_pressed"]
 [connection signal="pressed" from="GUI/Control/Prebuilts/TabBar/Prebuilt1" to="GUI/Control/Prebuilts/TabBar/Prebuilt1" method="_on_pressed"]
 [connection signal="pressed" from="GUI/Control/Prebuilts/TabBar2/Prebuilt2" to="GUI/Control/Prebuilts/TabBar2/Prebuilt2" method="_on_pressed"]
+[connection signal="pressed" from="GUI/Control/Prebuilts/TabBar3/Prebuilt3" to="GUI/Control/Prebuilts/TabBar3/Prebuilt3" method="_on_pressed"]

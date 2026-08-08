@@ -122,14 +122,16 @@ func _ready():
 	update_instruction(build_stage)
 	_on_block_list_item_clicked(0, null, null)
 	info_panel.hide()
-	if PlayerData.current_stage == 1:
-		camera.position = Vector2(696, 324)
-		prebuilts.show()
-		prebuilt_label.show()
-	else:
-		camera.position = Vector2(580, 324)
-		prebuilts.hide()
-		prebuilt_label.hide()
+	camera.position = Vector2(580, 324)
+	if not editor.has_meta("is_opening"):
+		if PlayerData.current_stage == 1:
+			camera.position = Vector2(696, 324)
+			prebuilts.show()
+			prebuilt_label.show()
+		else:
+			camera.position = Vector2(580, 324)
+			prebuilts.hide()
+			prebuilt_label.hide()
 	
 	# Item tooltips
 	# Blocks

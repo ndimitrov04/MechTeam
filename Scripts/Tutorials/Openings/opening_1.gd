@@ -92,13 +92,13 @@ func tutorial_script():
 			triggers[1] = true
 		if triggers[1]:
 			trigger_engaged = true
+	elif not triggers[2]:
+		highlight_aim.show()
+		highlight_2.show()
 		tutorial_ui.load_clip1(2)
 		tutorial_ui.clip.show()
 		tutorial_ui.load_clip2(3)
 		tutorial_ui.clip2.show()
-	elif not triggers[2]:
-		highlight_aim.show()
-		highlight_2.show()
 	elif not triggers[3]:
 		highlight_aim.hide()
 		highlight_2.hide()
@@ -199,13 +199,30 @@ func _process(_delta):
 	tutorial_script()
 
 # Edited MAIN functions
-
 func advance():
 	if enemies_left >= 0:
 		player.camera.limit_right += SPAWN_OFFSET + 1500
 		screen_border.position.x += SPAWN_OFFSET + 1500
 		static_ui.display_advance_arrow()
-		advance_trigger()
+		if enemies_left == 2:
+			for i in range(7):
+				triggers[i] = true
+			current_instruction = 7
+			current_trigger = 7
+			tutorial_ui.load_instruction(instructions[current_instruction])
+			highlight_aim.hide()
+			highlight_2.hide()
+		elif enemies_left == 1:
+			for i in range(10):
+				triggers[i] = true
+			current_instruction = 10
+			current_trigger = 10
+			tutorial_ui.load_instruction(instructions[current_instruction])
+			tutorial_ui.clip.hide()
+			tutorial_ui.load_clip2(10)
+			tutorial_ui.clip2.show()
+		else:
+			advance_trigger()
 
 func end_stage():
 	await get_tree().create_timer(0.1).timeout
