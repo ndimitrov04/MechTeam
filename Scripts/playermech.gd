@@ -321,15 +321,17 @@ func _malfunction():
 	@warning_ignore("narrowing_conversion")
 	malfunction_timer.start(randi_range(malfunction_min, malfunction_max))
 
+@onready var impact_sfx: AudioStreamPlayer2D = $SFX/ImpactSFX
 @onready var can_collide : bool = true
 func _on_body_entered(body):
 	if not can_collide:
 		return
 	#print("PLAYER CRASHED INTO: " + str(body.name))
 	if "IS_ENEMY" in body:
-		print(str(body.name) + " has IS_ENEMY")
+		#print(str(body.name) + " has IS_ENEMY")
 		if body.IS_ENEMY:
-			print(str(body.name) + " IS_ENEMY true")
+			impact_sfx.play()
+			#print(str(body.name) + " IS_ENEMY true")
 			# Take knockback and stop mech movement, make sure mech doesn't jump a lot
 			self.direction = 0
 			self.get_parent().player.camera.trauma = 1.5
@@ -344,7 +346,7 @@ func _on_body_entered(body):
 					await get_tree().create_timer(0.1).timeout
 					object.physics_material_override.friction = 0.15
 			can_collide = false
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.7).timeout
 			can_collide = true
 
 func die():

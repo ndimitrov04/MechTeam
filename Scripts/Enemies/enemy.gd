@@ -243,8 +243,15 @@ func _on_body_entered(body):
 		return
 	#print("ENEMY CRASHED INTO: " + str(body.name))
 	if body.name == "Mech":
-		self.apply_central_impulse(Vector2(15000, 0))
+		self.apply_central_impulse(Vector2(180000, 0))
 		self.take_damage(5)
+		# Take wheel knockback
+		for object in self.wheels.get_children():
+			if object.has_meta("is_movement"):
+				object.physics_material_override.friction = 0.0
+				object.apply_central_impulse(Vector2(70000, 0))
+				await get_tree().create_timer(0.1).timeout
+				object.physics_material_override.friction = 0.15
 		can_collide = false
 		await get_tree().create_timer(0.5).timeout
 		can_collide = true

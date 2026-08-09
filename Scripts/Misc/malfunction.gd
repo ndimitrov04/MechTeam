@@ -56,11 +56,13 @@ func _on_body_entered(body):
 	if body.name == "Player":
 		interaction_label.visible = true
 		player_in_range = true
+		show_interaction_prompt(true, "Press F to Fix Malfunction")
 
 func _on_body_exited(body):
 	if body.name == "Player":
 		interaction_label.visible = false
 		player_in_range = false
+		show_interaction_prompt(false, "Press F to Fix Malfunction")
 
 func _malfunction_critical():
 	if fixed:
@@ -88,9 +90,11 @@ func _malfunction_critical():
 	self.set_collision_mask_value(1, false)
 	main.player.camera.trauma = 0.8
 	await get_tree().create_timer(1).timeout
+	show_interaction_prompt(false, "Press F to Fix Malfunction")
 	queue_free()
 
 func fix():
+	show_interaction_prompt(false, "Press F to Fix Malfunction")
 	fixed = true
 	interaction_label.label_settings.font_color = Color.GREEN
 	interaction_label.show()
@@ -108,3 +112,13 @@ func fix():
 
 func npc_engage():
 	fix()
+
+func show_interaction_prompt(shown : bool, interaction_prompt : String):
+	if shown:
+		main.minigame_result.modulate = Color(1,1,1,1)
+		main.minigame_result.add_theme_color_override("font_color", Color("6a7cb4ff"))
+		main.minigame_result.text = interaction_prompt
+		main.minigame_result.show()
+	else:
+		if main.minigame_result.text == interaction_prompt:
+			main.minigame_result.hide()

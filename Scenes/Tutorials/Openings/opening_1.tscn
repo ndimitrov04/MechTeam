@@ -87,7 +87,9 @@
 [ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="91_e0nn3"]
 [ext_resource type="Script" uid="uid://cp3kgexvunvtf" path="res://Scripts/Modules/Weapons/gun.gd" id="92_753wc"]
 [ext_resource type="PackedScene" uid="uid://7pvmbpigkpq1" path="res://Scenes/Projectiles/bullet.tscn" id="93_1cp4p"]
+[ext_resource type="AudioStream" uid="uid://bcc4fwidtash6" path="res://Audio/SFX/Misc/518178__cmart94__motorcycle-engine_50kmh.mp3" id="93_2wpf8"]
 [ext_resource type="Texture2D" uid="uid://l0br0i4oadx" path="res://Images/MechGuns/turret_01_mk1.png" id="94_eygc6"]
+[ext_resource type="AudioStream" uid="uid://w7445ct0jx4j" path="res://Audio/SFX/Misc/explosion01.wav" id="94_hl3dw"]
 [ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="95_jtxlw"]
 [ext_resource type="PackedScene" uid="uid://y84ad1x71nus" path="res://Scenes/Misc/smoke.tscn" id="96_0oqhd"]
 [ext_resource type="AudioStream" uid="uid://mjrlfhuxnkmp" path="res://Audio/SFX/Modules/bang_04.ogg" id="97_xqggp"]
@@ -2440,6 +2442,18 @@ bus = &"SFX"
 parameters/looping = true
 
 [node name="SFX" type="Node2D" parent="Mech" unique_id=856850104]
+
+[node name="EngineSFX" type="AudioStreamPlayer2D" parent="Mech/SFX" unique_id=348052904]
+position = Vector2(512, 328)
+stream = ExtResource("93_2wpf8")
+volume_db = 2.0
+bus = &"SFX_Nocomp"
+
+[node name="ImpactSFX" type="AudioStreamPlayer2D" parent="Mech/SFX" unique_id=1580861976]
+position = Vector2(1088, 296)
+stream = ExtResource("94_hl3dw")
+volume_db = 6.0
+bus = &"SFX"
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="Mech" unique_id=1815373000]
 z_index = 20
