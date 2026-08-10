@@ -12,8 +12,9 @@ extends Control
 
 @onready var sfx = $"../SFX"
 
-@onready var left = $Left
-@onready var right = $Right
+@onready var left: Button = $TabContainer/TextureUI/Circuit/Left
+@onready var right: Button = $TabContainer/TextureUI/Circuit/Right
+
 
 @onready var next_stage = $NextStage
 @onready var previous_stage = $PreviousStage
@@ -241,12 +242,14 @@ func _on_left_pressed():
 	if tab_container.current_tab == 0:
 		return
 	tab_container.current_tab -= 1
+	tab_container.emit_signal("tab_changed")
 	sfx.click_select.play()
 
 func _on_right_pressed():
 	if tab_container.current_tab == 4:
 		return
 	tab_container.current_tab += 1
+	tab_container.emit_signal("tab_changed")
 	sfx.click_select.play()
 	# Tutorial hook
 	left_interacted_with.emit()
@@ -406,6 +409,8 @@ func _on_next_stage_pressed():
 			_on_save_mech_pressed()
 			hide_panel(tab_container, SlideDirection.LEFT)
 			hide_panel(npc_shop, SlideDirection.LEFT)
+			hide_panel(prebuilts, SlideDirection.RIGHT)
+			hide_panel(prebuilt_label, SlideDirection.RIGHT)
 			info_panel.hide()
 			editor.load_mech()
 			previous_stage.text = "Building Stage"
@@ -432,7 +437,7 @@ func _on_next_stage_pressed():
 		2:
 			pass
 	update_instruction(build_stage)
-
+	
 func _on_previous_stage_pressed():
 	match build_stage:
 		0:
@@ -441,6 +446,8 @@ func _on_previous_stage_pressed():
 			_on_save_mech_pressed()
 			show_panel(tab_container, Vector2(12, 112))
 			show_panel(npc_shop, Vector2(0, 640))
+			show_panel(prebuilts, Vector2(1392, 477))
+			show_panel(prebuilt_label, Vector2(1376, 480))
 			previous_stage.show()
 			hide_panel(previous_stage, SlideDirection.DOWN)
 			current_stage.text = "Building Stage"

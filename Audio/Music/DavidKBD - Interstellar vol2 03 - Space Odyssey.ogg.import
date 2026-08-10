@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://coontyop6fu1"
+path="res://.godot/imported/DavidKBD - Interstellar vol2 03 - Space Odyssey.ogg-a3c575d7ad2f12c8629e5caaac8acd9f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/DavidKBD - Interstellar vol2 03 - Space Odyssey.ogg"
+dest_files=["res://.godot/imported/DavidKBD - Interstellar vol2 03 - Space Odyssey.ogg-a3c575d7ad2f12c8629e5caaac8acd9f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

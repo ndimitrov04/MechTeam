@@ -388,6 +388,310 @@ texture = ExtResource("22_id8qq")
 [sub_resource type="TileSet" id="TileSet_ywrel"]
 sources/0 = SubResource("TileSetAtlasSource_7dwwc")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3jej2"]
+texture = ExtResource("22_id8qq")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+0:1/0 = 0
+5:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+0:4/0 = 0
+5:4/0 = 0
+7:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+16:7/0 = 0
+17:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+16:8/0 = 0
+17:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+11:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+15:9/0 = 0
+16:9/0 = 0
+17:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+10:10/0 = 0
+11:10/0 = 0
+12:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+15:10/0 = 0
+16:10/0 = 0
+17:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+11:11/0 = 0
+12:11/0 = 0
+13:11/0 = 0
+14:11/0 = 0
+15:11/0 = 0
+16:11/0 = 0
+17:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+11:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+15:12/0 = 0
+16:12/0 = 0
+17:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+15:13/0 = 0
+16:13/0 = 0
+17:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+6:14/0 = 0
+7:14/0 = 0
+8:14/0 = 0
+9:14/0 = 0
+10:14/0 = 0
+11:14/0 = 0
+12:14/0 = 0
+13:14/0 = 0
+14:14/0 = 0
+15:14/0 = 0
+16:14/0 = 0
+17:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
+8:15/0 = 0
+9:15/0 = 0
+10:15/0 = 0
+11:15/0 = 0
+12:15/0 = 0
+13:15/0 = 0
+14:15/0 = 0
+15:15/0 = 0
+16:15/0 = 0
+17:15/0 = 0
+0:16/0 = 0
+1:16/0 = 0
+2:16/0 = 0
+3:16/0 = 0
+4:16/0 = 0
+5:16/0 = 0
+6:16/0 = 0
+7:16/0 = 0
+8:16/0 = 0
+9:16/0 = 0
+10:16/0 = 0
+11:16/0 = 0
+12:16/0 = 0
+13:16/0 = 0
+14:16/0 = 0
+15:16/0 = 0
+16:16/0 = 0
+17:16/0 = 0
+0:17/0 = 0
+1:17/0 = 0
+2:17/0 = 0
+3:17/0 = 0
+4:17/0 = 0
+5:17/0 = 0
+6:17/0 = 0
+7:17/0 = 0
+8:17/0 = 0
+9:17/0 = 0
+10:17/0 = 0
+11:17/0 = 0
+12:17/0 = 0
+13:17/0 = 0
+14:17/0 = 0
+15:17/0 = 0
+16:17/0 = 0
+17:17/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_liwe0"]
+sources/0 = SubResource("TileSetAtlasSource_3jej2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8678q"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmwje"]
 texture = ExtResource("22_id8qq")
 0:0/0 = 0
@@ -969,12 +1273,12 @@ text = "MechTeam - Alpha Ver. 0.25
 All mechanics and assets are subject to change."
 horizontal_alignment = 2
 
-[node name="TabContainer" type="TabContainer" parent="GUI/Control" unique_id=1519843520]
+[node name="TabContainer" type="TabContainer" parent="GUI/Control" unique_id=873407153]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 112.0
 offset_right = 210.0
-offset_bottom = 616.0
+offset_bottom = 568.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_icons/increment = ExtResource("24_iagrm")
@@ -982,15 +1286,14 @@ theme_override_icons/increment_highlight = ExtResource("24_iagrm")
 theme_override_icons/decrement = ExtResource("25_qfsmx")
 theme_override_icons/decrement_highlight = ExtResource("25_qfsmx")
 current_tab = 0
-tab_focus_mode = 0
 
-[node name="TextureUI" type="TileMapLayer" parent="GUI/Control/TabContainer" unique_id=372377446]
+[node name="TextureUI" type="TileMapLayer" parent="GUI/Control/TabContainer" unique_id=1416430295]
 z_index = -1
 position = Vector2(3, -17)
-tile_map_data = PackedByteArray("AAALAAMAAAAHAAcAAAALAAQAAAAFAAQAAAALAAUAAAAFAAQAAAALAAYAAAAFAAQAAAALAAcAAAAFAAQAAAALAAgAAAAFAAQAAAALAAkAAAAFAAQAAAALAAoAAAAFAAQAAAALAAsAAAAFAAQAAAALAAwAAAAFAAQAAAALAA0AAAAFAAQAAAALAA4AAAAFAAQAAAALAA8AAAAFAAQAAAALABAAAAAFAAQAAAALABEAAAAFAAQAAAALABIAAAAFAAQAAAALABMAAAAFAAQAAAALABQAAAAFAAQAAAALABUAAAAFAAQAAAALABYAAAAFAAQAAAALABcAAAAFAAQAAAALABgAAAAFAAQAAAALABkAAAAFAAQAAAALABoAAAAFAAQAAAALABsAAAAFAAQAAAALABwAAAAFAAQAAAALAB0AAAAFAAQAAAALAB4AAAAFAAQAAAALAB8AAAAFAAQAAAALACAAAAAFAAUAAAAKACAAAAAEAAUAAAAJACAAAAAEAAUAAAAIACAAAAAEAAUAAAAHACAAAAAEAAUAAAAGACAAAAAEAAUAAAAFACAAAAAEAAUAAAAEACAAAAAEAAUAAAADACAAAAAEAAUAAAACACAAAAAEAAUAAAABACAAAAAEAAUAAAAAACAAAAACAAUAAAD//yAAAAAAAAUAAAD//x8AAAAAAAQAAAD//x4AAAAIAAMAAAD//x0AAAAIAAIAAAD//xwAAAAIAAEAAAD//xsAAAAIAAAAAAD//xoAAAAAAAQAAAD//xkAAAAAAAQAAAD//xgAAAAAAAQAAAD//xcAAAAAAAQAAAD//xYAAAAAAAQAAAD//xUAAAAAAAQAAAD//xQAAAAAAAQAAAD//xMAAAAAAAQAAAD//xIAAAAIAAMAAAD//xEAAAAIAAIAAAD//xAAAAAIAAEAAAD//w8AAAAIAAAAAAD//w4AAAAAAAQAAAD//w0AAAAAAAQAAAD//wwAAAAAAAQAAAD//wsAAAAAAAQAAAD//woAAAAAAAQAAAD//wkAAAAAAAQAAAD//wgAAAAAAAQAAAD//wcAAAAAAAQAAAD//wYAAAAIAAMAAAD//wUAAAAIAAIAAAD//wQAAAAIAAEAAAD//wMAAAAIAAAAAAD//wIAAAAAAAQAAAAMAAEAAAAFAAQAAAAKAAEAAAARAAgAAAALAAEAAAARAAgAAAAKAAIAAAARAAgAAAAJAAEAAAARAAgAAAAJAAIAAAARAAgAAAAIAAEAAAARAAgAAAAIAAIAAAARAAgAAAAHAAEAAAARAAgAAAAHAAIAAAARAAgAAAAGAAEAAAARAAgAAAAGAAIAAAARAAgAAAAFAAEAAAARAAgAAAAFAAIAAAARAAgAAAAEAAEAAAARAAgAAAAAAAEAAAARAAgAAAABAAEAAAARAAgAAAACAAEAAAARAAgAAAADAAEAAAARAAgAAAAEAAIAAAARAAgAAAADAAIAAAARAAgAAAACAAIAAAARAAgAAAABAAIAAAARAAgAAAAAAAIAAAARAAgAAAAMAAMAAAAFAAUAAAAMAAIAAAAFAAQAAAALAAIAAAAQAAgAAAD//wEAAAAAAAQAAAA=")
-tile_set = SubResource("TileSet_fnvon")
+tile_map_data = PackedByteArray("AAALAAMAAAAHAAcAAAALAAQAAAAFAAQAAAALAAUAAAAFAAQAAAALAAYAAAAFAAQAAAALAAcAAAAFAAQAAAALAAgAAAAFAAQAAAALAAkAAAAFAAQAAAALAAoAAAAFAAQAAAALAAsAAAAFAAQAAAALAAwAAAAFAAQAAAALAA0AAAAFAAQAAAALAA4AAAAFAAQAAAALAA8AAAAFAAQAAAALABAAAAAFAAQAAAALABEAAAAFAAQAAAALABIAAAAFAAQAAAALABMAAAAFAAQAAAALABQAAAAFAAQAAAALABUAAAAFAAQAAAALABYAAAAFAAQAAAALABcAAAAFAAQAAAALABgAAAAFAAQAAAALABkAAAAFAAQAAAALABoAAAAFAAQAAAALABsAAAAFAAQAAAALABwAAAAFAAQAAAALAB0AAAAFAAUAAAALAB4AAAAFABAAAAALAB8AAAAFABEAAAALACAAAAALAA8AAAAKACAAAAAKAA8AAAAJACAAAAAJAA8AAAAIACAAAAAIAA8AAAAHACAAAAAHAA8AAAAGACAAAAAKAA8AAAAFACAAAAAJAA8AAAAEACAAAAAIAA8AAAADACAAAAAKAA8AAAACACAAAAAJAA8AAAABACAAAAAIAA8AAAAAACAAAAAHAA8AAAD//yAAAAAGAA8AAAD//x8AAAAAABEAAAD//x4AAAAAABAAAAD//x0AAAAAAAUAAAD//xwAAAAAAAQAAAD//xsAAAAAAAQAAAD//xoAAAAAAAQAAAD//xkAAAAAAAQAAAD//xgAAAAAAAQAAAD//xcAAAAAAAQAAAD//xYAAAAAAAQAAAD//xUAAAAAAAQAAAD//xQAAAAAAAQAAAD//xMAAAAAAAQAAAD//xIAAAAIAAMAAAD//xEAAAAIAAIAAAD//xAAAAAIAAEAAAD//w8AAAAIAAAAAAD//w4AAAAAAAQAAAD//w0AAAAAAAQAAAD//wwAAAAAAAQAAAD//wsAAAAAAAQAAAD//woAAAAAAAQAAAD//wkAAAAAAAQAAAD//wgAAAAAAAQAAAD//wcAAAAAAAQAAAD//wYAAAAIAAMAAAD//wUAAAAIAAIAAAD//wQAAAAIAAEAAAD//wMAAAAIAAAAAAD//wIAAAAAAAQAAAAMAAEAAAAFAAQAAAAKAAEAAAARAAgAAAALAAEAAAARAAgAAAAKAAIAAAARAAgAAAAJAAEAAAARAAgAAAAJAAIAAAARAAgAAAAIAAEAAAARAAgAAAAIAAIAAAARAAgAAAAHAAEAAAARAAgAAAAHAAIAAAARAAgAAAAGAAEAAAARAAgAAAAGAAIAAAARAAgAAAAFAAEAAAARAAgAAAAFAAIAAAARAAgAAAAEAAEAAAARAAgAAAAAAAEAAAARAAgAAAABAAEAAAARAAgAAAACAAEAAAARAAgAAAADAAEAAAARAAgAAAAEAAIAAAARAAgAAAADAAIAAAARAAgAAAACAAIAAAARAAgAAAABAAIAAAARAAgAAAAAAAIAAAARAAgAAAAMAAMAAAAFAAUAAAAMAAIAAAAFAAQAAAALAAIAAAAQAAgAAAD//wEAAAAAAAQAAAAJAB0AAAACAAUAAAAKAB0AAAADAAUAAAAHAB0AAAACAAUAAAAIAB0AAAADAAUAAAAFAB0AAAACAAUAAAAGAB0AAAADAAUAAAADAB0AAAACAAUAAAAEAB0AAAADAAUAAAABAB0AAAADAAUAAAACAB0AAAADAAUAAAAAAB0AAAACAAUAAAAAAB4AAAAHAA4AAAABAB4AAAAIAA4AAAACAB4AAAAJAA4AAAADAB4AAAAKAA4AAAAEAB4AAAAHAA4AAAAFAB4AAAAIAA4AAAAGAB4AAAAJAA4AAAAHAB4AAAAHAA4AAAAIAB4AAAAIAA4AAAAJAB4AAAAJAA4AAAAKAB4AAAAKAA4AAAAKAB8AAAAJABAAAAAJAB8AAAAJABAAAAAIAB8AAAAJABAAAAAHAB8AAAAJABAAAAAGAB8AAAAJABAAAAAFAB8AAAAJABAAAAAEAB8AAAAJABAAAAADAB8AAAAJABAAAAACAB8AAAAJABAAAAABAB8AAAAJABAAAAAAAB8AAAAJABAAAAA=")
+tile_set = SubResource("TileSet_liwe0")
 
-[node name="Circuit" type="Panel" parent="GUI/Control/TabContainer/TextureUI" unique_id=625574708]
+[node name="Circuit" type="Panel" parent="GUI/Control/TabContainer/TextureUI" unique_id=740962215]
 z_index = 1
 material = ExtResource("26_554pm")
 anchors_preset = 15
@@ -1002,9 +1305,48 @@ offset_right = 180.0
 offset_bottom = 514.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_23ku7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8678q")
+metadata/_edit_use_anchors_ = true
 
-[node name="Blocks" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1996411739]
+[node name="ColorRect" type="ColorRect" parent="GUI/Control/TabContainer/TextureUI/Circuit" unique_id=1092405033]
+z_index = 3
+layout_mode = 0
+offset_left = 138.0
+offset_top = -32.0
+offset_right = 186.0
+offset_bottom = -8.0
+color = Color(0.13333334, 0.16470589, 0.36078432, 1)
+
+[node name="Left" type="Button" parent="GUI/Control/TabContainer/TextureUI/Circuit" unique_id=1392523678]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008287293
+anchor_right = 0.008287293
+offset_left = -14.0
+offset_top = 437.0
+offset_right = 38.0
+offset_bottom = 455.0
+scale = Vector2(2, 2)
+theme = ExtResource("15_mp8b3")
+icon = ExtResource("25_qfsmx")
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Right" type="Button" parent="GUI/Control/TabContainer/TextureUI/Circuit" unique_id=1243401739]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.005524862
+offset_left = 90.0
+offset_top = 437.0
+offset_right = 138.0
+offset_bottom = 455.0
+scale = Vector2(2, 2)
+theme = ExtResource("15_mp8b3")
+icon = ExtResource("24_iagrm")
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Blocks" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1016593260]
 layout_mode = 2
 item_count = 2
 fixed_icon_size = Vector2i(32, 32)
@@ -1016,7 +1358,7 @@ item_1/icon = ExtResource("28_bkk0i")
 item_1/selectable = false
 metadata/_tab_index = 0
 
-[node name="Walls" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1369784947]
+[node name="Walls" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1193162785]
 visible = false
 layout_mode = 2
 item_count = 4
@@ -1035,7 +1377,7 @@ item_3/icon = ExtResource("32_3ffpa")
 item_3/selectable = false
 metadata/_tab_index = 1
 
-[node name="Modules" type="ItemList" parent="GUI/Control/TabContainer" unique_id=848252397]
+[node name="Modules" type="ItemList" parent="GUI/Control/TabContainer" unique_id=11205941]
 visible = false
 layout_mode = 2
 item_count = 10
@@ -1073,7 +1415,7 @@ item_9/icon = ExtResource("42_sthgp")
 item_9/selectable = false
 metadata/_tab_index = 2
 
-[node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer" unique_id=288800539]
+[node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1138267728]
 visible = false
 layout_mode = 2
 item_count = 6
@@ -1098,7 +1440,7 @@ item_5/icon = ExtResource("45_20ge7")
 item_5/selectable = false
 metadata/_tab_index = 3
 
-[node name="Movement" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1264730566]
+[node name="Movement" type="ItemList" parent="GUI/Control/TabContainer" unique_id=614489257]
 visible = false
 layout_mode = 2
 item_count = 2
@@ -1328,30 +1670,6 @@ theme_override_font_sizes/font_size = 64
 text = "Capacity: "
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Left" type="TextureButton" parent="GUI/Control" unique_id=1422856790]
-visibility_layer = 0
-layout_mode = 0
-offset_left = 172.0
-offset_top = 110.0
-offset_right = 193.0
-offset_bottom = 142.0
-focus_mode = 0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("25_qfsmx")
-ignore_texture_size = true
-
-[node name="Right" type="TextureButton" parent="GUI/Control" unique_id=362256871]
-visibility_layer = 0
-layout_mode = 0
-offset_left = 193.0
-offset_top = 110.0
-offset_right = 213.0
-offset_bottom = 142.0
-focus_mode = 0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("24_iagrm")
-ignore_texture_size = true
 
 [node name="PreviousStage" type="Button" parent="GUI/Control" unique_id=772405925]
 layout_mode = 0
@@ -1642,10 +1960,10 @@ anchor_left = 0.101
 anchor_top = 0.109000005
 anchor_right = 0.101
 anchor_bottom = 0.109000005
-offset_left = -0.9200134
-offset_top = 0.27999115
+offset_left = -81.92001
+offset_top = 466.28
 offset_right = 16.079987
-offset_bottom = 17.279991
+offset_bottom = 498.28
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -1791,14 +2109,14 @@ script = ExtResource("59_3jej2")
 
 [connection signal="placed_object" from="." to="." method="_on_placed_object"]
 [connection signal="tab_changed" from="GUI/Control/TabContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/TextureUI/Circuit/Left" to="GUI/Control" method="_on_left_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/TextureUI/Circuit/Right" to="GUI/Control" method="_on_right_pressed"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Blocks" to="GUI/Control" method="_on_block_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Walls" to="GUI/Control" method="_on_wall_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Modules" to="GUI/Control" method="_on_weapons_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Controllers" to="GUI/Control" method="_on_controllers_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Movement" to="GUI/Control" method="_on_item_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/NPCShop/NPCList" to="GUI/Control" method="_on_npc_list_item_clicked"]
-[connection signal="pressed" from="GUI/Control/Left" to="GUI/Control" method="_on_left_pressed"]
-[connection signal="pressed" from="GUI/Control/Right" to="GUI/Control" method="_on_right_pressed"]
 [connection signal="pressed" from="GUI/Control/PreviousStage" to="GUI/Control" method="_on_previous_stage_pressed"]
 [connection signal="pressed" from="GUI/Control/NextStage" to="." method="_on_next_stage_pressed"]
 [connection signal="pressed" from="GUI/Control/NextStage" to="GUI/Control" method="_on_next_stage_pressed"]

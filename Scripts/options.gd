@@ -26,20 +26,6 @@ func _ready() -> void:
 	shaders.toggled.connect(_on_shaders_toggled)
 	clear_data.pressed.connect(_show_clear_confirm)
 	
-	match OS.get_name():
-		"Windows":
-			print("Running on Windows...")
-			if RenderingServer.get_video_adapter_type() == RenderingDevice.DEVICE_TYPE_DISCRETE_GPU:
-				PlayerData.post_fx_enabled = true
-			else:
-				PlayerData.post_fx_enabled = false
-			PlayerData.shaders_enabled = true
-		"Web":
-			print("Running on Web...")
-			PlayerData.post_fx_enabled = false
-			PlayerData.shaders_enabled = false
-			
-	
 	update_fullscreen_switches()
 	if PlayerData.post_fx_enabled:
 		post_fx.set_pressed_no_signal(true)

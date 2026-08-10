@@ -706,20 +706,20 @@ sources/2 = SubResource("TileSetAtlasSource_gt3je")
 frequency = 0.0254
 metadata/_preview_in_3d_space_ = true
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2iji0"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d2chk"]
 noise = SubResource("FastNoiseLite_vj57o")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_40doe"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_duh5q"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_blgsg"]
 noise = SubResource("FastNoiseLite_40doe")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sxs75"]
 shader = ExtResource("12_cgl5p")
 shader_parameter/offSet = 0.0
 shader_parameter/YDistortion = 1.0
-shader_parameter/waterNoise = SubResource("NoiseTexture2D_duh5q")
-shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_2iji0")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_blgsg")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_d2chk")
 shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
 shader_parameter/colorCorection = 0.06999999843536
 shader_parameter/distortionForce = 0.00800000038

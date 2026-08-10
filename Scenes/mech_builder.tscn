@@ -1035,7 +1035,7 @@ texture = ExtResource("10_7vk52")
 [sub_resource type="TileSet" id="TileSet_ywrel"]
 sources/0 = SubResource("TileSetAtlasSource_7dwwc")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmwje"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_55u6w"]
 texture = ExtResource("10_7vk52")
 0:0/0 = 0
 1:0/0 = 0
@@ -1334,7 +1334,7 @@ texture = ExtResource("10_7vk52")
 17:17/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_fnvon"]
-sources/0 = SubResource("TileSetAtlasSource_wmwje")
+sources/0 = SubResource("TileSetAtlasSource_55u6w")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23ku7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -1639,7 +1639,7 @@ layout_mode = 0
 offset_left = 20.0
 offset_top = 112.0
 offset_right = 210.0
-offset_bottom = 616.0
+offset_bottom = 568.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_icons/increment = ExtResource("8_tgtas")
@@ -1651,7 +1651,7 @@ current_tab = 0
 [node name="TextureUI" type="TileMapLayer" parent="GUI/Control/TabContainer" unique_id=372377446]
 z_index = -1
 position = Vector2(3, -17)
-tile_map_data = PackedByteArray("AAALAAMAAAAHAAcAAAALAAQAAAAFAAQAAAALAAUAAAAFAAQAAAALAAYAAAAFAAQAAAALAAcAAAAFAAQAAAALAAgAAAAFAAQAAAALAAkAAAAFAAQAAAALAAoAAAAFAAQAAAALAAsAAAAFAAQAAAALAAwAAAAFAAQAAAALAA0AAAAFAAQAAAALAA4AAAAFAAQAAAALAA8AAAAFAAQAAAALABAAAAAFAAQAAAALABEAAAAFAAQAAAALABIAAAAFAAQAAAALABMAAAAFAAQAAAALABQAAAAFAAQAAAALABUAAAAFAAQAAAALABYAAAAFAAQAAAALABcAAAAFAAQAAAALABgAAAAFAAQAAAALABkAAAAFAAQAAAALABoAAAAFAAQAAAALABsAAAAFAAQAAAALABwAAAAFAAQAAAALAB0AAAAFAAQAAAALAB4AAAAFAAQAAAALAB8AAAAFAAQAAAALACAAAAAFAAUAAAAKACAAAAAEAAUAAAAJACAAAAAEAAUAAAAIACAAAAAEAAUAAAAHACAAAAAEAAUAAAAGACAAAAAEAAUAAAAFACAAAAAEAAUAAAAEACAAAAAEAAUAAAADACAAAAAEAAUAAAACACAAAAAEAAUAAAABACAAAAAEAAUAAAAAACAAAAACAAUAAAD//yAAAAAAAAUAAAD//x8AAAAAAAQAAAD//x4AAAAIAAMAAAD//x0AAAAIAAIAAAD//xwAAAAIAAEAAAD//xsAAAAIAAAAAAD//xoAAAAAAAQAAAD//xkAAAAAAAQAAAD//xgAAAAAAAQAAAD//xcAAAAAAAQAAAD//xYAAAAAAAQAAAD//xUAAAAAAAQAAAD//xQAAAAAAAQAAAD//xMAAAAAAAQAAAD//xIAAAAIAAMAAAD//xEAAAAIAAIAAAD//xAAAAAIAAEAAAD//w8AAAAIAAAAAAD//w4AAAAAAAQAAAD//w0AAAAAAAQAAAD//wwAAAAAAAQAAAD//wsAAAAAAAQAAAD//woAAAAAAAQAAAD//wkAAAAAAAQAAAD//wgAAAAAAAQAAAD//wcAAAAAAAQAAAD//wYAAAAIAAMAAAD//wUAAAAIAAIAAAD//wQAAAAIAAEAAAD//wMAAAAIAAAAAAD//wIAAAAAAAQAAAAMAAEAAAAFAAQAAAAKAAEAAAARAAgAAAALAAEAAAARAAgAAAAKAAIAAAARAAgAAAAJAAEAAAARAAgAAAAJAAIAAAARAAgAAAAIAAEAAAARAAgAAAAIAAIAAAARAAgAAAAHAAEAAAARAAgAAAAHAAIAAAARAAgAAAAGAAEAAAARAAgAAAAGAAIAAAARAAgAAAAFAAEAAAARAAgAAAAFAAIAAAARAAgAAAAEAAEAAAARAAgAAAAAAAEAAAARAAgAAAABAAEAAAARAAgAAAACAAEAAAARAAgAAAADAAEAAAARAAgAAAAEAAIAAAARAAgAAAADAAIAAAARAAgAAAACAAIAAAARAAgAAAABAAIAAAARAAgAAAAAAAIAAAARAAgAAAAMAAMAAAAFAAUAAAAMAAIAAAAFAAQAAAALAAIAAAAQAAgAAAD//wEAAAAAAAQAAAA=")
+tile_map_data = PackedByteArray("AAALAAMAAAAHAAcAAAALAAQAAAAFAAQAAAALAAUAAAAFAAQAAAALAAYAAAAFAAQAAAALAAcAAAAFAAQAAAALAAgAAAAFAAQAAAALAAkAAAAFAAQAAAALAAoAAAAFAAQAAAALAAsAAAAFAAQAAAALAAwAAAAFAAQAAAALAA0AAAAFAAQAAAALAA4AAAAFAAQAAAALAA8AAAAFAAQAAAALABAAAAAFAAQAAAALABEAAAAFAAQAAAALABIAAAAFAAQAAAALABMAAAAFAAQAAAALABQAAAAFAAQAAAALABUAAAAFAAQAAAALABYAAAAFAAQAAAALABcAAAAFAAQAAAALABgAAAAFAAQAAAALABkAAAAFAAQAAAALABoAAAAFAAQAAAALABsAAAAFAAQAAAALABwAAAAFAAQAAAALAB0AAAAFAAUAAAALAB4AAAAFABAAAAALAB8AAAAFABEAAAALACAAAAALAA8AAAAKACAAAAAKAA8AAAAJACAAAAAJAA8AAAAIACAAAAAIAA8AAAAHACAAAAAHAA8AAAAGACAAAAAKAA8AAAAFACAAAAAJAA8AAAAEACAAAAAIAA8AAAADACAAAAAKAA8AAAACACAAAAAJAA8AAAABACAAAAAIAA8AAAAAACAAAAAHAA8AAAD//yAAAAAGAA8AAAD//x8AAAAAABEAAAD//x4AAAAAABAAAAD//x0AAAAAAAUAAAD//xwAAAAAAAQAAAD//xsAAAAAAAQAAAD//xoAAAAAAAQAAAD//xkAAAAAAAQAAAD//xgAAAAAAAQAAAD//xcAAAAAAAQAAAD//xYAAAAAAAQAAAD//xUAAAAAAAQAAAD//xQAAAAAAAQAAAD//xMAAAAAAAQAAAD//xIAAAAIAAMAAAD//xEAAAAIAAIAAAD//xAAAAAIAAEAAAD//w8AAAAIAAAAAAD//w4AAAAAAAQAAAD//w0AAAAAAAQAAAD//wwAAAAAAAQAAAD//wsAAAAAAAQAAAD//woAAAAAAAQAAAD//wkAAAAAAAQAAAD//wgAAAAAAAQAAAD//wcAAAAAAAQAAAD//wYAAAAIAAMAAAD//wUAAAAIAAIAAAD//wQAAAAIAAEAAAD//wMAAAAIAAAAAAD//wIAAAAAAAQAAAAMAAEAAAAFAAQAAAAKAAEAAAARAAgAAAALAAEAAAARAAgAAAAKAAIAAAARAAgAAAAJAAEAAAARAAgAAAAJAAIAAAARAAgAAAAIAAEAAAARAAgAAAAIAAIAAAARAAgAAAAHAAEAAAARAAgAAAAHAAIAAAARAAgAAAAGAAEAAAARAAgAAAAGAAIAAAARAAgAAAAFAAEAAAARAAgAAAAFAAIAAAARAAgAAAAEAAEAAAARAAgAAAAAAAEAAAARAAgAAAABAAEAAAARAAgAAAACAAEAAAARAAgAAAADAAEAAAARAAgAAAAEAAIAAAARAAgAAAADAAIAAAARAAgAAAACAAIAAAARAAgAAAABAAIAAAARAAgAAAAAAAIAAAARAAgAAAAMAAMAAAAFAAUAAAAMAAIAAAAFAAQAAAALAAIAAAAQAAgAAAD//wEAAAAAAAQAAAAJAB0AAAACAAUAAAAKAB0AAAADAAUAAAAHAB0AAAACAAUAAAAIAB0AAAADAAUAAAAFAB0AAAACAAUAAAAGAB0AAAADAAUAAAADAB0AAAACAAUAAAAEAB0AAAADAAUAAAABAB0AAAADAAUAAAACAB0AAAADAAUAAAAAAB0AAAACAAUAAAAAAB4AAAAHAA4AAAABAB4AAAAIAA4AAAACAB4AAAAJAA4AAAADAB4AAAAKAA4AAAAEAB4AAAAHAA4AAAAFAB4AAAAIAA4AAAAGAB4AAAAJAA4AAAAHAB4AAAAHAA4AAAAIAB4AAAAIAA4AAAAJAB4AAAAJAA4AAAAKAB4AAAAKAA4AAAAKAB8AAAAJABAAAAAJAB8AAAAJABAAAAAIAB8AAAAJABAAAAAHAB8AAAAJABAAAAAGAB8AAAAJABAAAAAFAB8AAAAJABAAAAAEAB8AAAAJABAAAAADAB8AAAAJABAAAAACAB8AAAAJABAAAAABAB8AAAAJABAAAAAAAB8AAAAJABAAAAA=")
 tile_set = SubResource("TileSet_fnvon")
 
 [node name="Circuit" type="Panel" parent="GUI/Control/TabContainer/TextureUI" unique_id=625574708]
@@ -1667,6 +1667,45 @@ offset_bottom = 514.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_23ku7")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Control/TabContainer/TextureUI/Circuit" unique_id=482469078]
+z_index = 3
+layout_mode = 0
+offset_left = 138.0
+offset_top = -32.0
+offset_right = 186.0
+offset_bottom = -8.0
+color = Color(0.13333334, 0.16470589, 0.36078432, 1)
+
+[node name="Left" type="Button" parent="GUI/Control/TabContainer/TextureUI/Circuit" unique_id=1169887646]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016574586
+anchor_right = 0.008287293
+offset_left = -14.0
+offset_top = 437.0
+offset_right = 38.0
+offset_bottom = 455.0
+scale = Vector2(2, 2)
+theme = ExtResource("14_uy4mh")
+icon = ExtResource("7_w1m1m")
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Right" type="Button" parent="GUI/Control/TabContainer/TextureUI/Circuit" unique_id=795115288]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.005524862
+offset_left = 90.0
+offset_top = 437.0
+offset_right = 138.0
+offset_bottom = 455.0
+scale = Vector2(2, 2)
+theme = ExtResource("14_uy4mh")
+icon = ExtResource("8_tgtas")
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Blocks" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1996411739]
 layout_mode = 2
@@ -1970,6 +2009,7 @@ text = "Cash: 250"
 
 [node name="Error" type="Label" parent="GUI/Control" unique_id=1342880097]
 visible = false
+z_index = 5
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1992,26 +2032,6 @@ theme_override_font_sizes/font_size = 64
 text = "Capacity: "
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Left" type="TextureButton" parent="GUI/Control" unique_id=1422856790]
-visibility_layer = 0
-layout_mode = 0
-offset_left = 173.0
-offset_top = 110.0
-offset_right = 194.0
-offset_bottom = 142.0
-texture_normal = ExtResource("7_w1m1m")
-ignore_texture_size = true
-
-[node name="Right" type="TextureButton" parent="GUI/Control" unique_id=362256871]
-visibility_layer = 0
-layout_mode = 0
-offset_left = 194.0
-offset_top = 110.0
-offset_right = 214.0
-offset_bottom = 142.0
-texture_normal = ExtResource("8_tgtas")
-ignore_texture_size = true
 
 [node name="PreviousStage" type="Button" parent="GUI/Control" unique_id=772405925]
 layout_mode = 0
@@ -2174,15 +2194,15 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.104
 anchor_right = 0.104
-offset_left = 1203.32
+offset_left = 1176.32
 offset_top = 480.0
-offset_right = 1315.32
+offset_right = 1712.32
 offset_bottom = 502.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("9_tgtas")
 theme_override_font_sizes/font_size = 32
-text = "Buy Mech"
+text = "   Buy Mech"
 autowrap_mode = 3
 
 [node name="Prebuilts" type="TabContainer" parent="GUI/Control" unique_id=1512327037]
@@ -2372,14 +2392,14 @@ volume_db = -5.0
 max_polyphony = 2
 bus = &"SFX"
 
+[connection signal="pressed" from="GUI/Control/TabContainer/TextureUI/Circuit/Left" to="GUI/Control" method="_on_left_pressed"]
+[connection signal="pressed" from="GUI/Control/TabContainer/TextureUI/Circuit/Right" to="GUI/Control" method="_on_right_pressed"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Blocks" to="GUI/Control" method="_on_block_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Walls" to="GUI/Control" method="_on_wall_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Modules" to="GUI/Control" method="_on_weapons_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Controllers" to="GUI/Control" method="_on_controllers_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/TabContainer/Movement" to="GUI/Control" method="_on_item_list_item_clicked"]
 [connection signal="item_clicked" from="GUI/Control/NPCShop/NPCList" to="GUI/Control" method="_on_npc_list_item_clicked"]
-[connection signal="pressed" from="GUI/Control/Left" to="GUI/Control" method="_on_left_pressed"]
-[connection signal="pressed" from="GUI/Control/Right" to="GUI/Control" method="_on_right_pressed"]
 [connection signal="pressed" from="GUI/Control/PreviousStage" to="GUI/Control" method="_on_previous_stage_pressed"]
 [connection signal="pressed" from="GUI/Control/NextStage" to="GUI/Control" method="_on_next_stage_pressed"]
 [connection signal="pressed" from="GUI/Control/NextMech" to="GUI/Control" method="_on_next_mech_pressed"]

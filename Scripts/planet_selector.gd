@@ -93,7 +93,7 @@ func _ready() -> void:
 	PlayerData.unlock_datalog(8)
 	GlobalMusic.queue_track("res://Audio/Music/Lost signal main theme.mp3", 2)
 	if PlayerData.planets_finished.size() == 4:
-		GlobalMusic.queue_track("res://Audio/SFX/Ambience/dungeon_ambient_1.ogg", 0.1)
+		GlobalMusic.queue_track("res://Audio/Music/9- White.mp3", 0.1)
 		durante.show()
 		durante.disabled = false
 	for planet in planets.get_children():
@@ -254,10 +254,10 @@ func _on_durante_pressed() -> void:
 		load_message_data(
 			"???",
 			preload("res://Images/Characters/Portraits/Aaron.png"),
-			"You play this game like a beginner. Prepare.\n\nDEMO OVER: BAD END 1 (Thanks for playing ^^)",
-			"FATAL ERROR; ALL SYSTEMS SHUTDOWN; MECH CONSTRUCTION UNAVAILABLE; SELF-DESTRUCTION IMMINENT"
+			"You play this game like a beginner.\n\nDEMO OVER: Bad ending #1 (Thanks for playing ^^)",
+			"FATAL ERROR"
 		)
-		#GlobalMusic.queue_track("res://Audio/Music/bad_end.mp3", 0.1)
+		GlobalMusic.queue_track("res://Audio/Music/2- Mental Vortex.mp3", 0.1)
 		planet_name.text = "END?"
 		planet_lore.text = "SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD "
 		planet_stats.text = "SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD SUBMIT TO OVERLORD"
@@ -269,21 +269,22 @@ func _on_durante_pressed() -> void:
 		planet_info.show()
 		death_rect.show()
 	elif PlayerData.planets_lost.is_empty():
+		GlobalMusic.queue_track("res://Audio/Music/you_cant_beat_the_machineremake.mp3", 0.1)
 		load_message_data(
 			"Aaron Glaucio",
 			preload("res://Images/Characters/Portraits/Aaron.png"),
 			"You have most of the pieces of the puzzle, but are still missing some. Let me give you the entire picture. My name is Aaron Gláucio. I am the leader of the Anima group. Our journey ends here, and so does yours. We will be waiting for you on Durante - you will find coordinates attached to this message. We will not come for you. We know that you will meet us at your own discretion, on your own terms. There is no need to bring weapons, the fate of our kind as humans has already been decided, but if you do decide to fight, make sure to bring your biggest ones. Not to win mind you. To feel like you've done your best and died glouriously for your cause. In any case, you have my full respect. You have proven to be a great and honorable leader.\n\nDEMO OVER: Road to good ending. (Thanks for playing ^^)",
-			"Data received: Anima History (2070-Present)"
+			"Data received: Anima History"
 		)
 		datalog_button.disabled = false
-		accept_status.hide()
+		PlayerData.current_planet = 4
 		planet_info.hide()
 		PlayerData.unlock_datalog(9)
 	else:
 		load_message_data(
 			"???",
 			preload("res://Images/Characters/Portraits/Aaron.png"),
-			"Whatever you do, we will win. This realm will be cleansed of any and all AI overlords. Starting with NEOS, we destroyed the original Aqualis overlord. Terra's old counter AI Scopos was never destroyed by Kuwat. He failed to eradicate it. For years it has been working to become a singularity in the shadows. Gaia was a cyber-planet with no living creatures on it. It was a parasite, malware, designed to destroy the solar system. Anima has finally completed its mission.\n\nDEMO OVER: BAD END 2 (Thanks for playing ^^)",
+			"Whatever you do, we will win. This realm will be cleansed of any and all AI overlords. Starting with NEOS, we destroyed the original Aqualis overlord. Terra's old counter AI Scopos was never destroyed by Kuwat. He failed to eradicate it. For years it has been working to become a singularity in the shadows. Gaia was a cyber-planet with no living creatures on it. It was a parasite, malware, designed to destroy the solar system. Anima has finally completed its mission.\n\nDEMO OVER: Bad Ending #2 (Thanks for playing ^^)",
 			"ERROR CO?NE?TED: D? NOT T??S? A????; A???A IS D??D; L??S; A???L?S ?? ???VE; L?ES"
 		)
 		datalog_button.disabled = true

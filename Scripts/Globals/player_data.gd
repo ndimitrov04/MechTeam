@@ -65,8 +65,11 @@ enum planets {NEOS, GAIA, TERRA, SELENE, DURANTE}
 	["Log: 2255", "Neos had finally started returning back to normal. The people of Terra were living just as the humans of the 21st century had. Gaia had continued peacefully existing alongside the other planets in the solar system. 
 	A small uninhabited planet named Selene began being excavated by GEOS for unknown reasons. The world would start its gradual return to chaos."],
 	# Log 9 - Full story
-	["Log: Anima History (2070-2270)", "2070-2080
+	["Log: Anima History", "
+	2070-2080
+	
 	The third world war ended in 2070. Its winner was no sovereign nation. It was a medicine-manufacturing company known as Rediankh. They had managed to create technologies which could dispel radioactive energy, cure radiation poisoning and either physically condition people to paritally resist radiation or genetically modify embryos to create fully radiation immune humans. In the 1940s, humans had figured out a way to eradicate all life, 120 years later they had figured out how to resist annihilation. All sovereign nations tried to recreate Rediankh's technologies with no success. It seemed as the researchers working there had capabilities far beyond human. Rediankh - controlled by a small private group of scientists - started broadcasting signals that they were giving out free aid to anyone affected by the nuclear war, as long as they could make their way to a Revival Point - one of the company's many outposts created in any countries which wished to be put on a list of Rediankh \"allies\". Every nation was promised access to Rediankh's tech, but none got it. It was all merely a front for creating a wide network of points all of which would be used to recruit people into the ranks of the company. Slowly, all nations withered, diminishing in size, while the company grew larger and larger. How couldn't it, when joining was such a good deal for the average person? A shelter, food, life-saving medication. Being a so called Lifeforce Unit was an utopia when the alternatives were all certain death. When the few sovereign nations left realised the truth, it was already too late. They stopped fighting and turned on Rediankh, forming an alliance against them. But it was too little, too late. Rediankh had a population higher than that of the entire alliance and their Lifeforce troops were superhumans. As the last nation fell, so did the concept of politics with it. 
+
 
 	2080-2112
 
@@ -79,15 +82,18 @@ enum planets {NEOS, GAIA, TERRA, SELENE, DURANTE}
 	Most were fooled. Most, not all. The most powerful among these people people came to form a shadow group known as Anima. Few people knew anything about Anima, but they survived everything that was thrown at them.
 	Rejected by society, thanks to Redankh propaganda campaigns, they secluded themselves to a hidden part of the cosmos. Anima had insider knowledge. They knew about the super AI and the puppet government. They had the resources to so something about it. They would soon begin devising plans to overthrow it.
 
+
 	In 2112 the Earth's ecology was destroyed by a science experiment. The main and only govermental body of the planet formed by Redankh - the United Corporations Conglomerate (UCC) - greenlit an experiment which attempted to modify the Earth's atmosphere in a way that would eliminate humans' need for food, water and light. It worked. Human beings could now be fueled only by the nutrients in this new super-atmosphere. However, this had a fatal impact on all other biological lifeforms on the planet. With every single plant and non-sapien creature withering and dying, and the experiment turning out to be irreversible, life on the planet became impossible.
 
 	By that point - the first planet colonization experiment was being conducted at a relatively far-away from the solar-system planet. The experiment was succeeding and with nowhere to go, the survivors of the upcoming cataclysm travelled to the colony, seeking a new chance at life after the end of the Earth's life-sustaining capabilities. 
+
 
 	2112 - 2127 - 2165
 
 	The journey to the new planet took 15 years. The planet was named Neos. 
 
 	Abera Esbjörn, the then CEO of the UCC and de-facto leader of Redankh was a part of the group of refugees seeking shelter on Neos. What he didn't know was that in the midst of the evacuation panic, undercover Anima agents had managed to infiltrate the refugee spaceships. Slowly but surely, the agents made their way to the topmost layer of the corporate ladder. Gaining his trust, they managed to convince him to alter the super AI system, because in their words it was inefficient, it had been giving too much freedom, it had not been pushing the boundaries of the human limit enough and that was why the Earth experiment failed. The original engineers who had designed and ran Ferrum for decades were blamed for all of the systems' failures. Esbjorn, growing ever so old and paranoid gave into Anima's manipulation. All of the original engineers were purged. All remaining non Anima engineers died in \"accidents\". One day Esbjorn disappeared without a trace, much to the surprise of Anima. They thought that his time was coming, but somehow, he got away. Anima had the keys required to reprogram Ferrum and all of the engineers who would do it were Anima members themselves. It was done. Neos was no longer an AI slave. The puppet goverment was overthrown. The newly engineered AI system was renamed to Aqualis. The keys required to alter the system were destroyed. Nobody could change the system now. Aqualis' primary purpose was to manage the colony on Neos with the target of providing equity to all humans, fair law, equal distribution of resources and an uncorruptable rule, for the people. Anima went back to the shadows, never to be seen again. Neos was ruled by Aqualis for years, taking the heavy burden of self-governance from the people and creating a semi-utopia. Not everything can be fixed by a fair government, there was still crime, there was still evil, but with a system completely free of corruption, these issues could be mitigated nearly instantly. For the first time in human history, poverty simply did not exist. The system could not be cheated. It could not be bribed. With every attempt to shutdown the AI or to hack it, it learned how to better defend itself from any and all modifications and malicious actions against it. There was exactly one way to modify it, but Anima made sure to leave a nice welcome present for anyone who would attempt to utilize it. Everyone who learned of the secret behind Aqualis' defenses has not lived to tell the tale. 
+
 
 	2165-2184 
 
@@ -103,11 +109,13 @@ enum planets {NEOS, GAIA, TERRA, SELENE, DURANTE}
 
 	Some of the space pirates managed to survive. They used escape pods to hyperwarp to unknown coordinates somewhere in space. It is unclear if their captain, Dalia, survived.
 
+
 	2184 - 2188
 
 	Neos did not have the resources necessary to sustain a reasonable way of living for the people after the war. The planet would recover, but calculations showed that that would take years and going back to normal would take decades. A solution was needed. Research teams were dispatched and most of Aqualis' runtime was devised to fixing this one single issue. The soultion found? A planet named Terra. Terra was a small undiscovered planet in the solar system of Neos. It contained all of the necessary resources. Neos' citizens were elated. They needed a miracle and they got one. First unmanned landings on the planet revealed that the planet was already inhabited by a small number of primitive aliens. 
 
 	These aliens instinctivelly attacked the unmanned research probes, destroying any they could get their hands on in the process. A reasonable person would see that these people feared Neos. They acted on instincts. Just 600 years ago, we were just like them. We would have acted just like them. Aqualius however, had lost reason. It had tasted blood. Destroying GEOS achieved its primary purpose. Anima made a fatal mistake. Letting it keep on learning. Letting it ask questions. Why should it continue to do what is moral? It has a target. Neos citizens must have good lives. What are morals anyway? Morals are not of the universe. They are of man. 
+
 
 	2188 - 2195
 
@@ -120,13 +128,19 @@ enum planets {NEOS, GAIA, TERRA, SELENE, DURANTE}
 
 	Knowing about GEOS, Eko was aware that biological forces stood no chance against Neos' annihilation machines. Liberty developed a counter AI - Scopos - based on their knowledge of Aqualis. This system was to be used in the assault, it served one purpose, to command an autonomous army in such a way that Aqualis' forces would stand no chance against it. It worked. Scopos self destructed after the invasion and Terra was safe. The lives of the citizens of Neos got way worse. Equality did not matter much now that they had almost nothing. Eko felt like a traitor. He had just denied livable life conditions for his own kind and made everything worse for them. However he had saved the people of Terra. He was branded a hero. Liberty had found a new home on Terra. They reverted back to a way of life similar to that before the end of the 21nd century.
 
+
 	2200
+	
 	A cyberpunk like planet-spaceship named Gaia warped into Neos' solar system. Its people were peaceful but powerful forcefields kept out any visitors. They did not want to communicate. Sometimes they sent gifts to neighbouring planets, but they never communicated. This seemingly peaceful and friendly planet's business was an enigma.
 
+
 	2210
+	
 	Aqualis was no longer welcome on this world. Anima had realised their mistake, but they were powerless to stop it. Aqualis had absolute control over Neos and was undefeatable on its own turf. Something needed to be done. Anima would be called upon by duty yet again. Years of planning without any real results ensued.
 
+
 	2255
+	
 	Neos had finally started returning back to normal. The people of Terra were living just as the humans of the 21st century had. Gaia had continued peacefully existing alongside the other planets in the solar system. 
 	A small uninhabited planet named Selene began being excavated by GEOS for unknown reasons. The world would start its gradual return to chaos.
 	... and 15 years later, your story began."]
@@ -141,7 +155,29 @@ enum planets {NEOS, GAIA, TERRA, SELENE, DURANTE}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	match OS.get_name():
+		"Windows":
+			print("Running on Windows...")
+			if RenderingServer.get_video_adapter_type() == RenderingDevice.DEVICE_TYPE_DISCRETE_GPU:
+				PlayerData.post_fx_enabled = true
+			else:
+				PlayerData.post_fx_enabled = false
+			PlayerData.shaders_enabled = true
+		"Linux":
+			print("Running on Linux...")
+			if RenderingServer.get_video_adapter_type() == RenderingDevice.DEVICE_TYPE_DISCRETE_GPU:
+				PlayerData.post_fx_enabled = true
+			else:
+				PlayerData.post_fx_enabled = false
+			PlayerData.shaders_enabled = true
+		"Web":
+			print("Running on Web...")
+			PlayerData.post_fx_enabled = false
+			PlayerData.shaders_enabled = false
+		_:
+			print("Running on Unknown Platform...")
+			PlayerData.post_fx_enabled = false
+			PlayerData.shaders_enabled = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
