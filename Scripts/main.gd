@@ -1,12 +1,17 @@
 extends Node2D
 
+const FINAL_BODY = preload("uid://bgtf814bc0qb6")
+
 @onready var player = $Player
 @onready var mech = $Mech
 
 @onready var static_ui = $GUI/Control/StaticUI
 @onready var minigame_result = $GUI/Control/StaticUI/MinigameResult
 @onready var screen_border = $Foreground/Parallax1/ScreenBorder
+@onready var screen_border_2 = $Foreground/Parallax2/ScreenBorder2
 @onready var screen_limit = $Foreground/Parallax1/ScreenBorder/ScreenLimit
+@onready var screen_limit_2 = $Foreground/Parallax2/ScreenBorder2/ScreenLimit
+
 @onready var action_camera = $GUI/Control/StaticUI/ActionPanel/ActionCamera
 
 @onready var first_enemy : RigidBody2D = $EnemyMech4
@@ -75,8 +80,14 @@ const OST_2 = "uid://ce4508tlmtnyx"
 const OST_3 = "uid://m8uma6bexyvi"
 const OST_4 = "uid://byq36523c31uh"
 const OST_5 = "uid://coontyop6fu1"
+const OST_FINAL_BOSS = "res://Audio/Music/RPG Project - The Sound of Battle.mp3"
 @onready var soundtracks = [OST_1, OST_2, OST_3, OST_4, OST_5, OST_T]
 func _ready():
+	if has_meta("boss_test"):
+		if get_meta("boss_test") == true:
+			PlayerData.current_stage = 14
+			PlayerData.current_planet = 4
+	
 	# Stage Number:  0 = NEOS, 1 = GAIA, 2 = TERRA, 3 = SELENE, 4 = DURANTE, 5 = TUTORIAL
 	var stage_number = PlayerData.current_planet
 	if stage_number == 2:
@@ -87,6 +98,25 @@ func _ready():
 	move_child(current_background, 0)
 	GlobalMusic.queue_track(soundtracks[stage_number], 2)
 	
+	# Final stage logic
+	if PlayerData.current_stage == 14: 
+		GlobalMusic.queue_track(OST_FINAL_BOSS, 2)
+		enemies_left = 3 # Boss body + 2 arms
+		first_enemy.queue_free()
+		var final_boss_body = FINAL_BODY.instantiate()
+		const BOSS_POS : Vector2 = Vector2(1000, -850)
+		final_boss_body.global_position = BOSS_POS
+		add_child(final_boss_body)
+		#screen_border.hide()
+		screen_border.self_modulate = Color(0,0,0,0)
+		#screen_border_2.hide()
+		screen_border_2.self_modulate = Color(0,0,0,0)
+		player.camera.limit_left = -1340
+		screen_limit_2.global_position.x = -1340
+		player.camera.limit_right = 2500
+		screen_limit.global_position.x = 2500
+		player.camera.limit_bottom = 635
+		
 	# Debug terrain test
 	if PlayerData.terrain_test:
 		print("NOTICE: TERRAIN TEST IS ON.")

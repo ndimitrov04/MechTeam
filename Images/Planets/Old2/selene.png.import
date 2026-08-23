@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1muksnew471o"
-path="res://.godot/imported/neos.png-e354f1b2e45f742c3f7fa536d5eaf76f.ctex"
+uid="uid://clk0yb5nslyrx"
+path="res://.godot/imported/selene.png-27a38914093e620e43bd5b12f103e45e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Planets/neos.png"
-dest_files=["res://.godot/imported/neos.png-e354f1b2e45f742c3f7fa536d5eaf76f.ctex"]
+source_file="res://Images/Planets/Old2/selene.png"
+dest_files=["res://.godot/imported/selene.png-27a38914093e620e43bd5b12f103e45e.ctex"]
 
 [params]
 

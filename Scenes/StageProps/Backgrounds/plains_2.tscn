@@ -722,6 +722,13 @@ offset_bottom = 164.0
 texture = ExtResource("3_g4bjt")
 stretch_mode = 1
 
+[node name="TextureRect2" type="ColorRect" parent="Parallax/Parallax3" unique_id=2128801971]
+offset_left = -1120.0
+offset_top = -52.0
+offset_right = 1184.0
+offset_bottom = 272.0
+color = Color(0.69411767, 0.31764707, 0.3764706, 1)
+
 [node name="Parallax4" type="Parallax2D" parent="Parallax" unique_id=428915249]
 scroll_scale = Vector2(0.8, 0.785)
 repeat_size = Vector2(2304, 0)
@@ -734,6 +741,13 @@ offset_right = 1184.0
 offset_bottom = 168.0
 texture = ExtResource("4_eomgh")
 stretch_mode = 1
+
+[node name="TextureRect2" type="ColorRect" parent="Parallax/Parallax4" unique_id=178472950]
+offset_left = -1120.0
+offset_top = 20.0
+offset_right = 1184.0
+offset_bottom = 344.0
+color = Color(0.1764706, 0.16862746, 0.3254902, 1)
 
 [node name="Parallax5" type="Parallax2D" parent="Parallax" unique_id=1250544776]
 scroll_scale = Vector2(0.85, 0.812)
@@ -749,6 +763,13 @@ offset_bottom = 232.0
 texture = ExtResource("5_c1g3x")
 stretch_mode = 1
 
+[node name="TextureRect2" type="ColorRect" parent="Parallax/Parallax5" unique_id=1884386023]
+offset_left = -1120.0
+offset_top = 72.0
+offset_right = 1184.0
+offset_bottom = 396.0
+color = Color(0.85490197, 0.36078432, 0.41568628, 1)
+
 [node name="Parallax6" type="Parallax2D" parent="Parallax" unique_id=444698895]
 scroll_scale = Vector2(0.95, 0.904)
 repeat_size = Vector2(2304, 0)
@@ -762,6 +783,13 @@ offset_right = 1192.0
 offset_bottom = 144.0
 texture = ExtResource("6_hfb6s")
 stretch_mode = 1
+
+[node name="TextureRect2" type="ColorRect" parent="Parallax/Parallax6" unique_id=379872634]
+offset_left = -1112.0
+offset_top = 100.0
+offset_right = 1192.0
+offset_bottom = 340.0
+color = Color(0.28627452, 0.24313726, 0.45882353, 1)
 
 [node name="Parallax7" type="Parallax2D" parent="Parallax" unique_id=1298240390]
 repeat_size = Vector2(2304, 0)

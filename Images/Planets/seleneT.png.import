@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtlyqogwroeup"
-path="res://.godot/imported/gaia.png-2ed53f73d47a8a0071b081dfbfae4fd3.ctex"
+uid="uid://d4e05cfu8h3if"
+path="res://.godot/imported/seleneT.png-9a75d3f5d19083451f4f9c6d63bccdb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Planets/gaia.png"
-dest_files=["res://.godot/imported/gaia.png-2ed53f73d47a8a0071b081dfbfae4fd3.ctex"]
+source_file="res://Images/Planets/seleneT.png"
+dest_files=["res://.godot/imported/seleneT.png-9a75d3f5d19083451f4f9c6d63bccdb7.ctex"]
 
 [params]
 

@@ -74,10 +74,10 @@ const planet_data = [
 ]
 
 const planet_pictures = [
-	preload("res://Images/Planets/neos.png"),
-	preload("res://Images/Planets/gaia.png"),
-	preload("res://Images/Planets/terra.png"),
-	preload("res://Images/Planets/selene.png")
+	preload("res://Images/Planets/neosT.png"),
+	preload("res://Images/Planets/gaiaT.png"),
+	preload("res://Images/Planets/terraT.png"),
+	preload("res://Images/Planets/seleneT.png")
 ]
 
 const planet_sprites = [
@@ -254,7 +254,10 @@ func _on_durante_pressed() -> void:
 		load_message_data(
 			"???",
 			preload("res://Images/Characters/Portraits/Aaron.png"),
-			"You play this game like a beginner.\n\nDEMO OVER: Bad ending #1 (Thanks for playing ^^)",
+			"DEMO OVER: Bad ending #1
+			(Thanks for playing ^^)
+			
+			You play this game like a beginner.\n\n",
 			"FATAL ERROR"
 		)
 		GlobalMusic.queue_track("res://Audio/Music/2- Mental Vortex.mp3", 0.1)
@@ -273,9 +276,13 @@ func _on_durante_pressed() -> void:
 		load_message_data(
 			"Aaron Glaucio",
 			preload("res://Images/Characters/Portraits/Aaron.png"),
-			"You have most of the pieces of the puzzle, but are still missing some. Let me give you the entire picture. My name is Aaron Gláucio. I am the leader of the Anima group. Our journey ends here, and so does yours. We will be waiting for you on Durante - you will find coordinates attached to this message. We will not come for you. We know that you will meet us at your own discretion, on your own terms. There is no need to bring weapons, the fate of our kind as humans has already been decided, but if you do decide to fight, make sure to bring your biggest ones. Not to win mind you. To feel like you've done your best and died glouriously for your cause. In any case, you have my full respect. You have proven to be a great and honorable leader.\n\nDEMO OVER: Road to good ending. (Thanks for playing ^^)",
+			"DEMO OVER: Road to good ending. 
+			(Thanks for playing ^^)
+			
+			You have most of the pieces of the puzzle, but are still missing some. Let me give you the entire picture. My name is Aaron Gláucio. I am the leader of the Anima group. Our journey ends here, and so does yours. We will be waiting for you on Durante - you will find coordinates attached to this message. We will not come for you. We know that you will meet us at your own discretion, on your own terms. There is no need to bring weapons, the fate of our kind as humans has already been decided, but if you do decide to fight, make sure to bring your biggest ones. Not to win mind you. To feel like you've done your best and died glouriously for your cause. In any case, you have my full respect. You have proven to be a great and honorable leader.\n\n",
 			"Data received: Anima History"
 		)
+		accept_status.hide()
 		datalog_button.disabled = false
 		PlayerData.current_planet = 4
 		planet_info.hide()
@@ -284,7 +291,10 @@ func _on_durante_pressed() -> void:
 		load_message_data(
 			"???",
 			preload("res://Images/Characters/Portraits/Aaron.png"),
-			"Whatever you do, we will win. This realm will be cleansed of any and all AI overlords. Starting with NEOS, we destroyed the original Aqualis overlord. Terra's old counter AI Scopos was never destroyed by Kuwat. He failed to eradicate it. For years it has been working to become a singularity in the shadows. Gaia was a cyber-planet with no living creatures on it. It was a parasite, malware, designed to destroy the solar system. Anima has finally completed its mission.\n\nDEMO OVER: Bad Ending #2 (Thanks for playing ^^)",
+			"DEMO OVER: Bad Ending #2 
+			(Thanks for playing ^^)
+			
+			Whatever you do, we will win. This realm will be cleansed of any and all AI overlords. Starting with NEOS, we destroyed the original Aqualis overlord. Terra's old counter AI Scopos was never destroyed by Kuwat. He failed to eradicate it. For years it has been working to become a singularity in the shadows. Gaia was a cyber-planet with no living creatures on it. It was a parasite, malware, designed to destroy the solar system. Anima has finally completed its mission.\n\n",
 			"ERROR CO?NE?TED: D? NOT T??S? A????; A???A IS D??D; L??S; A???L?S ?? ???VE; L?ES"
 		)
 		datalog_button.disabled = true

@@ -39,6 +39,9 @@ func _physics_process(_delta):
 
 # Call this when taking damage.
 func take_damage(damage_value : int, collision : KinematicCollision2D, knockback_force : int):
+	if get_parent().has_meta("shielded"):
+		if get_parent().get_meta("shielded") == true:
+			return
 	# HP gameplay logic
 	get_parent().take_damage(damage_value)
 	# Convert collision position: Global -> Local -> Tilemap

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://twftx1t5m6ol"
-path="res://.godot/imported/sun.png-069ab220d9117271e3e4c08f044e1c10.ctex"
+uid="uid://cb5tyrerm7ilq"
+path="res://.godot/imported/terraT.png-9fa21929b4bbc4ce4254d3c2ab3c024d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Planets/sun.png"
-dest_files=["res://.godot/imported/sun.png-069ab220d9117271e3e4c08f044e1c10.ctex"]
+source_file="res://Images/Planets/terraT.png"
+dest_files=["res://.godot/imported/terraT.png-9fa21929b4bbc4ce4254d3c2ab3c024d.ctex"]
 
 [params]
 

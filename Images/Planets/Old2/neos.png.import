@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3sd202pgv04u"
-path="res://.godot/imported/terra.png-d96c03c443e6e48077dd09043f6abcc2.ctex"
+uid="uid://1muksnew471o"
+path="res://.godot/imported/neos.png-6740f0c91e0f4eed20d475ed4a1bc17c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Planets/terra.png"
-dest_files=["res://.godot/imported/terra.png-d96c03c443e6e48077dd09043f6abcc2.ctex"]
+source_file="res://Images/Planets/Old2/neos.png"
+dest_files=["res://.godot/imported/neos.png-6740f0c91e0f4eed20d475ed4a1bc17c.ctex"]
 
 [params]
 

@@ -4,7 +4,7 @@ extends StaticBody2D
 
 const FLOOR_HEIGHT = 608 # Standard floor height
 const SPAWN_OFFSET = 750 # Next enemy offset in pixels
-const FIRST_ENEMY = 2500 # First enemy X coordinate
+const FIRST_ENEMY = 2800 # First enemy X coordinate
 
 # =============================================================
 
@@ -93,7 +93,7 @@ func generate_terrain(length : int) -> PackedVector2Array:
 	var terrain_points : PackedVector2Array = []
 	
 	# Initialize flat terrain at stage start
-	terrain_points.append(Vector2(-SPAWN_OFFSET, FLOOR_HEIGHT))
+	terrain_points.append(Vector2(-SPAWN_OFFSET*2, FLOOR_HEIGHT))
 	terrain_points.append(Vector2(FIRST_ENEMY, FLOOR_HEIGHT))
 	
 	# Start iteratively generating terrain after first enemy

@@ -724,6 +724,7 @@ sources/0 = SubResource("TileSetAtlasSource_r33sp")
 [node name="Main" type="Node2D" unique_id=105152583]
 script = ExtResource("1_hibaj")
 metadata/main_gamemode = true
+metadata/boss_test = true
 
 [node name="Mech" parent="." unique_id=389051570 instance=ExtResource("9_hibaj")]
 physics_material_override = SubResource("PhysicsMaterial_pdsj5")
@@ -761,7 +762,7 @@ shape = SubResource("WorldBoundaryShape2D_gt3je")
 
 [node name="Parallax2" type="Parallax2D" parent="Foreground" unique_id=1076754031]
 
-[node name="TextureRect" type="TextureRect" parent="Foreground/Parallax2" unique_id=545539663]
+[node name="ScreenBorder2" type="TextureRect" parent="Foreground/Parallax2" unique_id=545539663]
 offset_left = -4279.0
 offset_top = -4385.0
 offset_right = 199.0
@@ -769,17 +770,18 @@ offset_bottom = 1530.0
 texture = SubResource("GradientTexture2D_h1bgf")
 flip_h = true
 
-[node name="ScreenLimit" type="StaticBody2D" parent="Foreground/Parallax2/TextureRect" unique_id=1916031931]
+[node name="ScreenLimit" type="StaticBody2D" parent="Foreground/Parallax2/ScreenBorder2" unique_id=1916031931]
 position = Vector2(3847, 4929)
 collision_layer = 65535
 collision_mask = 65535
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax2/TextureRect/ScreenLimit" unique_id=1181916085]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Parallax2/ScreenBorder2/ScreenLimit" unique_id=1181916085]
 position = Vector2(-4, 0)
 shape = SubResource("WorldBoundaryShape2D_3pmx8")
 
 [node name="NavigationRegion" parent="." unique_id=831838858 instance=ExtResource("12_7k868")]
-position = Vector2(0, -592)
+position = Vector2(-500, -1500)
+scale = Vector2(2, 2)
 rebake_period = 0.5
 
 [node name="PostFX" parent="." unique_id=748460950 instance=ExtResource("6_fevyy")]
