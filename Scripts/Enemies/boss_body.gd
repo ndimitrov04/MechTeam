@@ -20,8 +20,6 @@ extends RigidBody2D
 # Mech controller AI
 @onready var action_decision = $ActionDecision
 
-@onready var mov_control_x_axis = $Controllers/MovControlXAxis
-
 const SPEED = 45.0
 const ACCEL = 20.0
 const JUMP_linear_velocity = -400.0
@@ -208,10 +206,6 @@ func airstrike():
 	bomb_instance.global_position.x = randi_range(playermech_pos.x, playermech_pos.x + X_RANGE)
 	bomb_instance.global_position.y = playermech_pos.y - HEIGHT
 	main.add_child(bomb_instance)
-
-# Permanent brake
-func _on_mov_control_x_axis_interacted_with() -> void:
-	perma_brake = true
 
 @onready var can_collide : bool = true
 func _on_body_entered(body):

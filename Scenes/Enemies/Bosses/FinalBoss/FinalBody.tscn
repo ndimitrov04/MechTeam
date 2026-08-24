@@ -44,14 +44,14 @@ width = 500
 height = 32
 
 [node name="BossBody" type="RigidBody2D" unique_id=133330300]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 1024
+collision_mask = 1024
 gravity_scale = 0.0
 can_sleep = false
 lock_rotation = true
 script = ExtResource("1_pbysw")
 metadata/hp = 500
-metadata/choice_ranges = PackedByteArray("LUFa")
+metadata/choice_ranges = PackedByteArray("LU5c")
 metadata/shielded = true
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_kx5ap")]
@@ -163,17 +163,8 @@ position = Vector2(-80, 576)
 [node name="AirstrikeCaller5" parent="Modules" unique_id=443746949 instance=ExtResource("6_pbysw")]
 position = Vector2(288, 416)
 
-[node name="DroneGenerator" parent="Modules" unique_id=1459667348 instance=ExtResource("7_5fa6y")]
-position = Vector2(48, -384)
-
 [node name="DroneGenerator2" parent="Modules" unique_id=1306854169 instance=ExtResource("7_5fa6y")]
 position = Vector2(368, -96)
-
-[node name="DroneGenerator3" parent="Modules" unique_id=927312672 instance=ExtResource("7_5fa6y")]
-position = Vector2(-304, 128)
-
-[node name="DroneGenerator4" parent="Modules" unique_id=1623601034 instance=ExtResource("7_5fa6y")]
-position = Vector2(464, 576)
 
 [node name="DroneGenerator5" parent="Modules" unique_id=1650375622 instance=ExtResource("7_5fa6y")]
 position = Vector2(-496, 576)

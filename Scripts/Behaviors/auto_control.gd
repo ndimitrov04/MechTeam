@@ -92,7 +92,7 @@ func _on_cooldown_timeout():
 func start_cooldown():
 	on_cooldown = true
 	cooldown_bar.show()
-	timer.start(cooldown_time)
+	timer.start(cooldown_time + (randf_range(-1, 3)))
 
 func npc_engage():
 	if mech.energy < energy_cost:

@@ -1,6 +1,9 @@
 extends Node2D
 
 const FINAL_BODY = preload("uid://bgtf814bc0qb6")
+const FINAL_ARM_R = preload("uid://dwv1u2tv8sr35")
+const FINAL_ARM_L = preload("uid://uo2nxp4entq6")
+
 
 @onready var player = $Player
 @onready var mech = $Mech
@@ -80,7 +83,7 @@ const OST_2 = "uid://ce4508tlmtnyx"
 const OST_3 = "uid://m8uma6bexyvi"
 const OST_4 = "uid://byq36523c31uh"
 const OST_5 = "uid://coontyop6fu1"
-const OST_FINAL_BOSS = "res://Audio/Music/RPG Project - The Sound of Battle.mp3"
+const OST_FINAL_BOSS = "res://Audio/Music/9- Our Enemy.ogg"
 @onready var soundtracks = [OST_1, OST_2, OST_3, OST_4, OST_5, OST_T]
 func _ready():
 	if has_meta("boss_test"):
@@ -88,6 +91,7 @@ func _ready():
 			PlayerData.current_stage = 14
 			PlayerData.current_planet = 4
 	
+	# SETUP STAGE
 	# Stage Number:  0 = NEOS, 1 = GAIA, 2 = TERRA, 3 = SELENE, 4 = DURANTE, 5 = TUTORIAL
 	var stage_number = PlayerData.current_planet
 	if stage_number == 2:
@@ -96,26 +100,37 @@ func _ready():
 	var current_background = backgrounds[stage_number].instantiate()
 	add_child(current_background, true)
 	move_child(current_background, 0)
-	GlobalMusic.queue_track(soundtracks[stage_number], 2)
+	if PlayerData.current_stage != 14:
+		GlobalMusic.queue_track(soundtracks[stage_number], 2)
 	
-	# Final stage logic
+	# SETUP FINAL STAGE
 	if PlayerData.current_stage == 14: 
 		GlobalMusic.queue_track(OST_FINAL_BOSS, 2)
 		enemies_left = 3 # Boss body + 2 arms
 		first_enemy.queue_free()
+		# Spawn boss body
 		var final_boss_body = FINAL_BODY.instantiate()
-		const BOSS_POS : Vector2 = Vector2(1000, -850)
+		const BOSS_POS : Vector2 = Vector2(600, -1025)
 		final_boss_body.global_position = BOSS_POS
 		add_child(final_boss_body)
-		#screen_border.hide()
+		# Spawn boss arms
+		var final_boss_arm_l = FINAL_ARM_L.instantiate()
+		const ARM_L_POS : Vector2 = BOSS_POS + Vector2(-1200, 20)
+		final_boss_arm_l.global_position = ARM_L_POS
+		add_child(final_boss_arm_l)
+		var final_boss_arm_r = FINAL_ARM_R.instantiate()
+		const ARM_R_POS : Vector2 = BOSS_POS + Vector2(1200, 20)
+		final_boss_arm_r.global_position = ARM_R_POS
+		add_child(final_boss_arm_r)
+		# Setup arena camera
 		screen_border.self_modulate = Color(0,0,0,0)
-		#screen_border_2.hide()
 		screen_border_2.self_modulate = Color(0,0,0,0)
 		player.camera.limit_left = -1340
 		screen_limit_2.global_position.x = -1340
 		player.camera.limit_right = 2500
 		screen_limit.global_position.x = 2500
 		player.camera.limit_bottom = 635
+		player.zoom = Vector2(1, 1)
 		
 	# Debug terrain test
 	if PlayerData.terrain_test:
