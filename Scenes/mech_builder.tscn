@@ -61,6 +61,7 @@
 [ext_resource type="AudioStream" uid="uid://dkbxm1b82vxc3" path="res://Audio/SFX/UI/mouseclick1.wav" id="40_15liy"]
 [ext_resource type="AudioStream" uid="uid://bgyn152peon2x" path="res://Audio/SFX/UI/unit_ready.ogg" id="41_pqdt3"]
 [ext_resource type="AudioStream" uid="uid://c0xkx2vswbwu4" path="res://Audio/SFX/UI/unit_canceled.ogg" id="42_fnvon"]
+[ext_resource type="Texture2D" uid="uid://blwtxiir4h8vm" path="res://Images/Icons/Editor/Modules/sniper.png" id="43_e3qdn"]
 [ext_resource type="Script" uid="uid://cmcr6odswnbo2" path="res://Scripts/Misc/PrebuiltMechs/prebuilt_button_1.gd" id="53_inyxq"]
 [ext_resource type="Texture2D" uid="uid://bn1vr45u70hyc" path="res://Images/UI/Prebuilts/prebuilt1.png" id="53_tx251"]
 [ext_resource type="Script" uid="uid://dj20eyw3s4cvg" path="res://Scripts/Misc/PrebuiltMechs/prebuilt_button_2.gd" id="54_54u4h"]
@@ -1646,7 +1647,7 @@ theme_override_icons/increment = ExtResource("8_tgtas")
 theme_override_icons/increment_highlight = ExtResource("8_tgtas")
 theme_override_icons/decrement = ExtResource("7_w1m1m")
 theme_override_icons/decrement_highlight = ExtResource("7_w1m1m")
-current_tab = 0
+current_tab = 2
 
 [node name="TextureUI" type="TileMapLayer" parent="GUI/Control/TabContainer" unique_id=372377446]
 z_index = -1
@@ -1681,7 +1682,7 @@ color = Color(0.13333334, 0.16470589, 0.36078432, 1)
 [node name="Left" type="Button" parent="GUI/Control/TabContainer/TextureUI/Circuit" unique_id=1169887646]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.016574586
+anchor_left = 0.008287293
 anchor_right = 0.008287293
 offset_left = -14.0
 offset_top = 437.0
@@ -1708,6 +1709,7 @@ icon_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Blocks" type="ItemList" parent="GUI/Control/TabContainer" unique_id=1996411739]
+visible = false
 layout_mode = 2
 item_count = 2
 fixed_icon_size = Vector2i(32, 32)
@@ -1739,9 +1741,8 @@ item_3/selectable = false
 metadata/_tab_index = 1
 
 [node name="Modules" type="ItemList" parent="GUI/Control/TabContainer" unique_id=848252397]
-visible = false
 layout_mode = 2
-item_count = 10
+item_count = 11
 fixed_icon_size = Vector2i(32, 32)
 item_0/text = "M. Gun"
 item_0/icon = ExtResource("16_ojmi2")
@@ -1774,6 +1775,8 @@ item_8/selectable = false
 item_9/text = "Booster"
 item_9/icon = ExtResource("26_i5cyd")
 item_9/selectable = false
+item_10/text = "Sniper"
+item_10/icon = ExtResource("43_e3qdn")
 metadata/_tab_index = 2
 
 [node name="Controllers" type="ItemList" parent="GUI/Control/TabContainer" unique_id=288800539]

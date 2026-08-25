@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="MechTeam"
-config/version="0.556"
+config/version="0.561"
 run/main_scene="uid://m4q4cm7li360"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/use_filter=false
@@ -46,7 +46,6 @@ window/size/mode=3
 window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="viewport"
-mouse_cursor/custom_image="uid://b06o2oga8rrl3"
 
 [editor_plugins]
 

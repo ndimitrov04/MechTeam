@@ -88,6 +88,7 @@ const RAM = preload("uid://d2uuifeftj3yo")
 const LASER = preload("uid://boso7sg4n7kia")
 const PLASMA = preload("uid://c2estde02njs")
 const BOOSTER = preload("uid://ch2aqahhlaycp")
+const SNIPER = preload("uid://c7q6aysu23uv3")
 # CONTROLLERS
 const AIM_CONTROL = preload("uid://bjychxdy31gx5")
 const JUMP_CONTROL = preload("uid://cqf1xuoccxt6k")
@@ -201,6 +202,12 @@ func _ready():
 	Must be connected to an 
 	ENGAGE control terminal to use.
 	This module aims directly away from the crosshair.")
+	modules.set_item_tooltip(10, "Cost: 60
+	Instantly delivers a bullet to the crosshair's location.
+	Best for precise tile/module destruction.
+	Needs 45 energy to use.
+	Must be connected to an 
+	ENGAGE control terminal to use.")
 	# Controllers
 	controllers.set_item_tooltip(0, "Cost: 10
 	This controller lets the player aim a mech's weapons.")
@@ -321,6 +328,9 @@ func _on_weapons_item_clicked(index, _at_position, _mouse_button_index):
 		9:
 			editor.chosen_object = BOOSTER
 			editor.current_cost = 25
+		10:
+			editor.chosen_object = SNIPER
+			editor.current_cost = 60
 
 func _on_controllers_item_clicked(index, _at_position, _mouse_button_index):
 	editor.edit_layer = 2

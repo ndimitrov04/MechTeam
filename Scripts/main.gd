@@ -83,7 +83,7 @@ const OST_2 = "uid://ce4508tlmtnyx"
 const OST_3 = "uid://m8uma6bexyvi"
 const OST_4 = "uid://byq36523c31uh"
 const OST_5 = "uid://coontyop6fu1"
-const OST_FINAL_BOSS = "res://Audio/Music/9- Our Enemy.ogg"
+const OST_FINAL_BOSS = "uid://beku4nrvqac8i"
 @onready var soundtracks = [OST_1, OST_2, OST_3, OST_4, OST_5, OST_T]
 func _ready():
 	if has_meta("boss_test"):

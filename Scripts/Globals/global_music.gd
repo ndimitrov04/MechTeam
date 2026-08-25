@@ -9,7 +9,7 @@ extends Node
 func _ready() -> void:
 	track_1.volume_db = 0
 	track_2.volume_db = -80
-	track_1.stream = load("res://Audio/Music/11 die vonstantine.ogg")
+	track_1.stream = preload("res://Audio/Music/11 die vonstantine.ogg")
 	track_1.play()
 
 const MIN_VOLUME : float = -24.0

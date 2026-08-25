@@ -115,6 +115,8 @@ func engage():
 			bullet_instance.set_collision_mask_value(10, 0)
 		bullet_instance.global_rotation = self.global_rotation
 		bullet_instance.global_position = shoot_point.global_position
+		if has_meta("direct_shot"):
+			bullet_instance.global_position = mech.crosshair.global_position
 		main.add_child(bullet_instance)
 		# Apply recoil per shot
 		if recoil != 0:

@@ -83,7 +83,7 @@ func _physics_process(delta):
 		
 	# Handle physics movement
 	if moving:
-		if global_position.distance_to(target_point) > 25.0:
+		if global_position.distance_to(target_point) > 15.0:
 			var direction = global_position.direction_to(target_point)
 			var target_velocity = direction * SPEED
 			linear_velocity = linear_velocity.move_toward(
@@ -161,6 +161,8 @@ func _on_action_decision_timeout():
 		moving = false
 		gravity_scale = 1
 		await get_tree().create_timer(2.0).timeout
+		linear_velocity.y -= 250
+		target_point = spawn_point
 		moving = true
 		gravity_scale = 0
 	# Aim

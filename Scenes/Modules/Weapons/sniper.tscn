@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://c7q6aysu23uv3"]
+
+[ext_resource type="Script" uid="uid://cp3kgexvunvtf" path="res://Scripts/Modules/Weapons/gun.gd" id="1_4tkvv"]
+[ext_resource type="PackedScene" uid="uid://7pvmbpigkpq1" path="res://Scenes/Projectiles/bullet.tscn" id="2_qn0wq"]
+[ext_resource type="Texture2D" uid="uid://hwq6j0v0p33f" path="res://Images/MechGuns/turret_01_mk1x.png" id="3_4tkvv"]
+[ext_resource type="PackedScene" uid="uid://dqge4hvto3if1" path="res://Scenes/Behaviors/direct_aim.tscn" id="4_xlbfq"]
+[ext_resource type="PackedScene" uid="uid://y84ad1x71nus" path="res://Scenes/Misc/smoke.tscn" id="5_5wubs"]
+[ext_resource type="AudioStream" uid="uid://bnscl4djdcyow" path="res://Audio/SFX/Modules/bang_02.ogg" id="6_4tkvv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn0wq"]
+atlas = ExtResource("3_4tkvv")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1ilt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn0wq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hptm8"]
+radius = 5.0
+height = 74.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1ilt"]
+radius = 18.0
+height = 62.0
+
+[node name="Sniper" type="RigidBody2D" unique_id=834209248]
+z_index = 10
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+mass = 2.0
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_4tkvv")
+metadata/aim_speed = 2.5
+metadata/pinned_tile = Vector2i(0, 0)
+metadata/price = 60
+metadata/bullet = ExtResource("2_qn0wq")
+metadata/repeat_rate = 1
+metadata/recoil = 0.35
+metadata/energy_cost = 45
+metadata/cooldown_time = 20.0
+metadata/direct_shot = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_d1ilt")
+autoplay = "default"
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1882493289]
+position = Vector2(13, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_hptm8")
+
+[node name="Hitbox2" type="CollisionShape2D" parent="." unique_id=196601224]
+position = Vector2(-1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_d1ilt")
+
+[node name="DirectAim" parent="." unique_id=1244187644 instance=ExtResource("4_xlbfq")]
+
+[node name="ShootPoint" type="Node2D" parent="." unique_id=670362176]
+position = Vector2(40, 0)
+
+[node name="Smoke" parent="ShootPoint" unique_id=582111232 instance=ExtResource("5_5wubs")]
+position = Vector2(8, 0)
+
+[node name="SFX" type="Node2D" parent="." unique_id=280823543]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="SFX" unique_id=1383703712]
+stream = ExtResource("6_4tkvv")
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=10055733]
+max_distance = 1250.0
+max_polyphony = 10
+bus = &"SFX"

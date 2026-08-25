@@ -282,7 +282,7 @@ func _on_durante_pressed() -> void:
 			You have most of the pieces of the puzzle, but are still missing some. Let me give you the entire picture. My name is Aaron Gláucio. I am the leader of the Anima group. Our journey ends here, and so does yours. We will be waiting for you on Durante - you will find coordinates attached to this message. We will not come for you. We know that you will meet us at your own discretion, on your own terms. There is no need to bring weapons, the fate of our kind as humans has already been decided, but if you do decide to fight, make sure to bring your biggest ones. Not to win mind you. To feel like you've done your best and died glouriously for your cause. In any case, you have my full respect. You have proven to be a great and honorable leader.\n\n",
 			"Data received: Anima History"
 		)
-		accept_status.hide()
+		#accept_status.hide()
 		datalog_button.disabled = false
 		PlayerData.current_planet = 4
 		planet_info.hide()
