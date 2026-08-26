@@ -232,6 +232,18 @@ func end_stage():
 				"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("000418")}
 			}
 		)
+	elif PlayerData.current_stage == 14:
+		PlayerData.planets_finished.append(PlayerData.current_planet)
+		PlayerData.current_stage += 1
+		IndieBlueprintSceneTransitioner.transition_to(
+		"res://Scenes/Story/demo_end.tscn",
+			IndieBlueprintPremadeTransitions.Dissolve,
+			IndieBlueprintPremadeTransitions.Dissolve,
+			{ 
+				"in": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 0.5, "color": Color("55648C")},
+				"out": {"texture": IndieBlueprintPremadeTransitions.Squares, "duration": 1.0, "color": Color("000418")}
+			}
+		)
 	else:
 		PlayerData.current_stage += 1
 		IndieBlueprintSceneTransitioner.transition_to(

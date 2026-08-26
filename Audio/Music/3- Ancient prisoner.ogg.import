@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://diwd4as72bxxj"
+path="res://.godot/imported/3- Ancient prisoner.ogg-d0758bcc295327c975478d617418e160.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/3- Ancient prisoner.ogg"
+dest_files=["res://.godot/imported/3- Ancient prisoner.ogg-d0758bcc295327c975478d617418e160.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
