@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://dav1m2kus5nta"]
+
+[ext_resource type="Texture2D" uid="uid://7m4ouvqn47e0" path="res://!MediaMaterials/ItchPics/build3.png" id="1_q1r3b"]
+[ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="2_xya05"]
+
+[node name="Build" type="Control" unique_id=766664894]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Build1" type="Sprite2D" parent="." unique_id=1560261488]
+position = Vector2(959, 538)
+texture = ExtResource("1_q1r3b")
+
+[node name="Label" type="Label" parent="." unique_id=1116368806]
+layout_mode = 0
+offset_left = 934.0
+offset_top = 24.0
+offset_right = 1527.0
+offset_bottom = 376.0
+theme = ExtResource("2_xya05")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "
+Build a mech frame
+
+Add weapons, batteries, control modules
+
+Hire crew members "
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="." unique_id=2022195003]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 914.0
+offset_right = 307.0
+offset_bottom = 958.0
+theme = ExtResource("2_xya05")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "Stage 1"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="." unique_id=664565981]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 964.0
+offset_right = 772.0
+offset_bottom = 1316.0
+theme = ExtResource("2_xya05")
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 100
+text = "Mech Construction"
+horizontal_alignment = 2
+autowrap_mode = 2

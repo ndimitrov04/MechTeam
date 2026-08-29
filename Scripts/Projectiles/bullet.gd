@@ -34,6 +34,9 @@ func _on_body_entered(body, collision):
 		#print("Damage Value: " + str(damage_value))
 		#print("Collision:" + str(collision))
 		#print("Knockback Force:" + str(knockback_force))
+	if body.name == "MainGenerator":
+		self.queue_free()
+		return
 	if body.get_parent().name == "Modules" or body.get_parent().name == "Weapons":
 		body.destroy()
 		#print("Destroying" + body.name)

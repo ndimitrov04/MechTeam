@@ -8,6 +8,7 @@ extends Control
 @onready var fullscreen: CheckButton = $OptionPanel/Fullscreen
 @onready var clear_data: Button = $OptionPanel/ClearData
 @onready var shaders: CheckButton = $OptionPanel/Shaders
+@onready var motion: CheckButton = $OptionPanel/Motion
 
 @onready var credit_panel: Panel = $"../Credits/CreditPanel"
 @onready var show_credits: Button = $"../Credits/ShowCredits"
@@ -24,6 +25,7 @@ func _ready() -> void:
 	post_fx.toggled.connect(_on_post_fx_toggled)
 	fullscreen.toggled.connect(_on_fullscreen_toggled)
 	shaders.toggled.connect(_on_shaders_toggled)
+	motion.toggled.connect(_on_motion_toggled)
 	clear_data.pressed.connect(_show_clear_confirm)
 	
 	update_fullscreen_switches()
@@ -35,6 +37,10 @@ func _ready() -> void:
 		shaders.set_pressed_no_signal(true)
 	else:
 		shaders.set_pressed_no_signal(false)
+	if PlayerData.motion_sickness_mode:
+		motion.set_pressed_no_signal(true)
+	else:
+		motion.set_pressed_no_signal(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -81,6 +87,12 @@ func _on_shaders_toggled(is_enabled):
 		PlayerData.shaders_enabled = true
 	else:
 		PlayerData.shaders_enabled = false
+
+func _on_motion_toggled(is_enabled):
+	if is_enabled:
+		PlayerData.motion_sickness_mode = true
+	else:
+		PlayerData.motion_sickness_mode = false
 
 func _on_fullscreen_toggled(is_enabled):
 	if is_enabled:

@@ -18,21 +18,29 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	credits.show_credits.hide()
-	GlobalMusic.stop()
-	GlobalMusic.queue_track("res://Audio/Music/3- Ancient prisoner.ogg", 2)
 	space_cd.start()
 	animation_player.play("FlyIn")
+	if name == "BadEnd":
+		print("badend1")
+		current_anim = 2
+		space_cd.stop()
+	else:
+		GlobalMusic.stop()
+		GlobalMusic.queue_track("res://Audio/Music/3- Ancient prisoner.ogg", 2)
 
 func advance():
 	space_cd.start()
 	
 @onready var credits: Control = $Credits
 @onready var label_t: Label = $LabelT
-@onready var background: Node2D = $Panel4/Background
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@onready var t = true
 func _process(_delta: float) -> void:
+	if name == "BadEnd" and t:
+		Input.action_press("jump")
+		t = false
 	if Input.is_action_just_pressed("jump") and space_cd.is_stopped():
-		print(current_anim)
+		print("ENDLB: " + str(current_anim))
 		if current_anim == 2:
 			animation_player.play("FlyOut")
 			label_t.hide()
@@ -41,15 +49,18 @@ func _process(_delta: float) -> void:
 			credits.credit_panel.add_theme_stylebox_override("panel", transparent_style)
 			credits.credit_panel.show()
 			credits.show_credits.hide()
+			if name != "BadEnd":
+				label_2.pop_in()
 			label_3.pop_in()
 			scroll_credits()
-			credits.crd.text = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + credits.crd.text + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+			credits.crd.text = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + credits.crd.text + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 			credits.crd.scroll_active = false
-		if current_anim > 0 and current_anim < 3:
+			current_anim += 1
+		if current_anim > 0 and current_anim < 2:
 			ui_nodes[current_anim].pop_in()
 			ui_nodes[current_anim-1].pop_out()
 			current_anim += 1
-		elif current_anim < 3:
+		elif current_anim < 2:
 			ui_nodes[current_anim].pop_in()
 			current_anim += 1
 			

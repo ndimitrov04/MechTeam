@@ -1954,10 +1954,10 @@ texture = ExtResource("108_5ej1k")
 [sub_resource type="TileSet" id="TileSet_3wdvt"]
 sources/0 = SubResource("TileSetAtlasSource_0c7gy")
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_fipc7"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_qqmte"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_dqfcr"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_l72qv"]
 allow_unpress = true
 
 [node name="Menu" type="Control" unique_id=835225328]
@@ -4168,8 +4168,14 @@ grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Motion" parent="Menu/MenuPanel/Options/OptionPanel" parent_id_path=PackedInt32Array(2101862927, 1579632714) index="8" unique_id=1130520307]
+offset_left = 120.0
+offset_top = 536.0
+offset_right = 336.0
+offset_bottom = 620.0
+
 [node name="ShowOptions" parent="Menu/MenuPanel/Options" index="1" unique_id=1971259113]
-button_group = SubResource("ButtonGroup_fipc7")
+button_group = SubResource("ButtonGroup_qqmte")
 
 [node name="Credits" parent="Menu/MenuPanel" unique_id=2047440401 instance=ExtResource("114_qqmte")]
 layout_mode = 1
@@ -4183,7 +4189,7 @@ grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ShowCredits" parent="Menu/MenuPanel/Credits" index="1" unique_id=333356873]
-button_group = SubResource("ButtonGroup_dqfcr")
+button_group = SubResource("ButtonGroup_l72qv")
 
 [node name="Quit" type="Button" parent="Menu/MenuPanel" unique_id=1947578702]
 layout_mode = 1

@@ -150,6 +150,7 @@ enum planets {NEOS, GAIA, TERRA, SELENE, DURANTE}
 
 @onready var post_fx_enabled = true
 @onready var shaders_enabled = true
+@onready var motion_sickness_mode : bool = false
 
 @onready var terrain_test : bool = false
 

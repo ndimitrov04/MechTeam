@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://chpa5a4e83fq2"]
+
+[ext_resource type="Texture2D" uid="uid://rhxthcp8jv4e" path="res://!MediaMaterials/ItchPics/fight2.png" id="1_25mme"]
+[ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="2_3vg67"]
+
+[node name="Fight" type="Control" unique_id=766664894]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Build1" type="Sprite2D" parent="." unique_id=1560261488]
+position = Vector2(959, 538)
+texture = ExtResource("1_25mme")
+
+[node name="Label" type="Label" parent="." unique_id=1116368806]
+layout_mode = 0
+offset_left = 1438.0
+offset_top = 50.0
+offset_right = 1885.0
+offset_bottom = 358.0
+theme = ExtResource("2_3vg67")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "...or leave all of that to your crew and infiltrate the enemy's mech!
+"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="." unique_id=664565981]
+layout_mode = 0
+offset_left = -386.0
+offset_top = 936.0
+offset_right = 406.0
+offset_bottom = 1288.0
+theme = ExtResource("2_3vg67")
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 100
+text = "Combat"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="." unique_id=131993395]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 886.0
+offset_right = 271.0
+offset_bottom = 930.0
+theme = ExtResource("2_3vg67")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "Stage 2"
+horizontal_alignment = 2
+autowrap_mode = 2

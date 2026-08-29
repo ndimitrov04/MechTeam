@@ -123,7 +123,7 @@ func _physics_process(delta):
 		zoom /= 2
 	zoom.x = clamp(zoom.x, 0.5, 4)
 	zoom.y = clamp(zoom.y, 0.5, 4)
-	camera.zoom = zoom
+	camera.zoom_change(zoom)
 	
 	# Debug NPC summoning
 	if Input.is_action_just_pressed("debug_summon_npc"):

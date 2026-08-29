@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://dj84476vdvb43" path="res://Images/Characters/Enemies/FinalBoss/Idle.png" id="19_eojyj"]
 [ext_resource type="PackedScene" uid="uid://b5x3br02hg6yg" path="res://Scenes/credits.tscn" id="23_0umwj"]
 [ext_resource type="AudioStream" uid="uid://slk844nj4up" path="res://Audio/SFX/Ambience/freesound_community-028301_spaceship-ambience-61038.mp3" id="24_utlrc"]
+[ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="24_y8vlg"]
+[ext_resource type="Script" uid="uid://d4lpuucmeksjx" path="res://Scripts/menu_button.gd" id="25_xyngc"]
 
 [sub_resource type="Animation" id="Animation_fgts1"]
 resource_name = "FlyIn"
@@ -1405,6 +1407,25 @@ sprite_frames = SubResource("SpriteFrames_4xcqx")
 autoplay = "default"
 frame_progress = 0.8182535
 
+[node name="Main Menu" type="Button" parent="Panel1/Label2" unique_id=1106360980]
+self_modulate = Color(2.9741428, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.11100001
+anchor_right = 0.125
+anchor_bottom = 0.11100001
+offset_left = -36.0
+offset_top = -315.837
+offset_right = 132.0
+offset_bottom = -235.837
+scale = Vector2(2, 2)
+mouse_default_cursor_shape = 2
+theme = ExtResource("24_y8vlg")
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+script = ExtResource("25_xyngc")
+
 [node name="Label3" type="Label" parent="Panel1" unique_id=1376232875]
 top_level = true
 offset_left = 904.0
@@ -1452,3 +1473,5 @@ offset_bottom = 528.0
 text = "Press SPACE to advance"
 label_settings = SubResource("LabelSettings_0umwj")
 autowrap_mode = 2
+
+[connection signal="pressed" from="Panel1/Label2/Main Menu" to="Panel1/Label2/Main Menu" method="_on_pressed"]

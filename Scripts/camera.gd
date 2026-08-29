@@ -23,17 +23,46 @@ func add_trauma(amount : float):
 	trauma = min(trauma + amount, 1.0)
 	trauma = clampf(trauma, 0, 0.7 + bonus_impact)
 
+func slide_camera(direction_to : int):
+	var tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	match direction_to:
+		-1:
+			tween.tween_property(self, "position", Vector2(-300 / zoom.x, 0), 0.5)
+		0:
+			tween.tween_property(self, "position", Vector2(0, 0), 0.5)
+		1:
+			tween.tween_property(self, "position", Vector2(300 / zoom.x, 0), 0.5)
+
+func zoom_change(new_zoom):
+	if PlayerData.motion_sickness_mode:
+		self.zoom = new_zoom
+	else:
+		self.zoom = self.zoom.lerp(new_zoom, 1 - exp(-5 * get_process_delta_time()))
+
+const edge_threshold = 200
 func _process(delta):
-	if trauma > 1.4:
-		trauma = 1.4
-	if trauma:
-		trauma = max(trauma - decay * delta, 0)
-		shake()
-  #optional
-	elif offset.x != 0 or offset.y != 0 or rotation != 0:
-		lerp(offset.x,0.0,1)
-		lerp(offset.y,0.0,1)
-		lerp(rotation,0.0,1)
+	if not PlayerData.motion_sickness_mode:
+		var mouse_position = get_viewport().get_mouse_position()
+		var viewport_width = get_viewport_rect().size.x
+		var is_near_left_edge = mouse_position.x <= edge_threshold
+		var is_near_right_edge = mouse_position.x >= viewport_width - edge_threshold
+		if is_near_left_edge:
+			slide_camera(-1)
+		elif is_near_right_edge:
+			slide_camera(1)
+		else:
+			slide_camera(0)
+
+		if trauma > 1.4:
+			trauma = 1.4
+		if trauma:
+			trauma = max(trauma - decay * delta, 0)
+			shake()
+		elif offset.x != 0 or offset.y != 0 or rotation != 0:
+			lerp(offset.x,0.0,1)
+			lerp(offset.y,0.0,1)
+			lerp(rotation,0.0,1)
 
 func shake(): 
 	var amt = pow(trauma, trauma_pwr)

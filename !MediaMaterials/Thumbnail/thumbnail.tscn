@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://dd0vsd7s5cfob"]
+
+[ext_resource type="Texture2D" uid="uid://2rnohhcfjbi" path="res://CustomResources/meta/scrbg.png" id="1_iikx5"]
+[ext_resource type="PackedScene" uid="uid://g5er43oryqxr" path="res://Scenes/Enemies/EnemyMech/MechC.tscn" id="1_pb60p"]
+[ext_resource type="PackedScene" uid="uid://dwdxe5skik7we" path="res://logo.tscn" id="2_ehmjl"]
+[ext_resource type="PackedScene" uid="uid://ix5x0ldpylve" path="res://Scenes/StageProps/Backgrounds/plains_2.tscn" id="3_gqlds"]
+[ext_resource type="Texture2D" uid="uid://bsvxcregusx5a" path="res://Images/Characters/Enemies/Enemy1/Attack.png" id="4_6xvja"]
+[ext_resource type="Texture2D" uid="uid://vfehl0ro1tdt" path="res://Images/Characters/Player/Cyborg_run.png" id="4_8opki"]
+[ext_resource type="Texture2D" uid="uid://chcrm0fqliimp" path="res://Images/Explosions/1/explosion-f4.png" id="4_h4b8w"]
+[ext_resource type="Texture2D" uid="uid://chkcnpv0e315o" path="res://Images/Explosions/2/frame3.png" id="5_m46mq"]
+[ext_resource type="Texture2D" uid="uid://ys2p1s6abkep" path="res://Images/Projectiles/SpaceStation_Projectiles_Sheet.png" id="6_ehmjl"]
+[ext_resource type="Texture2D" uid="uid://bhpultnvg6523" path="res://Images/Objects/Decor/decor_1.png" id="6_gqlds"]
+[ext_resource type="Texture2D" uid="uid://dk7q58v53nuhc" path="res://Images/Icons/Editor/Blocks/IndustrialTile_25.png" id="8_pfxmy"]
+
+[sub_resource type="Environment" id="Environment_tq50l"]
+background_mode = 1
+background_color = Color(0.80784315, 0.5647059, 0.7294118, 1)
+ambient_light_source = 1
+adjustment_enabled = true
+adjustment_contrast = 1.25
+adjustment_saturation = 1.16
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fo8b"]
+atlas = ExtResource("4_8opki")
+region = Rect2(136, 6, 51, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqlds"]
+atlas = ExtResource("6_ehmjl")
+region = Rect2(17, 0, 13, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtkoj"]
+atlas = ExtResource("4_6xvja")
+region = Rect2(44, 0, 43, 48)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8opki"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ehmjl"]
+viewport_path = NodePath("SubViewport2")
+
+[node name="Thumbnail" type="Node3D" unique_id=890615895]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1534353614]
+environment = SubResource("Environment_tq50l")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=558982704]
+transparent_bg = true
+oversampling = false
+size = Vector2i(1920, 1080)
+
+[node name="EnemyMechC" parent="SubViewport" unique_id=133330300 instance=ExtResource("1_pb60p")]
+position = Vector2(400, 400)
+
+[node name="SubViewport2" type="SubViewport" parent="." unique_id=649636889]
+transparent_bg = true
+oversampling = false
+size = Vector2i(1920, 1080)
+
+[node name="Logo" parent="SubViewport2" unique_id=1719326609 instance=ExtResource("2_ehmjl")]
+
+[node name="SubViewport3" type="SubViewport" parent="." unique_id=1894227206]
+transparent_bg = true
+oversampling = false
+size = Vector2i(1920, 1080)
+
+[node name="Background" parent="SubViewport3" unique_id=1437686219 instance=ExtResource("3_gqlds")]
+
+[node name="Background" type="Node3D" parent="." unique_id=516549568]
+
+[node name="BG" type="Sprite3D" parent="Background" unique_id=122249204]
+transform = Transform3D(0.99009484, -0.084651574, 0.11201224, 0.08409605, 0.99641097, 0.009684147, -0.1124299, -0.00016843714, 0.9936601, -0.31665802, 1.6700006, -2.8398156)
+flip_h = true
+modulate = Color(1, 1, 1, 0.8784314)
+texture_filter = 5
+texture = ExtResource("1_iikx5")
+
+[node name="Foreground" type="Node3D" parent="." unique_id=677709255]
+
+[node name="Player" type="Sprite3D" parent="Foreground" unique_id=831981289]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8378015, 0.10520232, 1.6991631)
+texture_filter = 0
+texture = SubResource("AtlasTexture_2fo8b")
+
+[node name="Boom" type="Sprite3D" parent="Foreground" unique_id=1331963630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9973526, -0.16916254, 1.6991631)
+texture_filter = 0
+texture = ExtResource("4_h4b8w")
+
+[node name="Boom4" type="Sprite3D" parent="Foreground" unique_id=1990202240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.887686, 0.05877906, 1.6973172)
+texture_filter = 0
+texture = ExtResource("6_gqlds")
+
+[node name="Boom2" type="Sprite3D" parent="Foreground" unique_id=1691240950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5300698, 0.140376, 1.6991631)
+pixel_size = 0.005
+texture_filter = 0
+texture = ExtResource("5_m46mq")
+
+[node name="Boom3" type="Sprite3D" parent="Foreground" unique_id=1032168143]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4231634, -0.12230882, 1.6991631)
+pixel_size = 0.005
+texture_filter = 0
+texture = ExtResource("5_m46mq")
+
+[node name="Boom5" type="Sprite3D" parent="Foreground" unique_id=1390873379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2878559, 0.013498843, 1.843644)
+pixel_size = 0.015
+texture_filter = 0
+texture = ExtResource("5_m46mq")
+
+[node name="Debris" type="Sprite3D" parent="Foreground" unique_id=1143761916]
+transform = Transform3D(0.45256886, 0.8902612, 0.05115158, -0.8862331, 0.4426796, 0.13647641, 0.0988559, -0.10709719, 0.9893218, 4.465504, 0.0005046427, 1.6055688)
+pixel_size = 0.005
+texture_filter = 0
+texture = ExtResource("8_pfxmy")
+
+[node name="Debris2" type="Sprite3D" parent="Foreground" unique_id=2080987379]
+transform = Transform3D(0.90398556, 0.427563, 0, -0.427563, 0.90398556, 0, 0, 0, 1, 2.9112954, 0.14180185, 1.6055688)
+pixel_size = 0.005
+texture_filter = 0
+texture = ExtResource("8_pfxmy")
+
+[node name="Debris4" type="Sprite3D" parent="Foreground" unique_id=1065450974]
+transform = Transform3D(0.9800012, -0.1989916, 0, 0.1989916, 0.9800012, 0, 0, 0, 1, 3.0664134, 0.36214954, 1.6055688)
+pixel_size = 0.005
+texture_filter = 0
+texture = ExtResource("8_pfxmy")
+
+[node name="Debris5" type="Sprite3D" parent="Foreground" unique_id=543170588]
+transform = Transform3D(0.8709225, -0.4914207, 0, 0.4914207, 0.8709225, 0, 0, 0, 1, 2.6376283, 0.5684162, 1.6055688)
+pixel_size = 0.005
+texture_filter = 0
+texture = ExtResource("8_pfxmy")
+
+[node name="Debris3" type="Sprite3D" parent="Foreground" unique_id=1529621023]
+transform = Transform3D(0.6935779, -0.7203816, 0, 0.7203816, 0.6935779, 0, 0, 0, 1, 3.1506863, -0.3128556, 1.6055688)
+pixel_size = 0.005
+texture_filter = 0
+texture = ExtResource("8_pfxmy")
+
+[node name="Bullet" type="Sprite3D" parent="Foreground" unique_id=290207600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.328947, 0.12609097, 1.6991631)
+texture_filter = 0
+texture = SubResource("AtlasTexture_gqlds")
+
+[node name="Bullet2" type="Sprite3D" parent="Foreground" unique_id=1093907945]
+transform = Transform3D(0.8684585, -0.49576187, 0, 0.49576187, 0.8684585, 0, 0, 0, 1, 4.3785853, -0.14389339, 1.6991631)
+texture_filter = 0
+texture = SubResource("AtlasTexture_gqlds")
+
+[node name="Enemy" type="Sprite3D" parent="Foreground" unique_id=1982879370]
+transform = Transform3D(0.9573649, 0, 0.28888142, 0, 1, 0, -0.28888142, 0, 0.9573649, 3.7033725, 0.12705225, 1.6828634)
+texture_filter = 0
+texture = SubResource("AtlasTexture_wtkoj")
+
+[node name="VPT" type="Sprite3D" parent="Foreground" unique_id=607794362]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.2536671, -2.4888644, 1.5676686)
+texture_filter = 0
+texture = SubResource("ViewportTexture_8opki")
+
+[node name="VPT2" type="Sprite3D" parent="Foreground" unique_id=1615893899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7637315, 1.0470183, 0.6205406)
+pixel_size = 0.0025
+texture_filter = 5
+texture = SubResource("ViewportTexture_ehmjl")

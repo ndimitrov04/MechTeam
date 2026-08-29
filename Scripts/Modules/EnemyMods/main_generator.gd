@@ -96,14 +96,16 @@ func destroy():
 func engage():
 	pass
 
-func _on_body_entered(_body):
-	destroy()
-	var debris_instance = DEBRIS.instantiate()
-	main.call_deferred("add_child", debris_instance)
-	debris_instance.global_position = global_position
-	drop()
-	await get_tree().create_timer(1.0).timeout
-	queue_free()
+func _on_body_entered(body):
+	# If punched
+	if body == null:
+		destroy()
+		var debris_instance = DEBRIS.instantiate()
+		main.call_deferred("add_child", debris_instance)
+		debris_instance.global_position = global_position
+		drop()
+		await get_tree().create_timer(1.0).timeout
+		queue_free()
 
 func drop():
 	const QUBODUP_PUNCH_01 = preload("uid://708qbmb1elfe")
