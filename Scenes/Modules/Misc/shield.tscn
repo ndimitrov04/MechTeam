@@ -86,7 +86,6 @@ debug_color = Color(0.9808925, 0, 0.37980554, 0.41960785)
 
 [node name="EnergyDrain" type="Timer" parent="." unique_id=1953592999]
 wait_time = 3.0
-autostart = true
 
 [node name="Charge" type="TextureProgressBar" parent="." unique_id=2046173361]
 modulate = Color(1, 1, 1, 0.5019608)

@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://7bt1tmoslwbs"]
 
 [ext_resource type="Script" uid="uid://cg2ajlbm378ot" path="res://Scripts/main.gd" id="1_hibaj"]
-[ext_resource type="PackedScene" uid="uid://b6st1n1r2654j" path="res://Scenes/Enemies/EnemyMech/Mech4.tscn" id="4_fevyy"]
 [ext_resource type="PackedScene" uid="uid://c1hqhwr5yvny4" path="res://Scenes/post_fx.tscn" id="6_fevyy"]
 [ext_resource type="Texture2D" uid="uid://bjha2fo0bmymb" path="res://Images/UI/Cyberpunk/9 Other/1 Decor/8.png" id="8_3pmx8"]
 [ext_resource type="Texture2D" uid="uid://ddi68venqqn30" path="res://Images/UI/Cyberpunk/9 Other/1 Decor/1.png" id="8_ee4r6"]
@@ -734,9 +733,6 @@ angular_damp = 5.0
 z_index = 40
 position = Vector2(368, 272)
 floor_stop_on_slope = true
-
-[node name="EnemyMech4" parent="." unique_id=133330300 instance=ExtResource("4_fevyy")]
-position = Vector2(1864, 280)
 
 [node name="Foreground" type="Node2D" parent="." unique_id=1645455696]
 z_index = 999

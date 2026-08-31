@@ -119,6 +119,7 @@ func engage():
 		bullet_instance.global_rotation = self.global_rotation
 		bullet_instance.global_position = shoot_point.global_position
 		main.add_child(bullet_instance)
+		bullet_instance.SPEED += mech.linear_velocity.x
 		# Apply recoil per shot
 		self.rotate(randf_range(-recoil, recoil))
 		if get_parent().get_parent().name == "Mech":

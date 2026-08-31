@@ -113,6 +113,10 @@ func _input_event(_viewport, event, _shape_idx):
 
 const OFFSET : Vector2 = Vector2(0, -15)
 func arm(module):
+	# Disconnect online module controllers
+	if module.controller:
+		module.controller.disarm()
+	# Connect module
 	controlled_module = module
 	controlled_module_index = module.index
 	cooldown_time = module.cooldown_time + proximity_cooldown_penalty

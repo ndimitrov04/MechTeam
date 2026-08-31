@@ -17,7 +17,7 @@ const FINAL_ARM_L = preload("uid://uo2nxp4entq6")
 
 @onready var action_camera = $GUI/Control/StaticUI/ActionPanel/ActionCamera
 
-@onready var first_enemy : RigidBody2D = $EnemyMech4
+#@onready var first_enemy : RigidBody2D = $EnemyMech4
 var SPAWN_OFFSET = 750 # Next enemy offset in pixels
 @warning_ignore("narrowing_conversion")
 @onready var enemies_left : int = clamp(0.75 * PlayerData.current_stage, 2, 10)
@@ -48,7 +48,7 @@ const MECH_9 = preload("uid://dh2noacyx7w6x")
 	],
 	# TERRA
 	[
-		MECH_2, MECH_3, MECH_7, MECH_8, MECH_9
+		MECH_1, MECH_2, MECH_3, MECH_7, MECH_8, MECH_9
 	],
 	# SELENE
 	[
@@ -102,12 +102,13 @@ func _ready():
 	move_child(current_background, 0)
 	if PlayerData.current_stage != 14:
 		GlobalMusic.queue_track(soundtracks[stage_number], 2)
+		spawn_random_enemy()
 	
 	# SETUP FINAL STAGE
 	if PlayerData.current_stage == 14: 
 		GlobalMusic.queue_track(OST_FINAL_BOSS, 2)
 		enemies_left = 3 # Boss body + 2 arms
-		first_enemy.queue_free()
+		#first_enemy.queue_free()
 		# Spawn boss body
 		var final_boss_body = FINAL_BODY.instantiate()
 		const BOSS_POS : Vector2 = Vector2(600, -1025)
@@ -136,8 +137,8 @@ func _ready():
 	if PlayerData.terrain_test:
 		print("NOTICE: TERRAIN TEST IS ON.")
 		SPAWN_OFFSET = 99999
-		if first_enemy:
-			first_enemy.die()
+		#if first_enemy:
+			#first_enemy.die()
 
 func _process(_delta):
 	#if int(mech.global_position.x) % 500 == 0:
@@ -198,6 +199,8 @@ func end_stage():
 	@warning_ignore("narrowing_conversion")
 	PlayerData.money -= repair_cost
 	PlayerData.money -= npc_deaths * 10
+	# New income system
+	rewards_collected = ceili(float(PlayerData.current_stage) / 3.0) * 25
 	PlayerData.money += rewards_collected
 	await get_tree().create_timer(0.1).timeout
 	end_text = (

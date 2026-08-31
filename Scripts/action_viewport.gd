@@ -12,6 +12,7 @@ const TIMEOUT_TIME : float = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PlayerData.damage_combo = 0
 	action_panel.hide()
 	action_camera.custom_viewport = sub_viewport
 	sub_viewport.world_2d = get_viewport().world_2d

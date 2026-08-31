@@ -16,7 +16,7 @@ const DEBRIS = preload("uid://rg2m11gs0xex")
 @onready var shield_boost_rate : int = 50 # Active regeneration value
 @onready var energy_drain_rate : int = 5 # Passive energy drain value
 @onready var cooldown_time : float = 25
-@onready var force_disabled : bool = true
+@onready var force_disabled : bool
 
 @onready var is_friendly : bool = false
 @onready var type : MechData.ObjectType = MechData.ObjectType.MODULE
@@ -45,21 +45,37 @@ func _ready():
 		#pinned_frame_tile = get_meta("pinned_tile")
 	energy_drain.timeout.connect(_drain_energy)
 	self.body_entered.connect(_on_body_entered)
-	if get_parent().get_parent().name == "Mech":
+	if mech.name == "Mech":
 		index = get_parent().get_child_count() - 1
 		is_friendly = true
 		set_collision_layer_value(2, 1)
 		set_collision_mask_value(2, 1)
 		set_collision_layer_value(4, 0)
 		set_collision_mask_value(4, 0)
+		force_disabled = true
+		force_disable()
+		shield_hp = 50
+		charge.value = shield_hp
 	else:
 		set_collision_layer_value(2, 0)
 		set_collision_mask_value(2, 0)
 		set_collision_layer_value(4, 1)
 		set_collision_mask_value(4, 1)
-	force_disable()
-	shield_hp = 50
-	charge.value = shield_hp
+		shield_area.set_collision_layer_value(1,0)
+		shield_area.set_collision_layer_value(2,0)
+		shield_area.set_collision_layer_value(3,1)
+		shield_area.set_collision_layer_value(4,1)
+		shield_area.set_collision_mask_value(1,0)
+		shield_area.set_collision_mask_value(2,0)
+		shield_area.set_collision_mask_value(3,1)
+		shield_area.set_collision_mask_value(4,1)
+		energy_drain.wait_time = 999
+		force_disabled = false
+		max_shield_hp = 100 * PlayerData.current_stage
+		shield_hp = max_shield_hp
+		charge.max_value = shield_hp
+		charge.value = shield_hp
+	energy_drain.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -77,13 +93,13 @@ func _input_event(_viewport, event, _shape_idx):
 				mech.current_terminal = null
 
 func engage():
-	force_disabled = false
-	shield_area.monitoring = true
-	shield_area.show()
-	shield_hp += shield_boost_rate
-	charge.value = shield_hp
-	charge_sfx.play()
-	if get_parent().get_parent().name == "Mech":
+	if mech.name == "Mech":
+		force_disabled = false
+		shield_area.monitoring = true
+		shield_area.show()
+		shield_hp += shield_boost_rate
+		charge.value = shield_hp
+		charge_sfx.play()
 		main.static_ui.set_status("Engaging Force Shield!\n-50 Energy")
 
 func destroy():

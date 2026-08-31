@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://d24cenbiacnj3" path="res://Scenes/Misc/destructible_frame.tscn" id="3_xe3pk"]
 [ext_resource type="TileSet" uid="uid://cidmnbvfhbfkd" path="res://CustomResources/enemy_frame_tileset.tres" id="4_w70a5"]
 [ext_resource type="PackedScene" uid="uid://uxt82jfkcjx8" path="res://Scenes/MovementObjects/wheel_1.tscn" id="7_dw4tl"]
+[ext_resource type="PackedScene" uid="uid://beubcmfskx0lo" path="res://Scenes/Modules/EnemyMods/shield_generator.tscn" id="8_53oxl"]
 [ext_resource type="PackedScene" uid="uid://tgc6pvjmf1xi" path="res://Scenes/Modules/Weapons/gun.tscn" id="8_qve30"]
 [ext_resource type="PackedScene" uid="uid://bhwduvjbtg6l5" path="res://Scenes/Modules/Weapons/auto_gun.tscn" id="9_gokd2"]
 [ext_resource type="Script" uid="uid://c65hpvf8mn4fl" path="res://Scripts/Behaviors/preset_enemy_spawning.gd" id="10_f50da"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="11_p2t8f"]
 [ext_resource type="PackedScene" uid="uid://dkk6dac4fqg53" path="res://Scenes/Controllers/mov_control_x_axis.tscn" id="12_rpo7w"]
+[ext_resource type="PackedScene" uid="uid://cqoj1222gihhh" path="res://Scenes/Modules/Misc/shield.tscn" id="13_nched"]
 [ext_resource type="PackedScene" uid="uid://c803xurnxvrtb" path="res://Scenes/Modules/EnemyMods/drone_generator.tscn" id="13_w70a5"]
 [ext_resource type="PackedScene" uid="uid://bpluligp45uvw" path="res://Scenes/Modules/EnemyMods/airstrike_caller.tscn" id="15_53oxl"]
 
@@ -34,7 +36,7 @@ collision_mask = 8192
 physics_material_override = SubResource("PhysicsMaterial_a4e53")
 script = ExtResource("1_a4e53")
 metadata/hp = 35
-metadata/choice_ranges = PackedByteArray("I0tY")
+metadata/choice_ranges = PackedByteArray("IElX")
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_w70a5")]
 material = ExtResource("3_53oxl")
@@ -62,17 +64,26 @@ metadata/enemy_mod = true
 
 [node name="Modules" type="Node2D" parent="." unique_id=33090995]
 
+[node name="GeneratorShield" parent="Modules" unique_id=834209248 instance=ExtResource("8_53oxl")]
+position = Vector2(512, -32)
+
 [node name="AirstrikeCaller" parent="Modules" unique_id=1331754021 instance=ExtResource("15_53oxl")]
 position = Vector2(208, 336)
 
 [node name="DroneGenerator" parent="Modules" unique_id=1975261127 instance=ExtResource("13_w70a5")]
 position = Vector2(638, 303)
 
-[node name="Gun" parent="Modules" unique_id=834209248 instance=ExtResource("8_qve30")]
-position = Vector2(112, 240)
+[node name="Gun" parent="Modules" unique_id=1399574069 instance=ExtResource("8_qve30")]
+position = Vector2(96, 240)
 
 [node name="Gun2" parent="Modules" unique_id=1862339585 instance=ExtResource("8_qve30")]
-position = Vector2(112, 304)
+position = Vector2(96, 304)
+
+[node name="Gun3" parent="Modules" unique_id=1205428762 instance=ExtResource("8_qve30")]
+position = Vector2(160, 288)
+
+[node name="Gun4" parent="Modules" unique_id=1945828260 instance=ExtResource("8_qve30")]
+position = Vector2(160, 352)
 
 [node name="AutoGun" parent="Modules" unique_id=503654748 instance=ExtResource("9_gokd2")]
 position = Vector2(288, 96)
@@ -87,6 +98,9 @@ position = Vector2(416, 96)
 
 [node name="AutoGun4" parent="Modules" unique_id=82002865 instance=ExtResource("9_gokd2")]
 position = Vector2(352, 240)
+
+[node name="Shield" parent="Modules" unique_id=1777650460 instance=ExtResource("13_nched")]
+position = Vector2(160, 184)
 
 [node name="Spawners" type="Node2D" parent="." unique_id=1122453186]
 script = ExtResource("10_f50da")

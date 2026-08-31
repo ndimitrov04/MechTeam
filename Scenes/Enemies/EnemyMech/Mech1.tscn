@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://uxt82jfkcjx8" path="res://Scenes/MovementObjects/wheel_1.tscn" id="6_2d2mi"]
 [ext_resource type="PackedScene" uid="uid://dkk6dac4fqg53" path="res://Scenes/Controllers/mov_control_x_axis.tscn" id="6_b7gtw"]
 [ext_resource type="PackedScene" uid="uid://tgc6pvjmf1xi" path="res://Scenes/Modules/Weapons/gun.tscn" id="7_mhfcp"]
+[ext_resource type="PackedScene" uid="uid://beubcmfskx0lo" path="res://Scenes/Modules/EnemyMods/shield_generator.tscn" id="8_hqs80"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="8_rwft3"]
 [ext_resource type="Script" uid="uid://c65hpvf8mn4fl" path="res://Scripts/Behaviors/preset_enemy_spawning.gd" id="9_2d2mi"]
+[ext_resource type="PackedScene" uid="uid://cqoj1222gihhh" path="res://Scenes/Modules/Misc/shield.tscn" id="9_68y2l"]
 [ext_resource type="PackedScene" uid="uid://bpluligp45uvw" path="res://Scenes/Modules/EnemyMods/airstrike_caller.tscn" id="13_hqs80"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u50mg"]
@@ -28,7 +30,7 @@ collision_layer = 8192
 collision_mask = 8192
 script = ExtResource("1_vfcbj")
 metadata/hp = 25
-metadata/choice_ranges = PackedByteArray("QUtV")
+metadata/choice_ranges = PackedByteArray("PkhU")
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_gegrq")]
 material = ExtResource("3_pi20n")
@@ -59,15 +61,29 @@ metadata/enemy_mod = true
 
 [node name="Modules" type="Node2D" parent="." unique_id=33090995]
 
+[node name="GeneratorShield" parent="Modules" unique_id=834209248 instance=ExtResource("8_hqs80")]
+position = Vector2(656, 144)
+
+[node name="Shield" parent="Modules" unique_id=355229290 instance=ExtResource("9_68y2l")]
+position = Vector2(80, 80)
+
 [node name="AirstrikeCaller" parent="Modules" unique_id=43215061 instance=ExtResource("13_hqs80")]
 position = Vector2(176, 64)
 
-[node name="Gun" parent="Modules" unique_id=834209248 instance=ExtResource("7_mhfcp")]
+[node name="Gun" parent="Modules" unique_id=1227381130 instance=ExtResource("7_mhfcp")]
 position = Vector2(-80, 176)
 metadata/pinned_tile = Vector2i(-3, 13)
 
 [node name="Gun2" parent="Modules" unique_id=1484137075 instance=ExtResource("7_mhfcp")]
-position = Vector2(48, 80)
+position = Vector2(-16, 112)
+metadata/pinned_tile = Vector2i(3, 5)
+
+[node name="Gun5" parent="Modules" unique_id=327353904 instance=ExtResource("7_mhfcp")]
+position = Vector2(-80, 240)
+metadata/pinned_tile = Vector2i(-3, 13)
+
+[node name="Gun6" parent="Modules" unique_id=1557698751 instance=ExtResource("7_mhfcp")]
+position = Vector2(112, -80)
 metadata/pinned_tile = Vector2i(3, 5)
 
 [node name="Gun3" parent="Modules" unique_id=366084787 instance=ExtResource("7_mhfcp")]

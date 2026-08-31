@@ -255,3 +255,6 @@ func _on_body_entered(body):
 		can_collide = false
 		await get_tree().create_timer(0.5).timeout
 		can_collide = true
+
+func drain_energy(_dummy):
+	pass

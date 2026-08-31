@@ -1,0 +1,222 @@
+[gd_scene format=3 uid="uid://beubcmfskx0lo"]
+
+[ext_resource type="Script" uid="uid://uivlvm1mbdp3" path="res://Scripts/Modules/EnemyMods/shield_generator.gd" id="1_ioqj5"]
+[ext_resource type="Texture2D" uid="uid://bhuegfsb3olkw" path="res://Images/Objects/Generator/tile000.png" id="2_ioqj5"]
+[ext_resource type="Texture2D" uid="uid://bnqiyj1b755dm" path="res://Images/Objects/Generator/tile001.png" id="3_l5c2h"]
+[ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="3_xfu7m"]
+[ext_resource type="Texture2D" uid="uid://dyj62lyfcovhq" path="res://Images/Objects/Generator/tile002.png" id="4_q4adb"]
+[ext_resource type="AudioStream" uid="uid://4tcc2wxsamaw" path="res://Audio/SFX/Modules/Loop_SciFi Pack Vol 1_Futuristic Machine Hum.ogg" id="4_rq2hr"]
+[ext_resource type="Texture2D" uid="uid://qpjjwlivl1a0" path="res://Images/Objects/Generator/tile003.png" id="5_ce68d"]
+[ext_resource type="Texture2D" uid="uid://uimu1r8fmg1r" path="res://Images/Objects/Generator/tile004.png" id="6_tfjkq"]
+[ext_resource type="Texture2D" uid="uid://bbod55xeo6ili" path="res://Images/Objects/Generator/tile005.png" id="7_5yqrr"]
+[ext_resource type="Texture2D" uid="uid://dl1yrlgekpf5h" path="res://Images/Objects/Generator/tile006.png" id="8_y8473"]
+[ext_resource type="Texture2D" uid="uid://dmsu8q7f7qcbh" path="res://Images/Objects/Generator/tile007.png" id="9_8pcsd"]
+[ext_resource type="Texture2D" uid="uid://brav8dn0fwvyl" path="res://Images/Objects/Generator/tile008.png" id="10_0rqx4"]
+[ext_resource type="Texture2D" uid="uid://ee78pdkopln0" path="res://Images/Objects/Generator/tile009.png" id="11_rt6tl"]
+[ext_resource type="Texture2D" uid="uid://yoniwxs4ol8h" path="res://Images/Objects/Generator/tile010.png" id="12_jplf7"]
+[ext_resource type="Texture2D" uid="uid://b5b5x1tmhjjsv" path="res://Images/Objects/Generator/tile011.png" id="13_tmfng"]
+[ext_resource type="Texture2D" uid="uid://bh67ula7h34di" path="res://Images/Objects/Generator/tile012.png" id="14_lyxwu"]
+[ext_resource type="Texture2D" uid="uid://dru617a53pb0o" path="res://Images/Objects/Generator/tile013.png" id="15_xjmht"]
+[ext_resource type="Texture2D" uid="uid://m4bm1nisplqg" path="res://Images/Objects/Generator/tile014.png" id="16_yxqje"]
+[ext_resource type="Texture2D" uid="uid://cicudwcpgasti" path="res://Images/Objects/Generator/tile015.png" id="17_6mdu6"]
+[ext_resource type="Texture2D" uid="uid://qkpyf480lxn" path="res://Images/Objects/Generator/tile016.png" id="18_euu2w"]
+[ext_resource type="Texture2D" uid="uid://dyt0o42f7o4f6" path="res://Images/Objects/Generator/tile017.png" id="19_iebnj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
+friction = 0.9
+bounce = 0.44
+
+[sub_resource type="Shader" id="Shader_yetb0"]
+code = "shader_type canvas_item;
+
+uniform vec4 color : source_color = vec4(1.0);
+
+uniform int pixels_to_check = 1;
+uniform int center_distance_cap = 1;
+
+bool has_neighbor(vec2 uv, vec2 texture_pixel_size, sampler2D sprite_texture) {
+	for (int x = -pixels_to_check; x < pixels_to_check + 1; x+= 1) {
+		for (int y = -pixels_to_check; y < pixels_to_check + 1; y+= 1) {
+			
+			if (x == 0 && y == 0) {
+				continue;
+			}
+			if (abs(x) + abs(y) > center_distance_cap) {
+				continue;
+			}
+			
+			vec2 xy = vec2(float(x), float(y));
+			vec2 sprite_coordinates = uv + xy * texture_pixel_size;
+			if (texture(sprite_texture, sprite_coordinates).a > .0) {
+				return true;
+			}
+			
+		}
+	}
+	
+	return false;
+	
+}
+
+void fragment() {
+	
+	if (COLOR.a == .0 && has_neighbor(UV, TEXTURE_PIXEL_SIZE, TEXTURE)) {
+		COLOR = color;
+	}
+	
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8s8c"]
+shader = SubResource("Shader_yetb0")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kwlnw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ioqj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l5c2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_q4adb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ce68d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tfjkq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5yqrr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_y8473")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8pcsd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0rqx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rt6tl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jplf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_tmfng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lyxwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xjmht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_yxqje")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_6mdu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_euu2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_iebnj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_vlfaf"]
+colors = PackedColorArray(0, 1, 0, 0.5019608, 0, 1, 0, 0.5019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o332s"]
+gradient = SubResource("Gradient_vlfaf")
+width = 32
+height = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5l7g"]
+size = Vector2(25, 34)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hlkgw"]
+line_spacing = 0.0
+font = ExtResource("3_xfu7m")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="GeneratorShield" type="RigidBody2D" unique_id=834209248]
+z_index = 10
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_hptm8")
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_ioqj5")
+metadata/aim_speed = 2.0
+metadata/pinned_tile = Vector2i(0, 0)
+metadata/price = 25
+metadata/big_object = true
+metadata/mod = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=103375570]
+modulate = Color(0, 1, 1, 1)
+material = SubResource("ShaderMaterial_r8s8c")
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_kwlnw")
+autoplay = "default"
+frame_progress = 0.09871021
+
+[node name="Marker" type="Sprite2D" parent="." unique_id=1074317968]
+visible = false
+texture = SubResource("GradientTexture2D_o332s")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1882493289]
+position = Vector2(1.5, -16)
+shape = SubResource("RectangleShape2D_m5l7g")
+
+[node name="InteractionLabel" type="Label" parent="." unique_id=2066606815]
+visible = false
+self_modulate = Color(1, 0, 0, 1)
+z_index = 50
+offset_left = -51.0
+offset_top = 11.0
+offset_right = 54.0
+offset_bottom = 44.0
+text = "Shoot to 
+Destroy Shield"
+label_settings = SubResource("LabelSettings_hlkgw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SFX" type="Node2D" parent="." unique_id=1580841413]
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="SFX" unique_id=883132215]
+stream = ExtResource("4_rq2hr")
+volume_db = -1.605
+autoplay = true
+max_distance = 200.0
+attenuation = 0.7578583
+bus = &"SFX"
+parameters/looping = true
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=1786066304]
+bus = &"SFX"

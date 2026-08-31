@@ -118,6 +118,7 @@ func engage():
 		if has_meta("direct_shot"):
 			bullet_instance.global_position = mech.crosshair.global_position
 		main.add_child(bullet_instance)
+		bullet_instance.SPEED += mech.linear_velocity.x
 		# Apply recoil per shot
 		if recoil != 0:
 			self.rotate(randf_range(-recoil, recoil))

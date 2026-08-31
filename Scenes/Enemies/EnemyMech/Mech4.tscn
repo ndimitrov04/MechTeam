@@ -29,7 +29,7 @@ collision_mask = 8192
 max_contacts_reported = 6
 script = ExtResource("1_gddkl")
 metadata/hp = 20
-metadata/choice_ranges = PackedByteArray("TVVa")
+metadata/choice_ranges = PackedByteArray("SlNZ")
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_57uhv")]
 material = ExtResource("3_57uhv")
@@ -58,7 +58,7 @@ metadata/enemy_mod = true
 
 [node name="Modules" type="Node2D" parent="." unique_id=33090995]
 
-[node name="AirstrikeCaller" parent="Modules" unique_id=834209248 instance=ExtResource("13_es4ww")]
+[node name="AirstrikeCaller" parent="Modules" unique_id=262809662 instance=ExtResource("13_es4ww")]
 position = Vector2(207, 224)
 
 [node name="Gun" parent="Modules" unique_id=512166110 instance=ExtResource("8_1pdc1")]

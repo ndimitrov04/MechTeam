@@ -14,6 +14,7 @@ extends CharacterBody2D
 @onready var floor_detector = $FloorDetector
 @onready var shootpoint = $Shootpoint
 @onready var gun_cooldown = $Shootpoint/GunCooldown
+@onready var hp_regen = $HPRegen
 
 @onready var debug_info = $DebugInfo
 
@@ -42,6 +43,7 @@ var minigame_mode : bool = false
 var on_cooldown : bool = false
 
 # Player vars
+var max_hp : int = 5
 var hp : int = 5
 var invincible : bool = false
 
@@ -55,6 +57,7 @@ func _ready():
 	jump_timer.timeout.connect(_on_jump_timeout)
 	gun_cooldown.timeout.connect(_on_cooldown_timeout)
 	sprite.animation_finished.connect(_on_sprite_animation_finished)
+	hp_regen.timeout.connect(_on_hp_regen_timeout)
 
 func _physics_process(delta):
 	#debug_info.text = "Velocity: " + str(velocity)
@@ -219,3 +222,8 @@ func _on_sprite_animation_finished() -> void:
 	if sprite.animation == "punch":
 		sprite.stop()
 		sprite.play("default")
+
+func _on_hp_regen_timeout():
+	if hp < max_hp:
+		hp += 1
+		

@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://c803xurnxvrtb" path="res://Scenes/Modules/EnemyMods/drone_generator.tscn" id="10_eim04"]
 [ext_resource type="PackedScene" uid="uid://bpluligp45uvw" path="res://Scenes/Modules/EnemyMods/airstrike_caller.tscn" id="11_ci3b6"]
 [ext_resource type="PackedScene" uid="uid://bhwduvjbtg6l5" path="res://Scenes/Modules/Weapons/auto_gun.tscn" id="12_jaq8m"]
+[ext_resource type="PackedScene" uid="uid://cqoj1222gihhh" path="res://Scenes/Modules/Misc/shield.tscn" id="12_sglqt"]
 [ext_resource type="PackedScene" uid="uid://tgc6pvjmf1xi" path="res://Scenes/Modules/Weapons/gun.tscn" id="13_ohmjj"]
+[ext_resource type="PackedScene" uid="uid://beubcmfskx0lo" path="res://Scenes/Modules/EnemyMods/shield_generator.tscn" id="13_xfgng"]
 [ext_resource type="Script" uid="uid://c65hpvf8mn4fl" path="res://Scripts/Behaviors/preset_enemy_spawning.gd" id="14_baoub"]
 [ext_resource type="Texture2D" uid="uid://boj7y4e72uf6m" path="res://Images/Crosshair.png" id="15_2xxsx"]
 
@@ -30,7 +32,7 @@ collision_layer = 8192
 collision_mask = 8192
 script = ExtResource("1_sglqt")
 metadata/hp = 45
-metadata/choice_ranges = PackedByteArray("Rktg")
+metadata/choice_ranges = PackedByteArray("Q0lf")
 
 [node name="Background" parent="." unique_id=816430182 instance=ExtResource("2_xfgng")]
 material = ExtResource("3_s8pkb")
@@ -86,6 +88,12 @@ metadata/default_angle = 180.0
 [node name="Gun" parent="Modules" unique_id=512166110 instance=ExtResource("13_ohmjj")]
 position = Vector2(16, 352)
 metadata/pinned_tile = Vector2i(-3, 13)
+
+[node name="Shield" parent="Modules" unique_id=2143403907 instance=ExtResource("12_sglqt")]
+position = Vector2(8, 224)
+
+[node name="GeneratorShield" parent="Modules" unique_id=2144111309 instance=ExtResource("13_xfgng")]
+position = Vector2(400, 449)
 
 [node name="Spawners" type="Node2D" parent="." unique_id=1122453186]
 script = ExtResource("14_baoub")

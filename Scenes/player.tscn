@@ -263,3 +263,7 @@ offset_bottom = 23.0
 [node name="HurtSFX" type="AudioStreamPlayer2D" parent="." unique_id=1150387989]
 stream = ExtResource("7_3smsa")
 bus = &"SFX"
+
+[node name="HPRegen" type="Timer" parent="." unique_id=793813545]
+wait_time = 20.0
+autostart = true
