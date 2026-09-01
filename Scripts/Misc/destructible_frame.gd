@@ -147,7 +147,7 @@ func regenerate_frame_collision():
 	var box = RectangleShape2D.new()
 
 	box.size = Vector2(rect.size.x * tile_size.x, rect.size.y * tile_size.y)
-	box.size -= Vector2(tile_size.x, tile_size.y)
+	box.size -= Vector2(tile_size.x, tile_size.y*2)
 	shape.shape = box
 	shape.debug_color = Color(1.0, 0.5, 0.0, 0.35)
 	shape.position = map_to_local(rect.get_center())

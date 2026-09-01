@@ -12,6 +12,7 @@ extends Control
 
 @onready var camera_panel = $CameraPanel
 @onready var initial_camera_panel_position = camera_panel.position
+@onready var control_panel = $ControlPanel
 @onready var status_timeout = $StatusPanel/Status/StatusTimeout
 
 @onready var minigame_result = $MinigameResult
@@ -27,7 +28,14 @@ func _ready():
 	if has_meta("bars"):
 		hp_bar.max_value = mech.max_hp
 		en_bar.max_value = mech.energy
-
+	await get_tree().create_timer(0.2).timeout
+	if mech.pilots > 0:
+		# Slide panel from off screen (down) to initial position
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_LINEAR)
+		tween.set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(control_panel, "position:y", 0, 1)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if has_meta("bars"):
@@ -48,7 +56,7 @@ func _unhandled_input(event):
 		if camera_panel.position.y <= initial_camera_panel_position.y:
 			# Slide panel off screen (down)
 			var tween = create_tween()
-			tween.set_trans(Tween.TRANS_SINE)
+			tween.set_trans(Tween.TRANS_LINEAR)
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(camera_panel, "position:y", initial_camera_panel_position.y + camera_panel.size.y, 1)
 			tween.finished.connect(func():
@@ -58,7 +66,7 @@ func _unhandled_input(event):
 		else:
 			# Slide panel from off screen (up) to initial position
 			var tween = create_tween()
-			tween.set_trans(Tween.TRANS_SINE)
+			tween.set_trans(Tween.TRANS_LINEAR)
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(camera_panel, "position:y", initial_camera_panel_position.y, 1)
 			aim_camera.show()

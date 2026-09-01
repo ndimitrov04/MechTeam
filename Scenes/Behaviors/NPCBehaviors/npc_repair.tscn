@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c73r505eoaeoq"]
+
+[ext_resource type="Script" uid="uid://b40fhheyh20am" path="res://Scripts/Behaviors/NPCBehaviors/npc_repair.gd" id="1_6ddsf"]
+[ext_resource type="AudioStream" uid="uid://ddmr2nlcsfvsr" path="res://Audio/SFX/Misc/96159__cmusounddesign__jbf-broken-drill-3.ogg" id="2_oi06r"]
+
+[node name="NPCRepair" type="Node2D" unique_id=909136277]
+script = ExtResource("1_6ddsf")
+
+[node name="RepairSFX" type="AudioStreamPlayer2D" parent="." unique_id=380911710]
+stream = ExtResource("2_oi06r")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="RepairTimer" type="Timer" parent="." unique_id=899814637]
+wait_time = 20.0
+autostart = true

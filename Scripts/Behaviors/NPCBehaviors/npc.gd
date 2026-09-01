@@ -1,22 +1,20 @@
 extends CharacterBody2D
 
+@onready var mech = $"../.."
+
 @onready var sprite = $Sprite
 @onready var hitbox = $Hitbox
 
 const SPEED = 50.0
 const JUMP_VELOCITY = -400.0
 
-# NPC Sprites
-const NPC_1 = preload("uid://bvy5i3vh6phgd")
-const NPC_2 = preload("uid://yegkhjsxuydh")
-const NPC_3 = preload("uid://cggtf67wajjhh")
-const NPC_SPRITES = [NPC_1, NPC_2, NPC_3]
-
 @onready var direction = 0
 
+# Generic NPC behaviors
 @onready var npc_walk = $NPCWalk
-@onready var npc_engage = $NPCEngage
 @onready var npc_cooldown = $NPCCooldown
+# Specialised NPC behaviors
+@onready var npc_functions = []
 
 @onready var type : MechData.ObjectType = MechData.ObjectType.NPC
 @onready var friendly_unit : bool = true
@@ -30,8 +28,12 @@ func _ready():
 	if get_parent().get_parent().get_parent().name == "Menu":
 		sprite.material = null
 		process_mode = Node.PROCESS_MODE_INHERIT
-	# Choose random NPC sprite
-	sprite.sprite_frames = NPC_SPRITES.pick_random()
+	# Add specialized NPC behaviors
+	for i in range(6, get_child_count() - 1):
+		npc_functions.append(get_child(i))
+	await get_tree().create_timer(0.1).timeout
+	if has_meta("is_pilot") and mech.name == "Mech":
+		mech.pilots += 1
 
 func _physics_process(delta):
 	
@@ -62,8 +64,10 @@ func _physics_process(delta):
 
 func make_busy(time : float):
 	npc_walk.stop_moving(time)
-	npc_engage.temp_disable(time)
 	npc_cooldown.start(time)
+	for behavior in npc_functions:
+		behavior.temp_disable(time)
+	
 
 # Invincibility frame visual effect
 func inv_frame_vfx(duration : float):
@@ -89,4 +93,6 @@ func take_damage(damage, _collision, _knockback_force):
 
 func die():
 	get_parent().get_parent().get_parent().npc_deaths += 1 # Main
+	if has_meta("is_pilot"):
+		mech.pilots -= 1
 	queue_free()

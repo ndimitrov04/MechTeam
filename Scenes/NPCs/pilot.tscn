@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://qrjtvd1i307a"]
+
+[ext_resource type="Script" uid="uid://bbjxg02ymu5kl" path="res://Scripts/Behaviors/NPCBehaviors/npc.gd" id="1_kmnbv"]
+[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="2_w7rxc"]
+[ext_resource type="SpriteFrames" uid="uid://cggtf67wajjhh" path="res://Images/Characters/Friendlies/NPC3/npc_3.tres" id="3_kmnbv"]
+[ext_resource type="PackedScene" uid="uid://c1tsun6sshawv" path="res://Scenes/Behaviors/NPCBehaviors/npc_walk.tscn" id="4_gap28"]
+[ext_resource type="PackedScene" uid="uid://cakc2c25okepc" path="res://Scenes/Behaviors/NPCBehaviors/npc_cooldown.tscn" id="5_ytwl7"]
+[ext_resource type="PackedScene" uid="uid://baicns6vv5igj" path="res://Scenes/Behaviors/NPCBehaviors/npc_engage.tscn" id="6_4cpr3"]
+[ext_resource type="PackedScene" uid="uid://c73r505eoaeoq" path="res://Scenes/Behaviors/NPCBehaviors/npc_repair.tscn" id="7_mpttl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0c7gy"]
+size = Vector2(15, 22)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7rxc"]
+shader = ExtResource("2_w7rxc")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pixels_to_check = 1
+shader_parameter/center_distance_cap = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6atyd"]
+size = Vector2(15, 24)
+
+[node name="Pilot" type="CharacterBody2D" unique_id=2022641288]
+process_mode = 4
+z_index = 30
+collision_layer = 2
+collision_mask = 2048
+script = ExtResource("1_kmnbv")
+metadata/friendly_npc = true
+metadata/price = 50
+metadata/wage = 15
+metadata/is_pilot = true
+
+[node name="Walkbox" type="CollisionShape2D" parent="." unique_id=1172288629]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_0c7gy")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1697861877]
+material = SubResource("ShaderMaterial_w7rxc")
+position = Vector2(-2, -9)
+sprite_frames = ExtResource("3_kmnbv")
+autoplay = "default"
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1231064687]
+position = Vector2(-2, -9)
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox" unique_id=1674009463]
+position = Vector2(2.5, 12)
+shape = SubResource("RectangleShape2D_6atyd")
+debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
+
+[node name="NPCWalk" parent="." unique_id=1222509953 instance=ExtResource("4_gap28")]
+
+[node name="NPCCooldown" parent="." unique_id=331200671 instance=ExtResource("5_ytwl7")]
+position = Vector2(0, -32)
+
+[node name="NPCEngage" parent="." unique_id=911372698 instance=ExtResource("6_4cpr3")]
+
+[node name="NPCRepair" parent="." unique_id=909136277 instance=ExtResource("7_mpttl")]

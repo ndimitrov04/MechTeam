@@ -101,7 +101,9 @@ const WHEEL_COLLIDER_1 = preload("uid://cuhp74yuarb08")
 const WHEEL_1 = preload("uid://uxt82jfkcjx8")
 const WHEEL_1_PAS = preload("uid://cniaqjo3hwd8a")
 # NPCs
-const NPC = preload("uid://cmy4r8enqaty2")
+const OPERATOR = preload("uid://cmy4r8enqaty2")
+const MECHANIC = preload("uid://dkcrhqn0uc76u")
+const PILOT = preload("uid://qrjtvd1i307a")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -236,6 +238,14 @@ func _ready():
 	and interact with ENGAGE 
 	terminals it comes across. 
 	Has 1 second of engage cooldown. 
+	Medical fees if incapacitated: 10 coins.")
+	npc_list.set_item_tooltip(1, "Cost: 50 Wage: 15 Supply: 1\n 
+	Can interact with ENGAGE terminals.
+	Regenerates 10 mech HP each 20 seconds. 
+	Medical fees if incapacitated: 10 coins.")
+	npc_list.set_item_tooltip(2, "Cost: 50 Wage: 15 Supply: 1\n 
+	Cannot interact with ENGAGE terminals.
+	Allows you to remotely control your mech. 
 	Medical fees if incapacitated: 10 coins.")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -380,8 +390,14 @@ func _on_npc_list_item_clicked(index, _at_position, _mouse_button_index):
 	update_info_panel(npc_list.get_item_icon(index), npc_list.get_item_text(index), npc_list.get_item_tooltip(index))
 	match index:
 		0:
-			editor.chosen_object = NPC
+			editor.chosen_object = OPERATOR
 			editor.current_cost = 35
+		1:
+			editor.chosen_object = MECHANIC
+			editor.current_cost = 50
+		2:
+			editor.chosen_object = PILOT
+			editor.current_cost = 50
 
 enum SlideDirection {
 	LEFT,

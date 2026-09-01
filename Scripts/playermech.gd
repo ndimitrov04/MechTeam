@@ -45,6 +45,7 @@ var weight : float = base_weight + max_hp / 4.0 # Default value
 var max_energy : int
 var energy : int
 var regen_rate : int = 1
+@onready var pilots : int = 0
 
 @onready var malfunction_min : float = 20
 @onready var malfunction_max : float = 30
@@ -163,6 +164,8 @@ func _physics_process(delta):
 	
 	# Keep upright
 	#rotation_degrees = clamp(rotation_degrees, -45, 45)
+	
+	#print("Pilot count: ", pilots)
 	
 	# Add the gravity.
 	if not is_on_floor():

@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://cmy4r8enqaty2"]
 
-[ext_resource type="Script" uid="uid://bbjxg02ymu5kl" path="res://Scripts/Behaviors/NPCBehaviors/npc.gd" id="1_1ig1v"]
-[ext_resource type="SpriteFrames" uid="uid://bvy5i3vh6phgd" path="res://Images/Characters/Friendlies/NPC1/npc_1.tres" id="3_6atyd"]
-[ext_resource type="PackedScene" uid="uid://c1tsun6sshawv" path="res://Scenes/Behaviors/NPCBehaviors/npc_walk.tscn" id="4_6atyd"]
-[ext_resource type="PackedScene" uid="uid://baicns6vv5igj" path="res://Scenes/Behaviors/NPCBehaviors/npc_engage.tscn" id="5_2xkex"]
-[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="5_qi7up"]
-[ext_resource type="PackedScene" uid="uid://cakc2c25okepc" path="res://Scenes/Behaviors/NPCBehaviors/npc_cooldown.tscn" id="6_8gudg"]
+[ext_resource type="Script" uid="uid://bbjxg02ymu5kl" path="res://Scripts/Behaviors/NPCBehaviors/npc.gd" id="1_8601l"]
+[ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="2_vyoi5"]
+[ext_resource type="SpriteFrames" uid="uid://bvy5i3vh6phgd" path="res://Images/Characters/Friendlies/NPC1/npc_1.tres" id="3_111if"]
+[ext_resource type="PackedScene" uid="uid://c1tsun6sshawv" path="res://Scenes/Behaviors/NPCBehaviors/npc_walk.tscn" id="4_5r3l5"]
+[ext_resource type="PackedScene" uid="uid://baicns6vv5igj" path="res://Scenes/Behaviors/NPCBehaviors/npc_engage.tscn" id="5_udhnm"]
+[ext_resource type="PackedScene" uid="uid://cakc2c25okepc" path="res://Scenes/Behaviors/NPCBehaviors/npc_cooldown.tscn" id="6_sjh4t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0c7gy"]
 size = Vector2(15, 22)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xkex"]
-shader = ExtResource("5_qi7up")
+shader = ExtResource("2_vyoi5")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/pixels_to_check = 1
 shader_parameter/center_distance_cap = 1
@@ -19,14 +19,15 @@ shader_parameter/center_distance_cap = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6atyd"]
 size = Vector2(15, 24)
 
-[node name="NPC" type="CharacterBody2D" unique_id=2022641288]
+[node name="Operator" type="CharacterBody2D" unique_id=2022641288]
 process_mode = 4
 z_index = 30
 collision_layer = 2
 collision_mask = 2048
-script = ExtResource("1_1ig1v")
+script = ExtResource("1_8601l")
 metadata/friendly_npc = true
 metadata/price = 35
+metadata/wage = 5
 
 [node name="Walkbox" type="CollisionShape2D" parent="." unique_id=1172288629]
 position = Vector2(0.5, 4)
@@ -35,7 +36,7 @@ shape = SubResource("RectangleShape2D_0c7gy")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1697861877]
 material = SubResource("ShaderMaterial_2xkex")
 position = Vector2(-2, -9)
-sprite_frames = ExtResource("3_6atyd")
+sprite_frames = ExtResource("3_111if")
 autoplay = "default"
 frame_progress = 0.74073035
 
@@ -47,9 +48,9 @@ position = Vector2(2.5, 12)
 shape = SubResource("RectangleShape2D_6atyd")
 debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
 
-[node name="NPCWalk" parent="." unique_id=1222509953 instance=ExtResource("4_6atyd")]
+[node name="NPCWalk" parent="." unique_id=1222509953 instance=ExtResource("4_5r3l5")]
 
-[node name="NPCEngage" parent="." unique_id=911372698 instance=ExtResource("5_2xkex")]
-
-[node name="NPCCooldown" parent="." unique_id=331200671 instance=ExtResource("6_8gudg")]
+[node name="NPCCooldown" parent="." unique_id=331200671 instance=ExtResource("6_sjh4t")]
 position = Vector2(0, -32)
+
+[node name="NPCEngage" parent="." unique_id=911372698 instance=ExtResource("5_udhnm")]

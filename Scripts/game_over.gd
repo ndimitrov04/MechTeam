@@ -17,8 +17,8 @@ func _on_menu_pressed():
 	DirAccess.remove_absolute("user://mechteam_save.tres")
 	MechData.load_from_file()
 	MechData.mechs.clear()
-	print("Game data cleared.")
 	PlayerData.reset()
+	PlayerData.save_run()
 	IndieBlueprintSceneTransitioner.transition_to(
 		"res://Scenes/menu.tscn", 
 		IndieBlueprintPremadeTransitions.Dissolve,

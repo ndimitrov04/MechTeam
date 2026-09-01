@@ -199,6 +199,10 @@ func end_stage():
 	@warning_ignore("narrowing_conversion")
 	PlayerData.money -= repair_cost
 	PlayerData.money -= npc_deaths * 10
+	var crew_wages = 0
+	for npc in mech.npcs:
+		crew_wages += npc.get_meta("wage")
+	PlayerData.money -= crew_wages
 	# New income system
 	rewards_collected = ceili(float(PlayerData.current_stage) / 3.0) * 25
 	PlayerData.money += rewards_collected
@@ -210,7 +214,7 @@ func end_stage():
 			"\nDamage taken: " + str(int(mech.max_hp - mech.hp)) + 
 			"\n- Repair costs: " + str(int(repair_cost)) + 
 			"\n\nCrew Status" +
-			"\nCrew Wages: " + str(mech.npcs.get_child_count() * 5) +
+			"\nCrew Wages: " + str(crew_wages) +
 			"\nCrew Injured: " + str(npc_deaths) + 
 			"\n- Medical fees: " + str(npc_deaths * 10) +
 			"\n\nTotal cash: " + str(PlayerData.money)
