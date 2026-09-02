@@ -5,8 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://cggtf67wajjhh" path="res://Images/Characters/Friendlies/NPC3/npc_3.tres" id="3_kmnbv"]
 [ext_resource type="PackedScene" uid="uid://c1tsun6sshawv" path="res://Scenes/Behaviors/NPCBehaviors/npc_walk.tscn" id="4_gap28"]
 [ext_resource type="PackedScene" uid="uid://cakc2c25okepc" path="res://Scenes/Behaviors/NPCBehaviors/npc_cooldown.tscn" id="5_ytwl7"]
-[ext_resource type="PackedScene" uid="uid://baicns6vv5igj" path="res://Scenes/Behaviors/NPCBehaviors/npc_engage.tscn" id="6_4cpr3"]
-[ext_resource type="PackedScene" uid="uid://c73r505eoaeoq" path="res://Scenes/Behaviors/NPCBehaviors/npc_repair.tscn" id="7_mpttl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0c7gy"]
 size = Vector2(15, 22)
@@ -53,7 +51,3 @@ debug_color = Color(0.9829939, 0, 0.36140397, 0.41960785)
 
 [node name="NPCCooldown" parent="." unique_id=331200671 instance=ExtResource("5_ytwl7")]
 position = Vector2(0, -32)
-
-[node name="NPCEngage" parent="." unique_id=911372698 instance=ExtResource("6_4cpr3")]
-
-[node name="NPCRepair" parent="." unique_id=909136277 instance=ExtResource("7_mpttl")]

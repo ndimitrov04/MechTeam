@@ -19,6 +19,7 @@ extends Area2D
 @onready var sfx_disconnect = $SFX/Disconnect
 @onready var engage = $SFX/Engage
 @onready var disengage = $SFX/Disengage
+@onready var voice: AudioStreamPlayer = $SFX/Voice
 
 # Penalty for cooldown if engage terminal is too close to others
 # Added to cooldown_time
@@ -79,6 +80,7 @@ func _unhandled_input(event):
 		if event.is_action_pressed("interact"):
 			if mech.energy < energy_cost:
 				player.static_ui.display_minigame_result(false)
+				voice.play()
 				print("INSUFFICIENT ENERGY")
 				return
 			if not player.minigame_mode:

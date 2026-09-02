@@ -4168,10 +4168,8 @@ grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Motion" parent="Menu/MenuPanel/Options/OptionPanel" parent_id_path=PackedInt32Array(2101862927, 1579632714) index="8" unique_id=1130520307]
-offset_left = 120.0
+[node name="Motion" parent="Menu/MenuPanel/Options/OptionPanel" parent_id_path=PackedInt32Array(2101862927, 1579632714) index="10" unique_id=1130520307]
 offset_top = 536.0
-offset_right = 336.0
 offset_bottom = 620.0
 
 [node name="ShowOptions" parent="Menu/MenuPanel/Options" index="1" unique_id=1971259113]

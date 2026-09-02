@@ -59,8 +59,6 @@
 [ext_resource type="AudioStream" uid="uid://2oqih8e4pms6" path="res://Audio/SFX/UI/metal_button_press1.wav" id="38_7vk52"]
 [ext_resource type="AudioStream" uid="uid://hrxvo08tjfs7" path="res://Audio/SFX/UI/metal_swing1.wav" id="39_0e4rj"]
 [ext_resource type="AudioStream" uid="uid://dkbxm1b82vxc3" path="res://Audio/SFX/UI/mouseclick1.wav" id="40_15liy"]
-[ext_resource type="AudioStream" uid="uid://bgyn152peon2x" path="res://Audio/SFX/UI/unit_ready.ogg" id="41_pqdt3"]
-[ext_resource type="AudioStream" uid="uid://c0xkx2vswbwu4" path="res://Audio/SFX/UI/unit_canceled.ogg" id="42_fnvon"]
 [ext_resource type="Texture2D" uid="uid://blwtxiir4h8vm" path="res://Images/Icons/Editor/Modules/sniper.png" id="43_e3qdn"]
 [ext_resource type="Texture2D" uid="uid://br0tpy0r01ffd" path="res://Images/Characters/Friendlies/NPC2/Idle.png" id="49_3i07h"]
 [ext_resource type="Texture2D" uid="uid://dyy0hjur5e3ik" path="res://Images/Characters/Friendlies/NPC3/Idle.png" id="50_ale1e"]
@@ -70,6 +68,8 @@
 [ext_resource type="Texture2D" uid="uid://dc10mrmrqwqdg" path="res://Images/UI/Prebuilts/prebuilt2.png" id="55_xfugj"]
 [ext_resource type="Texture2D" uid="uid://dyqupiq4e05rp" path="res://Images/UI/Prebuilts/prebuilt3.png" id="57_55u6w"]
 [ext_resource type="Script" uid="uid://c4dx5judyhyod" path="res://Scripts/Misc/PrebuiltMechs/prebuilt_button_3.gd" id="57_xfugj"]
+[ext_resource type="AudioStream" uid="uid://bcywgjwq64072" path="res://Audio/SFX/TTSVoice/Robosoft/hired.wav" id="69_ale1e"]
+[ext_resource type="AudioStream" uid="uid://dxx2mik7sf88b" path="res://Audio/SFX/TTSVoice/Robosoft/dismissed.wav" id="70_cn71h"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqcuy"]
 particle_flag_disable_z = true
@@ -2399,16 +2399,14 @@ max_polyphony = 2
 bus = &"SFX"
 
 [node name="HireOperator" type="AudioStreamPlayer" parent="GUI/SFX" unique_id=586511342]
-stream = ExtResource("41_pqdt3")
-volume_db = -5.0
+stream = ExtResource("69_ale1e")
 max_polyphony = 2
-bus = &"SFX"
+bus = &"Voice"
 
 [node name="FireOperator" type="AudioStreamPlayer" parent="GUI/SFX" unique_id=38751828]
-stream = ExtResource("42_fnvon")
-volume_db = -5.0
+stream = ExtResource("70_cn71h")
 max_polyphony = 2
-bus = &"SFX"
+bus = &"Voice"
 
 [connection signal="pressed" from="GUI/Control/TabContainer/TextureUI/Circuit/Left" to="GUI/Control" method="_on_left_pressed"]
 [connection signal="pressed" from="GUI/Control/TabContainer/TextureUI/Circuit/Right" to="GUI/Control" method="_on_right_pressed"]

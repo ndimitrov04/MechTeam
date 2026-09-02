@@ -738,6 +738,7 @@ sources/0 = SubResource("TileSetAtlasSource_ew2j1")
 [node name="Main" type="Node2D" unique_id=105152583]
 script = ExtResource("1_a6ph8")
 metadata/main_gamemode = true
+metadata/is_opening = true
 
 [node name="Background" parent="." unique_id=1645842300 instance=ExtResource("2_c2guc")]
 

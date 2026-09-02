@@ -241,12 +241,11 @@ func _ready():
 	Medical fees if incapacitated: 10 coins.")
 	npc_list.set_item_tooltip(1, "Cost: 50 Wage: 15 Supply: 1\n 
 	Can interact with ENGAGE terminals.
-	Regenerates 10 mech HP each 20 seconds. 
-	Medical fees if incapacitated: 10 coins.")
+	Regenerates 10 mech HP each 20 seconds. ")
 	npc_list.set_item_tooltip(2, "Cost: 50 Wage: 15 Supply: 1\n 
 	Cannot interact with ENGAGE terminals.
 	Allows you to remotely control your mech. 
-	Medical fees if incapacitated: 10 coins.")
+	Can execute a mech movement command once every 10 seconds.")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

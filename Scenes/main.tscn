@@ -31,8 +31,15 @@
 [ext_resource type="AudioStream" uid="uid://rf8mda10gl8x" path="res://Audio/SFX/UI/retro_beep_02.ogg" id="21_u50mg"]
 [ext_resource type="AudioStream" uid="uid://bh1sj01j1b2mb" path="res://Audio/SFX/UI/retro_beep_03.ogg" id="22_cbgmd"]
 [ext_resource type="Texture2D" uid="uid://ju7l016sm76o" path="res://Images/UI/HUD/enbarfull.png" id="22_r33sp"]
+[ext_resource type="Script" uid="uid://c7tm1fxuc8g1s" path="res://Scripts/UI/control_panel.gd" id="24_r33sp"]
 [ext_resource type="Script" uid="uid://d37dfj32lv50m" path="res://Scripts/game_over.gd" id="25_1w6v2"]
+[ext_resource type="Texture2D" uid="uid://btgueahcqe1jo" path="res://Images/UI/Keyboard/tile_0399.png" id="25_536cc"]
 [ext_resource type="Script" uid="uid://bjgkfyj322xtr" path="res://Scripts/UI/static_ui.gd" id="25_cbgmd"]
+[ext_resource type="Texture2D" uid="uid://dhkjq3kbm43gn" path="res://Images/UI/Keyboard/tile_0364.png" id="26_aqgau"]
+[ext_resource type="Texture2D" uid="uid://do7ld8uk80hw3" path="res://Images/UI/Keyboard/tile_0398.png" id="27_8cuat"]
+[ext_resource type="Texture2D" uid="uid://cmynxk7it434y" path="res://Images/UI/Keyboard/tile_0400.png" id="28_o1aky"]
+[ext_resource type="AudioStream" uid="uid://y5lc7kmqraba" path="res://Audio/SFX/TTSVoice/Robosoft/execute.wav" id="29_8cuat"]
+[ext_resource type="AudioStream" uid="uid://bjuepxofwqxkg" path="res://Audio/SFX/TTSVoice/Robosoft/nopilots.wav" id="29_aqgau"]
 [ext_resource type="Script" uid="uid://rxymwn878m5s" path="res://Scripts/action_viewport.gd" id="29_r33sp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pdsj5"]
@@ -416,6 +423,38 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="InputEventKey" id="InputEventKey_r33sp"]
+device = -1
+keycode = 75
+unicode = 107
+
+[sub_resource type="Shortcut" id="Shortcut_hdf80"]
+events = [SubResource("InputEventKey_r33sp")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_jwpg7"]
+device = -1
+keycode = 73
+unicode = 105
+
+[sub_resource type="Shortcut" id="Shortcut_k2e45"]
+events = [SubResource("InputEventKey_jwpg7")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_536cc"]
+device = -1
+keycode = 74
+unicode = 106
+
+[sub_resource type="Shortcut" id="Shortcut_aqgau"]
+events = [SubResource("InputEventKey_536cc")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_8cuat"]
+device = -1
+keycode = 76
+unicode = 108
+
+[sub_resource type="Shortcut" id="Shortcut_o1aky"]
+events = [SubResource("InputEventKey_8cuat")]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hdf80"]
 
@@ -856,7 +895,8 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("25_cbgmd")
-metadata/bars = false
+metadata/bars = true
+metadata/control_panel = true
 
 [node name="Instruction" type="Label" parent="GUI/Control/StaticUI" unique_id=1689954027]
 layout_mode = 1
@@ -998,6 +1038,7 @@ offset_left = 264.0
 offset_top = -176.0
 offset_right = 512.0
 offset_bottom = -56.0
+script = ExtResource("24_r33sp")
 
 [node name="TextureUI" type="TileMapLayer" parent="GUI/Control/StaticUI/ControlPanel" unique_id=1831281935]
 position = Vector2(-2, 0)
@@ -1011,39 +1052,47 @@ offset_bottom = 128.0
 
 [node name="Brake" type="Button" parent="GUI/Control/StaticUI/ControlPanel/Buttons" unique_id=327824298]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 27.0
-offset_right = 115.0
-offset_bottom = 59.0
+offset_left = 81.0
+offset_top = 64.0
+offset_right = 169.0
+offset_bottom = 104.0
+shortcut = SubResource("Shortcut_hdf80")
 text = "Brake
 "
+icon = ExtResource("25_536cc")
 
 [node name="Jump" type="Button" parent="GUI/Control/StaticUI/ControlPanel/Buttons" unique_id=17252421]
 layout_mode = 0
-offset_left = 139.0
-offset_top = 27.0
-offset_right = 227.0
-offset_bottom = 59.0
+offset_left = 81.0
+offset_top = 24.0
+offset_right = 169.0
+offset_bottom = 56.0
+shortcut = SubResource("Shortcut_k2e45")
 text = "Jump
 
 "
+icon = ExtResource("26_aqgau")
 
 [node name="Left" type="Button" parent="GUI/Control/StaticUI/ControlPanel/Buttons" unique_id=173907930]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 67.0
-offset_right = 115.0
-offset_bottom = 99.0
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 74.0
+offset_bottom = 104.0
+shortcut = SubResource("Shortcut_aqgau")
 text = "Left
 "
+icon = ExtResource("27_8cuat")
 
 [node name="Right" type="Button" parent="GUI/Control/StaticUI/ControlPanel/Buttons" unique_id=917170940]
 layout_mode = 0
-offset_left = 139.0
-offset_top = 67.0
-offset_right = 227.0
-offset_bottom = 99.0
+offset_left = 177.0
+offset_top = 48.0
+offset_right = 232.0
+offset_bottom = 104.0
+shortcut = SubResource("Shortcut_o1aky")
 text = "Right"
+icon = ExtResource("28_o1aky")
 
 [node name="RCStatus" type="Label" parent="GUI/Control/StaticUI/ControlPanel" unique_id=1723833461]
 layout_mode = 0
@@ -1064,6 +1113,16 @@ offset_right = 184.0
 offset_bottom = 164.0
 theme_override_constants/outline_size = 3
 text = "RC: "
+
+[node name="SFX" type="Node" parent="GUI/Control/StaticUI/ControlPanel" unique_id=918346906]
+
+[node name="Confirm" type="AudioStreamPlayer" parent="GUI/Control/StaticUI/ControlPanel/SFX" unique_id=2059624601]
+stream = ExtResource("29_8cuat")
+bus = &"Voice"
+
+[node name="Deny" type="AudioStreamPlayer" parent="GUI/Control/StaticUI/ControlPanel/SFX" unique_id=1954647336]
+stream = ExtResource("29_aqgau")
+bus = &"Voice"
 
 [node name="CameraPanel" type="Panel" parent="GUI/Control/StaticUI" unique_id=841424957]
 layout_mode = 0

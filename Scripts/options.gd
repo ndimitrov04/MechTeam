@@ -4,6 +4,7 @@ extends Control
 
 @onready var music_slider: HSlider = $OptionPanel/MusicSlider
 @onready var sfx_slider: HSlider = $OptionPanel/SFXSlider
+@onready var voice_slider: HSlider = $OptionPanel/VoiceSlider
 @onready var post_fx: Button = $OptionPanel/PostFX
 @onready var fullscreen: CheckButton = $OptionPanel/Fullscreen
 @onready var clear_data: Button = $OptionPanel/ClearData
@@ -16,12 +17,14 @@ extends Control
 const SAVE_PATH = "user://game_options.cfg"
 const MUSIC_BUS_NAME = "Music"
 const SFX_BUS_NAME = "SFX"
+const VOICE_BUS_NAME = "Voice"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Connect option signals
 	music_slider.value_changed.connect(_on_music_volume_changed)
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
+	voice_slider.value_changed.connect(_on_voice_volume_changed)
 	post_fx.toggled.connect(_on_post_fx_toggled)
 	fullscreen.toggled.connect(_on_fullscreen_toggled)
 	shaders.toggled.connect(_on_shaders_toggled)
@@ -75,6 +78,10 @@ func _on_music_volume_changed(value):
 func _on_sfx_volume_changed(value):
 	var bus_idx = AudioServer.get_bus_index(SFX_BUS_NAME)
 	AudioServer.set_bus_volume_db(bus_idx, sfx_slider.value)
+
+func _on_voice_volume_changed(value):
+	var bus_idx = AudioServer.get_bus_index(VOICE_BUS_NAME)
+	AudioServer.set_bus_volume_db(bus_idx, voice_slider.value)
 
 func _on_post_fx_toggled(is_enabled):
 	if is_enabled:

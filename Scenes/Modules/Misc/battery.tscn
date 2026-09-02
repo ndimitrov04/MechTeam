@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://ctju2u7uhycnw" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Boost PowerDown_v1.wav" id="20_o332s"]
 [ext_resource type="AudioStream" uid="uid://c2yvv86sp1kpa" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Build Up_Short_var 1.wav" id="21_jgpvc"]
 [ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="22_d0ogs"]
+[ext_resource type="AudioStream" uid="uid://cf2wuxrfco6vb" path="res://Audio/SFX/TTSVoice/Robosoft/battery.wav" id="23_jgpvc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
 friction = 0.9
@@ -188,3 +189,7 @@ parameters/looping = true
 
 [node name="Drop" type="AudioStreamPlayer2D" parent="SFX" unique_id=1786066304]
 bus = &"SFX"
+
+[node name="Voice" type="AudioStreamPlayer" parent="SFX" unique_id=1298516721]
+stream = ExtResource("23_jgpvc")
+bus = &"Voice"

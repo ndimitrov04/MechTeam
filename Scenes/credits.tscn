@@ -1207,8 +1207,9 @@ offset_right = 745.0
 offset_bottom = 730.016
 focus_mode = 2
 bbcode_enabled = true
-text = "Programming - NikX04
-Game Design - NikX04
+text = "
+[b]Programming[/b] - NikX04
+[b]Game Design[/b] - NikX04
 
 
 [b]Graphics[/b]
@@ -1311,10 +1312,6 @@ Punch by qubodup via Opengameart - [url]https://opengameart.org/content/punch[/u
 
 Short impact by Soundsnap via Opengameart - [url]https://opengameart.org/content/short-impact[/url]
 
-RTS commands and reports by Scribe via Opengameart - [url]https://opengameart.org/content/rts-commands-and-reports[/url]
-
-SciFi RTS Status Vocals by Beast via Opengameart - [url]https://opengameart.org/content/scifi-rts-status-vocals[/url]
-
 Wind1 by Luke.RUSTLTD via Opengameart - [url]https://opengameart.org/content/wind1[/url]
 
 Motorcycle Engine_50Km/h.wav by Cmart94 via Freesound.com - [url]https://freesound.org/people/Cmart94/sounds/518178/[/url]
@@ -1344,8 +1341,10 @@ ByteBounce Font by Hipfonts via 1001fonts.com - [url]https://www.1001fonts.com/b
 
 04b_19 by Yuji Oshimoto via Dafont.com - [url]https://www.dafont.com/04b-19.font[/url]
 
+[b]Voice FX[/b]
+Voice generated via RoboSoft (old-school no-AI TTS)
 
-Playtesters:
+[b]Playtesters[\\b]
 Ace
 JustAddLava
 

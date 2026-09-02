@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://b8gnpn43r6otu" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Heavy Plasma Shot_04.wav" id="6_hugvn"]
 [ext_resource type="AudioStream" uid="uid://c2yvv86sp1kpa" path="res://Audio/SFX/Modules/Single_SciFi Pack Vol 1_Energy Build Up_Short_var 1.wav" id="7_fkggt"]
 [ext_resource type="AudioStream" uid="uid://b2w7hvykjddcr" path="res://Audio/SFX/Modules/loop_machine_01.ogg" id="8_4lq3w"]
+[ext_resource type="AudioStream" uid="uid://c6orbbaq3wp5f" path="res://Audio/SFX/TTSVoice/Robosoft/shield.wav" id="9_hugvn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
 friction = 0.9
@@ -148,3 +149,7 @@ autoplay = true
 max_distance = 200.0
 bus = &"SFX"
 parameters/looping = true
+
+[node name="Voice" type="AudioStreamPlayer" parent="SFX" unique_id=1525565285]
+stream = ExtResource("9_hugvn")
+bus = &"Voice"

@@ -12,7 +12,7 @@ extends Control
 
 @onready var camera_panel = $CameraPanel
 @onready var initial_camera_panel_position = camera_panel.position
-@onready var control_panel = $ControlPanel
+@onready var control_panel
 @onready var status_timeout = $StatusPanel/Status/StatusTimeout
 
 @onready var minigame_result = $MinigameResult
@@ -25,6 +25,8 @@ extends Control
 func _ready():
 	await get_tree().create_timer(0.1).timeout
 	status_timeout.timeout.connect(_on_status_timeout)
+	if $ControlPanel:
+		control_panel = $ControlPanel
 	if has_meta("bars"):
 		hp_bar.max_value = mech.max_hp
 		en_bar.max_value = mech.energy

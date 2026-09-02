@@ -145,8 +145,9 @@ func tutorial_script():
 		tutorial_ui.load_clip2(9)
 		tutorial_ui.clip2.show()
 	elif not triggers[10]:
-		tutorial_ui.clip.hide()
-		tutorial_ui.load_clip2(10)
+		tutorial_ui.load_clip1(10)
+		tutorial_ui.clip.show()
+		tutorial_ui.load_clip2(11)
 		tutorial_ui.clip2.show()
 	if trigger_engaged:
 		update_trigger()
@@ -218,8 +219,9 @@ func advance():
 			current_instruction = 10
 			current_trigger = 10
 			tutorial_ui.load_instruction(instructions[current_instruction])
-			tutorial_ui.clip.hide()
-			tutorial_ui.load_clip2(10)
+			tutorial_ui.load_clip1(10)
+			tutorial_ui.clip.show()
+			tutorial_ui.load_clip2(11)
 			tutorial_ui.clip2.show()
 		else:
 			advance_trigger()

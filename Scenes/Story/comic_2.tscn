@@ -1278,7 +1278,7 @@ font_size = 32
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Comic2" type="Node2D" unique_id=1190380161]
+[node name="Comic" type="Node2D" unique_id=1190380161]
 scale = Vector2(2, 2)
 script = ExtResource("1_n18nu")
 

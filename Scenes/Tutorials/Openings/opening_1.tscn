@@ -79,6 +79,7 @@
 [ext_resource type="Texture2D" uid="uid://bh67ula7h34di" path="res://Images/Objects/Generator/tile012.png" id="83_vkv7v"]
 [ext_resource type="Texture2D" uid="uid://dru617a53pb0o" path="res://Images/Objects/Generator/tile013.png" id="84_h54b2"]
 [ext_resource type="Texture2D" uid="uid://m4bm1nisplqg" path="res://Images/Objects/Generator/tile014.png" id="85_ose85"]
+[ext_resource type="AudioStream" uid="uid://cf2wuxrfco6vb" path="res://Audio/SFX/TTSVoice/Robosoft/battery.wav" id="86_hl3dw"]
 [ext_resource type="Texture2D" uid="uid://cicudwcpgasti" path="res://Images/Objects/Generator/tile015.png" id="86_wup01"]
 [ext_resource type="Texture2D" uid="uid://qkpyf480lxn" path="res://Images/Objects/Generator/tile016.png" id="87_x0sqt"]
 [ext_resource type="Texture2D" uid="uid://dyt0o42f7o4f6" path="res://Images/Objects/Generator/tile017.png" id="88_psv7r"]
@@ -1862,6 +1863,7 @@ sources/0 = SubResource("TileSetAtlasSource_hwjd0")
 [node name="Main" type="Node2D" unique_id=105152583]
 script = ExtResource("1_2wpf8")
 metadata/main_gamemode = true
+metadata/is_opening = true
 
 [node name="Background" parent="." unique_id=1645842300 instance=ExtResource("2_wwpxn")]
 
@@ -2291,6 +2293,10 @@ parameters/looping = true
 
 [node name="Drop" type="AudioStreamPlayer2D" parent="Mech/Modules/Battery/SFX" unique_id=469722530]
 bus = &"SFX"
+
+[node name="Voice" type="AudioStreamPlayer" parent="Mech/Modules/Battery/SFX" unique_id=500950939]
+stream = ExtResource("86_hl3dw")
+bus = &"Voice"
 
 [node name="Highlight" type="ColorRect" parent="Mech/Modules/Battery" unique_id=1721743005]
 visible = false

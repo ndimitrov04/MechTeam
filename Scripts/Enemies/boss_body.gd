@@ -76,6 +76,7 @@ func _physics_process(delta):
 		set_meta("shielded", false)
 		frame.modulate = Color(1, 1, 1, 1)
 		hp_label.modulate = Color(1, 1, 1, 1)
+		hp_label.text = "Boss HP: " + str(int(hp))
 	
 	if not destroyed:
 		if hp <= 0:

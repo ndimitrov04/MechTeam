@@ -14,7 +14,8 @@ const _6 = preload("uid://cxviw42e01tw7")
 const _7 = preload("uid://bajv3m5ygyma7")
 const _8 = preload("uid://dun7jn7xeg2gb")
 const _9 = preload("uid://druoq6b8u65ak")
-const _10 = preload("uid://c4nko5naqou3y")
+const _10 = preload("uid://8xo3k5x6vxu0")
+const _11 = preload("uid://c4nko5naqou3y")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -51,7 +52,9 @@ func load_clip1(number : int):
 			clip.texture = _9
 		10:
 			clip.texture = _10
-
+		11:
+			clip.texture = _11
+		
 func load_clip2(number : int):
 	match number:
 		0:
@@ -76,3 +79,5 @@ func load_clip2(number : int):
 			clip2.texture = _9
 		10:
 			clip2.texture = _10
+		11:
+			clip2.texture = _11

@@ -30,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://d4l7dqdhfvjju" path="res://Audio/SFX/PlayerMech/Single_SciFi Pack Vol 1_PickUp_02.wav" id="28_w7xmg"]
 [ext_resource type="AudioStream" uid="uid://diruuak81ohbd" path="res://Audio/SFX/Misc/terminal_03.ogg" id="29_du88j"]
 [ext_resource type="AudioStream" uid="uid://dayqkdehp1fm8" path="res://Audio/SFX/Misc/terminal_05.ogg" id="30_0tdtx"]
+[ext_resource type="AudioStream" uid="uid://dcr62qf2kmepl" path="res://Audio/SFX/TTSVoice/Robosoft/noenergy.wav" id="31_0tdtx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
 size = Vector2(34, 25)
@@ -269,3 +270,7 @@ bus = &"SFX"
 [node name="Disengage" type="AudioStreamPlayer2D" parent="SFX" unique_id=376143244]
 stream = ExtResource("30_0tdtx")
 bus = &"SFX"
+
+[node name="Voice" type="AudioStreamPlayer" parent="SFX" unique_id=974802685]
+stream = ExtResource("31_0tdtx")
+bus = &"Voice"

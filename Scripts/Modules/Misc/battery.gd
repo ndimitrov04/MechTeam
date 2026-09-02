@@ -10,6 +10,7 @@ extends RigidBody2D
 @onready var charge_sfx: AudioStreamPlayer2D = $SFX/Charge
 @onready var ambient: AudioStreamPlayer2D = $SFX/Ambient
 @onready var drop_sfx: AudioStreamPlayer2D = $SFX/Drop
+@onready var voice: AudioStreamPlayer = $SFX/Voice
 
 const DEBRIS = preload("uid://rg2m11gs0xex")
 
@@ -76,6 +77,7 @@ func engage():
 	charge_sfx.play()
 	if get_parent().get_parent().name == "Mech":
 		main.static_ui.set_status("Engaging battery overdrive!\n+50 Energy")
+		voice.play()
 
 func drain(amount : int) -> int:
 	current_energy -= amount

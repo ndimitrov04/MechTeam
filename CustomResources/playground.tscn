@@ -59,6 +59,7 @@
 [ext_resource type="Texture2D" uid="uid://ch67qiwcpxw25" path="res://Images/Icons/Editor/Controllers/engage.png" id="58_3ayym"]
 [ext_resource type="Texture2D" uid="uid://dq4dm03lm2cut" path="res://Images/UI/Keyboard/tile_0578.png" id="59_lnq1q"]
 [ext_resource type="Texture2D" uid="uid://cojolci0hnjby" path="res://Images/Icons/Editor/Modules/battery.png" id="60_4jjow"]
+[ext_resource type="Texture2D" uid="uid://fq7mwr5m7ptp" path="res://Images/UI/Keyboard/tile_0116.png" id="62_ydvek"]
 [ext_resource type="Material" uid="uid://diktkc206mtjg" path="res://Shaders/circuit.tres" id="65_8dkl3"]
 [ext_resource type="Texture2D" uid="uid://bpmdolkg0pjmm" path="res://Images/Objects/Decor/decor_4.png" id="68_861yx"]
 
@@ -2743,3 +2744,99 @@ tile_set = SubResource("TileSet_0bmru")
 [node name="KeyboardPrompts" type="TileMapLayer" parent="10" unique_id=249166894]
 tile_map_data = PackedByteArray("AAAoACEAIAAcAAAAAAApACEAIAAdAAAAAAA=")
 tile_set = SubResource("TileSet_rdffs")
+
+[node name="11" type="Node2D" parent="." unique_id=903203724]
+position = Vector2(1360, 0)
+
+[node name="Background" type="TileMapLayer" parent="11" unique_id=972395190]
+z_index = -1
+tile_map_data = PackedByteArray("AAApACIAAAAAAAQAAAApACMAAAAAAAUAAAApACQAAAAAAAYAAAApACUAAAAAAAcAAAAqACIAAAABAAQAAAAqACMAAAABAAUAAAAqACQAAAABAAYAAAAqACUAAAABAAcAAAArACIAAAACAAQAAAArACMAAAACAAUAAAArACQAAAACAAYAAAArACUAAAACAAcAAAAsACIAAAADAAQAAAAsACMAAAADAAUAAAAsACQAAAADAAYAAAAsACUAAAADAAcAAAAtACIAAAAEAAQAAAAtACMAAAAEAAUAAAAtACQAAAAEAAYAAAAtACUAAAAEAAcAAAAuACIAAAAFAAQAAAAuACMAAAAFAAUAAAAuACQAAAAFAAYAAAAuACUAAAAFAAcAAAAnACAAAAAIAAMAAAAnACEAAAAIAAQAAAAoACAAAAAJAAMAAAAoACEAAAAJAAQAAAAnACIAAAAIAAMAAAAnACMAAAAIAAQAAAAoACIAAAAJAAMAAAAoACMAAAAJAAQAAAAnACQAAAAIAAMAAAAnACUAAAAIAAQAAAAoACQAAAAJAAMAAAAoACUAAAAJAAQAAAAnACYAAAAIAAMAAAAnACcAAAAIAAQAAAAoACYAAAABAAIAAAAoACcAAAAJAAQAAAApACYAAAABAAIAAAApACcAAAAIAAQAAAAqACYAAAABAAIAAAAqACcAAAAJAAQAAAArACYAAAABAAIAAAArACcAAAAIAAQAAAAsACYAAAABAAIAAAAsACcAAAAJAAQAAAAtACYAAAABAAIAAAAtACcAAAAIAAQAAAAuACYAAAABAAIAAAAuACcAAAAJAAQAAAAvACYAAAABAAIAAAAvACcAAAAIAAQAAAAwACYAAAAJAAMAAAAwACcAAAAJAAQAAAAvACQAAAAIAAMAAAAvACUAAAAIAAQAAAAwACQAAAAJAAMAAAAwACUAAAAJAAQAAAAvACIAAAAIAAMAAAAvACMAAAAIAAQAAAAwACIAAAAJAAMAAAAwACMAAAAJAAQAAAAvACAAAAAIAAMAAAAvACEAAAAIAAQAAAAwACAAAAAJAAMAAAAwACEAAAAJAAQAAAAtACAAAAAIAAMAAAAtACEAAAAIAAQAAAAuACAAAAAJAAMAAAAuACEAAAAJAAQAAAArACAAAAAIAAMAAAArACEAAAAIAAQAAAAsACAAAAAJAAMAAAAsACEAAAAJAAQAAAApACAAAAAIAAMAAAApACEAAAAIAAQAAAAqACAAAAAJAAMAAAAqACEAAAAJAAQAAAA=")
+tile_set = SubResource("TileSet_kry3j")
+
+[node name="Player" type="CharacterBody2D" parent="11" unique_id=988069987]
+z_index = 1000
+position = Vector2(624, 592)
+collision_layer = 16421
+collision_mask = 16421
+floor_stop_on_slope = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="11/Player" unique_id=538369703]
+material = SubResource("ShaderMaterial_3smsa")
+position = Vector2(52, 1.0000124)
+scale = Vector2(0.61627907, 0.61627907)
+sprite_frames = SubResource("SpriteFrames_hibaj")
+animation = &"punch_run"
+autoplay = "default"
+frame = 1
+frame_progress = 0.30515742
+
+[node name="Sprite2" type="AnimatedSprite2D" parent="11/Player" unique_id=1924532630]
+material = SubResource("ShaderMaterial_3smsa")
+position = Vector2(106.00002, -10.99999)
+scale = Vector2(1.1046512, 1.1046513)
+sprite_frames = SubResource("SpriteFrames_hibaj")
+animation = &"punch_run"
+autoplay = "default"
+frame = 1
+frame_progress = 0.30515742
+
+[node name="MainGenerator" type="RigidBody2D" parent="11" unique_id=255743080]
+z_index = 10
+z_as_relative = false
+position = Vector2(719, 608)
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_kt653")
+can_sleep = false
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+metadata/aim_speed = 2.0
+metadata/pinned_tile = Vector2i(0, 0)
+metadata/price = 25
+metadata/big_object = true
+metadata/airstrike_object = true
+metadata/mod = true
+
+[node name="Punch" type="Area2D" parent="11" unique_id=1965060433]
+z_index = 2000
+z_as_relative = false
+position = Vector2(703, 584)
+collision_layer = 4104
+collision_mask = 4104
+metadata/speed = 0
+metadata/damage_value = 3
+metadata/knockback = 300
+metadata/impact = true
+metadata/lifetime = 0.3
+metadata/hitflash = false
+metadata/pierce_rate = 0
+metadata/melee = true
+
+[node name="Helper" type="Label" parent="11" unique_id=1637144014]
+offset_left = 693.0
+offset_top = 538.0
+offset_right = 757.0
+offset_bottom = 584.0
+theme = ExtResource("27_53l4u")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 16
+text = "to Zoom In/Out"
+autowrap_mode = 2
+
+[node name="TextureUI" type="TileMapLayer" parent="11" unique_id=408851228]
+position = Vector2(-1, 0)
+tile_map_data = PackedByteArray("AAAnACAAAAAAAAAAAAAnACEAAAAAAAEAAAAnACIAAAAAAAIAAAAnACMAAAAAAAMAAAAnACQAAAAAAAQAAAAnACUAAAAAAAQAAAAnACYAAAAAAAQAAAAnACcAAAAAAAUAAAAoACAAAAABAAAAAAAoACcAAAABAAUAAAApACAAAAACAAAAAAApACcAAAACAAUAAAAqACAAAAADAAAAAAAqACcAAAADAAUAAAArACAAAAAEAAAAAAArACcAAAAEAAUAAAAsACAAAAABAAAAAAAsACcAAAACAAUAAAAtACAAAAACAAAAAAAtACcAAAADAAUAAAAuACAAAAADAAAAAAAuACcAAAAEAAUAAAAvACAAAAAEAAAAAAAvACcAAAACAAUAAAAwACAAAAAFAAAAAAAwACEAAAAFAAEAAAAwACIAAAAFAAQAAAAwACMAAAAFAAQAAAAwACQAAAAFAAQAAAAwACUAAAAFAAQAAAAwACYAAAAFAAQAAAAwACcAAAAFAAUAAAA=")
+tile_set = SubResource("TileSet_0bmru")
+
+[node name="KeyboardPrompts" type="TileMapLayer" parent="11" unique_id=1932899663]
+tile_set = SubResource("TileSet_rdffs")
+
+[node name="Tile0116" type="Sprite2D" parent="11" unique_id=1955027868]
+position = Vector2(667, 549.99994)
+scale = Vector2(2.1250036, 2.1250036)
+texture = ExtResource("62_ydvek")

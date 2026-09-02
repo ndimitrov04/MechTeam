@@ -11,7 +11,7 @@ func _unhandled_input(event):
 		if visible:
 			hide()
 			get_tree().paused = false
-		elif not visible and get_tree().current_scene.name != "Menu" and get_tree().current_scene.name != "BadEnd" and get_tree().current_scene.name != "DemoEnd":
+		elif not visible and get_tree().current_scene.name != "Menu" and get_tree().current_scene.name != "Comic" and get_tree().current_scene.name != "BadEnd" and get_tree().current_scene.name != "DemoEnd" and not get_tree().current_scene.has_meta("is_opening"):
 			show()
 			get_tree().paused = true
 

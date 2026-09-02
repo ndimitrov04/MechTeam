@@ -1341,7 +1341,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Comic1" type="Node2D" unique_id=1190380161]
+[node name="Comic" type="Node2D" unique_id=1190380161]
 scale = Vector2(2, 2)
 script = ExtResource("1_26bt4")
 
