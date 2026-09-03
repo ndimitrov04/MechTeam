@@ -112,7 +112,6 @@
 [ext_resource type="AudioStream" uid="uid://w7445ct0jx4j" path="res://Audio/SFX/Misc/explosion01.wav" id="102_si6xj"]
 [ext_resource type="AudioStream" uid="uid://dobdusbmot6cj" path="res://Audio/SFX/Misc/explosion05.wav" id="103_i3jot"]
 [ext_resource type="Script" uid="uid://dpcte7citurl7" path="res://Scripts/post_fx.gd" id="103_nijow"]
-[ext_resource type="AudioStream" uid="uid://dpowh8g6v7jip" path="res://Audio/SFX/UI/wind1.wav" id="104_i3jot"]
 [ext_resource type="Texture2D" uid="uid://b00kogx5v5wwb" path="res://Images/UI/Cyberpunk/1 Frames/FrameMap.png" id="108_5ej1k"]
 [ext_resource type="Material" uid="uid://diktkc206mtjg" path="res://Shaders/circuit.tres" id="108_qqmte"]
 [ext_resource type="Texture2D" uid="uid://bxpih7hp41jc0" path="res://Images/UI/Cyberpunk/3 Icons/Icons/Icon_34.png" id="109_vhmv4"]
@@ -121,6 +120,7 @@
 [ext_resource type="PackedScene" uid="uid://dv35x42f88pcv" path="res://Scenes/options.tscn" id="113_vhmv4"]
 [ext_resource type="PackedScene" uid="uid://b5x3br02hg6yg" path="res://Scenes/credits.tscn" id="114_qqmte"]
 [ext_resource type="Texture2D" uid="uid://db6de34iqrolk" path="res://Images/UI/Cyberpunk/3 Icons/Icons/Icon_02.png" id="115_wlsfm"]
+[ext_resource type="AudioStream" uid="uid://cbv4pcicqy2g" path="res://Audio/SFX/UI/wind1.ogg" id="121_qqmte"]
 
 [sub_resource type="Animation" id="Animation_lnxmk"]
 length = 0.001
@@ -4168,10 +4168,6 @@ grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Motion" parent="Menu/MenuPanel/Options/OptionPanel" parent_id_path=PackedInt32Array(2101862927, 1579632714) index="10" unique_id=1130520307]
-offset_top = 536.0
-offset_bottom = 620.0
-
 [node name="ShowOptions" parent="Menu/MenuPanel/Options" index="1" unique_id=1971259113]
 button_group = SubResource("ButtonGroup_qqmte")
 
@@ -4232,7 +4228,7 @@ stream = ExtResource("103_i3jot")
 bus = &"SFX"
 
 [node name="Wind" type="AudioStreamPlayer" parent="SFX" unique_id=1053994442]
-stream = ExtResource("104_i3jot")
+stream = ExtResource("121_qqmte")
 bus = &"SFX"
 
 [connection signal="pressed" from="Menu/MenuPanel/Play" to="." method="_on_play_pressed"]

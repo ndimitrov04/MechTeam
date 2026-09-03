@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dndmhljduiso3" path="res://Scenes/Story/demo_end.gd" id="1_7iln6"]
 [ext_resource type="Texture2D" uid="uid://b00kogx5v5wwb" path="res://Images/UI/Cyberpunk/1 Frames/FrameMap.png" id="2_5eleb"]
+[ext_resource type="AudioStream" uid="uid://dwejo272rijiu" path="res://Audio/SFX/Ambience/freesound_community-028301_spaceship-ambience-61038.ogg" id="4_xshup"]
 [ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="7_xshup"]
 [ext_resource type="Script" uid="uid://d4lpuucmeksjx" path="res://Scripts/menu_button.gd" id="8_y433i"]
 [ext_resource type="FontFile" uid="uid://b6wdp6xlj0mgn" path="res://ByteBounce.ttf" id="20_rqs0x"]
 [ext_resource type="Script" uid="uid://dgx27jrvj1ybe" path="res://Scenes/Story/panel_show.gd" id="21_ywp5r"]
-[ext_resource type="AudioStream" uid="uid://slk844nj4up" path="res://Audio/SFX/Ambience/freesound_community-028301_spaceship-ambience-61038.mp3" id="22_ivypa"]
 [ext_resource type="PackedScene" uid="uid://b5x3br02hg6yg" path="res://Scenes/credits.tscn" id="23_fuivh"]
 
 [sub_resource type="Animation" id="Animation_fgts1"]
@@ -482,7 +482,7 @@ wait_time = 0.15
 one_shot = true
 
 [node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=654293772]
-stream = ExtResource("22_ivypa")
+stream = ExtResource("4_xshup")
 autoplay = true
 bus = &"SFX"
 

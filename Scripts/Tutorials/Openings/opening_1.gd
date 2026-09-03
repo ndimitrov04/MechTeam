@@ -172,7 +172,7 @@ func _ready():
 	enemy_mech_8.ai = false
 	enemy_mech_8.max_hp = 999
 	enemy_mech_8.hp = 999
-	GlobalMusic.queue_track("res://Audio/Music/Bogart VGM - Scifi Concentration (looped).mp3", 2)
+	GlobalMusic.queue_track("res://Audio/Music/Bogart VGM - Scifi Concentration (looped).ogg", 2)
 	tutorial_ui.load_clip1(0)
 	tutorial_ui.clip.show()
 	tutorial_ui.load_clip2(1)

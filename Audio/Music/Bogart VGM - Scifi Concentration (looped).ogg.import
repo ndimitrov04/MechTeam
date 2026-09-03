@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://pxn2qwr468ov"
+path="res://.godot/imported/Bogart VGM - Scifi Concentration (looped).ogg-62b5fec05c4e4a2713bca8bc75304fea.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/Bogart VGM - Scifi Concentration (looped).ogg"
+dest_files=["res://.godot/imported/Bogart VGM - Scifi Concentration (looped).ogg-62b5fec05c4e4a2713bca8bc75304fea.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

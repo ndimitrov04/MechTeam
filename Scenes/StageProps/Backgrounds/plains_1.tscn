@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://drs1ede0w8g2w" path="res://Images/Placeholders/Bird/7.png" id="9_kshih"]
 [ext_resource type="Texture2D" uid="uid://c66e1ca4cpsuk" path="res://Images/Tiles/plains1_ground.png" id="9_mc8u1"]
 [ext_resource type="Material" uid="uid://cp05al3yxuufv" path="res://Shaders/water.tres" id="18_skjrl"]
-[ext_resource type="AudioStream" uid="uid://benkf045gbqip" path="res://Audio/SFX/Ambience/818307__klankbeeld__city-park-winterday-zuiderpark-s-hertogenbosch-netherlands-127-pm-241217_0960.mp3" id="19_g1gol"]
+[ext_resource type="AudioStream" uid="uid://c0ngdiqeny8x6" path="res://Audio/SFX/Ambience/818307__klankbeeld__city-park-winterday-zuiderpark-s-hertogenbosch-netherlands-127-pm-241217_0960.ogg" id="19_g1gol"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
 offsets = PackedFloat32Array(0, 0.38292682)

@@ -1847,7 +1847,6 @@ autowrap_mode = 2
 script = ExtResource("2_5bid2")
 
 [node name="Panel5" type="Node2D" parent="." unique_id=989824371]
-visible = false
 script = ExtResource("2_5bid2")
 
 [node name="Part5" type="Node2D" parent="Panel5" unique_id=1957301389]

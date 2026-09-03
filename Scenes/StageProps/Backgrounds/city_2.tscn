@@ -21,8 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://b6dleu45r3bou" path="res://Images/Placeholders/Car/Left/5.png" id="10_7wvf0"]
 [ext_resource type="Texture2D" uid="uid://d3nn82exov241" path="res://Images/Placeholders/Car/Left/6.png" id="11_ojcpt"]
 [ext_resource type="Shader" uid="uid://b4w2si845350q" path="res://Shaders/water.gdshader" id="12_cgl5p"]
-[ext_resource type="AudioStream" uid="uid://dko4qiip2teiy" path="res://Audio/SFX/Misc/157487__loopbasedmusic__rain_near_smooth.mp3" id="21_duh5q"]
-[ext_resource type="AudioStream" uid="uid://ohhde7fs6w24" path="res://Audio/SFX/Ambience/478573__pesticidex__traffic-sounds001.mp3" id="22_i4ax5"]
+[ext_resource type="AudioStream" uid="uid://byhe5pjuhc5tu" path="res://Audio/SFX/Ambience/157487__loopbasedmusic__rain_near_smooth.ogg" id="22_d2chk"]
+[ext_resource type="AudioStream" uid="uid://ci050d4l43u6q" path="res://Audio/SFX/Ambience/478573__pesticidex__traffic-sounds001.ogg" id="23_blgsg"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
 offsets = PackedFloat32Array(0.47333333, 0.5)
@@ -964,13 +964,13 @@ scale = Vector2(73002.734, 1056.2499)
 texture = SubResource("CanvasTexture_afeog")
 
 [node name="RainSFX" type="AudioStreamPlayer" parent="." unique_id=148869260]
-stream = ExtResource("21_duh5q")
+stream = ExtResource("22_d2chk")
 volume_db = -5.886
 autoplay = true
 bus = &"SFX_Nocomp"
 
 [node name="CitySFX" type="AudioStreamPlayer" parent="." unique_id=1286019092]
-stream = ExtResource("22_i4ax5")
+stream = ExtResource("23_blgsg")
 volume_db = -6.865
 autoplay = true
 bus = &"SFX_Nocomp"

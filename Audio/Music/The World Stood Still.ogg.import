@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cwoxu2sbaxp2e"
+path="res://.godot/imported/The World Stood Still.ogg-964d0c9b9540198f70f4efbee729b4ae.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Music/The World Stood Still.ogg"
+dest_files=["res://.godot/imported/The World Stood Still.ogg-964d0c9b9540198f70f4efbee729b4ae.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

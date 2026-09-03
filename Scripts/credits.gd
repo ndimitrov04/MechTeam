@@ -15,9 +15,6 @@ func _ready():
 func _process(_delta):
 	pass
 
-func _on_rich_text_label_meta_clicked(meta):
-	OS.shell_open(str(meta))
-
 func _on_show_credits_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		credit_panel.show()

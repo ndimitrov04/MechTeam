@@ -154,7 +154,7 @@
 [ext_resource type="Script" uid="uid://5uivdxicfykd" path="res://Scripts/menuplayer.gd" id="116_p7qv6"]
 [ext_resource type="Texture2D" uid="uid://bnpfidpohw54n" path="res://Images/Characters/Player/Cyborg_idle.png" id="117_3sr26"]
 [ext_resource type="Texture2D" uid="uid://vfehl0ro1tdt" path="res://Images/Characters/Player/Cyborg_run.png" id="118_pxqvy"]
-[ext_resource type="AudioStream" uid="uid://dpowh8g6v7jip" path="res://Audio/SFX/UI/wind1.wav" id="119_2r21l"]
+[ext_resource type="AudioStream" uid="uid://cbv4pcicqy2g" path="res://Audio/SFX/UI/wind1.ogg" id="119_2r21l"]
 [ext_resource type="PackedScene" uid="uid://bumo1vx3c25sa" path="res://!MediaMaterials/Watermark/watermark_1.tscn" id="120_hgsfb"]
 
 [sub_resource type="Gradient" id="Gradient_m4rfc"]

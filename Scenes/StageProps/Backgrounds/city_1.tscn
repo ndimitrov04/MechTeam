@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://deinkajit0i5w" path="res://Images/Tilesets/Buildings.png" id="7_k7d2b"]
 [ext_resource type="Texture2D" uid="uid://d5s48705hw0x" path="res://Images/Tiles/city1_floor.png" id="8_a04h6"]
 [ext_resource type="Texture2D" uid="uid://dq81air4qhq7w" path="res://Images/Tiles/city1_ground.png" id="9_21t4n"]
-[ext_resource type="AudioStream" uid="uid://bp84hq2anv02r" path="res://Audio/SFX/Ambience/469313__2hear__ambient-street-traffic-dublin.mp3" id="15_g7l4c"]
+[ext_resource type="AudioStream" uid="uid://dbdq4mqiy152" path="res://Audio/SFX/Ambience/469313__2hear__ambient-street-traffic-dublin.ogg" id="15_g7l4c"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
 offsets = PackedFloat32Array(0.47333333, 0.5)

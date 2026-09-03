@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cihbppdoipueb" path="res://Images/Objects/Decor/decor_3.png" id="18_1ljn6"]
 [ext_resource type="Texture2D" uid="uid://dj84476vdvb43" path="res://Images/Characters/Enemies/FinalBoss/Idle.png" id="19_eojyj"]
 [ext_resource type="PackedScene" uid="uid://b5x3br02hg6yg" path="res://Scenes/credits.tscn" id="23_0umwj"]
-[ext_resource type="AudioStream" uid="uid://slk844nj4up" path="res://Audio/SFX/Ambience/freesound_community-028301_spaceship-ambience-61038.mp3" id="24_utlrc"]
+[ext_resource type="AudioStream" uid="uid://dwejo272rijiu" path="res://Audio/SFX/Ambience/freesound_community-028301_spaceship-ambience-61038.ogg" id="24_xyngc"]
 [ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="24_y8vlg"]
 [ext_resource type="Script" uid="uid://d4lpuucmeksjx" path="res://Scripts/menu_button.gd" id="25_xyngc"]
 
@@ -1454,7 +1454,8 @@ wait_time = 0.15
 one_shot = true
 
 [node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=654293772]
-stream = ExtResource("24_utlrc")
+stream = ExtResource("24_xyngc")
+volume_db = -2.0
 autoplay = true
 bus = &"SFX"
 
