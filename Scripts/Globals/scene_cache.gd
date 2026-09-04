@@ -54,3 +54,6 @@ func _process(_delta: float) -> void:
 
 	for key in to_remove:
 		loading.erase(key)
+
+func all_scenes_ready() -> bool:
+	return loading.is_empty()

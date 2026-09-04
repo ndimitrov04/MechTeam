@@ -27,7 +27,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalMusic.stop()
-	GlobalMusic.queue_track("res://Audio/Music/S31-Night Prowler.ogg", 2)
+	GlobalMusic.queue_track("res://Audio/Music/03 ship interior.ogg", 2)
 	space_cd.start()
 	animation_player.play("FlyIn")
 

@@ -114,6 +114,7 @@
 [ext_resource type="Script" uid="uid://dpcte7citurl7" path="res://Scripts/post_fx.gd" id="103_nijow"]
 [ext_resource type="Texture2D" uid="uid://b00kogx5v5wwb" path="res://Images/UI/Cyberpunk/1 Frames/FrameMap.png" id="108_5ej1k"]
 [ext_resource type="Material" uid="uid://diktkc206mtjg" path="res://Shaders/circuit.tres" id="108_qqmte"]
+[ext_resource type="Texture2D" uid="uid://b04vt8up6b460" path="res://Images/loader.png" id="109_l72qv"]
 [ext_resource type="Texture2D" uid="uid://bxpih7hp41jc0" path="res://Images/UI/Cyberpunk/3 Icons/Icons/Icon_34.png" id="109_vhmv4"]
 [ext_resource type="Texture2D" uid="uid://c8xiob8trco8b" path="res://Images/UI/Cyberpunk/3 Icons/Icons/Icon_18.png" id="110_l72qv"]
 [ext_resource type="Texture2D" uid="uid://fhnlvka1ra1q" path="res://Images/UI/Cyberpunk/3 Icons/Icons/Icon_25.png" id="110_qqmte"]
@@ -158,7 +159,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(960, 540)]
+"values": [Vector2(3000, 540)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1631,6 +1632,56 @@ gradient = SubResource("Gradient_gjkiu")
 width = 1024
 fill_from = Vector2(0.012237762, 0)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbcki"]
+atlas = ExtResource("109_l72qv")
+region = Rect2(2, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlsfm"]
+atlas = ExtResource("109_l72qv")
+region = Rect2(26, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mql8a"]
+atlas = ExtResource("109_l72qv")
+region = Rect2(50, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp4as"]
+atlas = ExtResource("109_l72qv")
+region = Rect2(74, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcn2l"]
+atlas = ExtResource("109_l72qv")
+region = Rect2(98, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fipc7"]
+atlas = ExtResource("109_l72qv")
+region = Rect2(122, 0, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqfcr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbcki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlsfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mql8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp4as")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcn2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fipc7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3rjx"]
 content_margin_left = 3.0
 content_margin_top = 2.0
@@ -1972,7 +2023,7 @@ theme = ExtResource("1_158mb")
 script = ExtResource("2_wwsa2")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=90896087]
-offset = Vector2(960, 540)
+offset = Vector2(3000, 540)
 script = ExtResource("3_exfoy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=437086496]
@@ -3986,7 +4037,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -0.0048828125
+offset_right = -0.010009766
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_158mb")
@@ -4060,6 +4111,29 @@ offset_top = 567.0
 offset_right = 1557.0
 offset_bottom = 816.0
 texture = ExtResource("97_1q3u6")
+
+[node name="Loader" type="AnimatedSprite2D" parent="Overlay/StartupOverlay" unique_id=699929634]
+position = Vector2(58, 1032)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_dqfcr")
+autoplay = "default"
+frame_progress = 0.00093868317
+
+[node name="Label" type="Label" parent="Overlay/StartupOverlay" unique_id=1928414822]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 1008.0
+offset_right = 220.0
+offset_bottom = 1031.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.5764706, 0.5058824, 0.8901961, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Loading..."
+
+[node name="LoadCheck" type="Timer" parent="Overlay" unique_id=937609710]
+wait_time = 0.5
+autostart = true
 
 [node name="Menu" type="CanvasLayer" parent="." unique_id=576383519]
 layer = 3
@@ -4231,6 +4305,7 @@ bus = &"SFX"
 stream = ExtResource("121_qqmte")
 bus = &"SFX"
 
+[connection signal="timeout" from="Overlay/LoadCheck" to="." method="_on_load_check_timeout"]
 [connection signal="pressed" from="Menu/MenuPanel/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/MenuPanel/ContinueRun" to="." method="_on_continue_run_pressed"]
 [connection signal="pressed" from="Menu/MenuPanel/PlayTutorial" to="." method="_on_play_tutorial_pressed"]

@@ -93,7 +93,7 @@ func _ready() -> void:
 	PlayerData.unlock_datalog(8)
 	GlobalMusic.queue_track("res://Audio/Music/Lost signal main theme.ogg", 2)
 	if PlayerData.planets_finished.size() == 4:
-		GlobalMusic.queue_track("res://Audio/Music/9- White.ogg", 0.1)
+		GlobalMusic.stop()
 		durante.show()
 		durante.disabled = false
 	for planet in planets.get_children():
