@@ -180,10 +180,7 @@ func _ready():
 	Cannot be aimed.")
 	modules.set_item_tooltip(6, "Cost: 65
 	Melee weapon.
-	Ram into the enemy at high 
-	speed to deal damage.
-	Does not consume energy.
-	Cannot be aimed.")
+	Unlock by beating the game.")
 	modules.set_item_tooltip(7, "Cost: 75
 	Does not destroy tiles. Piercing.
 	Needs 30 energy to shoot.

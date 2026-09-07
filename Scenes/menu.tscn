@@ -2005,10 +2005,10 @@ texture = ExtResource("108_5ej1k")
 [sub_resource type="TileSet" id="TileSet_3wdvt"]
 sources/0 = SubResource("TileSetAtlasSource_0c7gy")
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_qqmte"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_l72qv"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_l72qv"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_wbcki"]
 allow_unpress = true
 
 [node name="Menu" type="Control" unique_id=835225328]
@@ -4243,7 +4243,7 @@ grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ShowOptions" parent="Menu/MenuPanel/Options" index="1" unique_id=1971259113]
-button_group = SubResource("ButtonGroup_qqmte")
+button_group = SubResource("ButtonGroup_l72qv")
 
 [node name="Credits" parent="Menu/MenuPanel" unique_id=2047440401 instance=ExtResource("114_qqmte")]
 layout_mode = 1
@@ -4257,7 +4257,7 @@ grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ShowCredits" parent="Menu/MenuPanel/Credits" index="1" unique_id=333356873]
-button_group = SubResource("ButtonGroup_l72qv")
+button_group = SubResource("ButtonGroup_wbcki")
 
 [node name="Quit" type="Button" parent="Menu/MenuPanel" unique_id=1947578702]
 layout_mode = 1
@@ -4285,11 +4285,10 @@ scale = Vector2(0.75, 0.75)
 [node name="VerNum" parent="Menu/MenuPanel" unique_id=1710955397 instance=ExtResource("98_tf86c")]
 z_index = 500
 layout_mode = 1
-offset_left = 183.40794
-offset_top = 508.0
-offset_right = 487.40796
-offset_bottom = 547.0
-horizontal_alignment = 2
+offset_left = 303.40805
+offset_top = 520.0
+offset_right = 607.4081
+offset_bottom = 559.0
 
 [node name="SFX" type="Node" parent="." unique_id=254702348]
 

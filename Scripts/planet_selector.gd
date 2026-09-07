@@ -90,6 +90,7 @@ const planet_sprites = [
 @onready var durante: TextureButton = $Parallax2D55/Planets/Durante
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PlayerData.damage_combo = 0
 	PlayerData.unlock_datalog(8)
 	GlobalMusic.queue_track("res://Audio/Music/Lost signal main theme.ogg", 2)
 	if PlayerData.planets_finished.size() == 4:

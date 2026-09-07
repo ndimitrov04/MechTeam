@@ -136,7 +136,6 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="OptionPanel" parent="MenuPanel/Options" index="0" unique_id=1579632714]
-visible = false
 offset_top = 272.0
 offset_bottom = 1184.0
 
@@ -189,6 +188,10 @@ offset_left = 144.0
 offset_right = 360.0
 
 [node name="Motion" parent="MenuPanel/Options/OptionPanel" index="10" unique_id=1130520307]
+offset_left = 144.0
+offset_right = 360.0
+
+[node name="DimBG" parent="MenuPanel/Options/OptionPanel" index="11" unique_id=309544344]
 offset_left = 144.0
 offset_right = 360.0
 

@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var retry: Button = $MenuPanel/Retry
 @onready var abandon_planet: Button = $MenuPanel/AbandonPlanet
+@onready var options: Control = $MenuPanel/Options
 
 func _ready() -> void:
 	pass

@@ -148,14 +148,16 @@ enum planets {NEOS, GAIA, TERRA, SELENE, DURANTE}
 
 @onready var collected_logs : Array = []
 
-@onready var post_fx_enabled = true
-@onready var shaders_enabled = true
+@onready var post_fx_enabled = false
+@onready var shaders_enabled = false
 @onready var motion_sickness_mode : bool = false
+@onready var dim_bg : bool = false
 
 @onready var terrain_test : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	damage_combo = 0
 	match OS.get_name():
 		"Windows":
 			print("Running on Windows...")

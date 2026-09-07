@@ -17,8 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://dbdq4mqiy152" path="res://Audio/SFX/Ambience/469313__2hear__ambient-street-traffic-dublin.ogg" id="15_g7l4c"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
-offsets = PackedFloat32Array(0.47333333, 0.5)
-colors = PackedColorArray(0.9137255, 0.6392157, 0.8235294, 1, 0.99215686, 0.7254902, 0.6431373, 1)
+offsets = PackedFloat32Array(0.0069124424, 0.46313363, 0.99769586)
+colors = PackedColorArray(0.8665358, 0.47949183, 0.75069666, 1, 0.9137255, 0.6392157, 0.8235294, 1, 0.99215686, 0.7254902, 0.6431373, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8gbba"]
 gradient = SubResource("Gradient_hibaj")

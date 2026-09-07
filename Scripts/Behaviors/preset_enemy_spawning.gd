@@ -8,6 +8,8 @@ const DEFENDER = preload("uid://c2df7dij3p5ck")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await get_tree().create_timer(3.0).timeout
+	
 	var enemies = [DEFENDER]
 	
 	for spawner in get_children():

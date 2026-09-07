@@ -61,8 +61,8 @@ frame_progress = 0.31040195
 top_level = true
 z_index = -1
 z_as_relative = false
-position = Vector2(0, 11.75)
-scale = Vector2(1, 0.9)
+position = Vector2(0, 13.25)
+scale = Vector2(1, 1.02)
 texture = SubResource("GradientTexture2D_8wj6m")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=196601224]

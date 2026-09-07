@@ -10,6 +10,7 @@ extends Control
 @onready var clear_data: Button = $OptionPanel/ClearData
 @onready var shaders: CheckButton = $OptionPanel/Shaders
 @onready var motion: CheckButton = $OptionPanel/Motion
+@onready var dim_bg: CheckButton = $OptionPanel/DimBG
 
 @onready var credit_panel: Panel = $"../Credits/CreditPanel"
 @onready var show_credits: Button = $"../Credits/ShowCredits"
@@ -29,8 +30,12 @@ func _ready() -> void:
 	fullscreen.toggled.connect(_on_fullscreen_toggled)
 	shaders.toggled.connect(_on_shaders_toggled)
 	motion.toggled.connect(_on_motion_toggled)
+	dim_bg.toggled.connect(_on_dim_bg_toggled)
 	clear_data.pressed.connect(_show_clear_confirm)
 	
+	update_ui()
+
+func update_ui():
 	update_fullscreen_switches()
 	if PlayerData.post_fx_enabled:
 		post_fx.set_pressed_no_signal(true)
@@ -44,18 +49,14 @@ func _ready() -> void:
 		motion.set_pressed_no_signal(true)
 	else:
 		motion.set_pressed_no_signal(false)
+	if PlayerData.dim_bg:
+		dim_bg.set_pressed_no_signal(true)
+	else:
+		dim_bg.set_pressed_no_signal(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if PlayerData.post_fx_enabled:
-		post_fx.set_pressed_no_signal(true)
-	else:
-		post_fx.set_pressed_no_signal(false)
-	if PlayerData.shaders_enabled:
-		shaders.set_pressed_no_signal(true)
-	else:
-		shaders.set_pressed_no_signal(false)
-
+	pass
 
 func update_fullscreen_switches():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
@@ -64,6 +65,7 @@ func update_fullscreen_switches():
 		fullscreen.set_pressed_no_signal(false)
 
 func _on_show_options_toggled(toggled_on: bool) -> void:
+	update_ui()
 	if toggled_on:
 		option_panel.show()
 		credit_panel.hide()
@@ -100,6 +102,12 @@ func _on_motion_toggled(is_enabled):
 		PlayerData.motion_sickness_mode = true
 	else:
 		PlayerData.motion_sickness_mode = false
+
+func _on_dim_bg_toggled(is_enabled):
+	if is_enabled:
+		PlayerData.dim_bg = true
+	else:
+		PlayerData.dim_bg = false
 
 func _on_fullscreen_toggled(is_enabled):
 	if is_enabled:

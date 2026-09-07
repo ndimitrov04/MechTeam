@@ -470,7 +470,7 @@ text = "That was not a human.
 
 Bad Ending #2
 
-Thank you for playing the MechTeam Demo! :)"
+Thank you for playing!"
 label_settings = SubResource("LabelSettings_h6l1a")
 horizontal_alignment = 1
 autowrap_mode = 2

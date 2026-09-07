@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://deinkajit0i5w" path="res://Images/Tilesets/Buildings.png" id="20_6wmd8"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
-offsets = PackedFloat32Array(0.47333333, 0.5)
-colors = PackedColorArray(0.24313726, 0.18039216, 0.3254902, 1, 0.18431373, 0.18431373, 0.20784314, 1)
+offsets = PackedFloat32Array(0, 0.2444934)
+colors = PackedColorArray(0.18431373, 0.18431373, 0.20784314, 1, 0.24313726, 0.18039216, 0.3254902, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ob15j"]
 gradient = SubResource("Gradient_hibaj")

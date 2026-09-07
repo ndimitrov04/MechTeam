@@ -28,6 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://duudmikql3i4b" path="res://CustomResources/meta/build.png" id="27_5bid2"]
 [ext_resource type="Texture2D" uid="uid://l2t3iea1fkch" path="res://Images/Characters/Friendlies/NPC1/Idle.png" id="28_eylvx"]
 [ext_resource type="Texture2D" uid="uid://br0tpy0r01ffd" path="res://Images/Characters/Friendlies/NPC2/Idle.png" id="29_q4hws"]
+[ext_resource type="Theme" uid="uid://b8f5jafh6cxy" path="res://CustomResources/main_theme.tres" id="29_tv8yf"]
+[ext_resource type="Script" uid="uid://ihp6x1k6k26v" path="res://Scenes/Story/skipbutton.gd" id="30_xp7gs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_si4oj"]
 texture = ExtResource("1_xpj2i")
@@ -1744,7 +1746,7 @@ offset_left = 644.0
 offset_top = 44.0
 offset_right = 944.0
 offset_bottom = 241.0
-text = "Not by means of diplomacy I guess. If the conflicts are connected we won't be able to just clear planets one by one and do our \"peacekeeping\" business."
+text = "Not by means of diplomacy I guess. We won't be able to just clear planets one by one and do our \"peacekeeping\" business if the entire solar system is in chaos."
 label_settings = SubResource("LabelSettings_5oha8")
 horizontal_alignment = 2
 autowrap_mode = 2
@@ -1946,6 +1948,17 @@ text = "Press SPACE to advance"
 label_settings = SubResource("LabelSettings_5oha8")
 autowrap_mode = 2
 
+[node name="Button" type="Button" parent="." unique_id=1937246456]
+top_level = true
+offset_left = 1604.0
+offset_top = 896.0
+offset_right = 1665.0
+offset_bottom = 926.0
+scale = Vector2(4, 4)
+theme = ExtResource("29_tv8yf")
+text = "Skip"
+script = ExtResource("30_xp7gs")
+
 [connection signal="mouse_entered" from="Panel2/PlanetSelector/Parallax2D55/Planets/Neos" to="Panel2/PlanetSelector" method="_on_neos_mouse_entered"]
 [connection signal="mouse_exited" from="Panel2/PlanetSelector/Parallax2D55/Planets/Neos" to="Panel2/PlanetSelector" method="_on_neos_mouse_exited"]
 [connection signal="pressed" from="Panel2/PlanetSelector/Parallax2D55/Planets/Neos" to="Panel2/PlanetSelector" method="_on_neos_pressed"]
@@ -1958,5 +1971,6 @@ autowrap_mode = 2
 [connection signal="mouse_entered" from="Panel2/PlanetSelector/Parallax2D55/Planets/Selene" to="Panel2/PlanetSelector" method="_on_selene_mouse_entered"]
 [connection signal="mouse_exited" from="Panel2/PlanetSelector/Parallax2D55/Planets/Selene" to="Panel2/PlanetSelector" method="_on_selene_mouse_exited"]
 [connection signal="pressed" from="Panel2/PlanetSelector/Parallax2D55/Planets/Selene" to="Panel2/PlanetSelector" method="_on_selene_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 
 [editable path="Panel4/Background"]

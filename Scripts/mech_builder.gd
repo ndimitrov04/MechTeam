@@ -58,6 +58,7 @@ var npc_count : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	PlayerData.damage_combo = 0
 	GlobalMusic.queue_track("res://Audio/Music/rbl.ogg", 1.0)
 	if get_parent().name == "Editor":
 		in_editor = true

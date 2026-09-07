@@ -2271,7 +2271,7 @@ offset_bottom = 401.0
 theme_override_fonts/font = ExtResource("9_tgtas")
 theme_override_font_sizes/font_size = 32
 text = "Cost: 200
-HP: 130
+HP: 180
 EN: 150
 Can Jump
 "
@@ -2313,7 +2313,7 @@ offset_bottom = 401.0
 theme_override_fonts/font = ExtResource("9_tgtas")
 theme_override_font_sizes/font_size = 32
 text = "Cost: 200
-HP: 160
+HP: 210
 EN: 150
 "
 autowrap_mode = 3
@@ -2354,7 +2354,7 @@ offset_bottom = 401.0
 theme_override_fonts/font = ExtResource("9_tgtas")
 theme_override_font_sizes/font_size = 32
 text = "Cost: 200
-HP: 110
+HP: 160
 EN: 300
 
 "

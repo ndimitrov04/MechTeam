@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://clxksslxwdp2q" path="res://Scripts/camera.gd" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://bnpfidpohw54n" path="res://Images/Characters/Player/Cyborg_idle.png" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://vfehl0ro1tdt" path="res://Images/Characters/Player/Cyborg_run.png" id="3_fkybt"]
+[ext_resource type="Script" uid="uid://digkxoviayqyq" path="res://Scripts/Backgrounds/dimmer.gd" id="3_tx1dd"]
 [ext_resource type="Shader" uid="uid://7cniheyhq1gn" path="res://Shaders/outline.gdshader" id="3_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://nbjb2up4h02s" path="res://Images/Characters/Player/Cyborg_run_attack.png" id="5_8erm5"]
 [ext_resource type="Texture2D" uid="uid://byttfyasvk3tn" path="res://Images/Characters/Player/Cyborg_punch.png" id="5_f1ek2"]
@@ -202,6 +203,16 @@ limit_right = 2500
 limit_bottom = 920
 script = ExtResource("2_fkybt")
 noise = SubResource("FastNoiseLite_vgqql")
+
+[node name="Dimmer" type="ColorRect" parent="Camera" unique_id=625981990]
+modulate = Color(0.011764706, 0.011764706, 0.011764706, 0.50980395)
+z_index = -42
+offset_left = -5435.1064
+offset_top = -3012.0
+offset_right = 5699.6455
+offset_bottom = 1636.0
+color = Color(0.29411766, 0.29411766, 0.29411766, 0.72156864)
+script = ExtResource("3_tx1dd")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1868873983]
 position = Vector2(0, 9.5)

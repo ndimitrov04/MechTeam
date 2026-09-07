@@ -86,6 +86,8 @@ const OST_5 = "uid://coontyop6fu1"
 const OST_FINAL_BOSS = "uid://beku4nrvqac8i"
 @onready var soundtracks = [OST_1, OST_2, OST_3, OST_4, OST_5, OST_T]
 func _ready():
+	OptionMenu.options.update_ui()
+	PlayerData.damage_combo = 0
 	if has_meta("boss_test"):
 		if get_meta("boss_test") == true:
 			PlayerData.current_stage = 14
@@ -204,7 +206,7 @@ func end_stage():
 		crew_wages += npc.get_meta("wage")
 	PlayerData.money -= crew_wages
 	# New income system
-	rewards_collected = ceili(float(PlayerData.current_stage) / 3.0) * 25
+	rewards_collected = (ceili(float(PlayerData.current_stage) / 3.0) * 25) + 10
 	PlayerData.money += rewards_collected
 	await get_tree().create_timer(0.1).timeout
 	end_text = (

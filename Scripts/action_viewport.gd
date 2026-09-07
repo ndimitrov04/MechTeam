@@ -27,9 +27,9 @@ func show_action(target_position : Vector2, damage_dealt : int = 0):
 	if target_position.distance_to(main.player.global_position) < (960 / main.player.zoom.x):
 		return
 	if action_timeout.time_left < ACTION_TIME or action_timeout.is_stopped():
-		action_timeout.start(TIMEOUT_TIME)
 		action_camera.position = target_position
 		action_panel.show()
+	action_timeout.start(TIMEOUT_TIME)
 	
 func _on_action_timeout_timeout() -> void:
 	action_panel.hide()

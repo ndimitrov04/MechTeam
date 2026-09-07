@@ -21,7 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://c0ngdiqeny8x6" path="res://Audio/SFX/Ambience/818307__klankbeeld__city-park-winterday-zuiderpark-s-hertogenbosch-netherlands-127-pm-241217_0960.ogg" id="19_g1gol"]
 
 [sub_resource type="Gradient" id="Gradient_hibaj"]
-offsets = PackedFloat32Array(0, 0.38292682)
+offsets = PackedFloat32Array(0, 0.071428575)
 colors = PackedColorArray(0.26666668, 0.33333334, 0.57254905, 1, 0.50980395, 0.8901961, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ob15j"]

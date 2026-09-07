@@ -70,7 +70,7 @@ func _ready():
 		load_mech()
 	@warning_ignore("integer_division")
 	# Calculate and set true weight/hp for mech
-	max_hp = frame.get_used_cells().size() / 2
+	max_hp = (frame.get_used_cells().size() / 2) + 50
 	hp = max_hp
 	if has_meta("custom_hp"):
 		max_hp = get_meta("custom_hp")
@@ -340,13 +340,15 @@ func _on_body_entered(body):
 			self.get_parent().player.camera.trauma = 1.5
 			# Take central body knockback
 			self.apply_central_impulse(Vector2(-150000, 0))
-			self.take_damage(35)
+			self.take_damage(25)
 			# Take wheel knockback
 			for object in self.wheels.get_children():
 				if object.has_meta("is_movement"):
 					object.physics_material_override.friction = 0.0
-					object.apply_central_impulse(Vector2(-50000, 0))
-					await get_tree().create_timer(0.1).timeout
+					object.apply_central_impulse(Vector2(-90000, 0))
+			await get_tree().create_timer(0.4).timeout
+			for object in self.wheels.get_children():
+				if object.has_meta("is_movement"):
 					object.physics_material_override.friction = 0.15
 			can_collide = false
 			await get_tree().create_timer(0.7).timeout
